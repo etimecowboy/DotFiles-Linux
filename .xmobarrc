@@ -1,0 +1,28 @@
+Config { font = "xft:Yahei Mono:pixelsize=14"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = TopW L 90
+       , commands = [ Run Weather "ZHHH" ["-t"," <tempC>C","-L","15","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
+                    -- , Run MultiCpu ["-t","CPU: % %", "-L", "10", "-H", "60", "-l", "lightblue", "-n", "white", "-h", "red"] 10
+                    -- , Run CpuFreq ["-t", " ", "-L", "0", "-H", "2", "-l", "lightblue", "-n","white", "-h", "red"] 50
+                    , Run Com "/home/xin/bin/getcoretemp.sh" [] "coreTemp" 10
+                    , Run Cpu ["-L","10","-H","50","--normal","green","--high","red"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Swap [] 10
+                    -- , Run Wireless "wlan0" ["-t","wlan0: %","-L","0","-H","32","--normal","green","--high","red"] 10
+                    -- , Run Battery ["-t","Batt: %","-L","25","-H","75","--low","#FF0000","--normal","#F9FF00","--high","#00FF00"] 600
+                    -- , Run Com "/home/xin/bin/getvolume.sh" [] "myVolume" 10
+                    -- , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                    , Run Network "eth1" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                    -- , Run Network "eth2" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                    -- , Run Network "eth3" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                    , Run Date "%a %b %_d %l:%M" "date" 10
+                    , Run Com "uname" ["-s","-r"] "" 36000
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %uname% | %cpu%  %coreTemp%  %memory%  %swap%  %eth1% | <fc=#ee9a00>%date%</fc>  %ZHHH%" 
+       -- , template = "%StdinReader% }{ %multicpu% %cpufreq% %coreTemp% %memory% %swap% %wlan0wi% %battery% Vol: %myVolume% Weather: %VOMM% %date%"
+       -- , template = "%StdinReader% }{ %multicpu% %memory% %swap% | <fc=#ee9a00>%date%</fc> | Weather: %ZHHH%
+       }
