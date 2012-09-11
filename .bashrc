@@ -1,4 +1,4 @@
-# Time-stamp: <2012-09-08 Sat 08:00 by xin on p5q>
+# Time-stamp: <2012-09-11 Tue 15:44 by xin on p5q>
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files for examples.
@@ -258,7 +258,21 @@ fi
 # Fix input method problem in some program
 # export LC_CTYPE="zh_CN.UTF-8"
 
+# Emacs related settings
+if [ -d "$HOME/.emacs.d/bin/lin64" ] ; then
+    PATH="$HOME/.emacs.d/bin/lin64:$PATH"
+fi
 # Use emacsclient as the default editor
+# # For X windows system
+# export ALTERNATE_EDITOR="emacs"
+# export EDITOR= ecg"
+# export VISUAL="ecg"
+# alias e='ecg'
+# alias et='emacsclient -t'
+# alias em='emacs -daemon'
+# alias ee='emacs -nw -q'
+# alias vi='ecg' # Use emacs instead of vi
+# # For text mode
 export ALTERNATE_EDITOR="emacs -nw"
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -t"
@@ -267,10 +281,6 @@ alias ec='emacsclient -c'
 alias em='emacs -daemon'
 alias ee='emacs -nw -q'
 alias vi='emacsclient -t' # Use emacs instead of vi
-
-if [ -d "$HOME/.emacs.d/bin/lin64" ] ; then
-    PATH="$HOME/.emacs.d/bin/lin64:$PATH"
-fi
 
 # iBus
 export GTK_IM_MODULE=ibus
@@ -293,78 +303,42 @@ if [ -d "/opt/MATLAB/R2011a" ] ; then
     # PATH="$MATLAB/bin/glnxa64:$PATH"
 fi
 
-# Xilinx
-# 10.1
-. /opt/Xilinx/10.1/ISE/settings64.sh
-. /opt/Xilinx/10.1/EDK/settings64.sh
-. /opt/Xilinx/10.1/ChipScope/settings64.sh
-. /opt/Xilinx/10.1/PlanAhead/settings64.sh
-# if [ -d "/opt/Xilinx/10.1/ISE" ] ; then
-#     export XILINX="/opt/Xilinx/10.1/ISE"
-# fi
-# 13.4
-# . /opt/Xilinx/13.4/ISE_DS/settings64.sh
-# 11.1
-# . /opt/Xilinx/11.1/settings64.sh
-# Some system variables
-export XIL_IMPACT_USE_LIBUSB=1
-# export LD_PRELOAD=/usr/local/lib/libusb-driver.so
+# FPGA settings
 
-# ModelSim
-if [ -d "/opt/Mentor/ModelSim/10.0a_se/modeltech" ] ; then
-    export MODELSIM="/home/xin/modelsim.ini"
-    export MODEL_TECH="/opt/Mentor/ModelSim/10.0a_se/modeltech"
-    export MODELSIM_LICENSE_DIR="/opt/Mentor/ModelSim/license"
-    export LM_LICENSE_FILE="$MODELSIM_LICENSE_DIR/ModelSim_SE_10.0a.dat"
-    export MGLS_LICENSE_FILE="$LM_LICENSE_FILE"
-    PATH="$MODEL_TECH/bin:$PATH"
-fi
+fpga () {
 
-# # Fix the secure path in Debian.
-# # sudo uses environment variables of the current user
-# # (@url :file-name "http://stackoverflow.com/questions/257616/sudo-changes-path-why" :display "REF")
-# alias sudo="sudo env PATH=$PATH LD_LIBRARY_PATH=$LD_LIBRARY_PATH LMC_HOME=$LMC_HOME XILINX=$XILINX XILINX_EDK=$XILINX_EDK" # LD_PRELOAD=$LD_PRELOAD"
-
-# Widgets to be loaded after xmonad started
-xmw () {
-    # system tray
-    trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent true --tint 0x191970 --height 20 &
-    # screensaver
-    xscreensaver -no-splash &
-    # set the cursoe as pointer, otherwise X will appear as cursor
-    xsetroot -cursor_name left_ptr
-    # start clipboard manager
-    clipit &
-    # start emacs daemon
-    em
-    # stardict dictionary
-    # stardict &
-    # urxvt daemon
-    # urxvtc "$@"
-    # if [ $? -eq 2 ]; then
-    # 	urxvtd -q -o -f
-    # 	urxvtc "$@"
+    # Xilinx 10.1
+    . /opt/Xilinx/10.1/ISE/settings64.sh
+    . /opt/Xilinx/10.1/EDK/settings64.sh
+    . /opt/Xilinx/10.1/ChipScope/settings64.sh
+    . /opt/Xilinx/10.1/PlanAhead/settings64.sh
+    # if [ -d "/opt/Xilinx/10.1/ISE" ] ; then
+    #     export XILINX="/opt/Xilinx/10.1/ISE"
     # fi
-    # dropbox service
-    dropbox start
-    # hp system trayer
-    hp-systray &
-    # mint update
-    # mintupdate-launcher &
-    # automount
-    # /usr/lib/gnome-settings-daemon/gnome-fallback-mount-helper &
-    # pulse audio
-    start-pulseaudio-x11
-    # sound volume control
-    gnome-sound-applet &
-    # notification daemon
-    # /usr/lib/notification-daemon/notification-daemon
-    # remap keyboard
-    xmodmap /home/xin/.xmodmap-cherry1800
-    }
+    # Xilinx 13.4
+    # . /opt/Xilinx/13.4/ISE_DS/settings64.sh
+    # Xilinx 11.1
+    # . /opt/Xilinx/11.1/settings64.sh
 
-# dmenu xft font setting
-alias dmenu_run='dmenu_run -fn -*-terminal-*-*-*-*-*-*-*-*-*-*-*-*'
+    # Some system variables
+    export XIL_IMPACT_USE_LIBUSB=1
+    # export LD_PRELOAD=/usr/local/lib/libusb-driver.so
+
+    # ModelSim
+    if [ -d "/opt/Mentor/ModelSim/10.0a_se/modeltech" ] ; then
+        export MODELSIM="$HOME/modelsim.ini"
+        export MODEL_TECH="/opt/Mentor/ModelSim/10.0a_se/modeltech"
+        export MODELSIM_LICENSE_DIR="/opt/Mentor/ModelSim/license"
+        export LM_LICENSE_FILE="$MODELSIM_LICENSE_DIR/ModelSim_SE_10.0a.dat"
+        export MGLS_LICENSE_FILE="$LM_LICENSE_FILE"
+        PATH="$MODEL_TECH/bin:$PATH"
+    fi
+
+    # # Fix the secure path in Debian.
+    # # sudo uses environment variables of the current user
+    # # (@url :file-name "http://stackoverflow.com/questions/257616/sudo-changes-path-why" :display "REF")
+    # alias sudo="sudo env PATH=$PATH LD_LIBRARY_PATH=$LD_LIBRARY_PATH LMC_HOME=$LMC_HOME XILINX=$XILINX XILINX_EDK=$XILINX_EDK" # LD_PRELOAD=$LD_PRELOAD"
+    }
 
 export PATH
 export LD_LIBRARY_PATH

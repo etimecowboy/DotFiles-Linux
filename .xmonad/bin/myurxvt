@@ -1,0 +1,10 @@
+#!/bin/sh
+# Script to smartly launch urxvtc or urxvtd
+# Author: Xin Yang
+
+urxvtc "$@"
+
+if [ $? -eq 2 ]; then
+  urxvtd -q -o -f
+  urxvtc "$@"
+fi

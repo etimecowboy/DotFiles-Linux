@@ -15,4 +15,4 @@ fi
 # Start emacs daemon
 # emacs --daemon
 
-# xmodmap ~/.xmodmap-p5q
+# xmodmap ~/.xmonad/xmodmap-cherry1800

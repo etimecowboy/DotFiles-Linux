@@ -7,4 +7,10 @@ if [ "$SHLVL" = 1 ]; then
 fi
 
 # Kill emacs
-# emacsclient --kill
+emacsclient --kill
+
+# umount local hard disks
+pumount /dev/sdb1
+pumount /dev/sdb5
+pumount /dev/sdb6
+pumount /dev/sdb7

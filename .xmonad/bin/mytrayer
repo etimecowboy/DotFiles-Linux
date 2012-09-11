@@ -1,0 +1,12 @@
+#!/bin/sh
+# Script to launch trayer in the correct position next to xmobar.
+# Author: Xin Yang
+# Based on: http://github.com/vicfryzel/xmonad-config
+
+
+# trayer --edge top --align right --SetDockType true \
+#     --SetPartialStrut true --expand true --width 10 \
+#     --tint 0x191970 --height 20 --transparent false &
+
+trayer --edge top --align right --margin 0 --width 10 \
+    --height 24 --padding 1 --tint 0x000000 --transparent false

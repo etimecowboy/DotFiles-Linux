@@ -1,0 +1,63 @@
+#!/bin/sh
+# Script to configure X, and start common apps.
+# Author: Xin Yang
+# Based on: http://github.com/vicfryzel/xmonad-config
+
+# Configure PATH so that we can access our scripts below
+PATH=$PATH:$HOME/.cabal/bin:$HOME/.xmonad/bin
+
+# configure X
+xscreensaver -no-splash &      # screensaver
+xsetroot -cursor_name left_ptr # set the cursoe as pointer, otherwise X will appear as cursor
+xmodmap $HOME/.xmonad/xmodmap-cherry1800   # remap keyboard
+feh --bg-scale $HOME/Pictures/wallpaper/Xmbindings.png # set wallpaper
+# xloadimage -onroot -fullscreen /home/greg/Dropbox/xmonad_neu1.gif
+
+# xmobar $HOME/.xmonad/xmobar.hs &  # status bar
+
+$HOME/.xmonad/bin/mytrayer &   # system tray
+
+clipit &                       # clipboard manager
+
+dropbox start                  # dropbox service
+
+hp-systray &                   # hp system trayer
+
+# mintupdate-launcher &        # mint update
+
+start-pulseaudio-x11           # pulse audio
+
+gnome-sound-applet &           # sound volume control
+
+/usr/lib/notification-daemon/notification-daemon & # notification daemon
+
+# /usr/lib/gnome-settings-daemon/gnome-fallback-mount-helper &  # automount
+
+# use pmount to mount local hard disks (should be added to /etc/pmount.allow)
+# use sudo blkid to list all your disks
+pmount /dev/sdb1 WinXP-SYS
+pmount /dev/sdb5 WinXP-SOFT
+pmount /dev/sdb6 WinXP-HOME
+pmount /dev/sdb7 WinXP-Down
+
+$HOME/.xmonad/bin/myurxvt        # Start urxvt terminals (daemon mode first, then clients)
+$HOME/.xmonad/bin/myurxvt        # another terminal for small tasks
+
+ALTERNATE_EDITOR= emacs
+EDITO= $HOME/.emacs.d/bin/lin64/ecg
+VISUAL= $HOME/.emacs.d/bin/lin64/ecg
+emacs -daemon  # start emacs daemon (a gui instance may be better)
+
+# firefox &      # too slow
+
+# thunerbird &   # too slow
+
+# Automatically mount removable media
+# thunar --daemon &
+
+# stardict &                   # stardict dictionary
+
+# Start xchat (IRC client)
+# xchat &
+
+# exec ck-launch-session dbus-launch --sh-syntax --exit-with-session xmonad
