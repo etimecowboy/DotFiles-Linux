@@ -8,5 +8,5 @@
 #     --SetPartialStrut true --expand true --width 10 \
 #     --tint 0x191970 --height 20 --transparent false &
 
-trayer --edge top --align right --margin 0 --width 10 \
-    --height 24 --padding 1 --tint 0x000000 --transparent false
+trayer --edge bottom --align right --margin 0 --width 10 \
+    --height 22 --padding 1 --tint 0x000000 --transparent false

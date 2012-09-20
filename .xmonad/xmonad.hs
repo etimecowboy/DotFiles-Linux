@@ -1,18 +1,33 @@
 -- xmonad config used by Xin Yang
--- Based on Vic Fryzel's xmonad configuration
+-- Based on
 -- http://github.com/vicfryzel/xmonad-config
+-- http://www.haskell.org/haskellwiki/Xmonad/Config_archive/sykopomp%27s_xmonad.hs
 
 import System.IO
 import System.Exit
 import XMonad
+
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
+
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
+import XMonad.Layout.WindowNavigation
+import XMonad.Layout.TwoPane
+-- import XMonad.Layout.Circle
+-- import XMonad.Layout.Combo
+-- import XMonad.Layout.ResizeableTile
+-- import XMonad.Layout.PerWorkspace
+
+import XMonad.Actions.SwapWorkspaces
+import XMonad.Actions.DwmPromote
+-- import XMonad.Actions.CycleWS
+-- import XMonad.Actions.Submap
+
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import qualified XMonad.StackSet as W
@@ -24,14 +39,16 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "~/.xmonad/bin/myurxvt"
+myTerminal = "urxvt"
+-- myTerminal = "urxvtc"
+-- myTerminal = "~/.xmonad/bin/myurxvt"
 
 
 ------------------------------------------------------------------------
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
-myWorkspaces = ["1:term","2:web","3:code","4:vm","5:media"] ++ map show [6..9]
+myWorkspaces = ["1:work","2:ref","3:temp","4:media","5:vm","6:sys"] ++ map show [7..9]
 
 
 ------------------------------------------------------------------------
@@ -49,18 +66,26 @@ myWorkspaces = ["1:term","2:web","3:code","4:vm","5:media"] ++ map show [6..9]
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "Firefox"        --> doShift "2:web"
+    [ className =? "Firefox"        --> doShift "2:ref"
     , resource  =? "desktop_window" --> doIgnore
-    , className =? "Galculator"     --> doFloat
+    , className =? "Conkeror"       --> doShift "1:work"
+    -- , className =? "Galculator"     --> doFloat
     , className =? "Gimp"           --> doFloat
     , resource  =? "gpicview"       --> doFloat
-    , resource  =? "kdesktop"       --> doIgnore
+    -- , resource  =? "kdesktop"       --> doIgnore
     , resource  =? "skype"          --> doFloat
-    , className =? "Emacs"          --> doShift "3:code"
-    , className =? "VirtualBox"     --> doShift "4:vm"
-    , className =? "Xchat"          --> doShift "5:media"
+    -- , className =? "Emacs"          --> doShift "1:emacs"
+    , className =? "VirtualBox"     --> doShift "5:vm"
+    , className =? "Xchat"          --> doShift "6:sys"
+    , className =? "Banshee"        --> doShift "4:media"
+    -- , className =? "Thunderbird"    --> doShift "3:temp"
+    , className =? "Totem"          --> doFloat
     , className =? "MPlayer"        --> doFloat
+    , className =? "SMPlayer"       --> doFloat
     , className =? "Vlc"            --> doFloat
+    , className =? "Synaptic"       --> doShift "6:sys"
+    , className =? "Gnome-system-monitor" --> doShift "6:sys"
+    , className =? "Gnome-commmander"     --> doShift "3:temp"
     , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
 
 
@@ -75,29 +100,34 @@ myManageHook = composeAll
 -- which denotes layout choice.
 --
 myLayout = avoidStruts (
-    Tall 1 (3/100) (1/2) |||
+    TwoPane (3/100) (1/2)         |||
+    tabbed shrinkText myTabConfig |||
+    Tall 1 (3/100) (1/2)          |||
     Mirror (Tall 1 (3/100) (1/2)) |||
-    tabbed shrinkText tabConfig |||
-    Full |||
-    spiral (6/7)) |||
-    noBorders (fullscreenFull Full)
+    Full                          |||
+    -- Circle                          |||
+    -- noBorders (fullscreenFull Full) |||
+    spiral (6/7))
 
 
 ------------------------------------------------------------------------
 -- Colors and borders
 -- Currently based on the ir_black theme.
 --
-myNormalBorderColor  = "#7c7c7c"
-myFocusedBorderColor = "#ffb6b0"
+myNormalBorderColor  = "#7c7c7c" -- "#7c7c7c"
+myFocusedBorderColor = "#ff0000" -- "#ffb6b0"
 
 -- Colors for text and backgrounds of each tab when in "Tabbed" layout.
-tabConfig = defaultTheme {
+myTabConfig = defaultTheme {
     activeBorderColor = "#7C7C7C",
     activeTextColor = "#CEFFAC",
     activeColor = "#000000",
     inactiveBorderColor = "#7C7C7C",
     inactiveTextColor = "#EEEEEE",
-    inactiveColor = "#000000"
+    inactiveColor = "#000000",
+    -- urgentColor = "#C500C5",
+    decoHeight  = 18,
+    fontName = "-*-yahei mono-*-r-normal-*-11-*-*-*-*-*-*-*"
 }
 
 -- Color of current window title in xmobar.
@@ -126,24 +156,21 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   --
 
   -- Start a terminal.  Terminal to start is specified by myTerminal variable.
-  [ ((modMask .|. shiftMask, xK_Return),
-     spawn $ XMonad.terminal conf)
+  [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
   -- Lock the screen using xscreensaver.
-  , ((modMask .|. controlMask, xK_l),
-     spawn "xscreensaver-command -lock")
+  , ((modMask .|. controlMask, xK_l), spawn "xscreensaver-command -lock")
 
   -- Launch dmenu.
-  , ((modMask, xK_p),
-     spawn "~/.xmonad/bin/mydmenu")
- 
+  , ((modMask, xK_p), spawn "~/.xmonad/bin/mydmenu")
+
   -- -- Launch yeganesh, which is a wrap of dmenu (not very configurable)
   -- , ((modMask, xK_p),
   --    spawn "~/.xmonad/bin/myeganesh")
- 
+
   -- launch gmrun
-  , ((modMask .|. shiftMask, xK_p),
-     spawn "gmrun")
+  -- BUG: not working
+  , ((modMask .|. shiftMask, xK_p), spawn "gmrun")
 
   -- Take a screenshot in select mode.
   -- After pressing this key binding, click a window, or draw a rectangle with
@@ -184,84 +211,151 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- , ((0, 0x1008FF2C),
   --    spawn "eject -T")
 
+  -- system volumn control
+  , ((modMask .|. shiftMask, xK_v), spawn "aumix -v +5")
+  , ((modMask, xK_v), spawn "aumix -v -5")
+  , ((modMask .|. controlMask, xK_v), spawn "aumix")
+
+  -- window navigation
+  -- next/previous emacs-like
+  -- , ((modMask, xK_n), windows W.focusDown)
+  -- change focus with arrows
+  -- , ((modMask, xK_p), windows W.focusUp)
+  -- , ("M-m", windows W.focusMaster)
+  -- BUG: not working, xK_keycodes may be wrong
+  -- , ((modMask, xK_Right), sendMessage $ Go R)
+  -- , ((modMask, xK_Left),  sendMessage $ Go L)
+  -- , ((modMask, xK_Up),    sendMessage $ Go U)
+  -- , ((modMask, xK_Down),  sendMessage $ Go D)
+  , ((modMask .|. controlMask, xK_j), sendMessage $ Go R)
+  , ((modMask .|. controlMask, xK_l), sendMessage $ Go L)
+  , ((modMask .|. controlMask, xK_i), sendMessage $ Go U)
+  , ((modMask .|. controlMask, xK_k), sendMessage $ Go D)
+
+  -- Window Movement
+  -- swap
+  -- BUG: not working, xK_keycodes may be wrong
+  -- , ((modMask .|. shiftMask, xK_Right), sendMessage $ Swap R)
+  -- , ((modMask .|. shiftMask, xK_Left),  sendMessage $ Swap L)
+  -- , ((modMask .|. shiftMask, xK_Up),    sendMessage $ Swap U)
+  -- , ((modMask .|. shiftMask, xK_Down),  sendMessage $ Swap D)
+  , ((modMask .|. mod1Mask, xK_j), sendMessage $ Swap R)
+  , ((modMask .|. mod1Mask, xK_l), sendMessage $ Swap L)
+  , ((modMask .|. mod1Mask, xK_i), sendMessage $ Swap U)
+  , ((modMask .|. mod1Mask, xK_k), sendMessage $ Swap D)
+  -- emacs-like
+  , ((modMask .|. shiftMask, xK_n), windows W.swapDown)
+  , ((modMask .|. shiftMask, xK_p), windows W.swapUp)
+  -- Swap with master/DwmPromote
+  , ((modMask .|. shiftMask, xK_m), windows W.swapMaster)
+  , ((modMask, xK_Return), dwmpromote) --might change this to M-<Return>
+
+  -- Shrink/expand
+  -- master area
+  -- , ((modMask, xK_s), sendMessage Shrink)
+  -- , ((modMask, xK_e), sendMessage Expand)
+  -- subareas
+  -- BUG: not working
+  -- , ((modMask .|. shiftMask, xK_s), sendMessage MirrorShrink)
+  -- , ((modMask .|. shiftMask, xK_e), sendMessage MirrorExpand)
+
+  -- increase/decrease transparency
+  -- Download and install transset-df from
+  -- http://packages.debian.org/squeeze/transset-df
+  -- BUG: not working
+  -- , ((modMask .|. shiftMask, xK_comma),
+  --    spawn "transset-df -a --dec .1")
+  -- , ((modMask .|. shiftMask, xK_period),
+  --    spawn "transset-df -a --inc .1")
+
+  -- toggle tool gap
+  , ((modMask, xK_b), sendMessage ToggleStruts)
+
+  -- xmonad system
+  , ((modMask .|. shiftMask, xK_z), spawn $ "xkill")
+  , ((modMask .|. shiftMask, xK_r), refresh)
+  , ((modMask, xK_x), spawn $ "xmonad --recompile")
+
+  -- conkeror
+  , ((modMask, xK_c), spawn $ "conkeror")
+
+  -- firefox
+  , ((modMask, xK_f), spawn $ "firefox")
+
+  -- emacs
+  , ((modMask, xK_e), spawn $ "ecg")
+  , ((modMask .|. shiftMask, xK_e), spawn $ "emacs")
+
+  -- gnome-system-monitor
+  , ((modMask, xK_z), spawn $ "gnome-system-monitor")
+
+  -- gnome-commander
+  , ((modMask, xK_d), spawn $ "gnome-commander")
+
+  -- change window transparencies on the fly
+  , ((modMask .|. shiftMask, xK_o), spawn "transset-df -p --inc 0.05")
+  , ((modMask, xK_o), spawn "transset-df -p --dec 0.05 --min 0.2")
+
   --------------------------------------------------------------------
   -- "Standard" xmonad key bindings
   --
 
   -- Close focused window.
-  , ((modMask .|. shiftMask, xK_c),
-     kill)
+  , ((modMask .|. shiftMask, xK_c), kill)
 
   -- Cycle through the available layout algorithms.
-  , ((modMask, xK_space),
-     sendMessage NextLayout)
+  , ((modMask, xK_space), sendMessage NextLayout)
 
   --  Reset the layouts on the current workspace to default.
-  , ((modMask .|. shiftMask, xK_space),
-     setLayout $ XMonad.layoutHook conf)
+  , ((modMask .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
 
   -- Resize viewed windows to the correct size.
-  , ((modMask, xK_n),
-     refresh)
+  , ((modMask, xK_n), refresh)
 
   -- Move focus to the next window.
-  , ((modMask, xK_Tab),
-     windows W.focusDown)
+  , ((modMask, xK_Tab), windows W.focusDown)
 
   -- Move focus to the next window.
-  , ((modMask, xK_j),
-     windows W.focusDown)
+  , ((modMask, xK_j), windows W.focusDown)
 
   -- Move focus to the previous window.
-  , ((modMask, xK_k),
-     windows W.focusUp  )
+  , ((modMask, xK_k), windows W.focusUp)
 
   -- Move focus to the master window.
-  , ((modMask, xK_m),
-     windows W.focusMaster  )
+  , ((modMask, xK_m), windows W.focusMaster)
 
   -- Swap the focused window and the master window.
-  , ((modMask, xK_Return),
-     windows W.swapMaster)
+  -- , ((modMask, xK_Return), windows W.swapMaster)
 
   -- Swap the focused window with the next window.
-  , ((modMask .|. shiftMask, xK_j),
-     windows W.swapDown  )
+  , ((modMask .|. shiftMask, xK_j), windows W.swapDown)
 
   -- Swap the focused window with the previous window.
-  , ((modMask .|. shiftMask, xK_k),
-     windows W.swapUp    )
+  , ((modMask .|. shiftMask, xK_k), windows W.swapUp)
 
   -- Shrink the master area.
-  , ((modMask, xK_h),
-     sendMessage Shrink)
+  , ((modMask, xK_h), sendMessage Shrink)
 
   -- Expand the master area.
-  , ((modMask, xK_l),
-     sendMessage Expand)
+  , ((modMask, xK_l), sendMessage Expand)
 
   -- Push window back into tiling.
-  , ((modMask, xK_t),
-     withFocused $ windows . W.sink)
+  , ((modMask, xK_t), withFocused $ windows . W.sink)
 
   -- Increment the number of windows in the master area.
-  , ((modMask, xK_comma),
-     sendMessage (IncMasterN 1))
+  , ((modMask, xK_comma), sendMessage (IncMasterN 1))
 
   -- Decrement the number of windows in the master area.
-  , ((modMask, xK_period),
-     sendMessage (IncMasterN (-1)))
+  , ((modMask, xK_period), sendMessage (IncMasterN (-1)))
 
   -- Toggle the status bar gap.
   -- TODO: update this binding with avoidStruts, ((modMask, xK_b),
 
   -- Quit xmonad.
-  , ((modMask .|. shiftMask, xK_q),
-     io (exitWith ExitSuccess))
+  , ((modMask .|. shiftMask, xK_q), io (exitWith ExitSuccess))
 
   -- Restart xmonad.
-  , ((modMask, xK_q),
-     restart "xmonad" True)
+  , ((modMask, xK_q), restart "xmonad" True)
   ]
   ++
 

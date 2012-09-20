@@ -6,7 +6,7 @@
 Config { font = "xft:Yahei Mono:pixelsize=14"
        , bgColor = "black"
        , fgColor = "white"
-       , position = TopW L 90
+       , position = BottomW L 90 -- TopW L 90
        , lowerOnStart = True
        , commands = [
            Run Weather "ZHHH" ["-t"," <tempC>C  <skyCondition>","-L","15","-H","25","-n","green","-h","red","-l","lightblue"] 36000

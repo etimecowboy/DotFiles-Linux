@@ -1,0 +1,18 @@
+#! /usr/bin/perl
+
+# REF: http://stoffe.deephacks.org/2012/03/10/copy-paste-in-urxvt/
+
+# Copy the following perl program to /usr/lib/urxvt/perl/clipboard,
+# which takes the current urxvt selection and copies it into CLIPBOARD
+# using xsel with the -b flag.
+
+# The final piece of the puzzle is to active this script by adding the
+# following line to your ~/.Xdefaults or ~/.Xresources.
+# urxvt*perl-ext-common: default,matcher,clipboard
+
+sub on_sel_grab {
+    my $query=quotemeta $_[0]-&gt;selection;
+    $query=~ s/\n/\\n/g;
+    $query=~ s/\r/\\r/g;
+    system( &quot;echo &quot; . $query . &quot; | xsel -i -b -p&quot; );
+}

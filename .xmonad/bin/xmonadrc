@@ -8,31 +8,32 @@ PATH=$PATH:$HOME/.cabal/bin:$HOME/.xmonad/bin
 
 # configure X
 xscreensaver -no-splash &      # screensaver
+xset -m 5 1                    # set mouse move speed
 xsetroot -cursor_name left_ptr # set the cursoe as pointer, otherwise X will appear as cursor
+xcompmgr -cCfF -t-3 -l-5 -r5 -I0.02 -O0.03 -D4 -fF -o.8 & # window decoration
+# xcompmgr -cCfF -r7 -o.65 -l-10 -t-8 -D7 &
+# devilspie -a &                 # a powerful window setting tool
+xset -b                        # kill the squeak
 xmodmap $HOME/.xmonad/xmodmap-cherry1800   # remap keyboard
-feh --bg-scale $HOME/Pictures/wallpaper/Xmbindings.png # set wallpaper
 # xloadimage -onroot -fullscreen /home/greg/Dropbox/xmonad_neu1.gif
-
-# xmobar $HOME/.xmonad/xmobar.hs &  # status bar
+# feh --bg-scale $HOME/Pictures/wallpaper/创意/CYWX31.jpg # set wallpaper
+# eval `cat $HOME/.fehbg`
+$HOME/.xmonad/bin/mywallpaper & # random wallpaer
 
 $HOME/.xmonad/bin/mytrayer &   # system tray
+keynav &                       # mouse control using keyboard
 
 clipit &                       # clipboard manager
-
 dropbox start                  # dropbox service
-
 hp-systray &                   # hp system trayer
-
 # mintupdate-launcher &        # mint update
-
 start-pulseaudio-x11           # pulse audio
 
-gnome-sound-applet &           # sound volume control
-
+# NOTE: do not use gnome component! use the lightweight aumix/aumix-gtk instead.
+gnome-sound-applet &         # sound volume control
 /usr/lib/notification-daemon/notification-daemon & # notification daemon
 
 # /usr/lib/gnome-settings-daemon/gnome-fallback-mount-helper &  # automount
-
 # use pmount to mount local hard disks (should be added to /etc/pmount.allow)
 # use sudo blkid to list all your disks
 pmount /dev/sdb1 WinXP-SYS
@@ -40,16 +41,17 @@ pmount /dev/sdb5 WinXP-SOFT
 pmount /dev/sdb6 WinXP-HOME
 pmount /dev/sdb7 WinXP-Down
 
-$HOME/.xmonad/bin/myurxvt        # Start urxvt terminals (daemon mode first, then clients)
-$HOME/.xmonad/bin/myurxvt        # another terminal for small tasks
+# $HOME/.xmonad/bin/myurxvt        # start urxvt terminals (daemon mode first, then clients)
+# $HOME/.xmonad/bin/myurxvt        # another terminal for small tasks
+# urxvtd -q -f                       # start urxvt daemon, tempory terms connects to it
+# urxvt &                            # another urxvt terminal
 
-ALTERNATE_EDITOR= emacs
-EDITO= $HOME/.emacs.d/bin/lin64/ecg
-VISUAL= $HOME/.emacs.d/bin/lin64/ecg
-emacs -daemon  # start emacs daemon (a gui instance may be better)
+# ALTERNATE_EDITOR= emacs
+# EDITO= $HOME/.emacs.d/bin/lin64/ecg
+# VISUAL= $HOME/.emacs.d/bin/lin64/ecg
+# emacs -daemon  # start emacs daemon (a gui instance may be better)
 
 # firefox &      # too slow
-
 # thunerbird &   # too slow
 
 # Automatically mount removable media

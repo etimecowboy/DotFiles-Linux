@@ -5,7 +5,10 @@ Xft.antialias: true
 Xft.hinting: true
 Xft.hintstyle: hintlight
 Xft.rgba: rgb
-! *customization: -color
+! load color-specific resources for clients that have them
+#ifdef COLOR
+*customization: -color
+#endif
 
 
 
@@ -97,6 +100,11 @@ Xft.rgba: rgb
 !! urxvt
 ! REF: http://blog.sina.com.cn/s/blog_4d2bb0b10100llmm.html
 
+! transparency
+! URxvt.transparent:true
+URxvt.depth:32
+! URxvt.background:rgba:0000/0000/00000/bbbb
+
 ! solarized color theme
 URxvt.background:       S_base03
 URxvt.foreground:       S_base0
@@ -151,6 +159,7 @@ URxvt.title:urxvt
 !URxvt.shading: 80
 
 ! Tab set
+! URxvt.perl-ext-common: default,tabbed,matcher,clipboard
 URxvt.perl-ext-common: default,tabbed,matcher
 ! URxvt.tabbed.tab-fg: 12
 ! URxvt.tabbed.tab-bg: 0
@@ -162,11 +171,6 @@ Rxvt.preeditType:Root
 
 URxvt.urlLauncher: firefox
 URxvt.matcher.button: 1
-
-! transparency
-! URxvt.transparent:true
-! URxvt.depth:32
-! URxvt.background:rgba:0000/0000/0000/dddd
 
 
 

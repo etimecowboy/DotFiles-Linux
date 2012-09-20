@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# REF: https://wiki.archlinux.org/index.php/Feh#Random_background_image
+# This script changes wallpaper randomly through time
+
+shopt -s nullglob
+
+cd ~/Pictures/wallpaper/创意
+
+while true; do
+    files=()
+    for i in *.jpg *.png; do
+        [[ -f $i ]] && files+=("$i")
+    done
+    range=${#files[@]}
+
+    ((range)) && feh --bg-scale "${files[RANDOM % range]}"
+
+    sleep 15m
+done
