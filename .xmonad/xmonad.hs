@@ -13,11 +13,18 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 
 import XMonad.Layout.Fullscreen
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.TwoPane
+import XMonad.Layout.OneBig
+import XMonad.Layout.Spacing
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Minimize
+import XMonad.Layout.CenteredMaster
+import XMonad.Layout.Grid
+import XMonad.Layout.AutoMaster
+-- import XMonad.Layout.LimitWindows
+-- import XMonad.Layout.Spiral
 -- import XMonad.Layout.Circle
 -- import XMonad.Layout.Combo
 -- import XMonad.Layout.ResizeableTile
@@ -76,15 +83,16 @@ myManageHook = composeAll
     , resource  =? "skype"          --> doFloat
     -- , className =? "Emacs"          --> doShift "1:emacs"
     , className =? "VirtualBox"     --> doShift "5:vm"
+    , className =? "Virtualbox"     --> doFloat
     , className =? "Xchat"          --> doShift "6:sys"
     , className =? "Banshee"        --> doShift "4:media"
     -- , className =? "Thunderbird"    --> doShift "3:temp"
-    , className =? "Totem"          --> doFloat
+    , className =? "totem"          --> doFloat
     , className =? "MPlayer"        --> doFloat
     , className =? "SMPlayer"       --> doFloat
     , className =? "Vlc"            --> doFloat
     , className =? "Synaptic"       --> doShift "6:sys"
-    , className =? "Gnome-system-monitor" --> doShift "6:sys"
+    , className =? "Mate-system-monitor"  --> doShift "6:sys"
     , className =? "Gnome-commmander"     --> doShift "3:temp"
     , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
 
@@ -99,16 +107,17 @@ myManageHook = composeAll
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (
-    TwoPane (3/100) (1/2)         |||
-    tabbed shrinkText myTabConfig |||
-    Tall 1 (3/100) (1/2)          |||
-    Mirror (Tall 1 (3/100) (1/2)) |||
-    Full                          |||
-    -- Circle                          |||
-    -- noBorders (fullscreenFull Full) |||
-    spiral (6/7))
-
+myLayout =
+    (spacing 4 $ autoMaster 1 (1/100) Grid)     |||
+    (spacing 4 $ OneBig (3/4) (3/4))            |||
+    (spacing 4 $ centerMaster Grid)             |||
+    TwoPane (3/100) (1/2)                       |||
+    tabbed shrinkText myTabConfig               |||
+    noBorders (fullscreenFull Full)
+    -- (spacing 4 $ Tall 1 (3/100) (1/2))          |||
+    -- (spacing 4 $ Mirror (Tall 1 (3/100) (1/2))) |||
+    -- Circle                                      |||
+    -- spiral (6/7))
 
 ------------------------------------------------------------------------
 -- Colors and borders
@@ -126,8 +135,8 @@ myTabConfig = defaultTheme {
     inactiveTextColor = "#EEEEEE",
     inactiveColor = "#000000",
     -- urgentColor = "#C500C5",
-    decoHeight  = 18,
-    fontName = "-*-yahei mono-*-r-normal-*-11-*-*-*-*-*-*-*"
+    decoHeight  = 22,
+    fontName = "-*-yahei mono-*-r-normal-*-14-*-*-*-*-*-*-*"
 }
 
 -- Color of current window title in xmobar.
@@ -137,7 +146,7 @@ xmobarTitleColor = "#FFB6B0"
 xmobarCurrentWorkspaceColor = "#CEFFAC"
 
 -- Width of the window border in pixels.
-myBorderWidth = 4
+myBorderWidth = 2
 
 
 ------------------------------------------------------------------------
@@ -212,7 +221,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   --    spawn "eject -T")
 
   -- system volumn control
-  , ((modMask .|. shiftMask, xK_v), spawn "aumix -v +5")
+  , ((modMask .|. shiftMask, xK_m), spawn "aumix -v +5")
   , ((modMask, xK_v), spawn "aumix -v -5")
   , ((modMask .|. controlMask, xK_v), spawn "aumix")
 
@@ -247,7 +256,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. shiftMask, xK_n), windows W.swapDown)
   , ((modMask .|. shiftMask, xK_p), windows W.swapUp)
   -- Swap with master/DwmPromote
-  , ((modMask .|. shiftMask, xK_m), windows W.swapMaster)
+  , ((modMask .|. shiftMask, xK_1), windows W.swapMaster)
   , ((modMask, xK_Return), dwmpromote) --might change this to M-<Return>
 
   -- Shrink/expand
@@ -271,6 +280,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- toggle tool gap
   , ((modMask, xK_b), sendMessage ToggleStruts)
 
+  -- toggle minimized windows
+  , ((modMask,               xK_a), withFocused minimizeWindow)
+  , ((modMask .|. shiftMask, xK_a), sendMessage RestoreNextMinimizedWin)
+
   -- xmonad system
   , ((modMask .|. shiftMask, xK_z), spawn $ "xkill")
   , ((modMask .|. shiftMask, xK_r), refresh)
@@ -283,11 +296,11 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_f), spawn $ "firefox")
 
   -- emacs
-  , ((modMask, xK_e), spawn $ "ecg")
-  , ((modMask .|. shiftMask, xK_e), spawn $ "emacs")
+  , ((modMask, xK_e), spawn $ "/usr/local/bin/ecg")
+  , ((modMask .|. shiftMask, xK_e), spawn $ "/usr/local/bin/emacs")
 
   -- gnome-system-monitor
-  , ((modMask, xK_z), spawn $ "gnome-system-monitor")
+  , ((modMask, xK_z), spawn $ "mate-system-monitor")
 
   -- gnome-commander
   , ((modMask, xK_d), spawn $ "gnome-commander")
@@ -417,8 +430,8 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = return ()
-
+-- myStartupHook = return ()
+myStartupHook = setWMName "LG3D" -- for MATLAB GUI
 
 ------------------------------------------------------------------------
 -- Run xmonad with all the defaults we set up.
@@ -433,7 +446,7 @@ main = do
           , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
           , ppSep = "   "}
       , manageHook = manageDocks <+> myManageHook
-      , startupHook = setWMName "SA300"
+      , startupHook = myStartupHook
   }
 
 
@@ -460,7 +473,7 @@ defaults = defaultConfig {
     mouseBindings      = myMouseBindings,
 
     -- hooks, layouts
-    layoutHook         = smartBorders $ myLayout,
+    layoutHook         = smartBorders $ avoidStruts (minimize (myLayout)),
     manageHook         = myManageHook,
     startupHook        = myStartupHook
 }

@@ -19,10 +19,8 @@ xmodmap $HOME/.xmonad/xmodmap-cherry1800   # remap keyboard
 # feh --bg-scale $HOME/Pictures/wallpaper/创意/CYWX31.jpg # set wallpaper
 # eval `cat $HOME/.fehbg`
 $HOME/.xmonad/bin/mywallpaper & # random wallpaer
-
 $HOME/.xmonad/bin/mytrayer &   # system tray
 keynav &                       # mouse control using keyboard
-
 clipit &                       # clipboard manager
 dropbox start                  # dropbox service
 hp-systray &                   # hp system trayer
@@ -32,14 +30,15 @@ start-pulseaudio-x11           # pulse audio
 # NOTE: do not use gnome component! use the lightweight aumix/aumix-gtk instead.
 gnome-sound-applet &         # sound volume control
 /usr/lib/notification-daemon/notification-daemon & # notification daemon
+mate-power-manager &           # power manager
 
 # /usr/lib/gnome-settings-daemon/gnome-fallback-mount-helper &  # automount
 # use pmount to mount local hard disks (should be added to /etc/pmount.allow)
 # use sudo blkid to list all your disks
-pmount /dev/sdb1 WinXP-SYS
-pmount /dev/sdb5 WinXP-SOFT
-pmount /dev/sdb6 WinXP-HOME
-pmount /dev/sdb7 WinXP-Down
+# pmount /dev/sdb1 WinXP-SYS
+# pmount /dev/sdb5 WinXP-SOFT
+# pmount /dev/sdb6 WinXP-HOME
+# pmount /dev/sdb7 WinXP-Down
 
 # $HOME/.xmonad/bin/myurxvt        # start urxvt terminals (daemon mode first, then clients)
 # $HOME/.xmonad/bin/myurxvt        # another terminal for small tasks

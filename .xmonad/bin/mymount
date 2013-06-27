@@ -1,0 +1,10 @@
+#!/bin/sh
+# Script to mount local and USB hard disks
+
+pmount /dev/sdb2 Win-SYS
+pmount /dev/sdb3 Win-SOFT
+pmount /dev/sdb5 Win-DATA
+pmount /dev/sdb6 Win-DOWN
+
+pmount /dev/sdc1 USB1
+pmount /dev/sdd1 USB2

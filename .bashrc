@@ -1,4 +1,4 @@
-# Time-stamp: <2012-09-17 Mon 22:48 by xin on p5q>
+# Time-stamp: <2013-06-28 Fri 00:09 by xin on p5q>
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files for examples.
@@ -297,9 +297,9 @@ export QT_IM_MODULE=ibus
 # fi
 
 # Matlab
-if [ -d "/opt/MATLAB/R2011a" ] ; then
-    # MATLAB="/opt/MATLAB/2011a"
-    PATH="/opt/MATLAB/R2011a/bin:$PATH"
+if [ -d "/opt/MATLAB/R2013a" ] ; then
+    # MATLAB="/opt/MATLAB/2013a"
+    PATH="/opt/MATLAB/R2013a/bin:$PATH"
     # PATH="$MATLAB/bin/glnxa64:$PATH"
 fi
 
