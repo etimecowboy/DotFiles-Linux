@@ -141,14 +141,17 @@ URxvt.saveLines:            9000
 URxvt.borderLess:           False
 
 ! font set
-URxvt.font:xft:Yahei Mono:pixelsize=14:antialias=true,xft:Yahei Mono:pixelsize=14
-URxvt.boldFont:xft:Yahei Mono:pixelsize=14:antialias=true:Bold,xft:Yahei Mono:pixelsize=14:Bold
+! URxvt.font:xft:Yahei Mono:pixelsize=12:antialias=true,xft:Yahei Mono:pixelsize=12
+! URxvt.boldFont:xft:Yahei Mono:pixelsize=12:antialias=true:Bold,xft:Yahei Mono:pixelsize=12:Bold
+! URxvt.font:xft:Monospace:pixelsize=12:antialias=true
+URxvt.font:xft:Dejavu Sans Mono:pixelsize=12:antialias=True, \
+xft:文泉驿等宽正黑:antialias=False
 
 ! Input Method set
 URxvt.inputMethod:ibus
 !URxvt.imFont:Liberation Mono
 !URxvt.preeditType: Root
-
+␊
 ! window geometry set
 URxvt.geometry: 80x30
 URxvt.title:urxvt
@@ -171,11 +174,13 @@ Rxvt.preeditType:Root
 
 URxvt.urlLauncher: firefox
 URxvt.matcher.button: 1
+URxvt.inputMethod: ibus
 
 
 
 !! emacs
 ! Emacs.font: xft:Yahei Mono:pixelsize=14:antialias=true,xft:Yahei Mono:pixelsize=14
+Emacs.inputMethod: ibus
 
 
 

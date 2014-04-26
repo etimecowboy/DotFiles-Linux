@@ -1,4 +1,4 @@
-# Time-stamp: <2013-06-28 Fri 00:09 by xin on p5q>
+# Time-stamp: <2014-04-27 Sun 00:33 by xin on vmlmde>
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files for examples.
@@ -283,9 +283,9 @@ alias ee='emacs -nw -q'
 alias vi='emacsclient -t' # Use emacs instead of vi
 
 # iBus
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
+# export XMODIFIERS="@im=ibus"
+# export GTK_IM_MODULE="ibus"
+# export QT_IM_MODULE="ibus"
 
 # TeXLive
 # better solution: create links in /usr/local (better solution)
@@ -297,51 +297,53 @@ export QT_IM_MODULE=ibus
 # fi
 
 # Matlab
-if [ -d "/opt/MATLAB/R2013a" ] ; then
-    # MATLAB="/opt/MATLAB/2013a"
-    PATH="/opt/MATLAB/R2013a/bin:$PATH"
-    # PATH="$MATLAB/bin/glnxa64:$PATH"
-fi
+# if [ -d "/opt/MATLAB/R2014a" ] ; then
+#     # MATLAB="/opt/MATLAB/2014a"
+#     PATH="/opt/MATLAB/R2014a/bin:$PATH"
+#     PATH="/opt/MATLAB/R2014a/bin/glnxa64:$PATH"
+#     # PATH="$MATLAB/bin/glnxa64:$PATH"
+# fi
+alias mat='matlab -nodesktop -nosplash'
 
 # FPGA settings
 
-fpga () {
+# fpga () {
 
-    # Xilinx 10.1
-    . /opt/Xilinx/10.1/ISE/settings64.sh
-    . /opt/Xilinx/10.1/EDK/settings64.sh
-    . /opt/Xilinx/10.1/ChipScope/settings64.sh
-    . /opt/Xilinx/10.1/PlanAhead/settings64.sh
-    # if [ -d "/opt/Xilinx/10.1/ISE" ] ; then
-    #     export XILINX="/opt/Xilinx/10.1/ISE"
-    # fi
-    # Xilinx 13.4
-    # . /opt/Xilinx/13.4/ISE_DS/settings64.sh
-    # Xilinx 11.1
-    # . /opt/Xilinx/11.1/settings64.sh
+#     # Xilinx 10.1
+#     . /opt/Xilinx/10.1/ISE/settings64.sh
+#     . /opt/Xilinx/10.1/EDK/settings64.sh
+#     . /opt/Xilinx/10.1/ChipScope/settings64.sh
+#     . /opt/Xilinx/10.1/PlanAhead/settings64.sh
+#     # if [ -d "/opt/Xilinx/10.1/ISE" ] ; then
+#     #     export XILINX="/opt/Xilinx/10.1/ISE"
+#     # fi
+#     # Xilinx 13.4
+#     # . /opt/Xilinx/13.4/ISE_DS/settings64.sh
+#     # Xilinx 11.1
+#     # . /opt/Xilinx/11.1/settings64.sh
 
-    # Some system variables
-    export XIL_IMPACT_USE_LIBUSB=1
-    # export LD_PRELOAD=/usr/local/lib/libusb-driver.so
+#     # Some system variables
+#     export XIL_IMPACT_USE_LIBUSB=1
+#     # export LD_PRELOAD=/usr/local/lib/libusb-driver.so
 
-    # ModelSim
-    if [ -d "/opt/Mentor/ModelSim/10.0a_se/modeltech" ] ; then
-        export MODELSIM="$HOME/modelsim.ini"
-        export MODEL_TECH="/opt/Mentor/ModelSim/10.0a_se/modeltech"
-        export MODELSIM_LICENSE_DIR="/opt/Mentor/ModelSim/license"
-        export LM_LICENSE_FILE="$MODELSIM_LICENSE_DIR/ModelSim_SE_10.0a.dat"
-        export MGLS_LICENSE_FILE="$LM_LICENSE_FILE"
-        PATH="$MODEL_TECH/bin:$PATH"
-    fi
+#     # ModelSim
+#     if [ -d "/opt/Mentor/ModelSim/10.0a_se/modeltech" ] ; then
+#         export MODELSIM="$HOME/modelsim.ini"
+#         export MODEL_TECH="/opt/Mentor/ModelSim/10.0a_se/modeltech"
+#         export MODELSIM_LICENSE_DIR="/opt/Mentor/ModelSim/license"
+#         export LM_LICENSE_FILE="$MODELSIM_LICENSE_DIR/ModelSim_SE_10.0a.dat"
+#         export MGLS_LICENSE_FILE="$LM_LICENSE_FILE"
+#         PATH="$MODEL_TECH/bin:$PATH"
+#     fi
 
-    # # Fix the secure path in Debian.
-    # # sudo uses environment variables of the current user
-    # # (@url :file-name "http://stackoverflow.com/questions/257616/sudo-changes-path-why" :display "REF")
-    # alias sudo="sudo env PATH=$PATH LD_LIBRARY_PATH=$LD_LIBRARY_PATH LMC_HOME=$LMC_HOME XILINX=$XILINX XILINX_EDK=$XILINX_EDK" # LD_PRELOAD=$LD_PRELOAD"
-    }
+#     # # Fix the secure path in Debian.
+#     # # sudo uses environment variables of the current user
+#     # # (@url :file-name "http://stackoverflow.com/questions/257616/sudo-changes-path-why" :display "REF")
+#     # alias sudo="sudo env PATH=$PATH LD_LIBRARY_PATH=$LD_LIBRARY_PATH LMC_HOME=$LMC_HOME XILINX=$XILINX XILINX_EDK=$XILINX_EDK" # LD_PRELOAD=$LD_PRELOAD"
+#     }
 
 export PATH
-export LD_LIBRARY_PATH
+# export LD_LIBRARY_PATH
 
 # customized prompt
 # REF: http://www.askapache.com/linux/bash-power-prompt.html
