@@ -180,7 +180,6 @@ URxvt.inputMethod: ibus
 
 !! emacs
 ! Emacs.font: xft:Yahei Mono:pixelsize=14:antialias=true,xft:Yahei Mono:pixelsize=14
-Emacs.inputMethod: ibus
 
 
 
