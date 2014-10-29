@@ -372,7 +372,7 @@
       </action>
     </keybind>
     <!-- Keybindings to toggle fullscreen -->
-    <keybind key="F11">
+    <keybind key="W-F11">
       <action name="ToggleFullscreen"/>
     </keybind>
     <!-- Launch task manager on Ctrl + Alt + Del-->
