@@ -102,18 +102,21 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Editors
-export ALTERNATE_EDITOR="emacs -nw"
-export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -t"
-alias e='emacsclient -t'
+export ALTERNATE_EDITOR='emacs -nw'
+export EDITOR='emacsclient -t'
+export VISUAL='emacsclient -t'
+alias et='emacsclient -t'
 alias ec='emacsclient -c'
 alias em='emacs -daemon'
 alias ee='emacs -nw -q'
 alias vi='emacsclient -t' # Use emacs instead of vi
 
 # Matlab
-alias m='matlab -nodesktop -nosplash'
-alias ma='matlab -desktop -nosplash'
+alias mat='matlab -nodesktop -nosplash'
+alias matlab='matlab -desktop -nosplash'
+
+# urxvt
+alias urxvt='urxvtcd'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -135,10 +138,17 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Run fbterm after log in tty for Chinese display
+# Note: fbterm displays not very good now. Don't start it until it is necessary by fb
+# [[ $(tty) == \/dev\/tty[0-9]* ]] && env DISPLAY=:0 fcitx-fbterm-helper
+alias fb='env DISPLAY=:0 fcitx-fbterm-helper'
+alias fl='fcitx-fbterm-helper -l'
+
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+# already in ~/.profile
+# if [ -d "$HOME/bin" ] ; then
+#     PATH="$HOME/bin:$PATH"
+# fi
 
 # Git prompt
 # file does not exist
