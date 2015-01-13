@@ -80,6 +80,19 @@ esac
 export PROMPT_COMMAND='echo -en "\033[m\033[38;5;2m"$(( `sed -n "s/MemFree:[\t ]\+\([0-9]\+\) kB/\1/p" /proc/meminfo`/1024))"\033[38;5;22m/"$((`sed -n "s/MemTotal:[\t ]\+\([0-9]\+\) kB/\1/Ip" /proc/meminfo`/1024 ))MB"\t\033[m\033[38;5;55m$(< /proc/loadavg)\033[m"' \
 export PS1='\[\e[m\n\e[1;30m\][$$:$PPID \j:\!\[\e[1;30m\]]\[\e[0;36m\] \T \d \[\e[1;30m\][\[\e[1;34m\]\u@\H\[\e[1;30m\]:\[\e[0;37m\]${SSH_TTY} \[\e[0;32m\]+${SHLVL}\[\e[1;30m\]] \[\e[1;37m\]\w\[\e[0;37m\] \n($SHLVL:\!)\$ '
 
+# set PATH so it includes user's private bin if it exists
+# already in ~/.profile
+# if [ -d "$HOME/bin" ] ; then
+#     PATH="$HOME/bin:$PATH"
+# fi
+
+if [ -d "$HOME/.emacs.d/bin" ] ; then
+    PATH="$HOME/.emacs.d/bin:$PATH"
+fi
+if [ -d "$HOME/.emacs.d/bin/lin64" ] ; then
+    PATH="$HOME/.emacs.d/bin/lin64:$PATH"
+fi
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -144,12 +157,9 @@ fi
 alias fb='env DISPLAY=:0 fcitx-fbterm-helper'
 alias fl='fcitx-fbterm-helper -l'
 
-# set PATH so it includes user's private bin if it exists
-# already in ~/.profile
-# if [ -d "$HOME/bin" ] ; then
-#     PATH="$HOME/bin:$PATH"
-# fi
-
 # Git prompt
 # file does not exist
 # source /usr/share/git/completion/git-prompt.sh
+
+# jabref
+alias jabref='java -jar ~/.emacs.d/bin/JabRef-2.10.jar'
