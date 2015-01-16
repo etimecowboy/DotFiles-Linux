@@ -433,12 +433,12 @@
     <!-- Launch scrot when Print is pressed -->
     <keybind key="Print">
       <action name="Execute">
-        <command>scrot '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Picture/'</command>
+        <command>scrot 'screenshot_%Y-%m-%d-%H:%M:%S_$wx$h.png' -e 'mv $f ~/Picture/'</command>
       </action>
     </keybind>
     <keybind key="A-Print">
       <action name="Execute">
-        <command>scrot -u '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Picture/'</command>
+        <command>scrot -u 'screenshot_%Y-%m-%d-%H:%M:%S_$wx$h.png' -e 'mv $f ~/Picture/'</command>
       </action>
     </keybind>
     <!-- Launch logout when push on the shutdown button -->
