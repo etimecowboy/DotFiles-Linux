@@ -116,7 +116,7 @@ URxvt*saveLines:32767
 
 ! URxvt*background:Black
 ! URxvt*foreground:White
-! URxvt*geometry:80x30
+URxvt*geometry:85x40
 
 ! ### Native transparency
 ! URxvt*transparent:true

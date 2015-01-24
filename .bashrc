@@ -82,9 +82,9 @@ export PS1='\[\e[m\n\e[1;30m\][$$:$PPID \j:\!\[\e[1;30m\]]\[\e[0;36m\] \T \d \[\
 
 # set PATH so it includes user's private bin if it exists
 # already in ~/.profile
-# if [ -d "$HOME/bin" ] ; then
-#     PATH="$HOME/bin:$PATH"
-# fi
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
 
 if [ -d "$HOME/.emacs.d/bin" ] ; then
     PATH="$HOME/.emacs.d/bin:$PATH"
@@ -167,3 +167,7 @@ alias fl='fcitx-fbterm-helper -l'
 
 # jabref
 alias jabref='java -jar ~/.emacs.d/bin/JabRef-2.10.jar'
+
+# Remap keyboard
+setxkbmap -option "altwin:ctrl_alt_win"
+setxkbmap -option "altwin:ctrl_win"
