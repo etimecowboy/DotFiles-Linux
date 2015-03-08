@@ -15,9 +15,9 @@ mv ~/.gitconfig ~/.gitconfig.orig
 ln -s ~/src/DotFiles-Linux/.gitconfig ~/.gitconfig
 mv ~/.urxvt ~/.urxvt.orig
 ln -s ~/src/DotFiles-Linux/.urxvt ~/.urxvt
-mv ~/.config/openbox/lxde-rc.xml ~/.config/openbox/lxde-rc.xml.orig
-ln -s ~/src/DotFiles-Linux/.config/openbox/debian-testing-jessie-lxde-rc.xml ~/.config/openbox/lxde-rc.xml
-ln -s ~/src/DotFiles-Linux/.local/share/applications/org-protocol.desktop ~/.local/share/applications/org-protocol.desktop
+# mv ~/.config/openbox/lxde-rc.xml ~/.config/openbox/lxde-rc.xml.orig
+# ln -s ~/src/DotFiles-Linux/.config/openbox/debian-testing-jessie-lxde-rc.xml ~/.config/openbox/lxde-rc.xml
+# ln -s ~/src/DotFiles-Linux/.local/share/applications/org-protocol.desktop ~/.local/share/applications/org-protocol.desktop
 ln -s ~/src/DotFiles-Linux/.tmux.conf ~/.tmux.conf
 mv ~/.xsession ~/.xsession.orig
 ln -s ~/src/DotFiles-Linux/.xsession ~/.xsession
