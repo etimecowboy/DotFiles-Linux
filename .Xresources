@@ -48,9 +48,9 @@ Xft*rgba:              rgb
 #define S_green         #859900
 
 ! *background:            S_base03
-*background:            black
+! *background:            black
 ! *background:            white
-*foreground:            S_base0
+! *foreground:            S_base0
 *fading:                40
 *fadeColor:             S_base03
 *cursorColor:           S_base1
@@ -102,7 +102,8 @@ URxvt*loginShell:true
 URxvt*saveLines:32767
 ! with this set to true, when an app sends a bell to the terminal,
 ! awesome hilights the appropriate tag(s) ;)
-! URxvt*urgentOnBell:true
+URxvt*urgentOnBell:true
+URxvt*visualBell:true
 
 ! ## Appearance
 ! The following variables hold aesthetic information about URxvt.
@@ -112,15 +113,16 @@ URxvt*saveLines:32767
 ! options include `left` and `right`.
 
 ! ### True transparency (need support of WM)
-! URxvt*depth:32
+URxvt*depth:32
 ! URxvt*background:rgba:0000/0000/00000/bbbb
 ! URxvt*background:[85]#000000
 
-! URxvt*background:Black
+URxvt*background:Black
+URxvt*foreground:S_base0
 ! URxvt*foreground:White
-URxvt*geometry:85x40
+URxvt*geometry:80x40
 
-! ### Native transparency
+! ### Native transparency (software transparency, bad looking)
 ! URxvt*transparent:true
 ! Shading: 0 to 99 darkens, 101 to 200 lightens
 ! URxvt*shading:30
@@ -135,7 +137,8 @@ URxvt*secondaryScroll:true
 ! URxvt*scrollColor:#222222
 
 ! ### Fonts
-URxvt*font:xft:Dejavu Sans Mono:size=10, xft:Microsoft YaHei
+! URxvt*font:xft:Dejavu Sans Mono:size=10, xft:Microsoft YaHei
+URxvt*font:xft:Monospace:size=11, xft:Microsoft YaHei
 URxvt*letterSpace:-1
 
 ! ### Printing
@@ -167,15 +170,15 @@ URxvt*print-pipe: "cat > /dev/null"
 ! URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine
 ! URxvt*matcher.button: 1
 
-URxvt*perl-ext-common : default,tabbed,matcher,url-select,clipboard,keyboard-select
-URxvt*perl-ext : default
+URxvt*perl-ext-common : default,tabbed,url-select,clipboard,keyboard-select
+! URxvt*perl-ext : default
 
 ! ### default
 ! the Perl modules URxvt enables by default.
 
 ! ### matcher
-URxvt*matcher.button: 1
-URxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+! URxvt*matcher.button: 1
+! URxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 ! URxvt*keysym.C-Delete: perl:matcher:last
 ! URxvt*keysym.M-Delete: perl:matcher:list
 
@@ -201,28 +204,141 @@ URxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 ! URxvt*keysym.S-DOWN: perl:tabbedex:new_tab
 ! URxvt*keysym.S-LEFT: perl:tabbedex:rename_tab
 
+! ### keyboard-select
+! Use keyboard shortcuts to select and copy text.
+
+! After installing, put the following lines in your
+! .Xdefaults/.Xresources:
+!
+! URxvt.perl-ext-common: ...,keyboard-select
+! URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt*keysym.M-Escape: perl:keyboard-select:activate
+
+! The following line overwrites the default Meta-s binding and allows
+! to activate keyboard-select directly in backward search mode:
+!
+! URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt*keysym.M-s: perl:keyboard-select:search
+
+! Use Meta-Escape to activate selection mode, then use the following
+! keys:
+!
+! - h/j/k/l:    Move cursor left/down/up/right (also with arrow keys)
+! - g/G/0/^/$/H/M/L/f/F/;/,/w/W/b/B/e/E: More vi-like cursor movement keys
+! - '/'/?:      Start forward/backward search
+! - n/N:        Repeat last search, N: in reverse direction
+! - Ctrl-f/b:   Scroll down/up one screen
+! - Ctrl-d/u:   Scroll down/up half a screen
+! - v/V/Ctrl-v: Toggle normal/linewise/blockwise selection
+! - y/Return:   Copy selection to primary buffer, Return: deactivate afterwards
+! - q/Escape:   Deactivate keyboard selection mode
+
 ! ### url-select
+! Use keyboard shortcuts to select URLs.
+
+! This should be used as a replacement for the default matcher
+! extension, it also makes URLs clickable with the middle mouse
+! button.
+
+! After installing, put the following lines in your
+! .Xdefaults/.Xresources:
+!
+! URxvt.perl-ext-common: ...,url-select
+! URxvt.keysym.M-u: perl:url-select:select_next
+URxvt*keysym.M-u: perl:url-select:select_next
+
+! Use Meta-u to activate URL selection mode, then use the following
+! keys:
+!
+! - j/k:      Select next downward/upward URL (also with arrow keys)
+! - g/G:      Select first/last URL (also with home/end key)
+! - o/Return: Open selected URL in browser, Return: deactivate afterwards
+! - y:        Copy (yank) selected URL and deactivate selection mode
+! - q/Escape: Deactivate URL selection mode
+
+! Options:
+!
+! - URxvt.url-select.autocopy:  if set to true, selected URLs are automatically
+!                               copied to the PRIMARY buffer
+! - URxvt.url-select.button:    mouse button to click-open URLs (default: 2)
+! - URxvt.url-select.launcher:  browser/command to open selected URL with
+! - URxvt.url-select.underline: if set to true, all URLs get underlined
+
+! For compatibility reasons, url-select will also use any patterns
+! defined for the matcher extension by reading all
+! URxvt.matcher.pattern.[0-9] resources.
+
+URxvt*url-select.autocopy: true
+URxvt*url-select.button: 1
+URxvt*url-select.launcher: firefox -new-tab
+URxvt*url-select.underline: true
+
+! -------------- old url-select
 ! an improved version of the included plugin of the same name, which
 ! allows using the keyboad to select and copy URLs printed to the
 ! terminal.
-
+!
 ! Here I specify some basic options for the `url-select` plugin. The
 ! `urlLauncher` is the application with which launched URLs will open.
 ! `underlineURLs` indicates that URLs should be visually identified by
 ! underlining them, similar to a web browser. Lastly, `urlButton` is
 ! the mouse button to use to launch URLs on click. I use the middle
 ! mouse button.
-
-URxvt*urlLauncher: firefox
-URxvt*url-select.launcher: firefox -new-tab
-URxvt*underlineURLs: true
-URxvt*urlButton: 2
-URxvt*colorUL: #4682B4
+!
+! URxvt*urlLauncher: firefox
+! URxvt*url-select.launcher: firefox -new-tab
+! URxvt*underlineURLs: true
+! URxvt*urlButton: 2
+! URxvt*colorUL: #4682B4
+!
 ! The keybinding to activate the default `url-select` plugin is Alt+u,
 ! so I map the same keybinding to the replacement.
-URxvt.keysym.M-u : perl:url-select:select_next
+! URxvt.keysym.M-u : perl:url-select:select_next
+! --------------- old url-selct ends
 
 ! ### clipboard
+! Use keyboard shortcuts to copy the selection to the clipboard and to
+! paste the clipboard contents (optionally escaping all special
+! characters).
+
+! After installing, put the following lines in your
+! .Xdefaults/.Xresources:
+
+! URxvt.perl-ext-common: ...,clipboard
+! URxvt.keysym.M-c:   perl:clipboard:copy
+! URxvt.keysym.M-v:   perl:clipboard:paste
+! URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
+URxvt*keysym.Control-Shift-C:   perl:clipboard:copy
+URxvt*keysym.Control-Shift-V:   perl:clipboard:paste
+URxvt*keysym.M-C-v: perl:clipboard:paste_escaped
+
+! Options: URxvt.clipboard.autocopy: if set to true, the clipboard is
+! automatically updated whenever the PRIMARY selection changes
+
+! You can also overwrite the system commands to use for
+! copying/pasting. The default ones are:
+
+! URxvt.clipboard.copycmd:  xsel -ib
+! URxvt.clipboard.pastecmd: xsel -ob
+
+! If you prefer xclip, then put these lines in your
+! .Xdefaults/.Xresources:
+
+! URxvt.clipboard.copycmd:  xclip -i -selection clipboard
+! URxvt.clipboard.pastecmd: xclip -o -selection clipboard
+
+URxvt*clipboard.copycmd:  xclip -i -selection clipboard
+URxvt*clipboard.pastecmd: xclip -o -selection clipboard
+
+! On Mac OS X, put these lines in your .Xdefaults/.Xresources:
+
+! URxvt.clipboard.copycmd:  pbcopy
+! URxvt.clipboard.pastecmd: pbpaste
+
+! The use of the functions should be self-explanatory!
+
+! -------------- old clipboard
 ! an extension for improved management of the clipboard,
 ! including the use multiple buffers.
 
@@ -232,20 +348,17 @@ URxvt.keysym.M-u : perl:url-select:select_next
 ! use of the `primary` buffer, which will not work in other GUI
 ! applications as expected.
 
-URxvt*copyCommand: xsel -ibp
-URxvt*pasteCommand: xsel -obp
+! URxvt*copyCommand: xsel -ibp
+! URxvt*pasteCommand: xsel -obp
 
 ! As the C+S+v and C+S+c are already used by URxvt for internal
 ! functions, I mapped copy and paste to Alt+c and Alt+v.
 
-URxvt*keysym.C-S-c: perl:clipboard:copy
-URxvt*keysym.C-M-S-c: perl:clipboard:copy_escaped
-URxvt*keysym.S-Insert: perl:clipboard:paste
-URxvt*keysym.C-S-Insert: perl:clipboard:paste_escaped
-
-! ### keyboard-select
-URxvt*keysym.M-Escape: perl:keyboard-select:activate
-URxvt*keysym.M-s: perl:keyboard-select:search
+! URxvt*keysym.C-S-c: perl:clipboard:copy
+! URxvt*keysym.C-M-S-c: perl:clipboard:copy_escaped
+! URxvt*keysym.S-Insert: perl:clipboard:paste
+! URxvt*keysym.C-S-Insert: perl:clipboard:paste_escaped
+! --------------- old clipboard ends
 
 ! ## Key bindings
 
