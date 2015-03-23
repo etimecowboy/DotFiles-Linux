@@ -120,7 +120,7 @@ URxvt*depth:32
 URxvt*background:Black
 URxvt*foreground:S_base0
 ! URxvt*foreground:White
-URxvt*geometry:80x40
+URxvt*geometry:80x25
 
 ! ### Native transparency (software transparency, bad looking)
 ! URxvt*transparent:true
