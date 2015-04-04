@@ -31,7 +31,9 @@ $force_mode = 1;
 # $pdf_previewer = 'open -a /Applications/Adobe\ Acrobat\ 9\ Pro/Adobe\ Acrobat\ Pro.app';
 # $pdf_previewer = 'open -a Skim.app %O %S';
 # $pdf_previewer = 'Start %HOME%/.emacs.d/bin/win32/SumatraPDF.exe -reuse-instance %O %S';
-$pdf_previewer = "start okular --unique %O %S";
+# $pdf_previewer = "start okular --unique %O %S";
+# $pdf_previewer = "mupdf -b 8 -r 96 %O %S";
+$pdf_previewer = "evince %O %S";
 
 # 0 = do not create a PDF file
 # 1 = Create a PDF file with pdflatex
@@ -87,7 +89,7 @@ $cleanup_mode = 1;
 # $pdf_update_command = '-a /Applications/Adobe\ Acrobat\ 9\ Pro/Adobe\ Acrobat\ Pro.app %R -reload';
 
 # How to make the PDF viewer update its display when the PDF file changes.  See the man page for a description of each method.
-# $pdf_update_method = 1;
+$pdf_update_method = 1; # 1 under Unix; 3 under MS-Windows
 
 # This does NOT apply to pdflatex, unfortunately.
 # $always_view_file_via_temporary = 1;

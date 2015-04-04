@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=org-protocol
-Exec=emacsclient %u
+Exec=emacsclient -nc %u
+Icon=/usr/share/icons/hicolor/scalable/apps/emacs24.svg
 Type=Application
 Terminal=false
 Categories=System;

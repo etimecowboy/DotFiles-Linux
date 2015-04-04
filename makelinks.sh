@@ -35,7 +35,9 @@ ln -s ~/src/DotFiles-Linux/.latexmkrc ~/.latexmkrc
 
 ## Emacs
 ln -s ~/src/DotEmacs ~/.emacs.d
+ln -s ~/src/DotFiles-Linux/.local/share/applications/EmacsClient.desktop ~/.local/share/applications/EmacsClient.desktop
 ln -s ~/src/DotFiles-Linux/.local/share/applications/org-protocol.desktop ~/.local/share/applications/org-protocol.desktop
+update-desktop-database ~/.local/share/applications/
 
 ## Git
 mv ~/.gitconfig ~/.gitconfig.orig

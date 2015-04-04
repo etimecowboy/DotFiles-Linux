@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Icon=
+Name=Matlab
+Comment=Start MATLAB - The Language of Technical Computing
+Exec=matlab -desktop -nosplash
+Terminal=false
+Categories=Development
