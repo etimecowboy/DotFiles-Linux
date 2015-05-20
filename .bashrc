@@ -171,3 +171,11 @@ alias jabref='java -jar ~/.emacs.d/bin/JabRef-2.10.jar'
 # Remap keyboard
 setxkbmap -option "altwin:ctrl_alt_win"
 setxkbmap -option "altwin:ctrl_win"
+
+# Turn off system bell in Xorg
+if [ -n "$DISPLAY" ]; then
+    xset b off
+fi
+
+# Safe rm use trash-cli
+alias rm='trash'

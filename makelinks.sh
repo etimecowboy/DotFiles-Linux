@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 ## X window
 mv ~/.Xresources ~/.Xresources.orig
 ln -s ~/src/DotFiles-Linux/.Xresources ~/.Xresources
-mv ~/.xsession ~/.xsession.orig
-ln -s ~/src/DotFiles-Linux/.xsession ~/.xsession
+# mv ~/.xsession ~/.xsession.orig
+# ln -s ~/src/DotFiles-Linux/.xsession ~/.xsession
 
 ## LXDE desktop (openbox WM)
 # mv ~/.config/openbox/lxde-rc.xml ~/.config/openbox/lxde-rc.xml.orig
