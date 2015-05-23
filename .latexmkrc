@@ -31,9 +31,9 @@ $force_mode = 1;
 # $pdf_previewer = 'open -a /Applications/Adobe\ Acrobat\ 9\ Pro/Adobe\ Acrobat\ Pro.app';
 # $pdf_previewer = 'open -a Skim.app %O %S';
 # $pdf_previewer = 'Start %HOME%/.emacs.d/bin/win32/SumatraPDF.exe -reuse-instance %O %S';
-# $pdf_previewer = "start okular --unique %O %S";
+$pdf_previewer = "okular --unique %O %S";
 # $pdf_previewer = "mupdf -b 8 -r 96 %O %S";
-$pdf_previewer = "evince %O %S";
+# $pdf_previewer = "evince %O %S";
 
 # 0 = do not create a PDF file
 # 1 = Create a PDF file with pdflatex
