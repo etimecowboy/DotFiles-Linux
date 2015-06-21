@@ -136,6 +136,8 @@ alias vi='emacsclient -t' # Use emacs instead of vi
 # Matlab
 alias mat='matlab -nodesktop -nosplash'
 alias matlab='matlab -desktop -nosplash'
+export COMPUTERNAME='zbox' # added for matlab getenv function
+export USERNAME='xin' # added for matlab getenv function
 
 # urxvt
 alias urxvt='urxvtcd'

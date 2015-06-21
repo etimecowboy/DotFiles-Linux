@@ -312,6 +312,8 @@ URxvt*url-select.underline: true
 URxvt*keysym.Control-Shift-C:   perl:clipboard:copy
 URxvt*keysym.Control-Shift-V:   perl:clipboard:paste
 URxvt*keysym.M-C-v: perl:clipboard:paste_escaped
+! Disable Ctrl-Shift which enables ISO14755 mode
+URxvt*iso14755 : false
 
 ! Options: URxvt.clipboard.autocopy: if set to true, the clipboard is
 ! automatically updated whenever the PRIMARY selection changes
