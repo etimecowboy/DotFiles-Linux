@@ -6,3 +6,4 @@ Type=Application
 Terminal=false
 Categories=System;
 MimeType=x-scheme-handler/org-protocol;
+Hidden=True

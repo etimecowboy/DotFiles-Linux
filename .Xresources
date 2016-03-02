@@ -115,9 +115,9 @@ URxvt*visualBell:true
 ! ### True transparency (need support of WM)
 URxvt*depth:32
 ! URxvt*background:rgba:0000/0000/00000/bbbb
-! URxvt*background:[85]#000000
+URxvt*background:[85]#000000
 
-URxvt*background:Black
+! URxvt*background:Black
 URxvt*foreground:S_base0
 ! URxvt*foreground:White
 URxvt*geometry:80x25
@@ -126,6 +126,9 @@ URxvt*geometry:80x25
 ! URxvt*transparent:true
 ! Shading: 0 to 99 darkens, 101 to 200 lightens
 ! URxvt*shading:30
+
+! Fade the terminal by 40% when it looses focus
+URxvt*fading:40
 
 ! ### Scroll bar
 URxvt*scrollBar:true
@@ -137,9 +140,13 @@ URxvt*secondaryScroll:true
 ! URxvt*scrollColor:#222222
 
 ! ### Fonts
-! URxvt*font:xft:Dejavu Sans Mono:size=10, xft:Microsoft YaHei
-URxvt*font:xft:Monospace:size=11, xft:Microsoft YaHei
-URxvt*letterSpace:-1
+URxvt*font:xft:Dejavu Sans Mono:size=11, xft:Microsoft YaHei:size=14
+! URxvt*font:xft:Consolas:size=11, xft:Microsoft YaHei:size=14
+! URxvt*font:xft:Terminus:size=11, xft:Microsoft YaHei:size=16
+! URxvt*font:xft:monofur:size=10, xft:Microsoft YaHei
+! URxvt*font:xft:Monospace:size=11, xft:Microsoft YaHei
+URxvt*letterSpace:-2
+URxvt*lineSpace:0
 
 ! ### Printing
 ! The string will be interpreted as if typed into the shell as-is.
@@ -152,7 +159,7 @@ URxvt*print-pipe: "cat > /dev/null"
 ! system-wide, I must provide it a colon-delimited list of directories
 ! from which to read scripts. See the README in that directory for
 ! details about the available plugins.
-! URxvt*perl-lib:/usr/lib/urxvt/perl
+URxvt*perl-lib:/usr/lib/urxvt/perl:~/.urxvt/perl
 
 ! One can extend URxvt using perl. The `perl-ext` and
 ! `perl-ext-common` variables list the plugins that should be loaded.
@@ -170,7 +177,8 @@ URxvt*print-pipe: "cat > /dev/null"
 ! URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine
 ! URxvt*matcher.button: 1
 
-URxvt*perl-ext-common : default,tabbed,url-select,clipboard,keyboard-select
+! URxvt*perl-ext-common : default,tabbed,url-select,clipboard,keyboard-select
+URxvt*perl-ext-common : default,url-select,clipboard,keyboard-select
 ! URxvt*perl-ext : default
 
 ! ### default
@@ -182,11 +190,24 @@ URxvt*perl-ext-common : default,tabbed,url-select,clipboard,keyboard-select
 ! URxvt*keysym.C-Delete: perl:matcher:last
 ! URxvt*keysym.M-Delete: perl:matcher:list
 
-! ### tabbed
+! ### tabbed (not used, use tmux instead)
+! theme1
 ! URxvt*tabbed.tabbar-fg: 2
 ! URxvt*tabbed.tabbar-bg: 0
 ! URxvt*tabbed.tab-fg: 3
 ! URxvt*tabbed.tab-bg: 0
+
+! theme2: gray background, ~white text (used)
+! and the opposite for the currently focused tab
+! URxvt*tabbed.tabbar-fg: 7
+! URxvt*tabbed.tabbar-bg: 8
+! URxvt*tabbed.tab-fg: 8
+! URxvt*tabbed.tab-bg: 7
+
+! Display the title of terminal next to tabs list
+! URxvt*tabbed.title: true
+! URxvt*tabbed.title-bg: 8
+! URxvt*tabbed.title-fg: 7
 
 ! ### tabbedex
 ! an improved version of the included `tabbed` created by stepb; this
@@ -204,8 +225,10 @@ URxvt*perl-ext-common : default,tabbed,url-select,clipboard,keyboard-select
 ! URxvt*keysym.S-DOWN: perl:tabbedex:new_tab
 ! URxvt*keysym.S-LEFT: perl:tabbedex:rename_tab
 
+
 ! ### keyboard-select
 ! Use keyboard shortcuts to select and copy text.
+
 
 ! After installing, put the following lines in your
 ! .Xdefaults/.Xresources:
@@ -312,8 +335,9 @@ URxvt*url-select.underline: true
 URxvt*keysym.Control-Shift-C:   perl:clipboard:copy
 URxvt*keysym.Control-Shift-V:   perl:clipboard:paste
 URxvt*keysym.M-C-v: perl:clipboard:paste_escaped
-! Disable Ctrl-Shift which enables ISO14755 mode
-URxvt*iso14755 : false
+! Disable Ctrl-Shift which enables ISO14755 mode by urxvt
+URxvt*iso14755 :    false
+URxvt*iso14755_52 : false
 
 ! Options: URxvt.clipboard.autocopy: if set to true, the clipboard is
 ! automatically updated whenever the PRIMARY selection changes

@@ -127,6 +127,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 export ALTERNATE_EDITOR='emacs -nw'
 export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -t'
+# Use script in ~/bin =====> for use in matlab command mode
 alias et='emacsclient -t'
 alias ec='emacsclient -c'
 alias em='emacs -daemon'
@@ -186,3 +187,39 @@ fi
 
 # Safe rm use trash-cli
 alias rm='trash'
+
+# fix wrong window button display on xfce4-panel after computer wakes up from sleep
+# xfce4-panel -r
+
+# Use parallel compressor and decompressor
+# choices:
+# a) lbzip2
+# b) pbzip2
+# c) pigz
+# d) pxz
+alias tar='tar -I lbzip2'
+
+# tmuxinator
+# copy from tmuxinator/completion/tmuxinator.bash
+_tmuxinator() {
+    COMPREPLY=()
+    local word
+    word="${COMP_WORDS[COMP_CWORD]}"
+
+    if [ "$COMP_CWORD" -eq 1 ]; then
+        local commands="$(compgen -W "$(tmuxinator commands)" -- "$word")"
+        local projects="$(compgen -W "$(tmuxinator completions start)" -- "$word")"
+        
+        COMPREPLY=( $commands $projects )
+    elif [ "$COMP_CWORD" -eq 2 ]; then
+        local words
+        words=("${COMP_WORDS[@]}")
+        unset words[0]
+        unset words[$COMP_CWORD]
+        local completions
+        completions=$(tmuxinator completions "${words[@]}")
+        COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+    fi
+}
+
+complete -F _tmuxinator tmuxinator mux
