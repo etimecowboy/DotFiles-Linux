@@ -115,7 +115,7 @@ URxvt*visualBell:true
 ! ### True transparency (need support of WM)
 URxvt*depth:32
 ! URxvt*background:rgba:0000/0000/00000/bbbb
-URxvt*background:[85]#000000
+URxvt*background:[55]#000000
 
 ! URxvt*background:Black
 URxvt*foreground:S_base0
@@ -131,19 +131,25 @@ URxvt*geometry:80x25
 URxvt*fading:40
 
 ! ### Scroll bar
-URxvt*scrollBar:true
-URxvt*scrollstyle:plain
-URxvt*scrollBar_right:true
-URxvt*scrollBar_floating:false
-URxvt*secondaryScroll:true
+URxvt*scrollBar:false
+! URxvt*scrollstyle:plain
+! URxvt*scrollBar_right:true
+! URxvt*scrollBar_floating:false
+! URxvt*secondaryScroll:true
 ! URxvt*troughColor:#000000
 ! URxvt*scrollColor:#222222
 
 ! ### Fonts
-URxvt*font:xft:Dejavu Sans Mono:size=11, xft:Microsoft YaHei:size=14
-! URxvt*font:xft:Consolas:size=11, xft:Microsoft YaHei:size=14
-! URxvt*font:xft:Terminus:size=11, xft:Microsoft YaHei:size=16
+! URxvt*font:  -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12,xft:Microsoft YaHei:size=12
+! URxvt*boldFont:  -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12,xft:bold:Microsoft YaHei:size=12
+! URxvt*italicFont:  xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12,xft:italic:autohint=true:Microsoft YaHei:size=12
+! URxvt*boldItalicFont:  xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12,xft:bold:italic:autohint=true:Microsoft YaHei:size=12
+! URxvt*font:xft:Dejavu Sans Mono:size=10, xft:Microsoft YaHei:size=12
+! URxvt*letterSpace:-1
+! URxvt*lineSpace:0
 ! URxvt*font:xft:monofur:size=10, xft:Microsoft YaHei
+URxvt*font:xft:Consolas:size=12, xft:Microsoft YaHei:size=14
+! URxvt*font:xft:Terminus:size=11, xft:Microsoft YaHei:size=16
 ! URxvt*font:xft:Monospace:size=11, xft:Microsoft YaHei
 URxvt*letterSpace:-2
 URxvt*lineSpace:0
@@ -433,5 +439,3 @@ URxvt*keysym.Next:                   \033[6~
 ! URxvt*keysym.F10:  \033[21~
 ! URxvt*keysym.F11:  \033[23~
 ! URxvt*keysym.F12:  \033[24~
-
-! URxvt*iso14755_52: false

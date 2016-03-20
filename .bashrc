@@ -125,14 +125,16 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Editors
 export ALTERNATE_EDITOR='emacs -nw'
-export EDITOR='emacsclient -t'
-export VISUAL='emacsclient -t'
+export EDITOR='emacsclient -tc'
+export VISUAL='emacsclient -tc'
 # Use script in ~/bin =====> for use in matlab command mode
 alias et='emacsclient -t'
 alias ec='emacsclient -c'
 alias em='emacs -daemon'
 alias ee='emacs -nw -q'
 alias vi='emacsclient -t' # Use emacs instead of vi
+alias today="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"d\")' 2> /dev/null | less"
+alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 2> /dev/null | less"
 
 # Matlab
 alias mat='matlab -nodesktop -nosplash'

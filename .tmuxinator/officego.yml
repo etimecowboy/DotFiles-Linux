@@ -29,31 +29,29 @@ root: ~/
 
 windows:
   - oopdoc:
-      root: ~/GoogleDrive/man/matlab/mathworks/2015b/matlab/
+      root: ~/GoogleDrive/work/learn/Matlab/oop/
       layout: main-horizontal
       panes:
         - et ~/Dropbox/wiki/MatlabOOP.org
         - mat
-        - xournal matlab_oop.pdf.xoj&
+        - cd ~/GoogleDrive/man/matlab/mathworks/2015b/matlab/ && mupdf matlab_oop.pdf && xournal matlab_oop.pdf.xoj&
   - dspdoc:
-      root: ~/GoogleDrive/man/matlab/mathworks/2015b/dsp/
+      root: ~/GoogleDrive/work/learn/Matlab/dsp/dsp_ug_2015b/part11-difine-new-system-obj/
       layout: main-horizontal
       panes:
         - et ~/Dropbox/wiki/MatlabDSPSystemToolbox.org
         - mat
-        - xournal dsp_ug.pdf.xoj&
-  - exercise:
-      root: ~/GoogleDrive/work/learn/Matlab/
+        - cd ~/GoogleDrive/man/matlab/mathworks/2015b/dsp/ && mupdf dsp_ug.pdf && xournal dsp_ug.pdf.xoj&
+  - emacs:
+      root: ~/.emacs.d/my-lisps/init/
       layout: main-horizontal
       panes:
-        - et ~/GoogleDrive/work/learn/Matlab/
-        - mat
-        - 
-  - tmuxconf:
+        - et
+        - git status
+  - tmux:
       root: ~/src/DotFiles-Linux/
       layout: tiled
       panes:
         - et ~/src/DotFiles-Linux/.tmux.conf
         - et ~/src/DotFiles-Linux/.tmuxinator/homego.yml
         - git status
-        - 

@@ -1,6 +1,6 @@
-# ~/.tmuxinator/homego.yml
+# ~/.tmuxinator/learnstats@office.yml
 
-name: homego
+name: learnstats@office
 root: ~/
 
 # Optional tmux socket
@@ -25,33 +25,19 @@ root: ~/
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t homego
+# post: tmux -CC attach -t learnstats@office
 
 windows:
-  - oopdoc:
-      root: ~/GoogleDrive/work/learn/Matlab/oop/
-      layout: main-vertical
+  - matstats:
+      root: ~/GoogleDrive/work/learn/Matlab/stats/
+      layout: main-horizontal
       panes:
-        - et ~/Dropbox/wiki/MatlabOOP.org
+        - et ~/Dropbox/wiki/MatlabStatsAndMachineLearningToolbox.org
         - mat
-        - cd ~/GoogleDrive/man/matlab/mathworks/2015b/matlab/ && mupdf matlab_oop.pdf && xournal matlab_oop.pdf.xoj&
-  - dspdoc:
-      root: ~/GoogleDrive/work/learn/Matlab/dsp/dsp_ug_2015b/part11-difine-new-system-obj/
-      layout: main-vertical
-      panes:
-        - et ~/Dropbox/wiki/MatlabDSPSystemToolbox.org
-        - mat
-        - cd ~/GoogleDrive/man/matlab/mathworks/2015b/dsp/ && mupdf dsp_ug.pdf && xournal dsp_ug.pdf.xoj&
-  - emacs:
-      root: ~/.emacs.d/my-lisps/init/
-      layout: main-vertical
-      panes:
-        - et
-        - git status
+        - mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/stats/stats.pdf&
   - tmux:
       root: ~/src/DotFiles-Linux/
       layout: tiled
       panes:
-        - et ~/src/DotFiles-Linux/.tmux.conf
-        - et ~/src/DotFiles-Linux/.tmuxinator/homego.yml
+        - et ~/src/DotFiles-Linux/.tmuxinator/learnstats@home.yml
         - git status
