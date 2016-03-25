@@ -39,5 +39,7 @@ windows:
       root: ~/src/DotFiles-Linux/
       layout: tiled
       panes:
-        - et ~/src/DotFiles-Linux/.tmuxinator/learnstats@home.yml
+        - et ~/src/DotFiles-Linux/.tmuxinator/learnstats@office.yml
+        - et ~/src/DotEmacs/init.el
         - git status
+        - cd ~/src/DotEmacs && git status
