@@ -40,10 +40,12 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
+# uncomment for a colored prompt, if the terminal has the capability.
+#
+# Turned off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -77,8 +79,8 @@ esac
 # export PROMPT_COMMAND='export H1="`history 1|sed -e "s/^[\ 0-9]*//; s/[\d0\d31\d34\d39\d96\d127]*//g; s/\(.\{1,50\}\).*$/\1/g"`";history -a;echo -e "sgr0\ncnorm\nrmso"|tput -S'
 # export PS1='\n\e[1;30m[\j:\!\e[1;30m]\e[0;36m \T \d \e[1;30m[\e[1;34m\u@\H\e[1;30m:\e[0;37m`tty 2>/dev/null` \e[0;32m+${SHLVL}\e[1;30m] \e[1;37m\w\e[0;37m\[\033]0;[ ${H1}... ] \w - \u@\H +$SHLVL @`tty 2>/dev/null` - [ `uptime` ]\007\]\n\[\]\$ '
 
-export PROMPT_COMMAND='echo -en "\033[m\033[38;5;2m"$(( `sed -n "s/MemFree:[\t ]\+\([0-9]\+\) kB/\1/p" /proc/meminfo`/1024))"\033[38;5;22m/"$((`sed -n "s/MemTotal:[\t ]\+\([0-9]\+\) kB/\1/Ip" /proc/meminfo`/1024 ))MB"\t\033[m\033[38;5;55m$(< /proc/loadavg)\033[m"' \
-export PS1='\[\e[m\n\e[1;30m\][$$:$PPID \j:\!\[\e[1;30m\]]\[\e[0;36m\] \T \d \[\e[1;30m\][\[\e[1;34m\]\u@\H\[\e[1;30m\]:\[\e[0;37m\]${SSH_TTY} \[\e[0;32m\]+${SHLVL}\[\e[1;30m\]] \[\e[1;37m\]\w\[\e[0;37m\] \n($SHLVL:\!)\$ '
+# export PROMPT_COMMAND='echo -en "\033[m\033[38;5;2m"$(( `sed -n "s/MemFree:[\t ]\+\([0-9]\+\) kB/\1/p" /proc/meminfo`/1024))"\033[38;5;22m/"$((`sed -n "s/MemTotal:[\t ]\+\([0-9]\+\) kB/\1/Ip" /proc/meminfo`/1024 ))MB"\t\033[m\033[38;5;55m$(< /proc/loadavg)\033[m"' \
+# export PS1='\[\e[m\n\e[1;30m\][$$:$PPID \j:\!\[\e[1;30m\]]\[\e[0;36m\] \T \d \[\e[1;30m\][\[\e[1;34m\]\u@\H\[\e[1;30m\]:\[\e[0;37m\]${SSH_TTY} \[\e[0;32m\]+${SHLVL}\[\e[1;30m\]] \[\e[1;37m\]\w\[\e[0;37m\] \n($SHLVL:\!)\$ '
 
 # set PATH so it includes user's private bin if it exists
 # already in ~/.profile
@@ -127,14 +129,22 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 export ALTERNATE_EDITOR='emacs -nw'
 export EDITOR='emacsclient -tc'
 export VISUAL='emacsclient -tc'
+
 # Use script in ~/bin =====> for use in matlab command mode
-alias et='emacsclient -t'
+alias et='emacsclient -tc'
 alias ec='emacsclient -c'
-alias em='emacs -daemon'
+# English locale leads to the dysfunction of im (fcitx) in X
+# LC_CTYPE should be set when starting the daemon.
+alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs --debug-init'
+alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
+# alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
+# alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
 alias ee='emacs -nw -q'
-alias vi='emacsclient -t' # Use emacs instead of vi
+alias vi='emacsclient -tc' # Use emacs instead of vi
 alias today="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"d\")' 2> /dev/null | less"
 alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 2> /dev/null | less"
+
+# export LC_CTYPE=zh_CN.UTF-8 # moved to ~/.profile
 
 # Matlab
 alias mat='matlab -nodesktop -nosplash'
@@ -167,16 +177,20 @@ fi
 
 # Run fbterm after log in tty for Chinese display
 # Note: fbterm displays not very good now. Don't start it until it is necessary by fb
+# solution 1: use DISPLAY env var
 # [[ $(tty) == \/dev\/tty[0-9]* ]] && env DISPLAY=:0 fcitx-fbterm-helper
-alias fb='env DISPLAY=:0 fcitx-fbterm-helper'
-alias fl='fcitx-fbterm-helper -l'
+# solution 2: use -d switch of fcitx-fbterm-helper
+# [[ $(tty) == \/dev\/tty[0-9]* ]] && fcitx-fbterm-helper -d 0
+# alias fb='env DISPLAY=:0 fcitx-fbterm-helper'
+# alias fl='fcitx-fbterm-helper -l'
+alias fb='fcitx-fbterm-helper -d 0 -l'
 
 # Git prompt
 # file does not exist
 # source /usr/share/git/completion/git-prompt.sh
 
 # jabref
-alias jabref='java -jar ~/.emacs.d/bin/JabRef-2.10.jar'
+# alias jabref='java -jar ~/.emacs.d/bin/JabRef-2.10.jar'
 
 # Remap keyboard
 setxkbmap -option "altwin:ctrl_alt_win"
@@ -225,3 +239,12 @@ _tmuxinator() {
 }
 
 complete -F _tmuxinator tmuxinator mux
+
+# tmux
+alias muxk='tmux kill-server'
+alias muxa='tmux attach'
+alias muxt='tmux attach -t'
+
+# mplayer: multithread support
+# TODO: test
+alias mplayer='mplayer -lavdopts threads=N'

@@ -1,6 +1,6 @@
-# ~/.tmuxinator/write@home.yml
+# ~/.tmuxinator/learnstats.yml
 
-name: write@home
+name: learnstats
 root: ~/
 
 # Optional tmux socket
@@ -25,22 +25,13 @@ root: ~/
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t write@home
+# post: tmux -CC attach -t learnstats
 
 windows:
-  - 18month:
-      root: ~/Dropbox/ICanHear/doc/admin/soton/18months/
+  - matstats:
+      root: ~/GoogleDrive/work/learn/Matlab/stats
       layout: main-vertical
       panes:
-        - et rep18month.org
-  - ref:
-      root: ~/GoogleDrive/reading_notes/
-      layout: main-vertical
-      panes:
-        -et ReadAIM.org
-  - wiki:
-      root: ~/Dropbox/wiki/
-      layout: main-vertical
-      panes:
-        - et AuditoryImageModel.org
-        - git status
+        - emacsclient -tc ~/Dropbox/wiki/MatlabStatsAndMachineLearningToolbox.org
+        - mat
+        - mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/stats/stats.pdf&

@@ -1,6 +1,6 @@
-# ~/.tmuxinator/officego.yml
+# ~/.tmuxinator/aimmatdsp@office.yml
 
-name: officego
+name: aimmatdsp@office
 root: ~/
 
 # Optional tmux socket
@@ -25,33 +25,32 @@ root: ~/
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t officego
+# post: tmux -CC attach -t aimmatdsp@office
 
 windows:
-  - oopdoc:
-      root: ~/GoogleDrive/work/learn/Matlab/oop/
+  - code:
+      root: ~/research/AIM/src/aimmat-dsp/modules/bmm/gammatone/
       layout: main-horizontal
       panes:
-        - et ~/Dropbox/wiki/MatlabOOP.org
-        - mat
-        - cd ~/GoogleDrive/man/matlab/mathworks/2015b/matlab/ && mupdf matlab_oop.pdf && xournal matlab_oop.pdf.xoj&
-  - dspdoc:
-      root: ~/GoogleDrive/work/learn/Matlab/dsp/dsp_ug_2015b/part11-difine-new-system-obj/
-      layout: main-horizontal
-      panes:
-        - et ~/Dropbox/wiki/MatlabDSPSystemToolbox.org
-        - mat
-        - cd ~/GoogleDrive/man/matlab/mathworks/2015b/dsp/ && mupdf dsp_ug.pdf && xournal dsp_ug.pdf.xoj&
-  - emacs:
-      root: ~/.emacs.d/my-lisps/init/
-      layout: main-horizontal
-      panes:
-        - et
+        - emacsclient -nw GammatoneFilterBankSlany1993.org
         - git status
-  - tmux:
-      root: ~/src/DotFiles-Linux/
-      layout: tiled
+  - man:
+      root: ~/GoogleDrive/man/matlab/mathworks/2016a/
+      layout: main-horizontal
       panes:
-        - et ~/src/DotFiles-Linux/.tmux.conf
-        - et ~/src/DotFiles-Linux/.tmuxinator/homego.yml
+        - cd matlab && mupdf matlab_oop.pdf&
+        - cd dsp && mupdf dsp_ug.pdf&
+  - ref:
+      root: ~/GoogleDrive/reading_notes/
+      layout: main-horizontal
+      panes:
+        -emacsclient -nw ReadAIM.org
+        -emacsclient -nw ReadAuditoryModels.org
+  - wiki:
+      root: ~/Dropbox/wiki/
+      layout: main-horizontal
+      panes:
+        - emacsclient -nw AuditoryImageModel.org
+        - emacsclient -nw MatlabDSPSystemToolbox.org
+        - emacsclient -nw MatlabOOP.org
         - git status

@@ -1,6 +1,6 @@
-# ~/.tmuxinator/aimmatdsp@home.yml
+# ~/.tmuxinator/aimmatdsp.yml
 
-name: aimmatdsp@home
+name: aimmatdsp
 root: ~/
 
 # Optional tmux socket
@@ -32,25 +32,25 @@ windows:
       root: ~/research/AIM/src/aimmat-dsp/modules/bmm/gammatone/
       layout: main-vertical
       panes:
-        - et GammatoneFilterBankSlany1993.org
-        - git status
+        - emacsclient -tc GammatoneFilterBankSlany1993.org
   - man:
       root: ~/GoogleDrive/man/matlab/mathworks/2016a/
       layout: main-vertical
       panes:
         - cd matlab && mupdf matlab_oop.pdf&
         - cd dsp && mupdf dsp_ug.pdf&
+        - cd stats && mupdf stats.pdf&
   - ref:
       root: ~/GoogleDrive/reading_notes/
       layout: main-vertical
       panes:
-        -et ReadAIM.org
-        -et ReadAuditoryModels.org
+        - emacsclient -tc AIM.org
+        - emacsclient -tc AuditoryModels.org
   - wiki:
       root: ~/Dropbox/wiki/
       layout: main-vertical
       panes:
-        - et AuditoryImageModel.org
-        - et MatlabDSPSystemToolbox.org
-        - et MatlabOOP.org
-        - git status
+        - emacsclient -tc AuditoryImageModel.org
+        - emacsclient -tc GammatoneFilterBank.org
+        - emacsclient -tc MatlabDSPSystemToolbox.org
+        - emacsclient -tc MatlabOOP.org

@@ -2,13 +2,14 @@
 Xft*dpi:96
 Xft*antialias:true
 Xft*hinting:full
+Xft*hintstyle:hintslight
 Xft*rgba:rgb
 
 !! drop in Solarized colorscheme for Xresources
 !!
-!! 1) Write to $HOME/.Xresources
-!! 2) If not using Xsession, you must add the line `xrdb -merge ~/.Xresources`
-!!    to `.xinitrc`. See http://manpages.ubuntu.com/Xsession for more details.
+!! 1 Write to $HOME/.Xresources
+!! 2 If not using Xsession, you must add the line `xrdb -merge ~/.Xresources`
+!!   to `.xinitrc`. See http://manpages.ubuntu.com/Xsession for more details.
 !!
 !!SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
 !!--------- ------- ---- -------  ----------- ---------- ----------- -----------
@@ -114,7 +115,7 @@ URxvt*visualBell:true
 !! True transparency (need support of WM)
 URxvt*depth:32
 !! URxvt*background:rgba:0000/0000/00000/bbbb
-URxvt*background:[55]#000000
+URxvt*background:[80]#000000
 !! URxvt*background:Black
 URxvt*foreground:S_base0
 !! URxvt*foreground:White
@@ -143,19 +144,22 @@ URxvt*scrollBar:false
 !! URxvt*scrollColor:#222222
 
 !!!! Fonts
-!! URxvt*font:  -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12,xft:Microsoft YaHei:size=12
+!! URxvt*font:  -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:16,xft:Microsoft YaHei:size=16
+!! URxvt*font:xft:terminus:pixelsize:20,xft:Microsoft YaHei:size=20
 !! URxvt*boldFont:  -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12,xft:bold:Microsoft YaHei:size=12
 !! URxvt*italicFont:  xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12,xft:italic:autohint=true:Microsoft YaHei:size=12
 !! URxvt*boldItalicFont:  xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12,xft:bold:italic:autohint=true:Microsoft YaHei:size=12
-!! URxvt*font:xft:Dejavu Sans Mono:size=10, xft:Microsoft YaHei:size=12
-!! URxvt*letterSpace:-1
-!! URxvt*lineSpace:0
-!! URxvt*font:xft:monofur:size=10, xft:Microsoft YaHei
-URxvt*font:xft:Consolas:size=11, xft:Microsoft YaHei:size=12
+
+URxvt*font:xft:Dejavu Sans Mono:size=12, xft:Microsoft YaHei:size=14
+URxvt*letterSpace:-1
+!! URxvt*letterSpace:0
+URxvt*lineSpace:0
+!! URxvt*font:xft:monofur:size=11, xft:Microsoft YaHei
+!! URxvt*font:xft:Consolas:size=10, xft:Microsoft YaHei:size=12
 !! URxvt*font:xft:Terminus:size=11, xft:Microsoft YaHei:size=16
 !! URxvt*font:xft:Monospace:size=11, xft:Microsoft YaHei
-URxvt*letterSpace:-2
-URxvt*lineSpace:0
+!! URxvt*letterSpace:0
+!! URxvt*lineSpace:0
 
 !!!! Printing
 !! The string will be interpreted as if typed into the shell as-is. In
@@ -189,7 +193,7 @@ URxvt*perl-lib:/usr/lib/urxvt/perl:~/.urxvt/perl
 
 !! URxvt*perl-ext-common : default,tabbed,url-select,clipboard,keyboard-select
 URxvt*perl-ext-common : default,url-select,clipboard,keyboard-select
-!! URxvt*perl-ext : default
+URxvt*perl-ext : default
 
 !!!!! default
 !! the Perl modules URxvt enables by default.
@@ -242,7 +246,7 @@ URxvt*perl-ext-common : default,url-select,clipboard,keyboard-select
 !! Use keyboard shortcuts to select and copy text.
 
 !! After installing, put the following lines in your
-!! .Xdefaults/.Xresources:
+!! .Xdefaults / .Xresources:
 !! URxvt.perl-ext-common: ...,keyboard-select
 !! URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt*keysym.M-Escape: perl:keyboard-select:activate
@@ -395,48 +399,63 @@ URxvt*clipboard.pastecmd: xclip -o -selection clipboard
 !! --------------- old clipboard ends
 
 !!!! Key bindings
-!! URxvt*keysym.Home: \033[1~
-!! URxvt*keysym.End:  \033[4~
-URxvt*keysym.Home:                   \033[7~
-URxvt*keysym.End:                    \033[8~
-URxvt*keysym.Find:                   \033[1~
-URxvt*keysym.Insert:                 \033[2~
-URxvt*keysym.Select:                 \033[4~
-URxvt*keysym.Prior:                  \033[5~
-URxvt*keysym.Next:                   \033[6~
+! URxvt*keysym.Up:                     \033[A
+! URxvt*keysym.Down:                   \033[B
+! URxvt*keysym.Right:                  \033[C
+! URxvt*keysym.Left:                   \033[D
+! URxvt*keysym.Page_Up:                \033[5~
+! URxvt*keysym.Page_Down:              \033[6~
+! URxvt*keysym.Home:                   \033[H 
+! URxvt*keysym.End:                    \033[F 
+! URxvt*keysym.Up:                     \033[A
+! URxvt*keysym.Down:                   \033[B
+! URxvt*keysym.Right:                  \033[C
+! URxvt*keysym.Left:                   \033[D
 
-!! URxvt*keysym.Up:                     \033[A
-!! URxvt*keysym.Down:                   \033[B
-!! URxvt*keysym.Right:                  \033[C
-!! URxvt*keysym.Left:                   \033[D
+! URxvt*keysym.Home:                   \033[7~
+! URxvt*keysym.End:                    \033[8~
+! URxvt*keysym.Find:                   \033[1~
+! URxvt*keysym.Insert:                 \033[2~
+! URxvt*keysym.Select:                 \033[4~
+! URxvt*keysym.Prior:                  \033[5~
+! URxvt*keysym.Next:                   \033[6~
 
 !! URxvt by default does not support using the control+arrows to
 !! advance or retreat one word at a time. The following two codes
 !! re-enable this.
-!! URxvt*keysym.C-Up:                   \033[1;5A
-!! URxvt*keysym.C-Down:                 \033[1;5B
-!! URxvt*keysym.C-Right:                \033[1;5C
-!! URxvt*keysym.C-Left:                 \033[1;5D
+! URxvt*keysym.C-Up:                   \033[1;5A
+! URxvt*keysym.C-Down:                 \033[1;5B
+! URxvt*keysym.C-Right:                \033[1;5C
+! URxvt*keysym.C-Left:                 \033[1;5D
 
-!! URxvt*keysym.Meta-Up:                \033[1;3A
-!! URxvt*keysym.Meta-Down:              \033[1;3B
-!! URxvt*keysym.Meta-Right:             \033[1;3C
-!! URxvt*keysym.Meta-Left:              \033[1;3D
+! URxvt*keysym.Meta-Up:                \033[1;3A
+! URxvt*keysym.Meta-Down:              \033[1;3B
+! URxvt*keysym.Meta-Right:             \033[1;3C
+! URxvt*keysym.Meta-Left:              \033[1;3D
+! URxvt*keysym.M-Up:                   \033[1;3A
+! URxvt*keysym.M-Down:                 \033[1;3B
+! URxvt*keysym.M-Right:                \033[1;3C
+! URxvt*keysym.M-Left:                 \033[1;3D
 
-!! URxvt*keysym.S-Up:                   \033[1;2A
-!! URxvt*keysym.S-Down:                 \033[1;2B
-!! URxvt*keysym.S-Right:                \033[1;2C
-!! URxvt*keysym.S-Left:                 \033[1;2D
+! URxvt*keysym.S-Up:                   \033[1;2A
+! URxvt*keysym.S-Down:                 \033[1;2B
+! URxvt*keysym.S-Right:                \033[1;2C
+! URxvt*keysym.S-Left:                 \033[1;2D
 
-!! URxvt*keysym.F1:   \033[11~
-!! URxvt*keysym.F2:   \033[12~
-!! URxvt*keysym.F3:   \033[13~
-!! URxvt*keysym.F4:   \033[14~
-!! URxvt*keysym.F5:   \033[15~
-!! URxvt*keysym.F6:   \033[17~
-!! URxvt*keysym.F7:   \033[18~
-!! URxvt*keysym.F8:   \033[19~
-!! URxvt*keysym.F9:   \033[20~
-!! URxvt*keysym.F10:  \033[21~
-!! URxvt*keysym.F11:  \033[23~
-!! URxvt*keysym.F12:  \033[24~
+!! URxvt*keysym.F1:                    \033[11~
+!! URxvt*keysym.F2:                    \033[12~
+!! URxvt*keysym.F3:                    \033[13~
+!! URxvt*keysym.F4:                    \033[14~
+!! URxvt*keysym.F5:                    \033[15~
+!! URxvt*keysym.F6:                    \033[17~
+!! URxvt*keysym.F7:                    \033[18~
+!! URxvt*keysym.F8:                    \033[19~
+!! URxvt*keysym.F9:                    \033[20~
+!! URxvt*keysym.F10:                   \033[21~
+!! URxvt*keysym.F11:                   \033[23~
+!! URxvt*keysym.F12:                   \033[24~
+
+!!! Emacs
+!! Disable xim-based im
+!! not use this, it will diable fcitx in X as well
+!! emacs*useXIM:true

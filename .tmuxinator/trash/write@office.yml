@@ -32,15 +32,15 @@ windows:
       root: ~/Dropbox/ICanHear/doc/admin/soton/18months/
       layout: main-horizontal
       panes:
-        - et rep18month.org
+        - emacsclient -nw rep18month.org
   - ref:
       root: ~/GoogleDrive/reading_notes/
       layout: main-horizontal
       panes:
-        -et ReadAIM.org
+        -emacsclient -nw ReadAIM.org
   - wiki:
       root: ~/Dropbox/wiki/
       layout: main-horizontal
       panes:
-        - et AuditoryImageModel.org
+        - emacsclient -nw AuditoryImageModel.org
         - git status

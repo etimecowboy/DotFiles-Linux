@@ -1,7 +1,7 @@
-# ~/.tmuxinator/learnstats@home.yml
+# ~/.tmuxinator/config.yml
 
-name: learnstats@home
-2Droot: ~/
+name: config
+# root: ~/src
 
 # Optional tmux socket
 # socket_name: foo
@@ -25,21 +25,35 @@ name: learnstats@home
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t learnstats@home
+# post: tmux -CC attach -t write@home
 
 windows:
-  - matstats:
-      root: ~/GoogleDrive/work/learn/Matlab/stats/
+  - system:
+      root: ~/src/DotFiles-Linux
       layout: main-vertical
       panes:
-        - et ~/Dropbox/wiki/MatlabStatsAndMachineLearningToolbox.org
-        - mat
-        - mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/stats/stats.pdf&
-  - tmux:
-      root: ~/src/DotFiles-Linux/
-      layout: tiled
+        - emacsclient -tc .Xresources
+        - emacsclient -tc .bashrc
+        - emacsclient -tc .gitconfig        
+  - emacs:
+      root: ~/src/DotEmacs/my-lisps/init
+      layout: tile
       panes:
-        - et ~/src/DotFiles-Linux/.tmuxinator/learnstats@home.yml
-        - et ~/src/DotEmacs/init.el
-        - git status
-        - cd ~/src/DotEmacs && git status
+        - emacsclient -tc xy-rcroot-look.el
+        - emacsclient -tc xy-rcroot-enhance.el
+        - emacsclient -tc xy-rcroot-history.el
+        - emacsclient -tc xy-rcroot-complete.el
+  - tmuxconf:
+      root: ~/src/DotFiles-Linux
+      layout: main-vertical
+      panes:
+        - emacsclient -tc .tmux.conf
+  - tmuxinatorconf:
+      root: ~/src/DotFiles-Linux/.tmuxinator
+      layout: tile
+      panes:
+        - emacsclient -tc config.yml
+        - emacsclient -tc aimmatdsp.yml
+        - emacsclient -tc 18month.yml
+        - emacsclient -tc statsug.yml
+

@@ -1,6 +1,6 @@
-# ~/.tmuxinator/aimmatdsp@office.yml
+# ~/.tmuxinator/learnstats@office.yml
 
-name: aimmatdsp@office
+name: learnstats@office
 root: ~/
 
 # Optional tmux socket
@@ -25,32 +25,21 @@ root: ~/
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t aimmatdsp@office
+# post: tmux -CC attach -t learnstats@office
 
 windows:
-  - code:
-      root: ~/research/AIM/src/aimmat-dsp/modules/bmm/gammatone/
+  - matstats:
+      root: ~/GoogleDrive/work/learn/Matlab/stats/
       layout: main-horizontal
       panes:
-        - et GammatoneFilterBankSlany1993.org
+        - emacsclient -nw ~/Dropbox/wiki/MatlabStatsAndMachineLearningToolbox.org
+        - mat
+        - mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/stats/stats.pdf&
+  - tmux:
+      root: ~/src/DotFiles-Linux/
+      layout: tiled
+      panes:
+        - emacsclient -nw ~/src/DotFiles-Linux/.tmuxinator/learnstats@office.yml
+        - emacsclient -nw ~/src/DotEmacs/init.el
         - git status
-  - man:
-      root: ~/GoogleDrive/man/matlab/mathworks/2016a/
-      layout: main-horizontal
-      panes:
-        - cd matlab && mupdf matlab_oop.pdf&
-        - cd dsp && mupdf dsp_ug.pdf&
-  - ref:
-      root: ~/GoogleDrive/reading_notes/
-      layout: main-horizontal
-      panes:
-        -et ReadAIM.org
-        -et ReadAuditoryModels.org
-  - wiki:
-      root: ~/Dropbox/wiki/
-      layout: main-horizontal
-      panes:
-        - et AuditoryImageModel.org
-        - et MatlabDSPSystemToolbox.org
-        - et MatlabOOP.org
-        - git status
+        - cd ~/src/DotEmacs && git status

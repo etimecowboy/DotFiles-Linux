@@ -1,0 +1,90 @@
+# ~/.tmuxinator/aimmatng.yml
+
+name: aimmatng
+root: ~/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: logs
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t aimmatng
+
+windows:
+  - AIM:
+      root: ~/research/AIM/src/aimmat-ng
+      layout: tile
+      panes:
+        - emacsclient -tc test_AIM_analyze.m
+        - emacsclient -tc AIM_analyze.m
+        - emacsclient -tc config_AIM.m
+        - emacsclient -tc AIM_processing.m
+        - emacsclient -tc visual_AIM.m
+        - emacsclient -tc initAIMproj.m
+  - BMM:
+      root: ~/research/AIM/src/aimmat-ng/modules/bmm/gtfb
+      layout: tile
+      panes:
+        - emacsclient -tc GTFB_Hohmann2002.m
+        - emacsclient -tc config_GTFB_Hohmann2002.m
+  - NAP:
+      root: ~/research/AIM/src/aimmat-ng/modules/nap/hcl
+      layout: tile
+      panes:
+        - emacsclient -tc HCL.m
+        - emacsclient -tc config_HCL.m
+  - STROBES:
+      root: ~/research/AIM/src/aimmat-ng/modules/strobes/sf2003
+      layout: tile
+      panes:
+        - emacsclient -tc SF2003.m
+        - emacsclient -tc config_SF2003.m
+  - SAI:
+      root: ~/research/AIM/src/aimmat-ng/modules/sai/ti2003
+      layout: tile
+      panes:
+        - emacsclient -tc TI2003.m
+        - emacsclient -tc config_TI2003.m
+  - SSI:
+      root: ~/research/AIM/src/aimmat-ng/modules/ssi/ssi2006
+      layout: tile
+      panes:
+        - emacsclient -tc SSI2006.m
+        - emacsclient -tc config_SSI2006.m
+  - MI:
+      root: ~/research/AIM/src/aimmat-ng/modules/mi/mi2002
+      layout: tile
+      panes:
+        - emacsclient -tc MI2002.m
+        - emacsclient -tc config_MI2002.m
+  - ref:
+      root: ~/GoogleDrive/reading_notes
+      layout: tile
+      panes:
+        - emacsclient -tc AIM.org
+        - emacsclient -tc AuditoryModels.org
+  - wiki:
+      root: ~/Dropbox/wiki/
+      layout: tile
+      panes:
+        - emacsclient -tc AuditoryImageModel.org
+        - emacsclient -tc GammatoneFilterBank.org
+        - emacsclient -tc MatlabDSPSystemToolbox.org
+        - emacsclient -tc MatlabOOP.org
