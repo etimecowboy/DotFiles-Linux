@@ -1,3 +1,4 @@
+#   -*- mode: conf; coding: utf-8-unix  -*-
 # ~/.tmuxinator/18month.yml
 
 name: 18month
@@ -49,19 +50,3 @@ windows:
       layout: tile
       panes:
         - emacsclient -tc AIM-NNSE.org
-  - ref:
-      root: ~/GoogleDrive/reading_notes
-      layout: tile
-      panes:
-        - emacsclient -tc AIM.org
-        - emacsclient -tc AuditoryModel.org
-        - emacsclient -tc Hearing.org
-        - emacsclient -tc Speech.org
-        - emacsclient -tc ASR.org
-        - emacsclient -tc SpeechEnhancement.org
-  - wiki:
-      root: ~/Dropbox/wiki
-      layout: tile
-      panes:
-        - emacsclient -tc AuditoryImageModel.org
-        - emacsclient -tc GammatoneFilterBank.org

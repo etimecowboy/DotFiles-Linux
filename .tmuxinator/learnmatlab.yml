@@ -1,7 +1,8 @@
-# ~/.tmuxinator/learnstats.yml
+#   -*- mode: conf; coding: utf-8-unix  -*-
+# ~/.tmuxinator/learnmatlab.yml
 
-name: learnstats
-root: ~/
+name: learnmatlab
+root: ~/GoogleDrive/work/learn/Matlab/
 
 # Optional tmux socket
 # socket_name: foo
@@ -28,10 +29,14 @@ root: ~/
 # post: tmux -CC attach -t learnstats
 
 windows:
-  - matstats:
-      root: ~/GoogleDrive/work/learn/Matlab/stats
+  - dsp:
+      root: ~/GoogleDrive/work/learn/Matlab/dsp/dsp_ug_2016a/
       layout: main-vertical
       panes:
-        - emacsclient -tc ~/Dropbox/wiki/MatlabStatsAndMachineLearningToolbox.org
+        - mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/dsp/dsp_ug.pdf & emacsclient -tc ~/Dropbox/wiki/MatlabSystemObject.org
         - mat
-        - mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/stats/stats.pdf&
+  - stats:
+      root: ~/GoogleDrive/work/learn/Matlab/stats/
+      layout: main-vertical
+      panes:
+        - mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/stats/stats.pdf & emacsclient -tc ~/Dropbox/wiki/MatlabStatsAndMachineLearningToolbox.org

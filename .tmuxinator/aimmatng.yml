@@ -34,10 +34,10 @@ windows:
       panes:
         - emacsclient -tc test_AIM_analyze.m
         - emacsclient -tc AIM_analyze.m
+        - emacsclient -tc visual_AIM.m        
         - emacsclient -tc config_AIM.m
         - emacsclient -tc AIM_processing.m
-        - emacsclient -tc visual_AIM.m
-        - emacsclient -tc initAIMproj.m
+        - emacsclient -tc save_AIM_outputs.m
   - BMM:
       root: ~/research/AIM/src/aimmat-ng/modules/bmm/gtfb
       layout: tile
@@ -74,17 +74,3 @@ windows:
       panes:
         - emacsclient -tc MI2002.m
         - emacsclient -tc config_MI2002.m
-  - ref:
-      root: ~/GoogleDrive/reading_notes
-      layout: tile
-      panes:
-        - emacsclient -tc AIM.org
-        - emacsclient -tc AuditoryModels.org
-  - wiki:
-      root: ~/Dropbox/wiki/
-      layout: tile
-      panes:
-        - emacsclient -tc AuditoryImageModel.org
-        - emacsclient -tc GammatoneFilterBank.org
-        - emacsclient -tc MatlabDSPSystemToolbox.org
-        - emacsclient -tc MatlabOOP.org

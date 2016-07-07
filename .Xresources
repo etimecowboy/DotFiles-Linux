@@ -149,17 +149,26 @@ URxvt*scrollBar:false
 !! URxvt*boldFont:  -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12,xft:bold:Microsoft YaHei:size=12
 !! URxvt*italicFont:  xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12,xft:italic:autohint=true:Microsoft YaHei:size=12
 !! URxvt*boldItalicFont:  xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12,xft:bold:italic:autohint=true:Microsoft YaHei:size=12
+!!!!! old choice
+!! URxvt*font:xft:Dejavu Sans Mono:size=10, xft:Microsoft YaHei:size=12
+!!!!! with powerline symbols
+! URxvt*font:xft:Dejavu Sans Mono:size=10,xft:Microsoft YaHei:size=12,xft:PowerlineSymbols
+URxvt*font:xft:Dejavu Sans Mono for Powerline:size=10,xft:Microsoft YaHei:size=12
+! URxvt*font: xft:Bitstream Vera Sans Mono for Powerline:pixelsize=14:antialias=true,xft:DejaVu Sans Mono for Powerline:pixelsize=14:antialias=true
 
-URxvt*font:xft:Dejavu Sans Mono:size=12, xft:Microsoft YaHei:size=14
-URxvt*letterSpace:-1
-!! URxvt*letterSpace:0
+!! URxvt*letterSpace:-1
+URxvt*letterSpace:0
 URxvt*lineSpace:0
 !! URxvt*font:xft:monofur:size=11, xft:Microsoft YaHei
 !! URxvt*font:xft:Consolas:size=10, xft:Microsoft YaHei:size=12
-!! URxvt*font:xft:Terminus:size=11, xft:Microsoft YaHei:size=16
+!! URxvt*font:xft:Terminus:size=11, xft:Microsoft YaHei
 !! URxvt*font:xft:Monospace:size=11, xft:Microsoft YaHei
 !! URxvt*letterSpace:0
 !! URxvt*lineSpace:0
+
+!! urxvt font with powerline symbols
+
+
 
 !!!! Printing
 !! The string will be interpreted as if typed into the shell as-is. In
@@ -191,8 +200,8 @@ URxvt*perl-lib:/usr/lib/urxvt/perl:~/.urxvt/perl
 !! URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine
 !! URxvt*matcher.button: 1
 
-!! URxvt*perl-ext-common : default,tabbed,url-select,clipboard,keyboard-select
-URxvt*perl-ext-common : default,url-select,clipboard,keyboard-select
+URxvt*perl-ext-common : default,tabbed,url-select,clipboard,keyboard-select
+!! URxvt*perl-ext-common : default,url-select,clipboard,keyboard-select
 URxvt*perl-ext : default
 
 !!!!! default
@@ -206,7 +215,7 @@ URxvt*perl-ext : default
 
 !!!!! tabbed (not used, use tmux instead)
 !! Display the title of terminal next to tabs list
-!! URxvt*tabbed.title: true
+URxvt*tabbed.title: true
 !! URxvt*tabbed.title-bg: 8
 !! URxvt*tabbed.title-fg: 7
 
@@ -355,17 +364,13 @@ URxvt*iso14755_52 : false
 !! automatically updated whenever the PRIMARY selection changes
 
 !! You can also overwrite the system commands to use for
-!! copying/pasting. The default ones are:
+!! copying/pasting.
 
+!! If you prefer xsel:
 !! URxvt.clipboard.copycmd:  xsel -ib
 !! URxvt.clipboard.pastecmd: xsel -ob
 
-!! If you prefer xclip, then put these lines in your
-!! .Xdefaults/.Xresources:
-
-!! URxvt.clipboard.copycmd:  xclip -i -selection clipboard
-!! URxvt.clipboard.pastecmd: xclip -o -selection clipboard
-
+!! If you prefer xclip:
 URxvt*clipboard.copycmd:  xclip -i -selection clipboard
 URxvt*clipboard.pastecmd: xclip -o -selection clipboard
 
@@ -399,6 +404,12 @@ URxvt*clipboard.pastecmd: xclip -o -selection clipboard
 !! --------------- old clipboard ends
 
 !!!! Key bindings
+!! URxvt by default does not support using the control+arrows to
+!! advance or retreat one word at a time. The following two codes
+!! re-enable this.
+!!
+!! NOTE: new version of urxvt supprts xterm keys
+!!
 ! URxvt*keysym.Up:                     \033[A
 ! URxvt*keysym.Down:                   \033[B
 ! URxvt*keysym.Right:                  \033[C
@@ -420,9 +431,6 @@ URxvt*clipboard.pastecmd: xclip -o -selection clipboard
 ! URxvt*keysym.Prior:                  \033[5~
 ! URxvt*keysym.Next:                   \033[6~
 
-!! URxvt by default does not support using the control+arrows to
-!! advance or retreat one word at a time. The following two codes
-!! re-enable this.
 ! URxvt*keysym.C-Up:                   \033[1;5A
 ! URxvt*keysym.C-Down:                 \033[1;5B
 ! URxvt*keysym.C-Right:                \033[1;5C

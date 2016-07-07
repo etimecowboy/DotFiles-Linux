@@ -1,7 +1,7 @@
+#   -*- mode: conf; coding: utf-8-unix  -*-
 # ~/.tmuxinator/aimmatdsp.yml
 
 name: aimmatdsp
-root: ~/
 
 # Optional tmux socket
 # socket_name: foo
@@ -25,32 +25,52 @@ root: ~/
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t aimmatdsp@home
+# post: tmux -CC attach -t aimmatdsp
 
 windows:
-  - code:
-      root: ~/research/AIM/src/aimmat-dsp/modules/bmm/gammatone/
-      layout: main-vertical
+  - aimmat-dsp:
+      root: ~/research/AIM/src/aimmat-dsp/org/
+      layout: tile
       panes:
-        - emacsclient -tc GammatoneFilterBankSlany1993.org
-  - man:
-      root: ~/GoogleDrive/man/matlab/mathworks/2016a/
-      layout: main-vertical
+        - emacsclient -nc ./ & emacsclient -tc ./
+        - matlab -nodesktop -nosplash
+  - aimmat-ng:
+      root: ~/research/AIM/src/aimmat-ng/
+      layout: tile
       panes:
-        - cd matlab && mupdf matlab_oop.pdf&
-        - cd dsp && mupdf dsp_ug.pdf&
-        - cd stats && mupdf stats.pdf&
-  - ref:
-      root: ~/GoogleDrive/reading_notes/
-      layout: main-vertical
+        - emacsclient -tc ./
+  - aimmat-online:
+      root: ~/research/AIM/src/aimmat-online/
+      layout: tile
       panes:
-        - emacsclient -tc AIM.org
-        - emacsclient -tc AuditoryModels.org
-  - wiki:
-      root: ~/Dropbox/wiki/
-      layout: main-vertical
+        - emacsclient -tc ./
+  - aim2006:
+      root: ~/research/AIM/src/ref/aimmat_hg/aim-mat/modules/
+      layout: tile
       panes:
-        - emacsclient -tc AuditoryImageModel.org
-        - emacsclient -tc GammatoneFilterBank.org
-        - emacsclient -tc MatlabDSPSystemToolbox.org
-        - emacsclient -tc MatlabOOP.org
+        - mupdf ~/GoogleDrive/reading_notes/0020_0091/man/aimmat/[man][2013][Bleeck_Yang][Auditory.Image.Model_ug].pdf & emacsclient -tc ./
+  - aim2003:
+      root: ~/research/AIM/src/ref/aimmat2003/aim2003/aim-mat/modules/
+      layout: tile
+      panes:
+        - mupdf ~/GoogleDrive/reading_notes/0020_0091/man/aim03/[man][2003][Bleeck][aim-mat_ug].pdf & emacsclient -tc ./
+  - aim2009:
+      root: ~/research/AIM/src/ref/aimc_github/src/Modules/
+      layout: tile
+      panes:
+        - emacsclient -tc ./
+  - seoman:
+      root: ~/work/others/seonman/onlyme/aim_reconstruction_noisySpeech_investigation_v2/
+      layout: tile
+      panes:
+        - emacsclient -tc ./
+  - jess:
+      root: ~/work/others/jess/aim_matlab_reconstruction__new/
+      layout: tile
+      panes:
+        - emacsclient -tc ./
+  # - matlab:
+  #     root: ~/GoogleDrive/work/learn/Matlab/dsp/dsp_ug_2016a/
+  #     layout: tile
+  #     panes:
+  #       - mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/matlab/matlab_oop.pdf & mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/stats/stats.pdf & mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/dsp/dsp_ug.pdf & mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/coder/coder_gs.pdf & mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/coder/coder_ug.pdf & emacsclient -tc ./

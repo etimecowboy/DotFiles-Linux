@@ -42,3 +42,11 @@ update-desktop-database ~/.local/share/applications/
 ## Git
 mv ~/.gitconfig ~/.gitconfig.orig
 ln -s ~/src/DotFiles-Linux/.gitconfig ~/.gitconfig
+
+## fish and fishman
+mv ~/.config/fish/config.fish ~/.config/fish/config.fish.orig
+ln -s ~/src/DotFiles-Linux/.config/fish/config.fish ~/.config/fish/config.fish
+mv ~/.config/fish/completions ~/.config/fish/completions.orig
+mkdir ~/.config/fish/completions
+ln -s ~/src/DotFiles-Linux/.config/fish/completions/fisher.fish ~/.config/fish/completions/fisher.fish
+ln -s ~/src/DotFiles-Linux/.config/fish/completions/tmuxinator.fish ~/.config/fish/completions/tmuxinator.fish

@@ -1,7 +1,8 @@
-# ~/.tmuxinator/config.yml
+#   -*- mode: conf; coding: utf-8-unix  -*-
+# ~/.tmuxinator/gc.yml
 
-name: config
-# root: ~/src
+name: gc
+root: ~/research/MatlabToolbox/Irino/InvGCFB
 
 # Optional tmux socket
 # socket_name: foo
@@ -25,26 +26,27 @@ name: config
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t config
+# post: tmux -CC attach -t gc
 
 windows:
-  - system:
-      root: ~/src/DotFiles-Linux
-      layout: tile
-      panes:
-        - emacsclient -tc .Xresources
-        - emacsclient -tc .bashrc
-        - emacsclient -tc .tmux.conf
-        - emacsclient -tc .gitconfig
-        - emacsclient -tc ~/.config/fish/config.fish
-  - emacs:
-      root: ~/src/DotEmacs/my-lisps/init
+  - gc:
+      root: ~/research/MatlabToolbox/Irino/InvGCFB
       layout: tile
       panes:
         - emacsclient -tc ./
-  - tmuxinatorconf:
-      root: ~/src/DotFiles-Linux/.tmuxinator
+  - gt-Hohmann:
+      root: ~/research/MatlabToolbox/Oldenburg/Stimuli and Utilities/gammatone
+      layout: tile
+      panes:
+        - emacsclient -tc ./ 
+        - emacsclient -tc  ~/GoogleDrive/reading_notes/0021_0020/
+  - amtoolbox:
+      root: ~/research/MatlabToolbox/amtoolbox/code/
       layout: tile
       panes:
         - emacsclient -tc ./
-
+  - others:
+      root: ~/research/MatlabToolbox/Gammatone_implementations
+      layout: tile
+      panes:
+        - emacsclient -tc ./

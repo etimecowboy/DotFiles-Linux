@@ -1,7 +1,7 @@
-# ~/.tmuxinator/config.yml
+#   -*- mode: conf; coding: utf-8-unix  -*-
+# ~/.tmuxinator/aim.yml
 
-name: config
-# root: ~/src
+name: aim
 
 # Optional tmux socket
 # socket_name: foo
@@ -25,26 +25,23 @@ name: config
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t config
+# post: tmux -CC attach -t aim
 
 windows:
-  - system:
-      root: ~/src/DotFiles-Linux
+  - ref:
+      root: ~/GoogleDrive/reading_notes
       layout: tile
       panes:
-        - emacsclient -tc .Xresources
-        - emacsclient -tc .bashrc
-        - emacsclient -tc .tmux.conf
-        - emacsclient -tc .gitconfig
-        - emacsclient -tc ~/.config/fish/config.fish
-  - emacs:
-      root: ~/src/DotEmacs/my-lisps/init
+        - emacsclient -tc AIM.org
+        - emacsclient -tc AuditoryModels.org
+  - wiki:
+      root: ~/Dropbox/wiki
       layout: tile
       panes:
-        - emacsclient -tc ./
-  - tmuxinatorconf:
-      root: ~/src/DotFiles-Linux/.tmuxinator
+        - emacsclient -tc AuditoryImageModel.org
+  - write:
+      root: ~/Dropbox/ICanHear/doc/admin/soton/18months
       layout: tile
       panes:
-        - emacsclient -tc ./
-
+        - emacsclient -tc review-AIM.org
+     

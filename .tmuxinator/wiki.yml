@@ -1,7 +1,7 @@
-# ~/.tmuxinator/config.yml
+#   -*- mode: conf; coding: utf-8-unix  -*-
+# ~/.tmuxinator/wiki.yml
 
-name: config
-# root: ~/src
+name: wiki
 
 # Optional tmux socket
 # socket_name: foo
@@ -25,26 +25,24 @@ name: config
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t config
+# post: tmux -CC attach -t wiki
+
+        # - emacsclient -tc AuditoryModels.org
+        # - emacsclient -tc Hearing.org
+        # - emacsclient -tc SpeechEnhancement.org        
+        # - emacsclient -tc Speech.org
+        # - emacsclient -tc ASR.org
+        # - emacsclient -tc MathSignaSystemControl.org
+
 
 windows:
-  - system:
-      root: ~/src/DotFiles-Linux
-      layout: tile
-      panes:
-        - emacsclient -tc .Xresources
-        - emacsclient -tc .bashrc
-        - emacsclient -tc .tmux.conf
-        - emacsclient -tc .gitconfig
-        - emacsclient -tc ~/.config/fish/config.fish
-  - emacs:
-      root: ~/src/DotEmacs/my-lisps/init
+  - ref:
+      root: ~/GoogleDrive/reading_notes
       layout: tile
       panes:
         - emacsclient -tc ./
-  - tmuxinatorconf:
-      root: ~/src/DotFiles-Linux/.tmuxinator
+  - wiki:
+      root: ~/Dropbox/wiki
       layout: tile
       panes:
         - emacsclient -tc ./
-
