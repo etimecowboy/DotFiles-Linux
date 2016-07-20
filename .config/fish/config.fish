@@ -14,20 +14,9 @@
 # set fish_plugins emacs
 # set fish_plugins tmux-zen
 
-## powerline
-### fonts support
-# set -g theme_powerline_fonts yes
-### prompt
-# Function fish_prompt
-#     powerline $status --shell bare ^/dev/null
-# end
-### auto setup
-set fish_function_path $fish_function_path '/usr/share/powerline/bindings/fish'
-powerline-setup
-
 ## Remap keyboard
-setxkbmap -option "altwin:ctrl_alt_win"
-setxkbmap -option "altwin:ctrl_win"
+setxkbmap -option 'altwin:ctrl_alt_win'
+setxkbmap -option 'altwin:ctrl_win'
 
 ## System path
 ### Path of pip installed py packages
@@ -40,10 +29,19 @@ set PATH $HOME/.local/bin $PATH
 # colored GCC warnings and errors
 # set -Ux GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+## Language environment
+setenv LC_CTYPE 'zh_CN.UTF-8'
+
 ## System Editors
-set -Ux ALTERNATE_EDITOR 'emacs -nw'
-set -Ux EDITOR 'emacsclient -tc'
-set -Ux VISUAL 'emacsclient -tc'
+setenv ALTERNATE_EDITOR 'emacs -nw'
+setenv EDITOR 'emacsclient -tc'
+setenv VISUAL 'emacsclient -tc'
+# set -Ux ALTERNATE_EDITOR 'emacs -nw'
+# set -Ux EDITOR 'emacsclient -tc'
+# set -Ux VISUAL 'emacsclient -tc'
+# set -gx ALTERNATE_EDITOR 'emacs -nw'
+# set -gx EDITOR 'emacsclient -tc'
+# set -gx VISUAL 'emacsclient -tc'
 
 ## emacs
 ### add PATH
@@ -53,14 +51,37 @@ alias et='emacsclient -tc'
 alias ec='emacsclient -c'
 # English locale leads to the dysfunction of im (fcitx) in X
 # LC_CTYPE should be set when starting the daemon.
-alias emacs='env LC_CTYPE=zh_CN.UTF-8 emacs --debug-init'
-alias em='env LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
 # alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
+# function emacs
+#     set old_shell $SHELL
+#     set SHELL /bin/bash
+#     set LC_CTYPE zh_CN.UTF-8
+#     command emacs --debug-init
+#     set SHELL $old_shell
+# end
+function emacs
+   set -lx SHELL /bin/bash
+   # set -lx LC_CTYPE zh_CN.UTF-8
+   command emacs --debug-init $argv
+end
 # alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
-alias ee='emacs -nw -q'
+# function em
+#     set old_shell $SHELL
+#     set SHELL /bin/bash
+#     set LC_CTYPE zh_CN.UTF-8
+#     command emacs --daemon --debug-init
+#     set SHELL $old_shell
+# end
+function em
+   set -lx SHELL /bin/bash
+   # set -lx LC_CTYPE zh_CN.UTF-8
+   command emacs --daemon --debug-init $argv
+end
+
+alias eq='emacs -nw -q'
 alias vi='emacsclient -tc' # Use emacs instead of vi
-alias today="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"d\")' 2> /dev/null | less"
-alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 2> /dev/null | less"
+# alias today="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"d\")' 2> /dev/null | less"
+# alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 2> /dev/null | less"
 
 ## ls
 alias ll='ls -alF'
@@ -70,7 +91,7 @@ alias l='ls -CF'
 ## tmux
 alias muxk='tmux kill-server'
 alias muxa='tmux attach'
-alias muxt='tmux attach -t'
+alias muxat='tmux attach -t'
 
 ## tmuxinator
 # copy from /var/lib/gems/$ver$/gems/tmuxinator-$ver$/completion/tmuxinator.fish
@@ -94,17 +115,25 @@ alias fb='fcitx-fbterm-helper -d 0 -l'
 
 ## Matlab
 # REF: https://www.mail-archive.com/fish-users@lists.sourceforge.net/msg03338.html
+# function mat
+#     set old_shell $SHELL
+#     set SHELL /bin/bash
+#     command matlab -nodesktop -nosplash
+#     set SHELL $old_shell
+# end
+# function matlab
+#     set old_shell $SHELL
+#     set SHELL /bin/bash
+#     command matlab -desktop -nosplash &
+#     set SHELL $old_shell
+# end
 function mat
-    set old_shell $SHELL
-    set SHELL /bin/bash
-    command matlab -nodesktop -nosplash
-    set SHELL $old_shell
+   set -lx SHELL /bin/bash
+   command matlab -nodesktop -nosplash $argv
 end
 function matlab
-    set old_shell $SHELL
-    set SHELL /bin/bash
-    command matlab -desktop -nosplash &
-    set SHELL $old_shell
+   set -lx SHELL /bin/bash
+   command matlab -desktop -nosplash $argv &
 end
 
 ## Git prompt
@@ -135,3 +164,15 @@ alias mplayer='mplayer -lavdopts threads=N'
 
 # fix wrong window button display on xfce4-panel after computer wakes up from sleep
 # xfce4-panel -r
+
+## powerline
+### auto setup
+set fish_function_path $fish_function_path '/usr/share/powerline/bindings/fish'
+### fonts support
+# set -g theme_powerline_fonts yes
+set -g theme_nerd_fonts yes
+### no need to setup, the pwerline theme will do it
+# powerline-setup
+
+## fishmarks
+. ~/src/fishmarks/marks.fish

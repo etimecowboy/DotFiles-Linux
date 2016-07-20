@@ -33,7 +33,7 @@ windows:
       layout: tile
       panes:
         - emacsclient -nc ./ & emacsclient -tc ./
-        - matlab -nodesktop -nosplash
+        - mat
   - aimmat-ng:
       root: ~/research/AIM/src/aimmat-ng/
       layout: tile

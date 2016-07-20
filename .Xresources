@@ -4,6 +4,8 @@ Xft*antialias:true
 Xft*hinting:full
 Xft*hintstyle:hintslight
 Xft*rgba:rgb
+! Xft*rgba:subpixel
+Xft*lcdfilter:lcddefault
 
 !! drop in Solarized colorscheme for Xresources
 !!
@@ -51,7 +53,7 @@ Xft*rgba:rgb
 !! *background:            black
 !! *background:            white
 !! *foreground:            S_base0
-*fading:                40
+*fading:                20
 *fadeColor:             S_base03
 *cursorColor:           S_base1
 *pointerColorBackground:S_base01
@@ -97,13 +99,17 @@ Xft*rgba:rgb
 !! some indication of its capabilities. Each variable is explained in
 !! more detail here.
 
-!!!! Basic settings
+!!!! Env settings
 URxvt*loginShell:true
+URxvt.locale:true
 URxvt*saveLines:32767
 !! with this set to true, when an app sends a bell to the terminal,
 !! awesome hilights the appropriate tag(s) ;)
 URxvt*urgentOnBell:true
 URxvt*visualBell:true
+
+!!!! Keyboard
+URxvt*meta8: false
 
 !!!! Appearance
 !! The following variables hold aesthetic information about URxvt.
@@ -120,14 +126,20 @@ URxvt*background:[80]#000000
 URxvt*foreground:S_base0
 !! URxvt*foreground:White
 URxvt*geometry:80x25
+URxvt*borderLess:false
+URxvt.borderColor:#182218
+URxvt.internalBorder:1
 
 !! Native transparency (software transparency, bad looking)
 !! URxvt*transparent:true
 !! Shading: 0 to 99 darkens, 101 to 200 lightens
-!! URxvt*shading:30
+URxvt*shading:20
 !! Fade the terminal by 40% when it looses focus
-URxvt*fading:40
+! URxvt*fading:40
+URxvt*fading:20
 URxvt*blurRadius:HxV
+! URxvt*blurRadius:5
+
 
 !!!! cursor
 URxvt*cursorUnderline:false
@@ -142,6 +154,9 @@ URxvt*scrollBar:false
 !! URxvt*secondaryScroll:true
 !! URxvt*troughColor:#000000
 !! URxvt*scrollColor:#222222
+URxvt.scrollTtyOutput:false
+URxvt.scrollTtyKeypress:true
+
 
 !!!! Fonts
 !! URxvt*font:  -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:16,xft:Microsoft YaHei:size=16
@@ -151,14 +166,19 @@ URxvt*scrollBar:false
 !! URxvt*boldItalicFont:  xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12,xft:bold:italic:autohint=true:Microsoft YaHei:size=12
 !!!!! old choice
 !! URxvt*font:xft:Dejavu Sans Mono:size=10, xft:Microsoft YaHei:size=12
-!!!!! with powerline symbols
+!!!!! with powerline symbols and nerd symbols:
+!!!!! 1. set to a single nerd font 2. add Chinese font
 ! URxvt*font:xft:Dejavu Sans Mono:size=10,xft:Microsoft YaHei:size=12,xft:PowerlineSymbols
-URxvt*font:xft:Dejavu Sans Mono for Powerline:size=10,xft:Microsoft YaHei:size=12
-! URxvt*font: xft:Bitstream Vera Sans Mono for Powerline:pixelsize=14:antialias=true,xft:DejaVu Sans Mono for Powerline:pixelsize=14:antialias=true
-
-!! URxvt*letterSpace:-1
-URxvt*letterSpace:0
-URxvt*lineSpace:0
+! URxvt*font:xft:DejavuSansMono for Powerline Nerd Font:size=9,xft:Microsoft YaHei:size=12
+! URxvt*font:xft:mplus Nerd Font:size=10
+! URxvt*font:xft:Hurmit Nerd Font:size=9,xft:Microsoft YaHei:size=12
+! URxvt*font:xft:MonofurForPowerline Nerd Font:size=10
+! URxvt*font:xft:Fira Mono Medium for Powerline:size=10
+URxvt*font:xft:Input Mono Compressed:size=10,xft:Microsoft YaHei
+! URxvt*letterSpace:0
+! URxvt*lineSpace:0
+URxvt*letterSpace:-1
+URxvt*lineSpace:-1
 !! URxvt*font:xft:monofur:size=11, xft:Microsoft YaHei
 !! URxvt*font:xft:Consolas:size=10, xft:Microsoft YaHei:size=12
 !! URxvt*font:xft:Terminus:size=11, xft:Microsoft YaHei
@@ -166,33 +186,30 @@ URxvt*lineSpace:0
 !! URxvt*letterSpace:0
 !! URxvt*lineSpace:0
 
-!! urxvt font with powerline symbols
-
-
-
 !!!! Printing
 !! The string will be interpreted as if typed into the shell as-is. In
 !! this example, printing will be disabled altogether.
 URxvt*print-pipe: "cat > /dev/null"
 
 !!!! Perl extentions
-!! URxvt can be extended using Perl scripts. The default directory for
-!! scripts is `/usr/lib/urxvt/perl`; since my scripts are not
-!! installed system-wide, I must provide it a colon-delimited list of
-!! directories from which to read scripts. See the README in that
-!! directory for details about the available plugins.
-URxvt*perl-lib:/usr/lib/urxvt/perl:~/.urxvt/perl
-
-!! One can extend URxvt using perl. The `perl-ext` and
+!! URxvt can be extended using Perl scripts. The system-wide dir for
+!! scripts is `/usr/lib/urxvt/perl`. The `perl-ext` and
 !! `perl-ext-common` variables list the plugins that should be loaded.
 !! These must exist in either the default path or one of the
 !! `perl-lib` paths defined above.
-
+!!
 !! There are two variables here because `perl-ext-common` is supposed
 !! to apply to all instances, whereas `perl-ext` would only apply to
 !! some instances. In most use cases, you will want to follow the
 !! pattern I use here, which is to place all custom plugins in
 !! `perl-ext-common`.
+!!
+!! NOTE: for version older than 9.14, you will have to add the path to
+!! the script to the `URxvt.perl-lib` resource. For version newer than
+!! 9.14, the default local path of the perl extensions is
+!! `~/.urxvt/ext/`, and you must put your script there. (I tried
+!! `~/.urxvt/perl/`, but failed even it was added to perl-lib)
+URxvt*perl-lib:/usr/lib/urxvt/perl:~/.urxvt/ext
 
 !! URxvt*perl-ext-common: default,url-select,clipboard
 !! URxvt*perl-ext: default
@@ -200,9 +217,14 @@ URxvt*perl-lib:/usr/lib/urxvt/perl:~/.urxvt/perl
 !! URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine
 !! URxvt*matcher.button: 1
 
-URxvt*perl-ext-common : default,tabbed,url-select,clipboard,keyboard-select
-!! URxvt*perl-ext-common : default,url-select,clipboard,keyboard-select
-URxvt*perl-ext : default
+!! URxvt*perl-ext-common : default,tabbed,url-select,clipboard,keyboard-select
+!! URxvt*perl-ext-common : default,url-select,clipboard,keyboard-select,font-size,kuake
+!! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,kuake
+!! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,digital-clock
+URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size
+
+!! URxvt*perl-ext : default
+URxvt*perl-ext : -searchable-scrollback
 
 !!!!! default
 !! the Perl modules URxvt enables by default.
@@ -213,9 +235,10 @@ URxvt*perl-ext : default
 !! URxvt*keysym.C-Delete: perl:matcher:last
 !! URxvt*keysym.M-Delete: perl:matcher:list
 
-!!!!! tabbed (not used, use tmux instead)
+!!!!! tabbed: not in used, tmux is used for session managment
+!! TODO: How to unset prefix key - shift?
 !! Display the title of terminal next to tabs list
-URxvt*tabbed.title: true
+!! URxvt*tabbed.title: true
 !! URxvt*tabbed.title-bg: 8
 !! URxvt*tabbed.title-fg: 7
 
@@ -233,6 +256,30 @@ URxvt*tabbed.title: true
 !! URxvt*tabbed.tab-fg: 8
 !! URxvt*tabbed.tab-bg: 7
 
+!!!!! theme3
+! URxvt*tabbed.tabbar-fg:           28
+! URxvt*tabbed.tabbar-bg:           22
+! URxvt*tabbed.tab-fg:              46
+! URxvt*tabbed.tab-bg:              22
+
+!!!!! more settings
+! URxvt*tabbed.tab-prefix:          \040 !! what is this key?
+! URxvt.tabbed.tab-suffix:          \040
+! URxvt.tabbed.active-tab-fg:       51
+! URxvt.tabbed.active-tab-bg:       22
+! URxvt.tabbed.active-tab-prefix:   *
+! URxvt.tabbed.active-tab-suffix:   *
+! URxvt.tabbed.current-tab-fg:      3
+! URxvt.tabbed.current-tab-bg:      22
+! URxvt.tabbed.current-tab-prefix:  <
+! URxvt.tabbed.current-tab-suffix:  >
+! URxvt.tabbed.new-fg:              40
+! URxvt.tabbed.new-bg:              22
+! URxvt.tabbed.new-prefix:
+! URxvt.tabbed.new-suffix:          \040
+! URxvt.tabbed.new-label:           ++
+! URxvt.tabbed.separator:           |
+
 !!!!! tabbedex
 !! an improved version of the included `tabbed` created by stepb; this
 !! plugin allows multiple tabs within the same window with the ability
@@ -247,9 +294,10 @@ URxvt*tabbed.title: true
 
 !! I have mapped C-Down to create a new tab and C-Up to rename the
 !! current tab.
-!! URxvt*keysym.S-DOWN: perl:tabbedex:new_tab
-!! URxvt*keysym.S-LEFT: perl:tabbedex:rename_tab
-
+! URxvt*keysym.S-DOWN:    perl:tabbedex:new_tab
+! URxvt*keysym.S-LEFT:    perl:tabbedex:rename_tab
+! URxvt*keysym.C-S-Left:  perl:tabbex:move_tab_left
+! URxvt*keysym.C-S-right: perl:tabbex:move_tab_right
 
 !!!!! keyboard-select
 !! Use keyboard shortcuts to select and copy text.
@@ -312,9 +360,9 @@ URxvt*keysym.M-u: perl:url-select:select_next
 !! defined for the matcher extension by reading all
 !! URxvt.matcher.pattern.[0-9] resources.
 
-URxvt*url-select.autocopy: true
-URxvt*url-select.button: 1
-URxvt*url-select.launcher: firefox -new-tab
+URxvt*url-select.autocopy:  true
+URxvt*url-select.button:    1
+URxvt*url-select.launcher:  firefox -new-tab
 URxvt*url-select.underline: true
 
 !! -------------- old url-select
@@ -380,6 +428,23 @@ URxvt*clipboard.pastecmd: xclip -o -selection clipboard
 !! URxvt.clipboard.pastecmd: pbpaste
 
 !! The use of the functions should be self-explanatory!
+
+!!!!! font-size
+! URxvt.keysym.C-Up:     font-size:increase
+! URxvt.keysym.C-Down:   font-size:decrease
+! URxvt.keysym.C-S-Up:   font-size:incglobal
+! URxvt.keysym.C-S-Down: font-size:decglobal
+!! NOTE: for urxvt versions older than 9.21 the resources have to look
+!! like this:
+URxvt.keysym.C-F12:   perl:font-size:increase
+URxvt.keysym.C-F11:   perl:font-size:decrease
+URxvt.keysym.C-S-F12: perl:font-size:incglobal
+URxvt.keysym.C-S-F11: perl:font-size:decglobal
+URxvt*font-size.step: 1
+
+!!!!! kuake: not in use, multiple visual desktop is more useful.
+!! TODO: How to unset the activation key F10?
+!! URxvt*kuake.hotkey: Mod4-a
 
 !! -------------- old clipboard
 !! an extension for improved management of the clipboard,
@@ -463,7 +528,32 @@ URxvt*clipboard.pastecmd: xclip -o -selection clipboard
 !! URxvt*keysym.F11:                   \033[23~
 !! URxvt*keysym.F12:                   \033[24~
 
+! Mod4 == Super key, which is windows key
+! \002 is ctrl-b, which is tmux control key combination
+! \015 is simply "enter" - so that the command will run
+! \x21 is ! - for some reason neither Mod4-!, nor Mod4-Shift-1 work
+! URxvt.keysym.Mod4-0x21:       \002:new-window -n alerts 'ssh -qt andy tmux-mobilealert'\015
+! URxvt.keysym.Mod4-Control-n:  \002c
+! URxvt.keysym.Mod4-m:          \002:new-window -n mutt 'ssh -qt andy tmux-mutt'\015
+! URxvt.keysym.Mod4-M:          \002:new-window -n omnimutt 'ssh -qt andy tmux-omnimutt'\015
+! URxvt.keysym.Mod4-i:          \002:new-window -n instructure 'ssh -qt andy tmux-instructuremutt'\015
+! URxvt.keysym.Mod4-s:          \002:new-window -n slrn 'ssh -qt andy tmux-slrn'\015
+! URxvt.keysym.Mod4-d:          \002:new-window -n andy 'ssh andy'\015
+! URxvt.keysym.Mod4-t:          \002:new-window -n torrent-a 'ssh torrent'\015
+! URxvt.keysym.Mod4-T:          \002:new-window -n torrent-b 'ssh media@blob'\015
+
+!!! xterm
+XTerm*background:      #0C160C
+XTerm*foreground:      lightgray
+XTerm*allowBoldFonts:  false
+XTerm*loginShell:      true
+XTerm*locale:          true
+XTerm*termName:        xterm-256color
+XTerm*metaSendsEscape: true
+! XTerm*faceName: Liberation Mono:size=10:antialias=true
+
 !!! Emacs
 !! Disable xim-based im
 !! not use this, it will diable fcitx in X as well
 !! emacs*useXIM:true
+!! Emacs.font: ProFont-11

@@ -1,8 +1,8 @@
 #   -*- mode: conf; coding: utf-8-unix  -*-
-# ~/.tmuxinator/gc.yml
+# ~/.tmuxinator/gt.yml
 
-name: gc
-root: ~/research/MatlabToolbox/Irino/InvGCFB
+name: gt
+root: ~/research
 
 # Optional tmux socket
 # socket_name: foo
@@ -29,24 +29,24 @@ root: ~/research/MatlabToolbox/Irino/InvGCFB
 # post: tmux -CC attach -t gc
 
 windows:
-  - gc:
-      root: ~/research/MatlabToolbox/Irino/InvGCFB
-      layout: tile
-      panes:
-        - emacsclient -tc ./
-  - gt-Hohmann:
-      root: ~/research/MatlabToolbox/Oldenburg/Stimuli and Utilities/gammatone
-      layout: tile
-      panes:
-        - emacsclient -tc ./ 
-        - emacsclient -tc  ~/GoogleDrive/reading_notes/0021_0020/
   - amtoolbox:
       root: ~/research/MatlabToolbox/amtoolbox/code/
+      layout: tile
+      panes:
+        - emacsclient -tc ./ & emacsclient -nc ~/GoogleDrive/reading_notes/AuditoryModels.org
+        - mat
+  - gt-Hohmann:
+      root: ~/research/MatlabToolbox/Oldenburg/Stimuli and Utilities/gammatone
       layout: tile
       panes:
         - emacsclient -tc ./
   - others:
       root: ~/research/MatlabToolbox/Gammatone_implementations
+      layout: tile
+      panes:
+        - emacsclient -tc ./
+  - gc:
+      root: ~/research/MatlabToolbox/Irino/InvGCFB
       layout: tile
       panes:
         - emacsclient -tc ./
