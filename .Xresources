@@ -121,14 +121,14 @@ URxvt*meta8: false
 !! True transparency (need support of WM)
 URxvt*depth:32
 !! URxvt*background:rgba:0000/0000/00000/bbbb
-URxvt*background:[80]#000000
+URxvt*background:[70]#000000
 !! URxvt*background:Black
 URxvt*foreground:S_base0
 !! URxvt*foreground:White
 URxvt*geometry:80x25
 URxvt*borderLess:false
-URxvt.borderColor:#182218
-URxvt.internalBorder:1
+URxvt*borderColor:#182218
+URxvt*internalBorder:1
 
 !! Native transparency (software transparency, bad looking)
 !! URxvt*transparent:true
@@ -557,3 +557,4 @@ XTerm*metaSendsEscape: true
 !! not use this, it will diable fcitx in X as well
 !! emacs*useXIM:true
 !! Emacs.font: ProFont-11
+!! Emacs*background:[80]#000000
