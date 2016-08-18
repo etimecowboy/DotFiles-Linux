@@ -191,6 +191,7 @@ fi
 # [[ $(tty) == \/dev\/tty[0-9]* ]] && fcitx-fbterm-helper -d 0
 # alias fb='env DISPLAY=:0 fcitx-fbterm-helper'
 # alias fl='fcitx-fbterm-helper -l'
+
 alias fb='fcitx-fbterm-helper -d 0 -l'
 
 # Git prompt

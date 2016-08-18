@@ -31,8 +31,20 @@ set PATH $HOME/.local/bin $PATH
 
 ## Language environment
 setenv LANGUAGE 'en_GB.UTF-8'
-setenv LC_ALL 'en_GB.UTF-8'
+setenv LANG 'en_GB.UTF-8'
 setenv LC_CTYPE 'zh_CN.UTF-8'
+setenv LC_ALL 'en_GB.UTF-8'
+setenv LC_NUMERIC 'en_GB.UTF-8'
+setenv LC_TIME 'en_GB.UTF-8'
+setenv LC_COLLATE 'en_GB.UTF-8'
+setenv LC_MONETARY 'en_GB.UTF-8'
+setenv LC_MESSAGES 'en_GB.UTF-8'
+setenv LC_PAPER 'en_GB.UTF-8'
+setenv LC_NAME 'en_GB.UTF-8'
+setenv LC_ADDRESS 'en_GB.UTF-8'
+setenv LC_TELEPHONE 'en_GB.UTF-8'
+setenv LC_MEASUREMENT 'en_GB.UTF-8'
+setenv LC_IDENTIFICATION 'en_GB.UTF-8'
 
 ## System Editors
 setenv ALTERNATE_EDITOR 'emacs -nw'
@@ -112,6 +124,8 @@ alias urxvt='urxvtcd'
 # [[ $(tty) == \/dev\/tty[0-9]* ]] && fcitx-fbterm-helper -d 0
 # alias fb='env DISPLAY=:0 fcitx-fbterm-helper'
 # alias fl='fcitx-fbterm-helper -l'
+
+# note the -d 0 put to display 0, while may need to change to another display
 alias fb='fcitx-fbterm-helper -d 0 -l'
 
 
@@ -178,3 +192,6 @@ set -g theme_nerd_fonts yes
 
 ## fishmarks
 . ~/src/fishmarks/marks.fish
+
+## tightvnc
+alias vncs='vncserver :1 -geometry 1600x900 -depth 24 -compatiblekbd'
