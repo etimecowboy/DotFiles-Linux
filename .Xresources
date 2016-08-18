@@ -121,7 +121,7 @@ URxvt*meta8: false
 !! True transparency (need support of WM)
 URxvt*depth:32
 !! URxvt*background:rgba:0000/0000/00000/bbbb
-URxvt*background:[70]#000000
+URxvt*background:[75]#000000
 !! URxvt*background:Black
 URxvt*foreground:S_base0
 !! URxvt*foreground:White

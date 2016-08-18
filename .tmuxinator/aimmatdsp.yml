@@ -32,7 +32,7 @@ windows:
       root: ~/research/AIM/src/aimmat-dsp/org/
       layout: tile
       panes:
-        - emacsclient -nc ./ & emacsclient -tc ./
+        - emacsclient -tc ./
         - mat
   - aimmat-ng:
       root: ~/research/AIM/src/aimmat-ng/
@@ -60,7 +60,7 @@ windows:
       panes:
         - emacsclient -tc ./
   - seoman:
-      root: ~/work/others/seonman/onlyme/aim_reconstruction_noisySpeech_investigation_v2/
+      root: ~/work/others/seonman/onlyme/modifed/aim_reconstruction_noisySpeech_investigation_v2
       layout: tile
       panes:
         - emacsclient -tc ./

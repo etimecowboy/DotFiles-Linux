@@ -30,6 +30,8 @@ set PATH $HOME/.local/bin $PATH
 # set -Ux GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 ## Language environment
+setenv LANGUAGE 'en_GB.UTF-8'
+setenv LC_ALL 'en_GB.UTF-8'
 setenv LC_CTYPE 'zh_CN.UTF-8'
 
 ## System Editors
