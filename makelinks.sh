@@ -29,6 +29,10 @@ ln -s ~/src/DotFiles-Linux/.urxvt ~/.urxvt
 ## tmux
 ln -s ~/src/DotFiles-Linux/.tmux.conf ~/.tmux.conf
 
+## tmuxinator
+rm -rf ~/.tmuxnator
+ln -s ~/src/DotFiles-Linux/.tmuxinator ~/.tmuxinator
+
 ## latexmk
 mv ~/.latexmkrc ~/.latexmkrc.orig
 ln -s ~/src/DotFiles-Linux/.latexmkrc ~/.latexmkrc
