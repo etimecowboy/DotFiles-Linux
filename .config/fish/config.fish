@@ -194,4 +194,5 @@ set -g theme_nerd_fonts yes
 . ~/src/fishmarks/marks.fish
 
 ## tightvnc
-alias vncs='vncserver :1 -geometry 1600x900 -depth 24 -compatiblekbd'
+alias vncs='vncserver :1 -geometry 1920x1080 -depth 24 -compatiblekbd'
+alias vnck='vncserver -kill :1'
