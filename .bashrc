@@ -145,6 +145,7 @@ alias ec='emacsclient -c'
 # LC_CTYPE should be set when starting the daemon.
 alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs --debug-init'
 alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
+alias ek="emacsclient -e '(client-save-kill-emacs)'"
 # alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
 # alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
 alias ee='emacs -nw -q'
