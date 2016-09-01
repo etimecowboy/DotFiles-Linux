@@ -32,9 +32,9 @@ windows:
       root: ~/src/DotFiles-Linux
       layout: tile
       panes:
-        - emacsclient -tc .Xresources
+        - emacsclient -tc .Xresources_urxvt_v2.1
         - emacsclient -tc .bashrc
-        - emacsclient -tc .tmux.conf
+        - emacsclient -tc .tmux.conf.v2
         - emacsclient -tc .gitconfig
         - emacsclient -tc ~/.config/fish/config.fish
   - emacs:

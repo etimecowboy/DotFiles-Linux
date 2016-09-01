@@ -27,13 +27,14 @@ root: ~/
 # Runs after everything. Use it to attach to tmux with custom options etc.
 # post: tmux -CC attach -t monitor
 
+        # - echo yang0213 | sudo -S iftop
+        # - sudo -S iotop
+
 windows:
   - local:
       layout: tile
       panes:
         - htop
-        - echo yang0213 | sudo -S iftop
-        - echo yang0213 | sudo -S iotop
         - nmon
   - media:
       layout: tile
