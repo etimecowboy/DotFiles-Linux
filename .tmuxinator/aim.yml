@@ -29,13 +29,13 @@ name: aim
 
 windows:
   - ref:
-      root: ~/GoogleDrive/reading_notes
+      root: ~/reading_notes
       layout: tile
       panes:
         - emacsclient -tc AIM.org
         - emacsclient -tc AuditoryModels.org
   - wiki:
-      root: ~/Dropbox/wiki
+      root: ~/wiki
       layout: tile
       panes:
         - emacsclient -tc AuditoryImageModel.org

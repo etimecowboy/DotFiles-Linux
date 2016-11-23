@@ -1,8 +1,8 @@
 #   -*- mode: conf; coding: utf-8-unix  -*-
-# ~/.tmuxinator/18month.yml
+# ~/.tmuxinator/18months.yml
 
-name: 18month
-root: ~/Dropbox/ICanHear/doc/admin/soton/18months
+name: 18months
+root: ~/Dropbox/ICanHear/doc/admin/soton/18months-new
 
 # Optional tmux socket
 # socket_name: foo

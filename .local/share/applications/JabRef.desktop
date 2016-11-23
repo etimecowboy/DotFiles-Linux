@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Icon=/home/xin/Pictures/icon/jabref48.png
+Name=JabRef
+Comment=Start MATLAB - The Language of Technical Computing
+Exec=java -jar /home/xin/bin/JabRef_3.6.jar
+Terminal=true
+Categories=Office

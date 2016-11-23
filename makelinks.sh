@@ -44,21 +44,28 @@ if [ ! -d "~/.local/share/applications/" ]; then
 fi
 ln -s ~/src/DotFiles-Linux/.local/share/applications/EmacsClient.desktop ~/.local/share/applications/EmacsClient.desktop
 ln -s ~/src/DotFiles-Linux/.local/share/applications/org-protocol.desktop ~/.local/share/applications/org-protocol.desktop
-update-desktop-database ~/.local/share/applications/
+
+## MATLAB
+# ln -s ~/src/DotFiles-Linux/.local/share/applications/MATLAB.desktop ~/.local/share/applications/MATLAB.desktop
+
+## JabRef
+ln -s ~/src/DotFiles-Linux/.local/share/applications/JabRef.desktop ~/.local/share/applications/JabRef.desktop
 
 ## Git
 mv ~/.gitconfig ~/.gitconfig.orig
 ln -s ~/src/DotFiles-Linux/.gitconfig ~/.gitconfig
 
 ## fish and fishman
-if [ ! -d "~/.config/fish/" ]; then
-  mkdir -p ~/.config/fish
-fi
-mv ~/.config/fish/config.fish ~/.config/fish/config.fish.orig
-ln -s ~/src/DotFiles-Linux/.config/fish/config.fish ~/.config/fish/config.fish
-mv ~/.config/fish/completions ~/.config/fish/completions.orig
-mkdir ~/.config/fish/completions
-ln -s ~/src/DotFiles-Linux/.config/fish/completions/fisher.fish ~/.config/fish/completions/fisher.fish
-ln -s ~/src/DotFiles-Linux/.config/fish/completions/tmuxinator.fish ~/.config/fish/completions/tmuxinator.fish
-curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
-fisher z fzf fin fnm git_util gitignore nitro
+# if [ ! -d "~/.config/fish/" ]; then
+#   mkdir -p ~/.config/fish
+# fi
+# mv ~/.config/fish/config.fish ~/.config/fish/config.fish.orig
+# ln -s ~/src/DotFiles-Linux/.config/fish/config.fish ~/.config/fish/config.fish
+# mv ~/.config/fish/completions ~/.config/fish/completions.orig
+# mkdir ~/.config/fish/completions
+# ln -s ~/src/DotFiles-Linux/.config/fish/completions/fisher.fish ~/.config/fish/completions/fisher.fish
+# ln -s ~/src/DotFiles-Linux/.config/fish/completions/tmuxinator.fish ~/.config/fish/completions/tmuxinator.fish
+# curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
+# fisher z fzf fin fnm git_util gitignore nitro
+
+update-desktop-database ~/.local/share/applications/

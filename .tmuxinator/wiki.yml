@@ -37,7 +37,7 @@ name: wiki
 
 windows:
   - ref:
-      root: ~/GoogleDrive/reading_notes
+      root: ~/reading_notes
       layout: tile
       panes:
         - emacsclient -tc ./
