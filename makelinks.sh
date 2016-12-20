@@ -68,4 +68,8 @@ ln -s ~/src/DotFiles-Linux/.gitconfig ~/.gitconfig
 # curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
 # fisher z fzf fin fnm git_util gitignore nitro
 
+## ranger
+mv ~/.config/ranger ~/.config/ranger.orig
+ln -s ~/src/DotFiles-Linux/.config/ranger ~/.config/ranger
+
 update-desktop-database ~/.local/share/applications/

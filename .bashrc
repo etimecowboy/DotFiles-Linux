@@ -137,6 +137,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 export ALTERNATE_EDITOR='emacs -nw'
 export EDITOR='emacsclient -tc'
 export VISUAL='emacsclient -tc'
+export PAGER='more'
 
 # Use script in ~/bin =====> for use in matlab command mode
 alias et='emacsclient -tc'
@@ -264,4 +265,4 @@ alias mplayer='mplayer -lavdopts threads=N'
 
 # tightvnc
 alias vncs='vncserver :2 -geometry 1920x1080 -depth 24 -compatiblekbd'
-alias vnck='vncserver -kill :1'
+alias vnck='vncserver -kill :2'

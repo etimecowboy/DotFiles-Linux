@@ -48,12 +48,12 @@ windows:
       root: ~/research/AIM/src/ref/aimmat_hg/aim-mat/modules/
       layout: tile
       panes:
-        - mupdf ~/GoogleDrive/reading_notes/0020_0091/man/aimmat/[man][2013][Bleeck_Yang][Auditory.Image.Model_ug].pdf & emacsclient -tc ./
+        - mupdf ~/reading_notes/0020_0091/man/aimmat/[man][2013][Bleeck_Yang][Auditory.Image.Model_ug].pdf & emacsclient -tc ./
   - aim2003:
       root: ~/research/AIM/src/ref/aimmat2003/aim2003/aim-mat/modules/
       layout: tile
       panes:
-        - mupdf ~/GoogleDrive/reading_notes/0020_0091/man/aim03/[man][2003][Bleeck][aim-mat_ug].pdf & emacsclient -tc ./
+        - mupdf ~/reading_notes/0020_0091/man/aim03/[man][2003][Bleeck][aim-mat_ug].pdf & emacsclient -tc ./
   - aim2009:
       root: ~/research/AIM/src/ref/aimc_github/src/Modules/
       layout: tile
@@ -70,7 +70,7 @@ windows:
       panes:
         - emacsclient -tc ./
   # - matlab:
-  #     root: ~/GoogleDrive/work/learn/Matlab/dsp/dsp_ug_2016a/
+  #     root: ~/work/learn/Matlab/dsp/dsp_ug_2016a/
   #     layout: tile
   #     panes:
-  #       - mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/matlab/matlab_oop.pdf & mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/stats/stats.pdf & mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/dsp/dsp_ug.pdf & mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/coder/coder_gs.pdf & mupdf ~/GoogleDrive/man/matlab/mathworks/2016a/coder/coder_ug.pdf & emacsclient -tc ./
+  #       - mupdf ~/man/matlab/mathworks/2016a/matlab/matlab_oop.pdf & mupdf ~/man/matlab/mathworks/2016a/stats/stats.pdf & mupdf ~/man/matlab/mathworks/2016a/dsp/dsp_ug.pdf & mupdf ~/man/matlab/mathworks/2016a/coder/coder_gs.pdf & mupdf ~/man/matlab/mathworks/2016a/coder/coder_ug.pdf & emacsclient -tc ./
