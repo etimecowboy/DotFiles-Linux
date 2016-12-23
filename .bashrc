@@ -202,6 +202,7 @@ alias fb='fcitx-fbterm-helper -d 0 -l'
 
 # jabref
 # alias jabref='java -jar ~/.emacs.d/bin/JabRef-2.10.jar'
+alias jabref='java -jar ~/bin/JabRef-3.8.jar'
 
 # Remap keyboard
 setxkbmap -option "altwin:ctrl_alt_win"
