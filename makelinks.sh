@@ -1,59 +1,99 @@
-#!/bin/sh
+#!/bin/bash
+
+## Global variables
+srcDir="/home/xin/src/DotFiles-Linux/"
+
 
 ## X window
-mv ~/.Xresources ~/.Xresources.orig
-ln -s ~/src/DotFiles-Linux/.Xresources ~/.Xresources
+fileName=".Xresources" 
+myFile=~/"$fileName"
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+ln -s "$srcDir""$fileName" "$myFile"
+
 # mv ~/.xsession ~/.xsession.orig
 # ln -s ~/src/DotFiles-Linux/.xsession ~/.xsession
+
 
 ## LXDE desktop (openbox WM)
 # mv ~/.config/openbox/lxde-rc.xml ~/.config/openbox/lxde-rc.xml.orig
 # ln -s ~/src/DotFiles-Linux/.config/openbox/debian-testing-jessie-lxde-rc.xml ~/.config/openbox/lxde-rc.xml
 
+
 ## Bash
-mv ~/.bashrc ~/.bashrc.orig
-ln -s ~/src/DotFiles-Linux/.bashrc ~/.bashrc
-mv ~/.bash_logout ~/.bash_logout.orig
-ln -s ~/src/DotFiles-Linux/.bash_logout ~/.bash_logout
-mv ~/.profile ~/.profile.orig
-ln -s ~/src/DotFiles-Linux/.profile ~/.profile
+fileName=".bashrc" 
+myFile=~/"$fileName"
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+ln -s "$srcDir""$fileName" "$myFile"
+
+fileName=".bash_logout" 
+myFile=~/"$fileName"
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+ln -s "$srcDir""$fileName" "$myFile"
+
+fileName=".profile"
+myFile=~/"$fileName"
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+ln -s "$srcDir""$fileName" "$myFile"
+
 
 ## fbterm
-mv ~/.fbtermrc ~/.fbtermrc.orig
-ln -s ~/src/DotFiles-Linux/.fbtermrc ~/.fbtermrc
+fileName=".fbtermrc"
+myFile=~/"$fileName"
+if [ -e "$myFile" ]; then trash "$myFile"; fi
+ln -s "$srcDir""$fileName" "$myFile"
 
 ## urxvt
-mv ~/.urxvt ~/.urxvt.orig
-ln -s ~/src/DotFiles-Linux/.urxvt ~/.urxvt
+dirName=".urxvt"
+myDir=~/"$dirName"
+if [ -d "$myDir" ]; then trash "$myDir"; fi  
+ln -s "$srcDir""$dirName" "$myDir"
+
 
 ## tmux
-ln -s ~/src/DotFiles-Linux/.tmux.conf ~/.tmux.conf
+fileName=".tmux.conf" 
+myFile=~/"$fileName"
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+ln -s "$srcDir""$fileName" "$myFile"
+
 
 ## tmuxinator
-rm -rf ~/.tmuxnator
-ln -s ~/src/DotFiles-Linux/.tmuxinator ~/.tmuxinator
+dirName=".tmuxinator"
+myDir=~/"$dirName"
+if [ -d "$myDir" ]; then trash "$myDir"; fi  
+ln -s "$srcDir""$dirName" "$myDir"
+
 
 ## latexmk
-mv ~/.latexmkrc ~/.latexmkrc.orig
-ln -s ~/src/DotFiles-Linux/.latexmkrc ~/.latexmkrc
+fileName=".latexmkrc" 
+myFile=~/"$fileName"
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+ln -s "$srcDir""$fileName" "$myFile"
 
-## Emacs
-# ln -s ~/src/DotEmacs ~/.emacs.d
-# if [ ! -d "~/.local/share/applications/" ]; then
-#   mkdir -p ~/.local/share/applications/
-# fi
-# ln -s ~/src/DotFiles-Linux/.local/share/applications/EmacsClient.desktop ~/.local/share/applications/EmacsClient.desktop
-# ln -s ~/src/DotFiles-Linux/.local/share/applications/org-protocol.desktop ~/.local/share/applications/org-protocol.desktop
+Emacs
+ln -s ~/src/DotEmacs ~/.emacs.d
+if [ ! -d "~/.local/share/applications/" ]; then
+  mkdir -p ~/.local/share/applications/
+fi
+ln -s ~/src/DotFiles-Linux/.local/share/applications/EmacsClient.desktop ~/.local/share/applications/EmacsClient.desktop
+ln -s ~/src/DotFiles-Linux/.local/share/applications/org-protocol.desktop ~/.local/share/applications/org-protocol.desktop
 
 ## MATLAB
-# ln -s ~/src/DotFiles-Linux/.local/share/applications/MATLAB.desktop ~/.local/share/applications/MATLAB.desktop
+if [ ! -e ~/.local/share/applications/MATLAB.desktop ]; then
+    ln -s "$srcDir"/.local/share/applications/MATLAB.desktop ~/.local/share/applications/MATLAB.desktop
+fi
 
 ## JabRef
-ln -s ~/src/DotFiles-Linux/.local/share/applications/JabRef.desktop ~/.local/share/applications/JabRef.desktop
+if [ ! -e ~/.local/share/applications/JabRef.desktop ]; then
+    ln -s $srcDir$/.local/share/applications/JabRef.desktop ~/.local/share/applications/JabRef.desktop
+fi
+
 
 ## Git
-mv ~/.gitconfig ~/.gitconfig.orig
-ln -s ~/src/DotFiles-Linux/.gitconfig ~/.gitconfig
+fileName=".gitconfig" 
+myFile=~/"$fileName"
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+ln -s "$srcDir""$fileName" "$myFile"
+
 
 ## fish and fishman
 # if [ ! -d "~/.config/fish/" ]; then
@@ -69,7 +109,9 @@ ln -s ~/src/DotFiles-Linux/.gitconfig ~/.gitconfig
 # fisher z fzf fin fnm git_util gitignore nitro
 
 ## ranger
-mv ~/.config/ranger ~/.config/ranger.orig
-ln -s ~/src/DotFiles-Linux/.config/ranger ~/.config/ranger
+dirName=".config/ranger"
+myDir=~/"$dirName"
+if [ -d "$myDir" ]; then trash "$myDir"; fi
+ln -s "$srcDir""$dirName" "$myDir"
 
 update-desktop-database ~/.local/share/applications/

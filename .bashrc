@@ -214,7 +214,7 @@ if [ -n "$DISPLAY" ]; then
 fi
 
 # Safe rm use trash-cli
-alias rm='trash'
+# alias rm='trash'
 
 # fix wrong window button display on xfce4-panel after computer wakes up from sleep
 # xfce4-panel -r
