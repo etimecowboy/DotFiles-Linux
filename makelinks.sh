@@ -38,12 +38,12 @@ mv ~/.latexmkrc ~/.latexmkrc.orig
 ln -s ~/src/DotFiles-Linux/.latexmkrc ~/.latexmkrc
 
 ## Emacs
-ln -s ~/src/DotEmacs ~/.emacs.d
-if [ ! -d "~/.local/share/applications/" ]; then
-  mkdir -p ~/.local/share/applications/
-fi
-ln -s ~/src/DotFiles-Linux/.local/share/applications/EmacsClient.desktop ~/.local/share/applications/EmacsClient.desktop
-ln -s ~/src/DotFiles-Linux/.local/share/applications/org-protocol.desktop ~/.local/share/applications/org-protocol.desktop
+# ln -s ~/src/DotEmacs ~/.emacs.d
+# if [ ! -d "~/.local/share/applications/" ]; then
+#   mkdir -p ~/.local/share/applications/
+# fi
+# ln -s ~/src/DotFiles-Linux/.local/share/applications/EmacsClient.desktop ~/.local/share/applications/EmacsClient.desktop
+# ln -s ~/src/DotFiles-Linux/.local/share/applications/org-protocol.desktop ~/.local/share/applications/org-protocol.desktop
 
 ## MATLAB
 # ln -s ~/src/DotFiles-Linux/.local/share/applications/MATLAB.desktop ~/.local/share/applications/MATLAB.desktop
