@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Icon=/home/xin/Pictures/icon/jabref48.png
+Icon=/home/xin/src/DotFiles-Linux/.local/share/icons/jabref48.png
 Name=JabRef
 Comment=Start JabRef - the open reference manager
-Exec=java -jar /home/xin/bin/JabRef.jar
+Exec=java -jar ~/bin/JabRef.jar
 Terminal=true
 Categories=Office

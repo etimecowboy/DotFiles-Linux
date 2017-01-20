@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Icon=/home/xin/Pictures/icon/matlab48.png
+Icon=/home/xin/src/DotFiles-Linux/.local/share/icon/matlab48.png
 Name=Matlab
 Comment=Start MATLAB - The Language of Technical Computing
 Exec=matlab -desktop -nosplash
