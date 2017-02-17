@@ -87,6 +87,12 @@ if [ ! -e ~/.local/share/applications/JabRef.desktop ]; then
     ln -s $srcDir$/.local/share/applications/JabRef.desktop ~/.local/share/applications/JabRef.desktop
 fi
 
+## Eclipse
+## JabRef
+if [ ! -e ~/.local/share/applications/Eclipse.desktop ]; then
+    ln -s $srcDir$/.local/share/applications/Eclipse.desktop ~/.local/share/applications/Eclipse.desktop
+fi
+
 
 ## Git
 fileName=".gitconfig" 
