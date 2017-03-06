@@ -29,7 +29,7 @@ name: aimmatdsp
 
 windows:
   - aimmat-dsp:
-      root: ~/research/AIM/src/aimmat-dsp/org/
+      root: ~/research/AIM/src/aimmat-dsp/
       layout: tile
       panes:
         - emacsclient -tc ./

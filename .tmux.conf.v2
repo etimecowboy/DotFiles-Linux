@@ -148,10 +148,10 @@ bind N swap-window -t +1
 # bind -r C-l select-window -t :+
 
 ## resize panes
-bind M-Left  resize-pane -L 15
-bind M-Right resize-pane -R 15
-bind M-Up    resize-pane -U 15
-bind M-Down  resize-pane -D 15
+# bind M-Left  resize-pane -L 2
+# bind M-Right resize-pane -R 2
+# bind M-Up    resize-pane -U 2
+# bind M-Down  resize-pane -D 2
 
 ## resize a window based on the smallest client actually viewing it,
 ## not on the smallest one attached to the entire session.
