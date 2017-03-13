@@ -120,4 +120,10 @@ myDir=~/"$dirName"
 if [ -d "$myDir" ]; then trash "$myDir"; fi
 ln -s "$srcDir""$dirName" "$myDir"
 
+## vnc
+dirName=".vnc"
+myDir=~/"$dirName"
+if [ -d "$myDir" ]; then trash "$myDir"; fi
+ln -s "$srcDir""$dirName" "$myDir"
+
 update-desktop-database ~/.local/share/applications/
