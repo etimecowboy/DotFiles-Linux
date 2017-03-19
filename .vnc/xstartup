@@ -13,11 +13,11 @@ vncconfig -iconic &
 #x-window-manager &
 
 # GNOME desktop
-# gnome-panel &
-# gnome-settings-daemon &
-# metacity &
-# nautilus &
-# gnome-terminal &
+gnome-panel &
+gnome-settings-daemon &
+metacity &
+nautilus &
+gnome-terminal &
 
 # Xfce4 desktop
-startxfce4
+# startxfce4

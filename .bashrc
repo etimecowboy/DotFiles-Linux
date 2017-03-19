@@ -279,5 +279,5 @@ alias mplayer='mplayer -lavdopts threads=N'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # tightvnc
-alias vncs='vncserver :2 -geometry 1280x800 -depth 24 -compatiblekbd'
-alias vnck='vncserver -kill :2'
+alias vncs='vncserver :1 -geometry 1600x900 -depth 24 -compatiblekbd'
+alias vnck='vncserver -kill :1'
