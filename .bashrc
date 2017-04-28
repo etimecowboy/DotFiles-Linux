@@ -276,8 +276,12 @@ alias muxt='tmux attach -t'
 # TODO: test
 alias mplayer='mplayer -lavdopts threads=N'
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # tightvnc
 alias vncs='vncserver :1 -geometry 1280x800 -depth 24 -compatiblekbd'
 alias vnck='vncserver -kill :1'
+
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# kaldi ASR
+[ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh

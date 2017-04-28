@@ -35,15 +35,17 @@ windows:
       layout: tile
       panes:
         - htop
-        - nmon
+  - ranger:
+      layout: tile
+      panes:
+        - ranger
+  - mc:
+      layout: tile
+      panes:
+        - mc
   - media:
       layout: tile
       panes:
         - alsamixer
         - cmus
-  - file:
-      layout: tile
-      panes:
-        - ranger
-        - mc
       

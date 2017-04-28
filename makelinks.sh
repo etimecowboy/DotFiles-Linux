@@ -82,16 +82,15 @@ if [ ! -e ~/.local/share/applications/MATLAB.desktop ]; then
     ln -s "$srcDir"/.local/share/applications/MATLAB.desktop ~/.local/share/applications/MATLAB.desktop
 fi
 
-## JabRef
-if [ ! -e ~/.local/share/applications/JabRef.desktop ]; then
-    ln -s $srcDir$/.local/share/applications/JabRef.desktop ~/.local/share/applications/JabRef.desktop
-fi
+# ## JabRef
+# if [ ! -e ~/.local/share/applications/JabRef.desktop ]; then
+#     ln -s $srcDir$/.local/share/applications/JabRef.desktop ~/.local/share/applications/JabRef.desktop
+# fi
 
-## Eclipse
-## JabRef
-if [ ! -e ~/.local/share/applications/Eclipse.desktop ]; then
-    ln -s $srcDir$/.local/share/applications/Eclipse.desktop ~/.local/share/applications/Eclipse.desktop
-fi
+# ## Eclipse
+# if [ ! -e ~/.local/share/applications/Eclipse.desktop ]; then
+#     ln -s $srcDir$/.local/share/applications/Eclipse.desktop ~/.local/share/applications/Eclipse.desktop
+# fi
 
 
 ## Git
@@ -115,10 +114,11 @@ ln -s "$srcDir""$fileName" "$myFile"
 # fisher z fzf fin fnm git_util gitignore nitro
 
 ## ranger
-dirName=".config/ranger"
-myDir=~/"$dirName"
-if [ -d "$myDir" ]; then trash "$myDir"; fi
-ln -s "$srcDir""$dirName" "$myDir"
+## FIXME: error
+# dirName=".config/ranger"
+# myDir=~/"$dirName"
+# if [ -d "$myDir" ]; then trash "$myDir"; fi
+# ln -s "$srcDir""$dirName" "$myDir"
 
 ## vnc
 dirName=".vnc"
