@@ -69,7 +69,7 @@ myFile=~/"$fileName"
 if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
 ln -s "$srcDir""$fileName" "$myFile"
 
-Emacs
+# Emacs
 ln -s ~/src/DotEmacs ~/.emacs.d
 if [ ! -d "~/.local/share/applications/" ]; then
   mkdir -p ~/.local/share/applications/

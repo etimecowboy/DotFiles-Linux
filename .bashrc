@@ -285,3 +285,16 @@ alias vnck='vncserver -kill :1'
 
 # kaldi ASR
 [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
+
+# python virtual environments
+export WORKON_HOME=$HOME/.virtualenvs   # optional
+# export PROJECT_HOME=$HOME/projects      # optional
+# source /usr/local/bin/virtualenvwrapper.sh
+# use python3 with virtualenvwrapper
+VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3' # This needs to be placed before the virtualenvwrapper command
+source /usr/local/bin/virtualenvwrapper.sh
+
+# pyenv
+export PATH="/home/xin/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
