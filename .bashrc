@@ -298,3 +298,14 @@ source /usr/local/bin/virtualenvwrapper.sh
 export PATH="/home/xin/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# Python jupyter notebook server
+alias jss='/usr/local/bin/jupyter notebook --no-browser --notebook-dir=~/work/jupyter &'
+alias jsk='kill $(pgrep jupyter)'
+
+function jnp() {
+    # sudo:
+    #   jupyter-nbextension install rise --py --sys-prefix
+    #   jupyter-nbextension enable rise --py --sys-prefix
+    jupyter-nbconvert $1 --to slides --post serve
+}
