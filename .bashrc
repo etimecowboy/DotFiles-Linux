@@ -156,10 +156,12 @@ fi
 # Use script in ~/bin =====> for use in matlab command mode
 alias et='emacsclient -tc'
 alias ec='emacsclient -c'
-# English locale leads to the dysfunction of im (fcitx) in X
-# LC_CTYPE should be set when starting the daemon.
+# English locale leads to the dysfunction of im (fcitx) in X LC_CTYPE
+# should be set when starting the daemon. If the locale already been
+# set as zh_CN.UTF-8 then, don't set it here.
 alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs --debug-init'
 alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
+
 alias ek="emacsclient -e '(client-save-kill-emacs)'"
 # alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
 # alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
@@ -309,3 +311,7 @@ function jnp() {
     #   jupyter-nbextension enable rise --py --sys-prefix
     jupyter-nbconvert $1 --to slides --post serve
 }
+
+# Upgrade Python pip packages
+alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
+alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
