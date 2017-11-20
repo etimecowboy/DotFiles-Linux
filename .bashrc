@@ -219,10 +219,12 @@ alias fb='fcitx-fbterm-helper -d 0 -l'
 # jabref
 # alias jabref='java -jar ~/.emacs.d/bin/JabRef-2.10.jar'
 # alias jabref='java -jar ~/bin/JabRef-3.8.jar'
+alias jabref='java -jar ~/bin/JabRef-4.0.jar'
 
 # Remap keyboard
-setxkbmap -option "altwin:ctrl_alt_win"
-setxkbmap -option "altwin:ctrl_win"
+# NOTE: when using mate or gnome2, the remap can be done by keyboard config
+# setxkbmap -option "altwin:ctrl_alt_win"
+# setxkbmap -option "altwin:ctrl_win"
 
 # Turn off system bell in Xorg
 if [ -n "$DISPLAY" ]; then
@@ -313,5 +315,5 @@ function jnp() {
 }
 
 # Upgrade Python pip packages
-alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
-alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
+# alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
+# alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
