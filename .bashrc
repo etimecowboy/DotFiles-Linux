@@ -223,8 +223,8 @@ alias jabref='java -jar ~/bin/JabRef-4.0.jar'
 
 # Remap keyboard
 # NOTE: when using mate or gnome2, the remap can be done by keyboard config
-# setxkbmap -option "altwin:ctrl_alt_win"
-# setxkbmap -option "altwin:ctrl_win"
+setxkbmap -option "altwin:ctrl_alt_win"
+setxkbmap -option "altwin:ctrl_win"
 
 # Turn off system bell in Xorg
 if [ -n "$DISPLAY" ]; then
