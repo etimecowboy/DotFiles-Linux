@@ -288,7 +288,7 @@ alias vnck='vncserver -kill :1'
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # xiki
-source ~/.xsh
+[ -f ~/.xsh ] && source ~/.xsh
 
 # kaldi ASR
 # [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
