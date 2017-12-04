@@ -247,29 +247,29 @@ alias tar='tar -I lbzip2'
 
 # tmuxinator
 # copy from tmuxinator/completion/tmuxinator.bash
-_tmuxinator() {
-    COMPREPLY=()
-    local word
-    word="${COMP_WORDS[COMP_CWORD]}"
+# _tmuxinator() {
+#     COMPREPLY=()
+#     local word
+#     word="${COMP_WORDS[COMP_CWORD]}"
 
-    if [ "$COMP_CWORD" -eq 1 ]; then
-        local commands="$(compgen -W "$(tmuxinator commands)" -- "$word")"
-        local projects="$(compgen -W "$(tmuxinator completions start)" -- "$word")"
+#     if [ "$COMP_CWORD" -eq 1 ]; then
+#         local commands="$(compgen -W "$(tmuxinator commands)" -- "$word")"
+#         local projects="$(compgen -W "$(tmuxinator completions start)" -- "$word")"
         
-        COMPREPLY=( $commands $projects )
-    elif [ "$COMP_CWORD" -eq 2 ]; then
-        local words
-        words=("${COMP_WORDS[@]}")
-        unset words[0]
-        unset words[$COMP_CWORD]
-        local completions
-        completions=$(tmuxinator completions "${words[@]}")
-        COMPREPLY=( $(compgen -W "$completions" -- "$word") )
-    fi
-}
+#         COMPREPLY=( $commands $projects )
+#     elif [ "$COMP_CWORD" -eq 2 ]; then
+#         local words
+#         words=("${COMP_WORDS[@]}")
+#         unset words[0]
+#         unset words[$COMP_CWORD]
+#         local completions
+#         completions=$(tmuxinator completions "${words[@]}")
+#         COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+#     fi
+# }
 
-complete -F _tmuxinator tmuxinator mux
-alias mux='tmuxinator'
+# complete -F _tmuxinator tmuxinator mux
+# alias mux='tmuxinator'
 
 # tmux
 alias muxk='tmux kill-server'
@@ -285,10 +285,13 @@ alias vncs='vncserver :1 -geometry 1280x800 -depth 24 -compatiblekbd'
 alias vnck='vncserver -kill :1'
 
 # fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# xiki
+source ~/.xsh
 
 # kaldi ASR
-[ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
+# [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
 
 # python virtual environments
 export WORKON_HOME=$HOME/.virtualenvs   # optional
