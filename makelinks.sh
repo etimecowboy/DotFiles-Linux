@@ -137,5 +137,5 @@ if [ -d "$myDir" ]; then trash "$myDir"; fi
 ln -s "$srcDir""$dirName" "$myDir"
 
 
-# Update desktop database
+## Update desktop database
 update-desktop-database ~/.local/share/applications/
