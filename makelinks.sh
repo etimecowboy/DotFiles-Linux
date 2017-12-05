@@ -3,16 +3,14 @@
 ## Global variables
 srcDir="/home/xin/src/DotFiles-Linux/"
 
-
 ## X window
-fileName=".Xresources" 
+fileName=".Xresources"
 myFile=~/"$fileName"
-if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
 ln -s "$srcDir""$fileName" "$myFile"
 
 # mv ~/.xsession ~/.xsession.orig
 # ln -s ~/src/DotFiles-Linux/.xsession ~/.xsession
-
 
 ## LXDE desktop (openbox WM)
 # mv ~/.config/openbox/lxde-rc.xml ~/.config/openbox/lxde-rc.xml.orig
@@ -20,19 +18,19 @@ ln -s "$srcDir""$fileName" "$myFile"
 
 
 ## Bash
-fileName=".bashrc" 
+fileName=".bashrc"
 myFile=~/"$fileName"
-if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
 ln -s "$srcDir""$fileName" "$myFile"
 
-fileName=".bash_logout" 
+fileName=".bash_logout"
 myFile=~/"$fileName"
-if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
 ln -s "$srcDir""$fileName" "$myFile"
 
 fileName=".profile"
 myFile=~/"$fileName"
-if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
 ln -s "$srcDir""$fileName" "$myFile"
 
 
@@ -45,28 +43,28 @@ ln -s "$srcDir""$fileName" "$myFile"
 ## urxvt
 dirName=".urxvt"
 myDir=~/"$dirName"
-if [ -d "$myDir" ]; then trash "$myDir"; fi  
+if [ -d "$myDir" ]; then trash "$myDir"; fi
 ln -s "$srcDir""$dirName" "$myDir"
 
 
 ## tmux
-fileName=".tmux.conf" 
+fileName=".tmux.conf"
 myFile=~/"$fileName"
-if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
 ln -s "$srcDir""$fileName" "$myFile"
 
 
 ## tmuxinator
 dirName=".tmuxinator"
 myDir=~/"$dirName"
-if [ -d "$myDir" ]; then trash "$myDir"; fi  
+if [ -d "$myDir" ]; then trash "$myDir"; fi
 ln -s "$srcDir""$dirName" "$myDir"
 
 
 ## latexmk
-fileName=".latexmkrc" 
+fileName=".latexmkrc"
 myFile=~/"$fileName"
-if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
 ln -s "$srcDir""$fileName" "$myFile"
 
 # Emacs
@@ -76,6 +74,12 @@ if [ ! -d "~/.local/share/applications/" ]; then
 fi
 ln -s ~/src/DotFiles-Linux/.local/share/applications/EmacsClient.desktop ~/.local/share/applications/EmacsClient.desktop
 ln -s ~/src/DotFiles-Linux/.local/share/applications/org-protocol.desktop ~/.local/share/applications/org-protocol.desktop
+
+# spacemacs
+fileName=".spacemacs"
+myFile=~/"$fileName"
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
+ln -s "$srcDir""$fileName" "$myFile"
 
 ## MATLAB
 if [ ! -e ~/.local/share/applications/MATLAB.desktop ]; then
@@ -94,9 +98,9 @@ fi
 
 
 ## Git
-fileName=".gitconfig" 
+fileName=".gitconfig"
 myFile=~/"$fileName"
-if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi 
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
 ln -s "$srcDir""$fileName" "$myFile"
 
 
@@ -120,10 +124,18 @@ ln -s "$srcDir""$fileName" "$myFile"
 # if [ -d "$myDir" ]; then trash "$myDir"; fi
 # ln -s "$srcDir""$dirName" "$myDir"
 
+## mc
+dirName=".config/mc"
+myDir=~/"$dirName"
+if [ -d "$myDir" ]; then mv "$myDir" "$myDir".orig; fi
+ln -s "$srcDir""$dirName" "$myDir"
+
 ## vnc
 dirName=".vnc"
 myDir=~/"$dirName"
 if [ -d "$myDir" ]; then trash "$myDir"; fi
 ln -s "$srcDir""$dirName" "$myDir"
 
+
+# Update desktop database
 update-desktop-database ~/.local/share/applications/
