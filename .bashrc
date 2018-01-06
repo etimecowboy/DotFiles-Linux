@@ -294,17 +294,18 @@ alias vnck='vncserver -kill :1'
 # [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
 
 # python virtual environments
-export WORKON_HOME=$HOME/.virtualenvs   # optional
-# export PROJECT_HOME=$HOME/projects      # optional
+# FIXME: disable this part to supress errors on sony s13.
+# export WORKON_HOME=$HOME/.virtualenvs   # optional
+# # export PROJECT_HOME=$HOME/projects      # optional
+# # source /usr/local/bin/virtualenvwrapper.sh
+# # use python3 with virtualenvwrapper
+# VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3' # This needs to be placed before the virtualenvwrapper command
 # source /usr/local/bin/virtualenvwrapper.sh
-# use python3 with virtualenvwrapper
-VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3' # This needs to be placed before the virtualenvwrapper command
-source /usr/local/bin/virtualenvwrapper.sh
-
-# pyenv
-export PATH="/home/xin/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# # pyenv
+# export PATH="/home/xin/.pyenv/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+#######################
 
 # Python jupyter notebook server
 alias jss='/usr/local/bin/jupyter notebook --no-browser --notebook-dir=~/work/jupyter &'
