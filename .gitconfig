@@ -9,3 +9,5 @@
 	oauth-token = db6b750e898a8ddd4031d9fd9c6e193eec73ea70
 [user]
 	email = etimecowboy@gmail.com
+[push]
+	default = current

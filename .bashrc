@@ -156,10 +156,12 @@ fi
 # Use script in ~/bin =====> for use in matlab command mode
 alias et='emacsclient -tc'
 alias ec='emacsclient -c'
-# English locale leads to the dysfunction of im (fcitx) in X
-# LC_CTYPE should be set when starting the daemon.
+# English locale leads to the dysfunction of im (fcitx) in X LC_CTYPE
+# should be set when starting the daemon. If the locale already been
+# set as zh_CN.UTF-8 then, don't set it here.
 alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs --debug-init'
 alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
+
 alias ek="emacsclient -e '(client-save-kill-emacs)'"
 # alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
 # alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
@@ -216,9 +218,11 @@ alias fb='fcitx-fbterm-helper -d 0 -l'
 
 # jabref
 # alias jabref='java -jar ~/.emacs.d/bin/JabRef-2.10.jar'
-alias jabref='java -jar ~/bin/JabRef-3.8.jar'
+# alias jabref='java -jar ~/bin/JabRef-3.8.jar'
+alias jabref='java -jar ~/bin/JabRef-4.0.jar'
 
 # Remap keyboard
+# NOTE: when using mate or gnome2, the remap can be done by keyboard config
 setxkbmap -option "altwin:ctrl_alt_win"
 setxkbmap -option "altwin:ctrl_win"
 
@@ -243,29 +247,29 @@ alias tar='tar -I lbzip2'
 
 # tmuxinator
 # copy from tmuxinator/completion/tmuxinator.bash
-_tmuxinator() {
-    COMPREPLY=()
-    local word
-    word="${COMP_WORDS[COMP_CWORD]}"
+# _tmuxinator() {
+#     COMPREPLY=()
+#     local word
+#     word="${COMP_WORDS[COMP_CWORD]}"
 
-    if [ "$COMP_CWORD" -eq 1 ]; then
-        local commands="$(compgen -W "$(tmuxinator commands)" -- "$word")"
-        local projects="$(compgen -W "$(tmuxinator completions start)" -- "$word")"
+#     if [ "$COMP_CWORD" -eq 1 ]; then
+#         local commands="$(compgen -W "$(tmuxinator commands)" -- "$word")"
+#         local projects="$(compgen -W "$(tmuxinator completions start)" -- "$word")"
         
-        COMPREPLY=( $commands $projects )
-    elif [ "$COMP_CWORD" -eq 2 ]; then
-        local words
-        words=("${COMP_WORDS[@]}")
-        unset words[0]
-        unset words[$COMP_CWORD]
-        local completions
-        completions=$(tmuxinator completions "${words[@]}")
-        COMPREPLY=( $(compgen -W "$completions" -- "$word") )
-    fi
-}
+#         COMPREPLY=( $commands $projects )
+#     elif [ "$COMP_CWORD" -eq 2 ]; then
+#         local words
+#         words=("${COMP_WORDS[@]}")
+#         unset words[0]
+#         unset words[$COMP_CWORD]
+#         local completions
+#         completions=$(tmuxinator completions "${words[@]}")
+#         COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+#     fi
+# }
 
-complete -F _tmuxinator tmuxinator mux
-alias mux='tmuxinator'
+# complete -F _tmuxinator tmuxinator mux
+# alias mux='tmuxinator'
 
 # tmux
 alias muxk='tmux kill-server'
@@ -276,8 +280,43 @@ alias muxt='tmux attach -t'
 # TODO: test
 alias mplayer='mplayer -lavdopts threads=N'
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # tightvnc
-alias vncs='vncserver :2 -geometry 1280x800 -depth 24 -compatiblekbd'
-alias vnck='vncserver -kill :2'
+alias vncs='vncserver :1 -geometry 1280x800 -depth 24 -compatiblekbd'
+alias vnck='vncserver -kill :1'
+
+# fzf
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# xiki
+[ -f ~/.xsh ] && source ~/.xsh
+
+# kaldi ASR
+# [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
+
+# python virtual environments
+export WORKON_HOME=$HOME/.virtualenvs   # optional
+# export PROJECT_HOME=$HOME/projects      # optional
+# source /usr/local/bin/virtualenvwrapper.sh
+# use python3 with virtualenvwrapper
+VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3' # This needs to be placed before the virtualenvwrapper command
+source /usr/local/bin/virtualenvwrapper.sh
+
+# pyenv
+export PATH="/home/xin/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# Python jupyter notebook server
+alias jss='/usr/local/bin/jupyter notebook --no-browser --notebook-dir=~/work/jupyter &'
+alias jsk='kill $(pgrep jupyter)'
+
+function jnp() {
+    # sudo:
+    #   jupyter-nbextension install rise --py --sys-prefix
+    #   jupyter-nbextension enable rise --py --sys-prefix
+    jupyter-nbconvert $1 --to slides --post serve
+}
+
+# Upgrade Python pip packages
+# alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
+# alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
