@@ -221,15 +221,14 @@ alias fb='fcitx-fbterm-helper -d 0 -l'
 # alias jabref='java -jar ~/bin/JabRef-3.8.jar'
 alias jabref='java -jar ~/bin/JabRef-4.0.jar'
 
-# Remap keyboard
-# NOTE: when using mate or gnome2, the remap can be done by keyboard config
-setxkbmap -option "altwin:ctrl_alt_win"
-setxkbmap -option "altwin:ctrl_win"
-
-# Turn off system bell in Xorg
 if [ -n "$DISPLAY" ]; then
+    # Turn off system bell in Xorg
     xset b off
+    # Remap keyboard, NOTE: when using mate or gnome2, the remap can be done by keyboard config
+    setxkbmap -option "altwin:ctrl_alt_win"
+    setxkbmap -option "altwin:ctrl_win"
 fi
+
 
 # Safe rm use trash-cli
 # alias rm='trash'
