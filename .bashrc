@@ -284,10 +284,10 @@ alias vncs='vncserver :1 -geometry 1280x800 -depth 24 -compatiblekbd'
 alias vnck='vncserver -kill :1'
 
 # fzf
-# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # xiki
-[ -f ~/.xsh ] && source ~/.xsh
+# [ -f ~/.xsh ] && source ~/.xsh
 
 # kaldi ASR
 # [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
