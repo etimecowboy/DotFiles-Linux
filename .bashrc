@@ -142,8 +142,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Editors
 export ALTERNATE_EDITOR='emacs -nw'
-export EDITOR='emacsclient -tc'
-export VISUAL='emacsclient -tc'
+export EDITOR='emacsclient -t'
+export VISUAL='emacsclient -t'
 export PAGER='less'
 
 # Browser
