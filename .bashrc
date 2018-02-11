@@ -174,7 +174,7 @@ alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 
 
 # Matlab
 alias mat='matlab -nodesktop -nosplash'
-alias matlab='matlab -desktop -nosplash'
+alias matlab='matlab -desktop'
 export COMPUTERNAME='zbox' # added for matlab getenv function
 export USERNAME='xin' # added for matlab getenv function
 

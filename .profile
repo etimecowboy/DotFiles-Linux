@@ -25,6 +25,9 @@ fi
 # export QT_IM_MODULE=fcitx
 # export XMODIFIERS=@im=fcitx
 
+# Fix KDE bug: missing icons
+# https://bugs.launchpad.net/ubuntu/+source/kubuntu-meta/+bug/1450068
+export QT_QPA_PLATFORMTHEME=kde
 
 [ -f ~/.xsh ] && source ~/.xsh
 
