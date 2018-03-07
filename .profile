@@ -29,5 +29,8 @@ fi
 # https://bugs.launchpad.net/ubuntu/+source/kubuntu-meta/+bug/1450068
 export QT_QPA_PLATFORMTHEME=kde
 
+# Boost gpu performance
+export vblank_mode=0
+
 [ -f ~/.xsh ] && source ~/.xsh
 
