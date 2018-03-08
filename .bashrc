@@ -242,7 +242,7 @@ fi
 # b) pbzip2
 # c) pigz
 # d) pxz
-alias tar='tar -I lbzip2'
+# alias tar='tar -I lbzip2'
 
 # tmuxinator
 # NOTE: not used any more
@@ -255,7 +255,7 @@ alias tar='tar -I lbzip2'
 #     if [ "$COMP_CWORD" -eq 1 ]; then
 #         local commands="$(compgen -W "$(tmuxinator commands)" -- "$word")"
 #         local projects="$(compgen -W "$(tmuxinator completions start)" -- "$word")"
-        
+
 #         COMPREPLY=( $commands $projects )
 #     elif [ "$COMP_CWORD" -eq 2 ]; then
 #         local words
@@ -307,7 +307,7 @@ alias vnck='vncserver -kill :1'
 # eval "$(pyenv virtualenv-init -)"
 
 # Python jupyter notebook server
-alias jss='/usr/local/bin/jupyter notebook --no-browser --notebook-dir=~/work/jupyter &'
+alias jss='jupyter notebook --no-browser --notebook-dir=~/work/jupyter &'
 alias jsk='kill $(pgrep jupyter)'
 
 function jnp() {
@@ -320,3 +320,6 @@ function jnp() {
 # Upgrade Python pip packages
 # alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
 # alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
+
+# added by Anaconda2 installer
+export PATH="/home/xin/opt/anaconda2/bin:$PATH"
