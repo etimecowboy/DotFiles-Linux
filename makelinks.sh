@@ -68,7 +68,11 @@ if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
 ln -s "$srcDir""$fileName" "$myFile"
 
 # Emacs
-ln -s ~/src/DotEmacs ~/.emacs.d
+if [ -d "~/.emacs.d" ]; then mv ~/.emacs.d ~/.emacs.d.orig; fi
+# ln -s ~/src/DotEmacs ~/.emacs.d # my old emacs config
+ln -s ~/src/spacemacs ~/.emacs.d
+ln -s ~/src/DotSpacemacs/chinese ~/src/spacemacs/private/chinese
+ln -s ~/src/DotSpacemacs/org ~/src/spacemacs/private/org
 if [ ! -d "~/.local/share/applications/" ]; then
   mkdir -p ~/.local/share/applications/
 fi
@@ -136,6 +140,11 @@ myDir=~/"$dirName"
 if [ -d "$myDir" ]; then trash "$myDir"; fi
 ln -s "$srcDir""$dirName" "$myDir"
 
+## jupyterhub
+fileName="jupyterhub_config.py"
+myFile=~/"$fileName"
+if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
+ln -s "$srcDir"jupyterhub/"$fileName" "$myFile"
 
 ## Update desktop database
 update-desktop-database ~/.local/share/applications/
