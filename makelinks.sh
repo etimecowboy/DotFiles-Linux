@@ -146,5 +146,11 @@ myFile=~/"$fileName"
 if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
 ln -s "$srcDir"jupyterhub/"$fileName" "$myFile"
 
+## jupyter
+dirName=".jupyter"
+myDir=~/"$dirName"
+if [ -d "$myDir" ]; then trash "$myDir"; fi
+ln -s "$srcDir""$dirName" "$myDir"
+
 ## Update desktop database
 update-desktop-database ~/.local/share/applications/
