@@ -151,7 +151,7 @@ sudo "$conda" config --set show_channel_urls yes
 sudo "$conda" install autopep8
 sudo "$conda" install -c conda-forge jupyter_contrib_nbextensions
 # jupyterhub is only avaiable for python 3
-# sudo apt-get install npm nodejs-legacy
+sudo apt-get install npm nodejs-legacy
 sudo "$conda" install -c conda-forge jupyterhub
 sudo "$conda" install notebook
 
