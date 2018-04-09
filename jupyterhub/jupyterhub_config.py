@@ -39,10 +39,10 @@
 ## Grant admin users permission to access single-user servers.
 #  
 #  Users should be properly informed if this is enabled.
-#c.JupyterHub.admin_access = False
+c.JupyterHub.admin_access = True
 
 ## DEPRECATED since version 0.7.2, use Authenticator.admin_users instead.
-#c.JupyterHub.admin_users = set()
+c.JupyterHub.admin_users = set(['xin'])
 
 ## Allow named single-user servers per user
 #c.JupyterHub.allow_named_servers = False
@@ -193,7 +193,7 @@
 #c.JupyterHub.hub_port = 8081
 
 ## The public facing ip of the whole application (the proxy)
-#c.JupyterHub.ip = ''
+c.JupyterHub.ip = '127.0.0.1'
 
 ## Supply extra arguments that will be passed to Jinja environment.
 #c.JupyterHub.jinja_environment_options = {}
@@ -217,7 +217,7 @@
 #c.JupyterHub.pid_file = ''
 
 ## The public facing port of the proxy
-#c.JupyterHub.port = 8000
+c.JupyterHub.port = 8000
 
 ## DEPRECATED since version 0.8 : Use ConfigurableHTTPProxy.api_url
 #c.JupyterHub.proxy_api_ip = ''
@@ -671,7 +671,7 @@ c.JupyterHub.ssl_key = '/home/xin/src/DotFiles-Linux/jupyterhub/mykey.key'
 #  restrictions the authenticator has in place.
 #  
 #  If empty, does not perform any additional restriction.
-#c.Authenticator.whitelist = set()
+c.Authenticator.whitelist = set(['xin'])
 
 #------------------------------------------------------------------------------
 # LocalAuthenticator(Authenticator) configuration
