@@ -39,7 +39,7 @@
 ## Grant admin users permission to access single-user servers.
 #  
 #  Users should be properly informed if this is enabled.
-#c.JupyterHub.admin_access = False
+c.JupyterHub.admin_access = True
 
 ## DEPRECATED since version 0.7.2, use Authenticator.admin_users instead.
 #c.JupyterHub.admin_users = set()
@@ -193,7 +193,7 @@
 #c.JupyterHub.hub_port = 8081
 
 ## The public facing ip of the whole application (the proxy)
-#c.JupyterHub.ip = ''
+c.JupyterHub.ip = '192.168.31.65'
 
 ## Supply extra arguments that will be passed to Jinja environment.
 #c.JupyterHub.jinja_environment_options = {}
@@ -409,7 +409,7 @@ c.JupyterHub.ssl_key = '/home/xin/src/DotFiles-Linux/jupyterhub/mykey.key'
 #    navigate the whole filesystem from their notebook server, but still start in their home directory.
 #  - Start with `/notebooks` instead of `/tree` if `default_url` points to a notebook instead of a directory.
 #  - You can set this to `/lab` to have JupyterLab start by default, rather than Jupyter Notebook.
-#c.Spawner.default_url = ''
+#c.Spawner.default_url = '/lab'
 
 ## Disable per-user configuration of single-user servers.
 #  
@@ -419,7 +419,7 @@ c.JupyterHub.ssl_key = '/home/xin/src/DotFiles-Linux/jupyterhub/mykey.key'
 #  Note: a user could circumvent this if the user modifies their Python
 #  environment, such as when they have their own conda environments / virtualenvs
 #  / containers.
-#c.Spawner.disable_user_config = False
+c.Spawner.disable_user_config = False
 
 ## Whitelist of environment variables for the single-user server to inherit from
 #  the JupyterHub process.
@@ -498,7 +498,7 @@ c.JupyterHub.ssl_key = '/home/xin/src/DotFiles-Linux/jupyterhub/mykey.key'
 #  
 #  Note that this does *not* prevent users from accessing files outside of this
 #  path! They can do so with many other means.
-#c.Spawner.notebook_dir = ''
+c.Spawner.notebook_dir = '~/work/jupyter'
 
 ## An HTML form for options a user can specify on launching their server.
 #  
@@ -621,7 +621,7 @@ c.JupyterHub.ssl_key = '/home/xin/src/DotFiles-Linux/jupyterhub/mykey.key'
 #  Admin access should be treated the same way root access is.
 #  
 #  Defaults to an empty set, in which case no user has admin access.
-#c.Authenticator.admin_users = set()
+c.Authenticator.admin_users = set(["xin"])
 
 ## Automatically begin the login process
 #  
@@ -671,7 +671,7 @@ c.JupyterHub.ssl_key = '/home/xin/src/DotFiles-Linux/jupyterhub/mykey.key'
 #  restrictions the authenticator has in place.
 #  
 #  If empty, does not perform any additional restriction.
-#c.Authenticator.whitelist = set()
+c.Authenticator.whitelist = set(["xin","test"])
 
 #------------------------------------------------------------------------------
 # LocalAuthenticator(Authenticator) configuration
@@ -706,7 +706,7 @@ c.JupyterHub.ssl_key = '/home/xin/src/DotFiles-Linux/jupyterhub/mykey.key'
 #  already.
 #  
 #  Supports Linux and BSD variants only.
-#c.LocalAuthenticator.create_system_users = False
+c.LocalAuthenticator.create_system_users = True
 
 ## Whitelist all users from this UNIX group.
 #  
