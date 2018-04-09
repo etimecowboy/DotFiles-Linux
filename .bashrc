@@ -322,6 +322,6 @@ function jnp() {
 # alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
 
 # added by Anaconda2 installer
-# export PATH="/home/xin/opt/anaconda2/bin:$PATH"
+# export PATH="/opt/anaconda2/bin:$PATH"
 # added by Anaconda3 installer
-# export PATH="/home/xin/opt/anaconda3/bin:$PATH"
+export PATH="/opt/anaconda3/bin:$PATH"
