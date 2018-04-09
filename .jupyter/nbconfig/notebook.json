@@ -1,0 +1,67 @@
+{
+  "toc2": {
+    "toc_window_display": false, 
+    "toc_cell": false
+  }, 
+  "nbTranslate": {
+    "displayLangs": [
+      "en", 
+      "zh-cn"
+    ]
+  }, 
+  "load_extensions": {
+    "nbextensions_configurator/config_menu/main": true, 
+    "nbTranslate/main": false, 
+    "search-replace/main": true, 
+    "snippets_menu/main": true, 
+    "init_cell/main": true, 
+    "codefolding/main": true, 
+    "fileupload/extension": true, 
+    "highlighter/highlighter": true, 
+    "ruler/main": true, 
+    "runtools/main": true, 
+    "exercise/main": true, 
+    "python-markdown/main": true, 
+    "comment-uncomment/main": true, 
+    "jupyter-js-widgets/extension": true, 
+    "latex_envs/latex_envs": true, 
+    "autoscroll/main": true, 
+    "scroll_down/main": true, 
+    "highlight_selected_word/main": true, 
+    "contrib_nbextensions_help_item/main": true, 
+    "scratchpad/main": true, 
+    "execute_time/ExecuteTime": true, 
+    "chrome-clipboard/main": true, 
+    "table_beautifier/main": true, 
+    "exercise2/main": true, 
+    "spellchecker/main": true, 
+    "help_panel/help_panel": true, 
+    "skip-traceback/main": true, 
+    "codemirror_mode_extensions/main": false, 
+    "autosavetime/main": true, 
+    "code_prettify/autopep8": true, 
+    "qtconsole/qtconsole": true, 
+    "toc2/main": true, 
+    "dragdrop/main": true, 
+    "collapsible_headings/main": true, 
+    "printview/main": true, 
+    "datestamper/main": true, 
+    "varInspector/main": true, 
+    "gist_it/main": true, 
+    "rubberband/main": true, 
+    "code_font_size/code_font_size": true, 
+    "snippets/main": true, 
+    "move_selected_cells/main": true, 
+    "code_prettify/code_prettify": true, 
+    "line_profiler": true
+  }, 
+  "Notebook": {
+    "Header": true, 
+    "Toolbar": true
+  }, 
+  "Cell": {
+    "cm_config": {
+      "lineNumbers": true
+    }
+  }
+}
