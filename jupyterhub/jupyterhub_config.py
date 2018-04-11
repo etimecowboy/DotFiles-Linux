@@ -187,10 +187,10 @@ c.JupyterHub.admin_users = set(['xin'])
 #
 #  See `hub_connect_ip` for cases where the bind and connect address should
 #  differ.
-#c.JupyterHub.hub_ip = '127.0.0.1'
+c.JupyterHub.hub_ip = '192.168.31.65'
 
 ## The port for the Hub process
-#c.JupyterHub.hub_port = 8081
+c.JupyterHub.hub_port = 8081
 
 ## The public facing ip of the whole application (the proxy)
 c.JupyterHub.ip = '192.168.31.65'
