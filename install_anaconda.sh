@@ -25,14 +25,13 @@ sudo "$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anacond
 sudo "$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
 sudo "$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
 sudo "$conda" config --set show_channel_urls yes
-sudo "$conda" update -n base condae
+sudo "$conda" update -n base conda
 sudo "$conda" update --all
-sudo "$conda" install autopep8
-sudo "$conda" install -c conda-forge jupyter_contrib_nbextensions
 
 # jupyterhub is only avaiable for python 3
 "$conda" -n py35 python=3.5 anaconda
 source activate py35
+"$conda" install autopep8 notebook jupyter_contrib_nbextensions jupyterhub
 
 ### Anaconda3 (installed in /opt/anaconda3)
 # conda="/opt/anaconda3/bin/conda"
@@ -43,8 +42,8 @@ source activate py35
 # sudo "$conda" install autopep8
 # sudo "$conda" install -c conda-forge jupyter_contrib_nbextensions
 # jupyterhub is only avaiable for python 3
-sudo apt-get install npm nodejs-legacy
-sudo "$conda" install -c conda-forge jupyterhub
+# sudo apt-get install npm nodejs-legacy
+# sudo "$conda" install -c conda-forge jupyterhub
 # sudo "$conda" install notebook
 
 ## jupyter
@@ -55,7 +54,7 @@ sudo "$conda" install -c conda-forge jupyterhub
 # ln -s "$srcDir""$dirName" "$myDir"
 
 ## jupyterhub (only avaiable for python3)
-fileName="jupyterhub_config.py"
-myFile=~/"$fileName"
-if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
-ln -s "$srcDir"jupyterhub/"$fileName" "$myFile"
+# fileName="jupyterhub_config.py"
+# myFile=~/"$fileName"
+# if [ -e "$myFile" ]; then mv "$myFile" "$myFile".orig; fi
+# ln -s "$srcDir"jupyterhub/"$fileName" "$myFile"
