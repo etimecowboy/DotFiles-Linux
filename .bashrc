@@ -109,12 +109,12 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -d "$HOME/.emacs.d/bin" ] ; then
-    PATH="$HOME/.emacs.d/bin:$PATH"
-fi
-if [ -d "$HOME/.emacs.d/bin/lin64" ] ; then
-    PATH="$HOME/.emacs.d/bin/lin64:$PATH"
-fi
+# if [ -d "$HOME/.emacs.d/bin" ] ; then
+#     PATH="$HOME/.emacs.d/bin:$PATH"
+# fi
+# if [ -d "$HOME/.emacs.d/bin/lin64" ] ; then
+#     PATH="$HOME/.emacs.d/bin/lin64:$PATH"
+# fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -159,16 +159,19 @@ alias ec='emacsclient -c'
 # English locale leads to the dysfunction of im (fcitx) in X LC_CTYPE
 # should be set when starting the daemon. If the locale already been
 # set as zh_CN.UTF-8 then, don't set it here.
-alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs --debug-init'
-alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
+# alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs --debug-init'
+# alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
+## Already using zh_CN locale
+alias emacs='emacs --debug-init'
+alias em='emacs --daemon' # swith im problem
 
 alias ek="emacsclient -e '(client-save-kill-emacs)'"
 # alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
 # alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
 alias ee='emacs -nw -q'
 # alias vi='emacsclient -tc' # Use emacs instead of vi
-alias today="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"d\")' 2> /dev/null | less"
-alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 2> /dev/null | less"
+# alias today="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"d\")' 2> /dev/null | less"
+# alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 2> /dev/null | less"
 
 # export LC_CTYPE=zh_CN.UTF-8 # moved to ~/.profile
 
@@ -320,4 +323,3 @@ function jnp() {
 # Upgrade Python pip packages
 # alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
 # alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
-
