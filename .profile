@@ -16,6 +16,12 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+# add anaconda2 bin path to PATH
+# added by Anaconda2 installer
+ export PATH="/opt/anaconda2/bin:$PATH"
+# added by Anaconda3 installer
+# export PATH="/opt/anaconda3/bin:$PATH"
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"

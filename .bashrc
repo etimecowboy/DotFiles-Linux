@@ -321,7 +321,3 @@ function jnp() {
 # alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
 # alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
 
-# added by Anaconda2 installer
-export PATH="/opt/anaconda2/bin:$PATH"
-# added by Anaconda3 installer
-# export PATH="/opt/anaconda3/bin:$PATH"
