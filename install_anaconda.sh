@@ -28,10 +28,13 @@ sudo "$conda" config --set show_channel_urls yes
 sudo "$conda" update -n base conda
 sudo "$conda" update --all
 
-# jupyterhub is only avaiable for python 3
-"$conda" -n py35 python=3.5 anaconda
+"$conda" -n py27 python=2.7
 source activate py35
-"$conda" install autopep8 notebook jupyter_contrib_nbextensions jupyterhub
+"$conda" install autopep8 notebook jupyter jupyter_contrib_nbextensions # jupyterhub is only avaiable for python 3
+
+"$conda" -n py35 python=3.5
+source activate py35
+"$conda" install autopep8 notebook jupyter_contrib_nbextensions jupyterhub # jupyterhub is only avaiable for python 3
 
 ### Anaconda3 (installed in /opt/anaconda3)
 # conda="/opt/anaconda3/bin/conda"
