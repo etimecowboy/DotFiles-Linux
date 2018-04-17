@@ -18,7 +18,7 @@ fi
 
 # add anaconda2 bin path to PATH
 # added by Anaconda2 installer
- export PATH="/opt/anaconda2/bin:$PATH"
+export PATH="/opt/miniconda2/bin:$PATH"
 # added by Anaconda3 installer
 # export PATH="/opt/anaconda3/bin:$PATH"
 
@@ -38,5 +38,8 @@ export QT_QPA_PLATFORMTHEME=kde
 # Boost gpu performance
 export vblank_mode=0
 
+# Install some CLI tools
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.xsh ] && source ~/.xsh
 
+emacs --daemon

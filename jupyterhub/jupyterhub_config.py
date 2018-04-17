@@ -187,13 +187,13 @@ c.JupyterHub.admin_users = set(['xin'])
 #
 #  See `hub_connect_ip` for cases where the bind and connect address should
 #  differ.
-c.JupyterHub.hub_ip = '192.168.31.65'
+c.JupyterHub.hub_ip = '172.19.134.205'
 
 ## The port for the Hub process
 c.JupyterHub.hub_port = 8081
 
 ## The public facing ip of the whole application (the proxy)
-c.JupyterHub.ip = '192.168.31.65'
+c.JupyterHub.ip = '172.19.134.205'
 
 ## Supply extra arguments that will be passed to Jinja environment.
 #c.JupyterHub.jinja_environment_options = {}
