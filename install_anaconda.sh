@@ -15,28 +15,40 @@ fi
 
 chmod +x $1/Miniconda2-latest-Linux-x86_64.sh
 # chmod +x Anaconda3-5.1.0-Linux-x86_64.sh
-sudo $1/Miniconda2-latest-Linux-x86_64.sh
+
+if [ ! -d /opt/miniconda2 ]; then
+    sudo $1/Miniconda2-latest-Linux-x86_64.sh
+fi
 
 ### Anaconda2 (installed in /opt/miniconda2)
 # Use this as the default python
 conda="/opt/miniconda2/bin/conda"
-# sudo "$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-# sudo "$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-# sudo "$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
-sudo "$conda" config --add channels http://mirros.ustc.edu.cn/anaconda/pkgs/free/
-sudo "$conda" config --add channels http://mirros.ustc.edu.cn/anaconda/pkgs/main/
-sudo "$conda" config --add channels http://mirros.ustc.edu.cn/anaconda/cloud/conda-forge/
-sudo "$conda" config --set show_channel_urls yes
+if [ -e ~/.condarc ]; then
+    mv ~/.condarc ~/.condarc.orig
+fi
+if [ -L ~/.condarc ]; then
+    trash ~/.condarc
+fi
+if [ -d ~/.conda ]; then mv ~/.conda ~/.conda.orig; fi
+if [ -L ~/.conda ]; then trash ~/.conda; fi
+export PATH="/opt/minconda2/bin:$PATH"
+"$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+"$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+"$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+# "$conda" config --add channels http://mirros.ustc.edu.cn/anaconda/pkgs/free/
+# "$conda" config --add channels http://mirros.ustc.edu.cn/anaconda/pkgs/main/
+# "$conda" config --add channels http://mirros.ustc.edu.cn/anaconda/cloud/conda-forge/
+"$conda" config --set show_channel_urls yes
 sudo "$conda" update -n base conda
 sudo "$conda" update --all
 
-"$conda" -n py27 python=2.7
+"$conda" create -n py27 python=2.7
 source activate py27
-"$conda" install autopep8 notebook jupyter jupyter_contrib_nbextensions # jupyterhub is only avaiable for python3
+"$conda" install autopep8 notebook jupyter jupyter_contrib_nbextensions # jupyterhub is only avaiable for python3y
 ipython kernel install --user
 source deactivate
 
-"$conda" -n py35 python=3.5
+"$conda" create -n py35 python=3.5
 source activate py35
 "$conda" install autopep8 notebook jupyterhub jupyter_contrib_nbextensions # jupyterhub is only avaiable for python3
 ipython kernel install --user
