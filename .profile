@@ -42,4 +42,4 @@ export vblank_mode=0
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.xsh ] && source ~/.xsh
 
-emacs --daemon
+#emacs --daemon
