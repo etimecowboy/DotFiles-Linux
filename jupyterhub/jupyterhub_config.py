@@ -671,7 +671,7 @@ c.Authenticator.admin_users = set(["xin"])
 #  restrictions the authenticator has in place.
 #
 #  If empty, does not perform any additional restriction.
-c.Authenticator.whitelist = set(["xin","test"])
+c.Authenticator.whitelist = set(["xin","test","jupyter"])
 
 #------------------------------------------------------------------------------
 # LocalAuthenticator(Authenticator) configuration
