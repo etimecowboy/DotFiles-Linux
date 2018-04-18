@@ -212,7 +212,8 @@ fi
 # [[ $(tty) == \/dev\/tty[0-9]* ]] && fcitx-fbterm-helper -d 0
 # alias fb='env DISPLAY=:0 fcitx-fbterm-helper'
 # alias fl='fcitx-fbterm-helper -l'
-alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf --font-names "Noto Sans Mono CJK SC Regular"'
+# alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf --font-names "Noto Sans Mono CJK SC Regular"'
+alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf'
 
 # Git prompt
 # file does not exist
@@ -221,7 +222,7 @@ alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf --font-names "Noto Sans Mono
 # jabref
 # alias jabref='java -jar ~/.emacs.d/bin/JabRef-2.10.jar'
 # alias jabref='java -jar ~/bin/JabRef-3.8.jar'
-alias jabref='java -jar ~/bin/JabRef-4.0.jar'
+# alias jabref='java -jar ~/bin/JabRef-4.0.jar'
 
 if [ -n "$DISPLAY" ]; then
     # Turn off system bell in Xorg

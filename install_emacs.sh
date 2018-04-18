@@ -17,10 +17,25 @@ if [ ! -d "$gitrootDir" ]; then mkdir -p "$gitrootDir"; fi
 cd "$gitrootDir"
 if [ ! -d "$gitrootDir"/DotSpacemacs ]; then
     git clone --recurse-submodules --depth=1 git@github.com:etimecowboy/DotSpacemacs.git
+else
+    cd DotSpacemacs
+    git pull
+    cd ..
 fi
 
 if [ ! -d "$gitrootDir"/spacemacs ]; then
     git clone --recurse-submodules --depth=1 git@github.com:syl20bnr/spacemacs.git
+else
+    cd spacemacs
+    git pull
+    cd ..
+fi
+if [ ! -d "$gitrootDir"/DotEmacs ]; then
+    git clone --recurse-submodules --depth=1 git@github.com:etimecowboy/DotEmacs.git
+else
+    cd DotEmacs
+    git pull
+    cd ..
 fi
 
 if [ -d "~/.emacs.d" ]; then mv ~/.emacs.d ~/.emacs.d.orig; fi
