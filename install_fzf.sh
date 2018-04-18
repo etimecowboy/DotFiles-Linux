@@ -12,5 +12,6 @@ cd "$gitrootDir"
 if [ ! -d "$gitrootDir"/fzf ]; then
     git clone --recurse-submodules --depth=1 git@github.com:junegunn/fzf.git
 fi
-cd fzf
+ln -s "$gitrootDir"/fzf ~/.fzf
+cd ~/.fzf
 ./install

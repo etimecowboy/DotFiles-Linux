@@ -287,7 +287,7 @@ alias vnck='vncserver -kill :1'
 
 # Moved to ~/.profile
 # fzf
-# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # xiki
 # [ -f ~/.xsh ] && source ~/.xsh
 # kaldi ASR

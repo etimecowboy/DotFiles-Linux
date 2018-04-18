@@ -37,9 +37,3 @@ export QT_QPA_PLATFORMTHEME=kde
 
 # Boost gpu performance
 export vblank_mode=0
-
-# Install some CLI tools
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/.xsh ] && source ~/.xsh
-
-#emacs --daemon
