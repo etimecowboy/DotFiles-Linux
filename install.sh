@@ -34,9 +34,7 @@ done
 
 ## make links
 export IFS=";"
-dotfiles=".Xresources;.bashrc;.bash_logout;.profile;.gitconfig;.fbtermrc;
-.tmux.conf;.latexmkrc;.urxvt;.config/ranger;.config/mc;
-.local/share/applications" #.xsession;.config/openbox/lxde-rc.xml;.vnc
+dotfiles=".Xresources;.inputrc;.bashrc;.bash_logout;.profile;.gitconfig;.fbtermrc;.tmux.conf;.latexmkrc;.urxvt;.config/ranger;.config/mc;.local/share/applications" #.xsession;.config/openbox/lxde-rc.xml;.vnc
 for fileName in $dotfiles; do
     myFile=~/"$fileName"
     # echo "$myFile is created..."
