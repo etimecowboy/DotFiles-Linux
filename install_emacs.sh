@@ -52,8 +52,12 @@ fi
 if [[ -L "$gitrootDir"/spacemacs/private/org ]] || [[ -d "$gitrootDir"/spacemacs/private/org ]]; then
     trash "$gitrootDir"/spacemacs/private/org;
 fi
+if [[ -L "$gitrootDir"/spacemacs/private/snippets ]] || [[ -d "$gitrootDir"/spacemacs/private/snippets ]]; then
+    trash "$gitrootDir"/spacemacs/private/snippets;
+fi
 ln -s "$gitrootDir"/DotSpacemacs/chinese "$gitrootDir"/spacemacs/private/chinese
 ln -s "$gitrootDir"/DotSpacemacs/org "$gitrootDir"/spacemacs/private/org
+ln -s "$gitrootDir"/DotSpacemacs/snippets "$gitrootDir"/spacemacs/private/snippets
 
 if [ ! -d "~/.local/share/applications/" ]; then
     mkdir -p ~/.local/share/applications/
