@@ -44,13 +44,13 @@ sudo "$conda" update --all
 
 "$conda" create -n py27 python=2.7
 source activate py27
-"$conda" install autopep8 notebook jupyter jupyter_contrib_nbextensions # jupyterhub is only avaiable for python3y
+"$conda" install autopep8 notebook ipywidgets jupyter jupyter_contrib_nbextensions # jupyterhub is only avaiable for python3y
 ipython kernel install --user
 source deactivate
 
 "$conda" create -n py35 python=3.5
 source activate py35
-"$conda" install autopep8 notebook jupyterhub jupyter_contrib_nbextensions # jupyterhub is only avaiable for python3
+"$conda" install autopep8 notebook ipywidgets jupyterhub jupyter_contrib_nbextensions # jupyterhub is only avaiable for python3
 ipython kernel install --user
 source deactivate
 
