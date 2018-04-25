@@ -322,3 +322,12 @@ function jnp() {
 # Upgrade Python pip packages
 # alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
 # alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
+
+export CDPATH=.:~:~/work:~/work/jupyter/work:~/work/data:~/src:~/software:~/桌面:/mnt:/opt
+export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
+export vblank_mode=0 # Boost gpu performance
+
+shopt -s cdspell # correct minor spelling errors in a cd command
+shopt -s cmdhist # multi-line commands to be appended to your bash history as a single line command
+shopt -s dotglob # allows dot-begin files to be returned in the results of path-name expansion
+shopt -s extglob # allows egrep-style extended pattern matching
