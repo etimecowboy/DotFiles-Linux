@@ -325,7 +325,7 @@ function jnp() {
 
 export CDPATH=.:~:~/work:~/work/jupyter/work:~/work/data:~/src:~/software:~/桌面:/mnt:/opt
 export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
-export vblank_mode=0 # Boost gpu performance
+# export vblank_mode=0 # Boost gpu performance
 
 shopt -s cdspell # correct minor spelling errors in a cd command
 shopt -s cmdhist # multi-line commands to be appended to your bash history as a single line command

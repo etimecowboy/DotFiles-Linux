@@ -54,6 +54,12 @@ source activate py35
 ipython kernel install --user
 source deactivate
 
+# NOTE: some packages cannot installed via conda, you need to install them in your env
+# $pip install <package> --user
+#
+# - ffmpeg-python (conda can install ffmpeg)
+# - pysox (conda can install sox, but you also need to apt install libsox-dev)
+
 ## jupyter
 ## NOTE: don't use this jupyter config when using jupyterhub, otherwise you cannot start jupyterhub
 # jupyterConfDir="$configDir"/.jupyter
