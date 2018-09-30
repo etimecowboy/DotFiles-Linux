@@ -308,6 +308,9 @@ alias vnck='vncserver -kill :1'
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
+# conda
+# export PATH="/opt/miniconda2/bin:$PATH"
+
 # Python jupyter notebook server
 alias jss='jupyter notebook --no-browser --notebook-dir=~/work/jupyter &'
 alias jsk='kill $(pgrep jupyter)'

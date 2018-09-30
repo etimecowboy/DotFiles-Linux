@@ -18,7 +18,7 @@ fi
 
 # add anaconda2 bin path to PATH
 # added by Anaconda2 installer
-export PATH="/opt/miniconda2/bin:$PATH"
+# export PATH="/opt/miniconda2/bin:$PATH"
 # added by Anaconda3 installer
 # export PATH="/opt/anaconda3/bin:$PATH"
 
