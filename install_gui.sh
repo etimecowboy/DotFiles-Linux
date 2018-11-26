@@ -6,7 +6,7 @@
 ## Install some GUI software
 sudo apt -y install synaptic rxvt-unicode-256color gimp audacity fbterm fcitx-frontend-fbterm mupdf grsync
 # KDE applications
-sudo apt -y install okular kuser kcron kate kdevelop
+sudo apt -y install okular kuser kcron kate
 
 ## Install some fonts
 if [ -d $1/fonts ]; then
@@ -17,11 +17,11 @@ else
 fi
 
 ## Install sogou pinyin im
-if [ -d $1/sogoupinyin_2.2.0.0102_amd64.deb ]; then
-    sudo gdebi $1/sogoupinyin_2.2.0.0102_amd64.deb
-else
-    echo "sogoupinyin installation failed ..."
-fi
+# if [ -d $1/sogoupinyin_2.2.0.0102_amd64.deb ]; then
+#     sudo gdebi $1/sogoupinyin_2.2.0.0102_amd64.deb
+# else
+#     echo "sogoupinyin installation failed ..."
+# fi
 
 # ## JabRef
 # if [ ! -e ~/.local/share/applications/JabRef.desktop ]; then

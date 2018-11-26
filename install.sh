@@ -46,21 +46,21 @@ done
 ## Update desktop database
 update-desktop-database ~/.local/share/applications/
 
-## Install Oracle Java
-./install_java.sh
-cd "$configDir"
+# ## Install Oracle Java
+# ./install_java.sh
+# cd "$configDir"
 
-## Install GUI software
-./install_gui.sh $1
-cd "$configDir"
+# ## Install GUI software
+# ./install_gui.sh $1
+# cd "$configDir"
 
-## Install Emacs
-./install_emacs.sh
-cd "$configDir"
+# ## Install Emacs
+# ./install_emacs.sh
+# cd "$configDir"
 
-## Install fzf
-./install_fzf.sh
-cd "$configDir"
+# ## Install fzf
+# ./install_fzf.sh
+# cd "$configDir"
 
-## Install anaconda
-./install_anaconda.sh $1
+# ## Install anaconda
+# ./install_anaconda.sh $1

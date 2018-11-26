@@ -39,21 +39,21 @@ else
 fi
 
 if [ -d "~/.emacs.d" ]; then mv ~/.emacs.d ~/.emacs.d.orig; fi
-if [ -L "~/.emacs.d" ]; then trash ~/.emacs.d; fi
+if [ -e "~/.emacs.d" ]; then rm ~/.emacs.d; fi
 # ln -s ~/src/DotEmacs ~/.emacs.d # my old emacs config
 ln -s "$gitrootDir"/spacemacs ~/.emacs.d
-if [ -e "~/.spacemacs" ]; then mv ~/.spacemacs ~/.spacemacs.orig; fi
-if [ -L "~/.spacemacs" ]; then trash ~/.spacemacs; fi
+if [ -e "~/.spacemacs" ]; then rm ~/.spacemacs; fi
+# if [ -L "~/.spacemacs" ]; then rm ~/.spacemacs; fi
 ln -s "$gitrootDir"/DotSpacemacs/.spacemacs ~/.spacemacs
 
 if [[ -L "$gitrootDir"/spacemacs/private/chinese ]] || [[ -d "$gitrootDir"/spacemacs/private/chinese ]]; then
-    trash "$gitrootDir"/spacemacs/private/chinese
+    rm "$gitrootDir"/spacemacs/private/chinese
 fi
 if [[ -L "$gitrootDir"/spacemacs/private/org ]] || [[ -d "$gitrootDir"/spacemacs/private/org ]]; then
-    trash "$gitrootDir"/spacemacs/private/org;
+    rm "$gitrootDir"/spacemacs/private/org;
 fi
 if [[ -L "$gitrootDir"/spacemacs/private/snippets ]] || [[ -d "$gitrootDir"/spacemacs/private/snippets ]]; then
-    trash "$gitrootDir"/spacemacs/private/snippets;
+    rm "$gitrootDir"/spacemacs/private/snippets;
 fi
 ln -s "$gitrootDir"/DotSpacemacs/chinese "$gitrootDir"/spacemacs/private/chinese
 ln -s "$gitrootDir"/DotSpacemacs/org "$gitrootDir"/spacemacs/private/org
@@ -64,10 +64,10 @@ if [ ! -d "~/.local/share/applications/" ]; then
 fi
 
 if [[ -L ~/.local/share/applications/EmacsClient.desktop ]] || [[ -e ~/.local/share/applications/EmacsClient.desktop ]]; then
-    trash ~/.local/share/applications/EmacsClient.desktop
+    rm ~/.local/share/applications/EmacsClient.desktop
 fi
 if [[ -L ~/.local/share/applications/org-protocol.desktop ]] || [[ -e ~/.local/share/applications/org-protocol.desktop ]]; then
-    trash ~/.local/share/applications/org-protocol.desktop
+    rm ~/.local/share/applications/org-protocol.desktop
 fi
 
 ln -s "$gitrootDir"/DotFiles-Linux/.local/share/applications/EmacsClient.desktop ~/.local/share/applications/EmacsClient.desktop

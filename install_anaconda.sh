@@ -27,17 +27,18 @@ if [ -e ~/.condarc ]; then
     mv ~/.condarc ~/.condarc.orig
 fi
 if [ -L ~/.condarc ]; then
-    trash ~/.condarc
+    rm ~/.condarc
 fi
 if [ -d ~/.conda ]; then mv ~/.conda ~/.conda.orig; fi
-if [ -L ~/.conda ]; then trash ~/.conda; fi
+if [ -L ~/.conda ]; then rm ~/.conda; fi
 export PATH="/opt/minconda2/bin:$PATH"
-"$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-"$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-"$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+# "$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+# "$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+# "$conda" config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
 # "$conda" config --add channels http://mirros.ustc.edu.cn/anaconda/pkgs/free/
 # "$conda" config --add channels http://mirros.ustc.edu.cn/anaconda/pkgs/main/
 # "$conda" config --add channels http://mirros.ustc.edu.cn/anaconda/cloud/conda-forge/
+"$conda" config --add channels conda-forge
 "$conda" config --set show_channel_urls yes
 sudo "$conda" update -n base conda
 sudo "$conda" update --all
@@ -68,5 +69,5 @@ source deactivate
 
 ## jupyterhub (only avaiable for python3)
 if [ -e ~/jupyterhub_config.py ]; then mv ~/jupyterhub_config.py ~/jupyterhub_config.py.orig; fi
-if [ -L ~/jupyterhub_config.py ]; then trash ~/jupyterhub_config.py; fi
+if [ -L ~/jupyterhub_config.py ]; then rm ~/jupyterhub_config.py; fi
 ln -s "$configDir"/jupyterhub/jupyterhub_config.py ~/jupyterhub_config.py
