@@ -286,6 +286,10 @@ alias mplayer='mplayer -lavdopts threads=N'
 alias vncs='vncserver :1 -geometry 1280x800 -depth 24 -compatiblekbd'
 alias vnck='vncserver -kill :1'
 
+# pbcopy
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
 # Moved to ~/.profile
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
