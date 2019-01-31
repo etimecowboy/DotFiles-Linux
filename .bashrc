@@ -298,6 +298,14 @@ alias pbpaste='xclip -selection clipboard -o'
 # kaldi ASR
 # [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
 
+# fasd
+if ! [ -x "$(command -v fasd)" ]; then
+    echo 'fasd is not installed.' >&2
+    exit 1
+else
+    eval "$(fasd --init auto)"
+fi
+
 # python virtual environments
 # FIXME: disable this part to supress errors on sony s13.
 ######## virtualenvwrapper

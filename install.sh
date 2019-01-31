@@ -16,9 +16,9 @@ sudo apt update        # Fetches the list of available updates
 sudo apt -y upgrade    # Strictly upgrades the current packages
 
 ## Install some CLI software
-sudo apt -y install ssh git aptitude build-essential cmake automake clang cscope
+sudo apt -y install ssh git aptitude build-essential cmake automake clang cscope yank xclip
 scons wget rsync
-sudo apt -y install sox cmus ranger mc htop iftop nmon tmux vim powerline w3m w3m-img trash-cli
+sudo apt -y install sox cmus ranger mc htop iftop nmon tmux vim powerline w3m w3m-img trash-cli net-tools
 
 ## Clone my git
 if [ ! -d "$gitrootDir" ]; then mkdir -p "$gitrootDir"; fi
