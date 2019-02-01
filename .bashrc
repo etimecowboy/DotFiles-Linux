@@ -299,10 +299,7 @@ alias pbpaste='xclip -selection clipboard -o'
 # [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
 
 # fasd
-if ! [ -x "$(command -v fasd)" ]; then
-    echo 'fasd is not installed.' >&2
-    exit 1
-else
+if [ -x "$(command -v fasd)" ]; then
     eval "$(fasd --init auto)"
 fi
 

@@ -11,3 +11,5 @@
 	email = etimecowboy@gmail.com
 [push]
 	default = current
+[cola]
+	spellcheck = false
