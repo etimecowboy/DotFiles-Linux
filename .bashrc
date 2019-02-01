@@ -290,18 +290,190 @@ alias vnck='vncserver -kill :1'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
-# Moved to ~/.profile
-# fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # xiki
 # [ -f ~/.xsh ] && source ~/.xsh
-# kaldi ASR
-# [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
+
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# fzf + cd
+# - https://github.com/junegunn/fzf/wiki/examples#interactive-cd
+function cd() {
+    if [[ "$#" != 0 ]]; then
+        builtin cd "$@";
+        return
+    fi
+    while true; do
+        local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
+        local dir="$(printf '%s\n' "${lsd[@]}" |
+            fzf --reverse --preview '
+                __cd_nxt="$(echo {})";
+                __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
+                echo $__cd_path;
+                echo;
+                ls -p --color=always "${__cd_path}";
+        ')"
+        [[ ${#dir} != 0 ]] || return 0
+        builtin cd "$dir" &> /dev/null
+    done
+}
+
+# fzf + tmux
+# - https://github.com/junegunn/fzf/wiki/examples#tmux
+
+# tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
+# `tm` will allow you to select your tmux session via fzf.
+# `tm irc` will attach to the irc session (if it exists), else it will create it.
+tm() {
+    [[ -n "$TMUX" ]] && \
+        change="switch-client" || \
+            change="attach-session"
+    if [ $1 ]; then
+        tmux $change -t "$1" 2>/dev/null || \
+            (tmux new-session -d -s $1 && \
+                 tmux $change -t "$1"); return
+    fi
+    session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | \
+                  fzf --exit-0) &&  tmux $change -t "$session" || \
+            echo "No sessions found."
+}
+
+# fs [FUZZY PATTERN] - Select selected tmux session
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fs() {
+    local session
+    session=$(tmux list-sessions -F "#{session_name}" | \
+                  fzf --query="$1" --select-1 --exit-0) &&
+        tmux switch-client -t "$session"
+}
+
+# ftpane - switch pane (@george-b)
+ftpane() {
+    local panes current_window current_pane target target_window target_pane
+    panes=$(tmux list-panes -s -F \
+                 '#I:#P - #{pane_current_path} #{pane_current_command}')
+    current_pane=$(tmux display-message -p '#I:#P')
+    current_window=$(tmux display-message -p '#I')
+
+    target=$(echo "$panes" | grep -v "$current_pane" | fzf +m --reverse) || return
+
+    target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
+    target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
+
+    if [[ $current_window -eq $target_window ]]; then
+        tmux select-pane -t ${target_window}.${target_pane}
+    else
+        tmux select-pane -t ${target_window}.${target_pane} &&
+            tmux select-window -t $target_window
+    fi
+}
+# In tmux.conf
+# bind-key 0 run "tmux split-window -l 12 'bash -ci ftpane'"
 
 # fasd
 if [ -x "$(command -v fasd)" ]; then
     eval "$(fasd --init auto)"
 fi
+
+# fzf + fasd
+# https://www.gregorykapfhammer.com/software/tool/productivity/2017/05/08/Directory-Zooming/
+# to: first gets a list of all the directories you have recently and
+# frequently visited and then passes that program's output to Fzf
+t() {
+    fasdlist=$( fasd -d -l -r $1 | \
+                    fzf --query="$1 " --select-1 --exit-0 \
+                        --height=25% --reverse --tac \
+                        --no-sort --cycle) && \
+        cd "$fasdlist"
+}
+
+# https://cdewaka.com/2018/02/07/fasd-for-navigation/
+# cd into recent directories
+# j() {
+#     local dir
+#     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && \
+#         cd "${dir}" || return 1
+# }
+# View recent f files
+v() {
+    local file
+    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && \
+        $EDITOR "${file}" || return 1
+}
+# cd into the directory containing a recently used file
+vd() {
+    local dir
+    local file
+    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && \
+        dir=$(dirname "$file") && cd "$dir"
+}
+
+# https://github.com/junegunn/fzf/wiki/examples#with-fasd-1
+# jump using `fasd` if given argument,
+# filter output of `fasd` using `fzf` else
+j(){
+    [ $# -gt 0 ] && fasd_cd -d "$*" && return
+    local dir
+    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && \
+        cd "${dir}" || return 1
+}
+
+# https://github.com/junegunn/fzf/wiki/examples#google-chrome-os-xlinux
+# c - browse chrome history
+c() {
+    local cols sep google_history open
+    cols=$(( COLUMNS / 3 ))
+    sep='{::}'
+
+    if [ "$(uname)" = "Darwin" ]; then
+        google_history="$HOME/Library/Application Support/Google/Chrome/Default/History"
+        open=open
+    else
+        google_history="$HOME/.config/google-chrome/Default/History"
+        open=xdg-open
+    fi
+    cp -f "$google_history" /tmp/h
+    sqlite3 -separator $sep /tmp/h \
+            "select substr(title, 1, $cols), url
+     from urls order by last_visit_time desc" |
+        awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
+        fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
+}
+
+# b - browse chrome bookmark (requires ruby)
+# https://github.com/junegunn/fzf/wiki/examples#google-chrome-os-xlinux
+
+# fzf + locate
+# https://github.com/junegunn/fzf/wiki/examples#locate
+# ALT-I - Paste the selected entry from locate output into the command line
+# fzf-locate-widget() {
+#     local selected
+#     if selected=$(locate / | fzf -q "$LBUFFER"); then
+#         LBUFFER=$selected
+#     fi
+#     zle redisplay
+# }
+# zle     -N    fzf-locate-widget
+# bindkey '\ei' fzf-locate-widget
+
+# fzf + docker
+# https://github.com/junegunn/fzf/wiki/examples#docker
+# Select a docker container to start and attach to
+function da() {
+    local cid
+    cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+    [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+}
+
+# Select a running docker container to stop
+function ds() {
+    local cid
+    cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+    [ -n "$cid" ] && docker stop "$cid"
+}
 
 # python virtual environments
 # FIXME: disable this part to supress errors on sony s13.
@@ -343,3 +515,6 @@ shopt -s cdspell # correct minor spelling errors in a cd command
 shopt -s cmdhist # multi-line commands to be appended to your bash history as a single line command
 shopt -s dotglob # allows dot-begin files to be returned in the results of path-name expansion
 shopt -s extglob # allows egrep-style extended pattern matching
+
+# kaldi ASR
+# [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
