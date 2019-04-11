@@ -1,0 +1,23 @@
+{
+    "segments": [
+        "time",
+        "virtual_env",
+        "hostname",
+        "ssh",
+        "cwd",
+        "git",
+        "git_stash",
+        "jobs",
+        "set_term_title",
+        "newline",
+        "username",
+        "exit_code",
+        "root"
+    ],
+    "mode": "patched",
+    "cwd": {
+        "mode": "plain",
+        "max_depth": 4
+    },
+    "theme": "default"
+}
