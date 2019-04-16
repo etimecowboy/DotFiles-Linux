@@ -1,3 +1,4 @@
+# Time-stamp: <2019-04-16 Tue 14:28 by xin on legion>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -416,6 +417,10 @@ ftpane() {
 # fasd
 if [ -x "$(command -v fasd)" ]; then
     eval "$(fasd --init auto)"
+    alias e='f -e $EDITOR' # quick opening files with emacs
+    alias m='f -e mpv'             # quick opening files with mplayer
+    alias o='a -e xdg-open'        # quick opening files with xdg-open
+    _fasd_bash_hook_cmd_complete e m o
 fi
 
 # fzf + fasd
@@ -549,7 +554,7 @@ function jnp() {
 # alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
 # alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
 
-export CDPATH=.:~:~/work:~/work/jupyter/work:~/work/data:~/src:~/software:~/桌面:/mnt:/opt
+export CDPATH=.:~:~/work:~/work/jupyter/work:~/work/data:~/src:~/software:~/桌面:~/Desktop:/mnt:/opt
 export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
 # export vblank_mode=0 # Boost gpu performance
 
