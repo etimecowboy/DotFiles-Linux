@@ -1,4 +1,4 @@
-# Time-stamp: <2019-04-16 Tue 14:28 by xin on legion>
+# Time-stamp: <2019-10-22 Tue 10:27 by xin on legion>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -203,8 +203,8 @@ alias ec='emacsclient -c'
 # alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs --debug-init'
 # alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
 ## Already using zh_CN locale
-alias emacs='emacs --debug-init'
-alias em='emacs --daemon' # swith im problem
+alias emacs='conda activate base && emacs --debug-init'
+alias em='conda activate base && emacs --daemon'
 
 alias ek="emacsclient -e '(client-save-kill-emacs)'"
 # alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
@@ -522,6 +522,18 @@ function ds() {
     [ -n "$cid" ] && docker stop "$cid"
 }
 
+export CDPATH=.:~:~/work:~/work/jupyter/work:~/work/data:~/src:~/software:~/桌面:~/Desktop:/mnt:/opt
+export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
+# export vblank_mode=0 # Boost gpu performance
+
+shopt -s cdspell # correct minor spelling errors in a cd command
+shopt -s cmdhist # multi-line commands to be appended to your bash history as a single line command
+shopt -s dotglob # allows dot-begin files to be returned in the results of path-name expansion
+shopt -s extglob # allows egrep-style extended pattern matching
+
+# kaldi ASR
+# [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
+
 # python virtual environments
 # FIXME: disable this part to supress errors on sony s13.
 ######## virtualenvwrapper
@@ -538,30 +550,44 @@ function ds() {
 
 # conda
 # export PATH="/opt/miniconda2/bin:$PATH"
+# export PATH="/opt/anaconda3/bin:$PATH"  # commented out by conda initialize
 
 # Python jupyter notebook server
-alias jss='jupyter notebook --no-browser --notebook-dir=~/work/jupyter &'
-alias jsk='kill $(pgrep jupyter)'
+# alias jss='jupyter notebook --no-browser --notebook-dir=~/work/jupyter &'
+# alias jsk='kill $(pgrep jupyter)'
 
-function jnp() {
-    # sudo:
-    #   jupyter-nbextension install rise --py --sys-prefix
-    #   jupyter-nbextension enable rise --py --sys-prefix
-    jupyter-nbconvert $1 --to slides --post serve
-}
+# function jnp() {
+#     # sudo:
+#     #   jupyter-nbextension install rise --py --sys-prefix
+#     #   jupyter-nbextension enable rise --py --sys-prefix
+#     jupyter-nbconvert $1 --to slides --post serve
+# }
 
 # Upgrade Python pip packages
 # alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
 # alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
 
-export CDPATH=.:~:~/work:~/work/jupyter/work:~/work/data:~/src:~/software:~/桌面:~/Desktop:/mnt:/opt
-export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
-# export vblank_mode=0 # Boost gpu performance
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+# don't activate base envrionment by default
+# conda deactivate
 
-shopt -s cdspell # correct minor spelling errors in a cd command
-shopt -s cmdhist # multi-line commands to be appended to your bash history as a single line command
-shopt -s dotglob # allows dot-begin files to be returned in the results of path-name expansion
-shopt -s extglob # allows egrep-style extended pattern matching
+# Intel MKL library
+# export PATH=~/intel/bin:$PATH
+# export LD_LIBRARY_PATH= ~/intel/lib/intel64:~/intel/mkl/lib/intel64:$LD_LIBRARY_PATH
 
-# kaldi ASR
-# [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
+# wav2letter++
+# export KENLM_ROOT_DIR=~/learn/asr/wav2letter/kenlm
+# export MKLROOT=~/intel/mkl
