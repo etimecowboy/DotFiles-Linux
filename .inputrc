@@ -10,3 +10,9 @@ set mark-symlinked-directories On
 set show-all-if-ambiguous On
 set show-all-if-unmodified On
 set visible-stats On
+# linux终端不能输入中文解决方法
+# https://blog.csdn.net/Time888/article/details/80323749
+# set meta-flag on
+# set convert-meta off
+# set input-meta on
+# set output-meta on

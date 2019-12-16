@@ -1,4 +1,4 @@
-# Time-stamp: <2019-10-22 Tue 10:27 by xin on legion>
+# Time-stamp: <2019-12-16 Mon 15:55 by xin on legion>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -183,19 +183,19 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Editors
 export ALTERNATE_EDITOR='emacs -nw'
-export EDITOR='emacsclient -t'
-export VISUAL='emacsclient -t'
+export EDITOR='emacsclient -ntc'
+export VISUAL='emacsclient -ntc'
 export PAGER='less'
 
 # Browser
 if [ -n "$DISPLAY" ]; then
-    export BROWSER='firefox'
+    export BROWSER='google-chrome'
 else
     export BROWSER='w3m'
 fi
 
 # Use script in ~/bin =====> for use in matlab command mode
-alias et='emacsclient -tc'
+alias ee='emacsclient -tc'
 alias ec='emacsclient -c'
 # English locale leads to the dysfunction of im (fcitx) in X LC_CTYPE
 # should be set when starting the daemon. If the locale already been
@@ -203,13 +203,13 @@ alias ec='emacsclient -c'
 # alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs --debug-init'
 # alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
 ## Already using zh_CN locale
-alias emacs='conda activate base && emacs --debug-init'
-alias em='conda activate base && emacs --daemon'
+alias emacs='conda activate py37_test && emacs --debug-init'
+alias em='conda activate py37_test && emacs --daemon'
 
 alias ek="emacsclient -e '(client-save-kill-emacs)'"
 # alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
 # alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
-alias ee='emacs -nw -q'
+alias eeq='emacs -nw -q'
 # alias vi='emacsclient -tc' # Use emacs instead of vi
 # alias today="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"d\")' 2> /dev/null | less"
 # alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 2> /dev/null | less"
@@ -582,7 +582,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 # don't activate base envrionment by default
-# conda deactivate
+conda deactivate
 
 # Intel MKL library
 # export PATH=~/intel/bin:$PATH
@@ -591,3 +591,10 @@ unset __conda_setup
 # wav2letter++
 # export KENLM_ROOT_DIR=~/learn/asr/wav2letter/kenlm
 # export MKLROOT=~/intel/mkl
+
+# For terminology terminal
+# export ECORE_IMF_MODULE="fcitx"
+# export XMODIFIERS="@im=fcitx"
+# LANG="zh_CN.UTF-8"
+# LC_MESSAGES="zh_CN.UTF-8"
+# export LANG LC_MESSAGES
