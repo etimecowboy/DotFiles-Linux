@@ -1,0 +1,392 @@
+# REF:
+# - https://wiki.archlinux.org/index.php/tmux 
+# Use alterative shell
+set-option -g default-shell $SHELL
+# Use different shell from the login shell
+# set-option -g default-shell /usr/bin/fish
+
+# Encoding
+# set -g utf8 on
+# set -g window-option -g utf8 on # error
+# set -g status-utf8 on
+
+# Large history limit
+set -g history-limit 10000
+
+# Indexing
+set -g base-index 1
+# set-option -g base-index 1
+setw -g pane-base-index 1
+
+# Notification
+## visual notification of activity in other windows
+# setw -g monitor-activity on
+# set  -g visual-activity on
+# set-option -g bell-action any
+# set-option -g visual-bell off
+
+# Short command delay
+# lower escape timing from 500ms to 50ms for quicker response to scroll-buffer access
+# basically allows for faster key repetition
+set -sg escape-time 0
+
+# Window title
+# If you SSH into a host in a tmux window, you'll notice the window
+# title of your terminal emulator remains to be user@localhost rather
+# than user@server. To allow the title bar to adapt to whatever host
+# you connect to, set the following in ~/.tmux.conf
+set -g set-titles on
+set -g set-titles-string "#T"
+
+# Status line
+# set -g status off
+set -g status on
+# set -g status-justify left
+# set -g status-interval 1
+# set -g status-bg default
+# set -g status-fg colour12
+set -g status-left "#[fg=red] #H#[fg=green]:#[fg=white]#S#[fg=green] #[default]"
+# emacs-emamux suggest https://github.com/syohex/emacs-emamux
+# '#S' is session name, '#I' is window index, '#P' is pane index
+set -g status-right '[#h###S:#I:#P]'
+
+## show performance counters in statusbar
+# requires https://github.com/thewtex/tmux-mem-cpu-load/
+# set -g status-interval 4
+# set -g status-right "#[fg=green] | #[fg=white]#(tmux-mem-cpu-load)#[fg=green] | #[fg=cyan]%H:%M #[default]"
+
+set -g status-interval 1
+set -g status-justify centre # center align window list
+set -g status-left-length 20
+set -g status-right-length 140
+# set -g status-left '#[fg=green]#H #[fg=black]• #[fg=green,bright]#(uname -r | cut -c 1-6)#[default]'
+# set -g status-left '#[fg=red]#H #[fg=white]• #[fg=red]#(uname -r | cut -c 1-6)#[default]'
+# set -g status-right '#[fg=green,bg=default,bright]#(tmux-mem-cpu-load) #[fg=red,dim,bg=default]#(uptime | cut -f 4-5 -d " " | cut -f 1 -d ",") #[fg=white,bg=default]%a%l:%M:%S %p#[default] 
+#[fg=blue]%Y-%m-%d'
+set -g status-right '#[fg=green,bg=default,bright] #[fg=red,dim,bg=default]#(uptime | cut -f 4-5 -d " " | cut -f 1 -d ",") #[fg=white,bg=default]%a %l:%M:%S %p#[default] #[fg=blue]%Y-%m-%d'
+
+
+# Naming
+## stop renaming windows automatically
+# set-option -g allow-rename off
+# set-window-option -g automatic-rename on
+
+
+# Mouse
+## for version 1.9
+# set -g mouse-select-window on
+# set -g mouse-select-pane on
+# set -g mouse-resize-pane on
+
+
+## for version 2.1, enable mouse mode
+set -g mouse on
+# set-window-option -g mode-mouse on
+# setw -g mode-mouse on
+
+## explicitly disable mouse control
+# setw -g mode-mouse off
+# set -g mouse-select-pane off
+# set -g mouse-resize-pane off
+# set -g mouse-select-window off
+
+
+# Colors
+set -g default-terminal "screen-256color"
+# set ability to capture on start and restore on exit window data when running an application
+setw -g alternate-screen on
+
+# Keyboard
+# C-i : Tab
+# C-m : Enter
+# C-h : Backspace
+
+## Enable xterm-keys
+set -g xterm-keys on
+
+
+## remap prefix
+unbind C-b
+# set -g prefix `
+# bind ` send-prefix
+set-option -g prefix M-z
+bind-key M-z send-prefix
+
+
+## split panes using | and -
+bind | split-window -h
+bind - split-window -v
+unbind '"'
+unbind %
+
+## switch pane using fzf (with ftpane function)
+bind-key 0 run "tmux split-window -l 12 'bash -ci ftpane'"
+
+## fast pane-switiching
+# bind -n M-Left  select-pane -L
+# bind -n M-Right select-pane -R
+# bind -n M-Back  select-pane -U
+# bind -n M-Down  select-pane -D
+
+# bind C-h select-pane -L
+# bind C-l select-pane -R
+# bind C-j select-pane -U # note that C-i is TAB in console
+# bind C-k select-pane -D
+
+# bind Left  select-pane -L
+# bind Right select-pane -R
+# bind Up    select-pane -U
+# bind Down  select-pane -D
+
+# bind M-j select-pane -L
+# bind M-l select-pane -R
+# bind M-i select-pane -U
+# bind M-k select-pane -D
+# unbind Left
+# unbind Right
+# unbind Up
+# unbind Down
+
+# emacs-tmux-pane
+# https://github.com/laishulu/emacs-tmux-pane
+# Smart pane switching with awareness of vim splits
+is_vim_emacs='echo "#{pane_current_command}" | \
+    grep -iqE "((^|\/)g?(view|n?vim?x?)(diff)?$)|emacs"'
+
+# enable in root key table
+bind -n C-M-Left if-shell "$is_vim_emacs" "send-keys C-M-Left" "select-pane -L"
+bind -n C-M-Down if-shell "$is_vim_emacs" "send-keys C-M-Down" "select-pane -D"
+bind -n C-M-Up if-shell "$is_vim_emacs" "send-keys C-M-Up" "select-pane -U"
+bind -n C-M-Right if-shell "$is_vim_emacs" "send-keys C-M-Right" "select-pane -R"
+
+# enable in copy mode key table
+bind -Tcopy-mode-vi C-M-Left if-shell "$is_vim_emacs" "send-keys C-M-Left" "select-pane -L"
+bind -Tcopy-mode-vi C-M-Down if-shell "$is_vim_emacs" "send-keys C-M-Down" "select-pane -D"
+bind -Tcopy-mode-vi C-M-Up if-shell "$is_vim_emacs" "send-keys C-M-Up" "select-pane -U"
+bind -Tcopy-mode-vi C-M-Right if-shell "$is_vim_emacs" "send-keys C-M-Right" "select-pane -R"
+unbind Left
+unbind Right
+unbind Up
+unbind Down
+
+## urxvt tab like window switching (-n: no prior escape seq)
+# bind -n S-down new-window
+# bind -n S-left prev
+# bind -n S-right next
+# bind -n C-left swap-window -t -1
+# bind -n C-right swap-window -t +1
+bind P swap-window -t -1
+bind N swap-window -t +1
+
+
+## cycle through panes
+# bind -r C-h select-window -t :-
+# bind -r C-l select-window -t :+
+
+## resize panes
+bind M-Left  resize-pane -L 15
+bind M-Right resize-pane -R 15
+bind M-Up    resize-pane -U 15
+bind M-Down  resize-pane -D 15
+
+## resize a window based on the smallest client actually viewing it,
+## not on the smallest one attached to the entire session.
+setw -g aggressive-resize on
+
+## make current window the first window
+# bind T swap-window -t 1
+
+## easy config reloads
+bind C-r source-file ~/.tmux.conf # ; display-message "Reload .tmux.conf"
+
+## vi mode
+# set-window-option -g mode-keys vi
+
+# Copy and Paste
+# Emacs style:
+bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip -sel clip -i"
+bind-key -T copy-mode M-w send-keys -X copy-pipe-and-cancel "xclip -sel clip -i"
+
+# Vi copypaste - tmux version 2.6
+# setw -g mode-keys vi
+# bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -sel clip -i"
+# bind-key -T copy-mode-vi v send-keys -X begin-selection
+# if-shell 'type xsel' \
+#   "bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xsel -ib'"
+# if-shell 'type xsel' \
+#   "bind-key -T copy-mode-vi Y send-keys -X copy-pipe 'xsel -ib'"
+# if-shell 'type xsel' \
+#   "bind ] run-shell \
+#     'xsel -ob | xargs -0 -I{} tmux set-buffer -- {} && tmux paste-buffer'"
+
+# ssh connection
+bind-key S   command-prompt -p "host" "split-window 'ssh %1'"
+bind-key C-s command-prompt -p "host" "new-window -n %1 'ssh %1'"
+
+# emacs
+# bind-key y     new-window -n   "emacs"  "emacsclient -tc"
+# bind-key C-y   split-window -v "emacsclient -tc"
+# bind-key M-y   split-window -h "emacsclient -tc"
+# bind-key m     new-window -n   "mew" "emacsclient -tc --eval '(mew)'"
+# bind-key C-w   new-window -n   "w3m" "emacsclient -tc --eval '(w3m)'"
+# bind-key M-w   split-window -v "emacsclient -tc --eval '(w3m)'"
+# bind-key C-M-w split-window -h "emacsclient -tc --eval '(w3m)'"
+# bind-key O     new-window -n   "gtd" "emacsclient -tc --eval '(org-agenda)'"
+# bind-key b     new-window -n   "ebib" "emacsclient -tc --eval '(ebib)'"
+# bind-key F     new-window -n   "sunrise" "emacsclient -tc --eval '(sunrise)'"
+# bind-key M     new-window -n   "matlab" "mat"
+
+
+# # http://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
+# # panes
+# set -g pane-border-fg black
+# set -g pane-active-border-fg brightred
+set-option -g pane-active-border-style "bg=colour208"
+set-option -ag pane-active-border-style "fg=black"
+
+# ## Status bar design
+# # status line
+# set -g status-utf8 on
+# set -g status-justify left
+set -g status-bg default
+set -g status-fg colour12
+# set -g status-interval 2
+
+# # messaging
+# set -g message-fg black
+# set -g message-bg yellow
+# set -g message-command-fg blue
+# set -g message-command-bg black
+
+# #window mode
+# setw -g mode-bg colour6
+# setw -g mode-fg colour0
+
+# # window status
+# setw -g window-status-format " #F#I:#W#F "
+# setw -g window-status-current-format " #F#I:#W#F "
+# setw -g window-status-format "#[fg=magenta]#[bg=black] #I #[bg=cyan]#[fg=colour8] #W "
+# setw -g window-status-current-format "#[bg=brightmagenta]#[fg=colour8] #I #[fg=colour8]#[bg=colour14] #W "
+# setw -g window-status-current-bg colour0
+# setw -g window-status-current-fg colour11
+# setw -g window-status-current-attr dim
+# setw -g window-status-bg green
+# setw -g window-status-fg black
+# setw -g window-status-attr reverse
+
+# # Info on left (I don't have a session display for now)
+# set -g status-left ''
+
+# # loud or quiet?
+set-option -g visual-activity off
+set-option -g visual-bell off
+set-option -g visual-silence off
+set-window-option -g monitor-activity off
+set-option -g bell-action none
+
+# set -g default-terminal "screen-256color"
+
+# # The modes {
+# setw -g clock-mode-colour colour135
+# setw -g mode-attr bold
+# setw -g mode-fg colour196
+# setw -g mode-bg colour238
+
+# # }
+# # The panes {
+
+# set -g pane-border-bg colour235
+# set -g pane-border-fg colour238
+# set -g pane-active-border-bg colour236
+# set -g pane-active-border-fg colour51
+
+# # }
+# # The statusbar {
+
+# set -g status-position bottom
+# set -g status-bg colour234
+# set -g status-fg colour137
+# set -g status-attr dim
+# set -g status-left ''
+# set -g status-right '#[fg=colour233,bg=colour241,bold] %d/%m #[fg=colour233,bg=colour245,bold] %H:%M:%S '
+# set -g status-right-length 50
+# set -g status-left-length 20
+
+# setw -g window-status-current-fg colour81
+# setw -g window-status-current-bg colour238
+# setw -g window-status-current-attr bold
+# setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour50]#F '
+
+# setw -g window-status-fg colour138
+# setw -g window-status-bg colour235
+# setw -g window-status-attr none
+# setw -g window-status-format ' #I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F '
+
+# setw -g window-status-bell-attr bold
+# setw -g window-status-bell-fg colour255
+# setw -g window-status-bell-bg colour1
+
+# # }
+# # The messages {
+
+# set -g message-attr bold
+# set -g message-fg colour232
+# set -g message-bg colour166
+
+# # }
+
+# The default command key bindings are:
+# C-b         Send the prefix key (C-b) through to the application.
+# C-o         Rotate the panes in the current window forwards.
+# C-z         Suspend the tmux client.
+# !           Break the current pane out of the window.
+# "           Split the current pane into two, top and bottom.
+# #           List all paste buffers.
+# $           Rename the current session.
+# %           Split the current pane into two, left and right.
+# &           Kill the current window.
+# '           Prompt for a window index to select.
+# ,           Rename the current window.
+# -           Delete the most recently copied buffer of text.
+# .           Prompt for an index to move the current window.
+# 0 to 9      Select windows 0 to 9.
+# :           Enter the tmux command prompt.
+# ;           Move to the previously active pane.
+# =           Choose which buffer to paste interactively from a list.
+# ?           List all key bindings.
+# D           Choose a client to detach.
+# [           Enter copy mode to copy text or view the history.
+# ]           Paste the most recently copied buffer of text.
+# c           Create a new window.
+# d           Detach the current client.
+# f           Prompt to search for text in open windows.
+# i           Display some information about the current window.
+# l           Move to the previously selected window.
+# n           Change to the next window.
+# o           Select the next pane in the current window.
+# p           Change to the previous window.
+# q           Briefly display pane indexes.
+# r           Force redraw of the attached client.
+# s           Select a new session for the attached client interactively.
+# L           Switch the attached client back to the last session.
+# t           Show the time.
+# w           Choose the current window interactively.
+# x           Kill the current pane.
+# {           Swap the current pane with the previous pane.
+# }           Swap the current pane with the next pane.
+# ~           Show previous messages from tmux, if any.
+# Page Up     Enter copy mode and scroll one page up.
+# Up, Down
+# Left, Right
+#             Change to the pane above, below, to the left, or to the right of the current pane.
+# M-1 to M-5  Arrange panes in one of the five preset layouts: even-horizontal, even-vertical, main-horizontal, main-
+#             vertical, or tiled.
+# M-n         Move to the next window with a bell or activity marker.
+# M-o         Rotate the panes in the current window backwards.
+# M-p         Move to the previous window with a bell or activity marker.
+# C-Up, C-Down
+# C-Left, C-Right
+#             Resize the current pane in steps of one cell.
+# M-Up, M-Down
+# M-Left, M-Right
+#             Resize the current pane in steps of five cells.
