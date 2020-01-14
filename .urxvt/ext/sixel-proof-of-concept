@@ -1,0 +1,14 @@
+use strict;
+use warnings;
+use X11::Protocol;
+
+my $X = X11::Protocol->new;
+
+sub on_refresh_end {
+  my $term = shift(@_);
+  my $gc = $X->new_rsrc;
+  $X->CreateGC($gc, $term->vt,
+    foreground => $X->white_pixel);
+  $X->PolyPoint($term->vt, $gc, 0, (10,10));
+  $X->flush;
+}

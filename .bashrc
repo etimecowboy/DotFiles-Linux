@@ -1,4 +1,4 @@
-# Time-stamp: <2019-12-16 Mon 15:55 by xin on legion>
+# Time-stamp: <2020-01-14 星期二 10:41 by xin on legion>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -19,8 +19,8 @@ export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -47,7 +47,6 @@ esac
 #
 # Turned off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
@@ -85,12 +84,6 @@ esac
 
 # customized prompt
 # REF: http://www.askapache.com/linux/bash-power-prompt.html
-# export PROMPT_COMMAND='export H1="`history 1|sed -e "s/^[\ 0-9]*//; s/[\d0\d31\d34\d39\d96\d127]*//g; s/\(.\{1,50\}\).*$/\1/g"`";history -a;echo -e "sgr0\ncnorm\nrmso"|tput -S'
-# export PS1='\n\e[1;30m[\j:\!\e[1;30m]\e[0;36m \T \d \e[1;30m[\e[1;34m\u@\H\e[1;30m:\e[0;37m`tty 2>/dev/null` \e[0;32m+${SHLVL}\e[1;30m] \e[1;37m\w\e[0;37m\[\033]0;[ ${H1}... ] \w - \u@\H +$SHLVL @`tty 2>/dev/null` - [ `uptime` ]\007\]\n\[\]\$ '
-
-# export PROMPT_COMMAND='echo -en "\033[m\033[38;5;2m"$(( `sed -n "s/MemFree:[\t ]\+\([0-9]\+\) kB/\1/p" /proc/meminfo`/1024))"\033[38;5;22m/"$((`sed -n "s/MemTotal:[\t ]\+\([0-9]\+\) kB/\1/Ip" /proc/meminfo`/1024 ))MB"\t\033[m\033[38;5;55m$(< /proc/loadavg)\033[m"' \
-# export PS1='\[\e[m\n\e[1;30m\][$$:$PPID \j:\!\[\e[1;30m\]]\[\e[0;36m\] \T \d \[\e[1;30m\][\[\e[1;34m\]\u@\H\[\e[1;30m\]:\[\e[0;37m\]${SSH_TTY} \[\e[0;32m\]+${SHLVL}\[\e[1;30m\]] \[\e[1;37m\]\w\[\e[0;37m\] \n($SHLVL:\!)\$ '
-
 function aa_prompt_defaults ()
 {
    local colors=`tput colors 2>/dev/null||echo -n 1` C=;
@@ -150,13 +143,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# if [ -d "$HOME/.emacs.d/bin" ] ; then
-#     PATH="$HOME/.emacs.d/bin:$PATH"
-# fi
-# if [ -d "$HOME/.emacs.d/bin/lin64" ] ; then
-#     PATH="$HOME/.emacs.d/bin/lin64:$PATH"
-# fi
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -176,6 +162,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias lt='ls -lart'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -185,7 +172,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 export ALTERNATE_EDITOR='emacs -nw'
 export EDITOR='emacsclient -ntc'
 export VISUAL='emacsclient -ntc'
-export PAGER='less'
+# export PAGER='less
+export PAGER='most'
 
 # Browser
 if [ -n "$DISPLAY" ]; then
@@ -205,7 +193,6 @@ alias ec='emacsclient -c'
 ## Already using zh_CN locale
 alias emacs='conda activate py37_test && emacs --debug-init'
 alias em='conda activate py37_test && emacs --daemon'
-
 alias ek="emacsclient -e '(client-save-kill-emacs)'"
 # alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
 # alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
@@ -213,14 +200,13 @@ alias eeq='emacs -nw -q'
 # alias vi='emacsclient -tc' # Use emacs instead of vi
 # alias today="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"d\")' 2> /dev/null | less"
 # alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 2> /dev/null | less"
-
 # export LC_CTYPE=zh_CN.UTF-8 # moved to ~/.profile
 
 # Matlab
 alias mat='matlab -nodesktop -nosplash'
 alias matlab='matlab -desktop'
-export COMPUTERNAME='zbox' # added for matlab getenv function
-export USERNAME='xin' # added for matlab getenv function
+# export COMPUTERNAME='zbox' # added for matlab getenv function
+# export USERNAME='xin' # added for matlab getenv function
 
 # urxvt
 alias urxvt='urxvtcd'
@@ -260,11 +246,6 @@ alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf'
 # file does not exist
 # source /usr/share/git/completion/git-prompt.sh
 
-# jabref
-# alias jabref='java -jar ~/.emacs.d/bin/JabRef-2.10.jar'
-# alias jabref='java -jar ~/bin/JabRef-3.8.jar'
-# alias jabref='java -jar ~/bin/JabRef-4.0.jar'
-
 if [ -n "$DISPLAY" ]; then
     # Turn off system bell in Xorg
     xset b off
@@ -272,7 +253,6 @@ if [ -n "$DISPLAY" ]; then
     setxkbmap -option "altwin:ctrl_alt_win"
     setxkbmap -option "altwin:ctrl_win"
 fi
-
 
 # Safe rm use trash-cli
 # alias rm='trash'
@@ -287,6 +267,13 @@ fi
 # c) pigz
 # d) pxz
 # alias tar='tar -I lbzip2'
+
+# tmux
+alias muxk='tmux kill-server'
+alias muxa='tmux attach'
+alias muxt='tmux attach -t'
+# preserve bash history in multiple bash shells
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # tmuxinator
 # NOTE: not used any more
@@ -313,13 +300,6 @@ fi
 # }
 # complete -F _tmuxinator tmuxinator mux
 # alias mux='tmuxinator'
-
-# tmux
-alias muxk='tmux kill-server'
-alias muxa='tmux attach'
-alias muxt='tmux attach -t'
-# preserve bash history in multiple bash shells
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # mplayer: multithread support
 # TODO: test

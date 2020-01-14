@@ -285,6 +285,7 @@ URxvt*perl-lib:/usr/lib/urxvt/perl:~/.urxvt/ext
 !! URxvt*perl-ext-common : default,url-select,clipboard,keyboard-select,font-size,kuake
 !! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,kuake
 !! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,digital-clock
+! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,tabbed,sixel-proof-of-concept
 URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,tabbed
 
 !! URxvt*perl-ext : default
@@ -609,15 +610,192 @@ URxvt*font-size.step: 1
 ! URxvt.keysym.Mod4-t:          \002:new-window -n torrent-a 'ssh torrent'\015
 ! URxvt.keysym.Mod4-T:          \002:new-window -n torrent-b 'ssh media@blob'\015
 
-!!! xterm
-XTerm*background:      #0C160C
-XTerm*foreground:      lightgray
-XTerm*allowBoldFonts:  false
+!!! xterm / uxterm
+! ref: https://github.com/zma/config_files/blob/master/Xresources.for.xterm
+! Make alt work
+XTerm*eightBitInput:   false
+XTerm*eightBitOutput:  true
+! Every shell is a login shell by default (for inclusion of all necessary environment variables)
 XTerm*loginShell:      true
+! Scrollbacks
+XTerm*savelines:       16384
+! Double-click to select whole URLs :D
+XTerm*charClass:       33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+! Default font and size
+XTerm*faceName:        DejavuSansMono for Powerline Nerd Font:size=10:antialias=true
+! XTerm*faceSize:        10
+! Chinese fonts
+XTerm*faceNameDoublesize: Microsoft YaHei
+XTerm*allowBoldFonts:  true
+! Colors
+! XTerm*foreground: rgb:a8/a8/a8
+! XTerm*background: rgb:22/22/22
+! XTerm*color0:  rgb:00/00/00
+! XTerm*color1:  rgb:a8/00/00
+! XTerm*color2:  rgb:00/a8/00
+! XTerm*color3:  rgb:a8/54/00
+! XTerm*color4:  rgb:58/58/b8
+! XTerm*color5:  rgb:a8/00/a8
+! XTerm*color6:  rgb:00/a8/a8
+! XTerm*color7:  rgb:a8/a8/a8
+! XTerm*color8:  rgb:54/54/54
+! XTerm*color9:  rgb:fc/54/54
+! XTerm*color10: rgb:54/fc/54
+! XTerm*color11: rgb:fc/fc/54
+! XTerm*color12: rgb:54/54/fc
+! XTerm*color13: rgb:fc/54/fc
+! XTerm*color14: rgb:54/fc/fc
+! XTerm*color15: rgb:fc/fc/fc
+
+!Theme Nine
+! http://futurile.net/2016/06/15/xterm-256color-themes-molokai-terminal-theme/
+! http://web.archive.org/web/20090130061234/http://phraktured.net/terminal-colors/
+! XTerm*background: rgb:1a/1a/1a
+! XTerm*foreground: rgb:d6/d6/d6
+! XTerm*color0:     rgb:00/00/00
+! XTerm*color1:     rgb:9e/18/28
+! XTerm*color2:     rgb:00/88/00
+! XTerm*color3:     rgb:96/8a/38
+! XTerm*color4:     rgb:41/41/71
+! XTerm*color5:     rgb:96/3c/59
+! XTerm*color6:     rgb:41/81/79
+! XTerm*color7:     rgb:be/be/be
+! XTerm*color8:     rgb:66/66/66
+! XTerm*color9:     rgb:cf/61/71
+! XTerm*color10:    rgb:7c/bc/8c
+! XTerm*color11:    rgb:ff/f7/96
+! XTerm*color12:    rgb:41/86/be
+! XTerm*color13:    rgb:cf/9e/be
+! XTerm*color14:    rgb:71/be/be
+! XTerm*color15:    rgb:ff/ff/ff
+! XTerm*cursorColor: #d6d6d6
+
+!Theme Five
+! XTerm*background: rgb:ad/aa/ad
+! XTerm*foreground: rgb:00/00/00
+! XTerm*color0:     rgb:00/00/00
+! XTerm*color1:     rgb:64/0f/19
+! XTerm*color2:     rgb:63/79/6b
+! XTerm*color3:     rgb:ad/71/42
+! XTerm*color4:     rgb:4f/4f/89
+! XTerm*color5:     rgb:b2/5c/7c
+! XTerm*color6:     rgb:52/75/6b
+! XTerm*color7:     rgb:ad/aa/ad
+! XTerm*color8:     rgb:52/55/52
+! XTerm*color9:     rgb:a5/61/63
+! XTerm*color10:    rgb:ce/c2/63
+! XTerm*color11:    rgb:73/ae/70
+! XTerm*color12:    rgb:36/70/9f
+! XTerm*color13:    rgb:aa/82/9c
+! XTerm*color14:    rgb:51/89/89
+! XTerm*color15:    rgb:ff/ff/ef
+
+!Theme Nine
+! XTerm*background: rgb:1a/1a/1a
+! XTerm*foreground: rgb:d6/d6/d6
+! XTerm*color0:     rgb:00/00/00
+! XTerm*color1:     rgb:9e/18/28
+! XTerm*color2:     rgb:00/88/00
+! XTerm*color3:     rgb:96/8a/38
+! XTerm*color4:     rgb:41/41/71
+! XTerm*color5:     rgb:96/3c/59
+! XTerm*color6:     rgb:41/81/79
+! XTerm*color7:     rgb:be/be/be
+! XTerm*color8:     rgb:66/66/66
+! XTerm*color9:     rgb:cf/61/71
+! XTerm*color10     rgb:7c/bc/8c
+! XTerm*color11     rgb:ff/f7/96
+! XTerm*color12     rgb:41/86/be
+! XTerm*color13     rgb:cf/9e/be
+! XTerm*color14     rgb:71/be/be
+! XTerm*color15:    rgb:ff/ff/ff
+
+!Theme rezza
+! !!colors ripped from rezza: http://metawire.org/~rezza/index.php
+! XTerm*foreground:     rgb:dd/dd/dd
+! XTerm*background:     rgb:22/22/22
+! !black
+! XTerm*color0:         rgb:19/19/19
+! XTerm*color8:         rgb:25/25/25
+! !red
+! XTerm*color1:         rgb:80/32/32
+! XTerm*color9:         rgb:98/2b/2b
+! !green
+! XTerm*color2:         rgb:5b/76/2f
+! XTerm*color10:        rgb:89/b8/3f
+! !brown/yellow
+! XTerm*color3:         rgb:aa/99/43
+! XTerm*color11:        rgb:ef/ef/60
+! !blue
+! XTerm*color4:         rgb:32/4c/80
+! XTerm*color12:        rgb:2b/4f/98
+! !magenta
+! XTerm*color5:         rgb:70/6c/9a
+! XTerm*color13:        rgb:82/6a/b1
+! !cyan
+! XTerm*color6:         rgb:92/b1/9e
+! XTerm*color14:        rgb:a1/cd/cd
+! !white
+! XTerm*color7:         rgb:ff/ff/ff
+! XTerm*color15:        rgb:dd/dd/dd
+
+!Theme One
+! XTerm*background: rgb:00/00/00
+! XTerm*foreground: rgb:a8/a8/a8
+! XTerm*color0:     rgb:00/00/00
+! XTerm*color1:     rgb:a8/00/00
+! XTerm*color2:     rgb:00/a8/00
+! XTerm*color3:     rgb:a8/54/00
+! XTerm*color4:     rgb:00/00/a8
+! XTerm*color5:     rgb:a8/00/a8
+! XTerm*color6:     rgb:00/a8/a8
+! XTerm*color7:     rgb:a8/a8/a8
+! XTerm*color8:     rgb:54/50/54
+! XTerm*color9:     rgb:f8/54/50
+! XTerm*color10:    rgb:50/fc/50
+! XTerm*color11:    rgb:f8/fc/50
+! XTerm*color12:    rgb:50/54/f8
+! XTerm*color13:    rgb:f8/54/f8
+! XTerm*color14:    rgb:50/fc/f8
+! XTerm*color15:    rgb:f8/fc/f8
+
+!Theme Fifteen
+XTerm*background: rgb:1d/2b/3a
+XTerm*foreground: rgb:be/be/be
+XTerm*color0:     rgb:00/00/00
+XTerm*color1:     rgb:d3/62/65
+XTerm*color2:     rgb:ae/ce/91
+XTerm*color3:     rgb:e7/e1/8c
+XTerm*color4:     rgb:7a/7a/b0
+XTerm*color5:     rgb:96/3c/59
+XTerm*color6:     rgb:41/81/79
+XTerm*color7:     rgb:be/be/be
+XTerm*color8:     rgb:66/66/66
+XTerm*color9:     rgb:ef/81/71
+XTerm*color10:    rgb:e5/f7/79
+XTerm*color11:    rgb:ff/f7/99
+XTerm*color12:    rgb:41/86/be
+XTerm*color13:    rgb:ef/9e/be
+XTerm*color14:    rgb:71/be/be
+XTerm*color15:    rgb:ff/ff/ff
+
+! lang
 XTerm*locale:          true
 XTerm*termName:        xterm-256color
-XTerm*metaSendsEscape: true
-! XTerm*faceName: Liberation Mono:size=10:antialias=true
+! XTerm*metaSendsEscape: true
+! Right-side scrollbar
+XTerm*rightScrollBar:  true
+XTerm*ScrollBar: true
+! Stop output to terminal from jumping down to bottom of scroll again
+XTerm*scrollTtyOutput: false
+! sixel graphic support (required by sixel)
+XTerm*decTerminalID:   vt340
+! copy/paste
+XTerm*VT100.Translations: #override \
+                 Shift <Key>Insert:    insert-selection(SELECT) \n\
+                 Ctrl Shift <Key>V:    insert-selection(SELECT) \n\
+                 Ctrl Shift <Key>C:    copy-selection(SELECT)
+XTerm*selectToClipboard: true
 
 !!! Emacs
 !! Disable xim-based im
