@@ -289,7 +289,7 @@ URxvt*perl-lib:/usr/lib/urxvt/perl:~/.urxvt/ext
 URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,tabbed
 
 !! URxvt*perl-ext : default
-URxvt*perl-ext : -searchable-scrollback
+! URxvt*perl-ext : -searchable-scrollback
 
 !!!!! default
 !! the Perl modules URxvt enables by default.
@@ -622,7 +622,7 @@ XTerm*savelines:       16384
 ! Double-click to select whole URLs :D
 XTerm*charClass:       33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
 ! Default font and size
-XTerm*faceName:        DejavuSansMono for Powerline Nerd Font:size=10:antialias=true
+XTerm*faceName:        DejavuSansMono for Powerline Nerd Font:size=12:antialias=true
 ! XTerm*faceSize:        10
 ! Chinese fonts
 XTerm*faceNameDoublesize: Microsoft YaHei
