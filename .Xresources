@@ -40,7 +40,7 @@ URxvt*depth:32
 !! URxvt*background:[85]#000000
 URxvt*geometry:80x25
 URxvt*borderLess:false
-URxvt*borderColor:#182218
+! URxvt*borderColor:#182218
 URxvt*internalBorder:1
 
 !! Native transparency (software transparency, bad looking)
@@ -69,186 +69,10 @@ URxvt*scrollBar:false
 URxvt.scrollTtyOutput:false
 URxvt.scrollTtyKeypress:true
 
-!! drop in Solarized colorscheme for Xresources
-!!
-!! 1 Write to $HOME/.Xresources
-!! 2 If not using Xsession, you must add the line `xrdb -merge ~/.Xresources`
-!!   to `.xinitrc`. See http://manpages.ubuntu.com/Xsession for more details.
-!!
-!!SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
-!!--------- ------- ---- -------  ----------- ---------- ----------- -----------
-!!base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
-!!base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
-!!base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
-!!base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
-!!base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
-!!base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
-!!base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
-!!base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
-!!yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
-!!orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
-!!red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
-!!magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
-!!violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
-!!blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
-!!cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
-!!green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
-
-!!!! drop in Zenburn colorscheme for Xresources
-!!
-! #define S_base03        #002b36
-! #define S_base02        #073642
-! #define S_base01        #586e75
-! #define S_base00        #657b83
-! #define S_base0         #839496
-! #define S_base1         #93a1a1
-! #define S_base2         #eee8d5
-! #define S_base3         #fdf6e3
-! #define S_yellow        #b58900
-! #define S_orange        #cb4b16
-! #define S_red           #dc322f
-! #define S_magenta       #d33682
-! #define S_violet        #6c71c4
-! #define S_blue          #268bd2
-! #define S_cyan          #2aa198
-! #define S_green         #859900
-
-! !! *background:            S_base03
-! !! *background:            black
-! !! *background:            white
-! !! *foreground:            S_base0
-! *fading:                20
-! *fadeColor:             S_base03
-! !! Use white cursor instead of the grey one
-! ! *cursorColor:           S_base1
-! *cursorColor:           #ffffff
-
-! *pointerColorBackground:S_base01
-! *pointerColorForeground:S_base1
-
-! !! black dark/light
-! *color0:                S_base02
-! *color8:                S_base03
-! !! red dark/light
-! *color1:                S_red
-! *color9:                S_orange
-! !! green dark/light
-! *color2:                S_green
-! *color10:               S_base01
-! !! yellow dark/light
-! *color3:                S_yellow
-! *color11:               S_base00
-! !! blue dark/light
-! *color4:                S_blue
-! *color12:               S_base0
-! !! magenta dark/light
-! *color5:                S_magenta
-! *color13:               S_violet
-! !! cyan dark/light
-! *color6:                S_cyan
-! *color14:               S_base1
-! !! white dark/light
-! *color7:                S_base2
-! *color15:               S_base3
-
-! URxvt*background:Black
-! URxvt*foreground:S_base0
-! URxvt*foreground:White
-
-!!!! Another zenburn theme https://gist.github.com/cqpx/1436584
-! URxvt*termName: rxvt-unicode-256color
-! URxvt*xftAntialias: true
-! ! URxvt*background: #3f3f3f
-! URxvt*background: [85]#3f3f3f
-! URxvt*foreground: #dcdccc
-! URxvt*cursorColor: #aaaaaa
-! URxvt*colorUL: #366060
-! URxvt*underlineColor: #dfaf8f
-! URxvt*color0: #3f3f3f
-! URxvt*color1: #cc9393
-! URxvt*color2: #7f9f7f
-! URxvt*color3: #d0bf8f
-! URxvt*color4: #6ca0a3
-! URxvt*color5: #dc8cc3
-! URxvt*color6: #93e0e3
-! URxvt*color7: #dcdccc
-! URxvt*color8: #000000
-! URxvt*color9: #dca3a3
-! URxvt*color10: #bfebbf
-! URxvt*color11: #f0dfaf
-! URxvt*color12: #8cd0d3
-! URxvt*color13: #dc8cc3
-! URxvt*color14: #93e0e3
-! URxvt*color15: #ffffff
-! ! *colorUL: #669090
-
-!!!! Another zenburn colortheme https://www.snip2code.com/Snippet/17984/URxvt-settings-with-zenburn-theme-
-
-URxvt*termName: rxvt-unicode-256color
-URxvt*background: [82]#3F3F3F
-URxvt*foreground: #DCDCCC
-URxvt*cursorColor: #DCDCCC
-URxvt*cursorColor2: #FFFFEF
-URxvt*colorUL: #8CD0D3
-URxvt*underlineColor: #F0DFAF
-URxvt*colorBD: #E0CF9F
-URxvt*colorIT: #656555
-!! black dark/light
-URxvt*color0: #3F3F3F
-URxvt*color8: #5F5F5F
-!! red dark/light
-URxvt*color1: #BC8383
-URxvt*color9: #CC9393
-!! green dark/light
-URxvt*color2: #5F7F5F
-URxvt*color10: #7F9F7F
-!! yellow dark/light
-URxvt*color3: #E0CF9F
-URxvt*color11: #F0DFAF
-!! blue dark/light
-URxvt*color4: #7CB8BB
-URxvt*color12: #8CD0D3
-!! magenta dark/light
-URxvt*color5: #DC8CC3
-URxvt*color13: #DC8CC3
-!! cyan dark/light
-URxvt*color6: #93E0E3
-URxvt*color14: #93E0E3
-!! white dark/light
-URxvt*color7: #DCDCCC
-URxvt*color15: #FFFFFF
-
 !!!! Fonts
-!! URxvt*font:  -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:16,xft:Microsoft YaHei:size=16
-!! URxvt*font:xft:terminus:pixelsize:20,xft:Microsoft YaHei:size=20
-!! URxvt*boldFont:  -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12,xft:bold:Microsoft YaHei:size=12
-!! URxvt*italicFont:  xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12,xft:italic:autohint=true:Microsoft YaHei:size=12
-!! URxvt*boldItalicFont:  xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12,xft:bold:italic:autohint=true:Microsoft YaHei:size=12
-!!!!! old choice
-!! URxvt*font:xft:Dejavu Sans Mono:size=10, xft:Microsoft YaHei:size=12
-!!!!! with powerline symbols and nerd symbols:
-!!!!! 1. set to a single nerd font 2. add Chinese font
-! URxvt*font:xft:Dejavu Sans Mono:size=10,xft:Microsoft YaHei:size=12,xft:PowerlineSymbols
-URxvt*font:xft:DejavuSansMono for Powerline Nerd Font:size=10,xft:Microsoft YaHei
-! URxvt*letterSpace:-2
-! URxvt*lineSpace:-2
-! URxvt*font:xft:mplus Nerd Font:size=10
-! URxvt*font:xft:Hurmit Nerd Font:size=9,xft:Microsoft YaHei:size=12
-! URxvt*font:xft:MonofurForPowerline Nerd Font:size=10
-! URxvt*font:xft:Fira Mono Medium for Powerline:size=10
-! URxvt*font:xft:Input Mono Compressed:size=10,xft:Microsoft YaHei,xft:PowerlineSymbols
-! URxvt*letterSpace:-1
-! URxvt*lineSpace:-1
-! URxvt*font:xft:SauceCodePro Nerd Font:size=9,xft:Microsoft YaHei
-!URxvt*font:xft:Source Code Pro for Powerline:size=10,xft:Microsoft YaHei
+URxvt*font:xft:DejavuSansMono for Powerline Nerd Font:size=11,xft:Microsoft YaHei
 URxvt*letterSpace:-1
 URxvt*lineSpace:-1
-!! URxvt*font:xft:monofur:size=11, xft:Microsoft YaHei
-!! URxvt*font:xft:Consolas:size=10, xft:Microsoft YaHei:size=12
-!! URxvt*font:xft:Terminus:size=11, xft:Microsoft YaHei
-!! URxvt*font:xft:Monospace:size=11, xft:Microsoft YaHei
-!! URxvt*letterSpace:0
-!! URxvt*lineSpace:0
 
 !!!! Printing
 !! The string will be interpreted as if typed into the shell as-is. In
@@ -286,7 +110,8 @@ URxvt*perl-lib:/usr/lib/urxvt/perl:~/.urxvt/ext
 !! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,kuake
 !! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,digital-clock
 ! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,tabbed,sixel-proof-of-concept
-URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,tabbed
+! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,tabbed
+URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size
 
 !! URxvt*perl-ext : default
 ! URxvt*perl-ext : -searchable-scrollback
@@ -541,74 +366,6 @@ URxvt*font-size.step: 1
 !! advance or retreat one word at a time. The following two codes
 !! re-enable this.
 !!
-!! NOTE: new version of urxvt supprts xterm keys
-!!
-! URxvt*keysym.Up:                     \033[A
-! URxvt*keysym.Down:                   \033[B
-! URxvt*keysym.Right:                  \033[C
-! URxvt*keysym.Left:                   \033[D
-! URxvt*keysym.Page_Up:                \033[5~
-! URxvt*keysym.Page_Down:              \033[6~
-! URxvt*keysym.Home:                   \033[H 
-! URxvt*keysym.End:                    \033[F 
-! URxvt*keysym.Up:                     \033[A
-! URxvt*keysym.Down:                   \033[B
-! URxvt*keysym.Right:                  \033[C
-! URxvt*keysym.Left:                   \033[D
-
-! URxvt*keysym.Home:                   \033[7~
-! URxvt*keysym.End:                    \033[8~
-! URxvt*keysym.Find:                   \033[1~
-! URxvt*keysym.Insert:                 \033[2~
-! URxvt*keysym.Select:                 \033[4~
-! URxvt*keysym.Prior:                  \033[5~
-! URxvt*keysym.Next:                   \033[6~
-
-! URxvt*keysym.C-Up:                   \033[1;5A
-! URxvt*keysym.C-Down:                 \033[1;5B
-! URxvt*keysym.C-Right:                \033[1;5C
-! URxvt*keysym.C-Left:                 \033[1;5D
-
-! URxvt*keysym.Meta-Up:                \033[1;3A
-! URxvt*keysym.Meta-Down:              \033[1;3B
-! URxvt*keysym.Meta-Right:             \033[1;3C
-! URxvt*keysym.Meta-Left:              \033[1;3D
-! URxvt*keysym.M-Up:                   \033[1;3A
-! URxvt*keysym.M-Down:                 \033[1;3B
-! URxvt*keysym.M-Right:                \033[1;3C
-! URxvt*keysym.M-Left:                 \033[1;3D
-
-! URxvt*keysym.S-Up:                   \033[1;2A
-! URxvt*keysym.S-Down:                 \033[1;2B
-! URxvt*keysym.S-Right:                \033[1;2C
-! URxvt*keysym.S-Left:                 \033[1;2D
-
-!! URxvt*keysym.F1:                    \033[11~
-!! URxvt*keysym.F2:                    \033[12~
-!! URxvt*keysym.F3:                    \033[13~
-!! URxvt*keysym.F4:                    \033[14~
-!! URxvt*keysym.F5:                    \033[15~
-!! URxvt*keysym.F6:                    \033[17~
-!! URxvt*keysym.F7:                    \033[18~
-!! URxvt*keysym.F8:                    \033[19~
-!! URxvt*keysym.F9:                    \033[20~
-!! URxvt*keysym.F10:                   \033[21~
-!! URxvt*keysym.F11:                   \033[23~
-!! URxvt*keysym.F12:                   \033[24~
-
-! Mod4 == Super key, which is windows key
-! \002 is ctrl-b, which is tmux control key combination
-! \015 is simply "enter" - so that the command will run
-! \x21 is ! - for some reason neither Mod4-!, nor Mod4-Shift-1 work
-! URxvt.keysym.Mod4-0x21:       \002:new-window -n alerts 'ssh -qt andy tmux-mobilealert'\015
-! URxvt.keysym.Mod4-Control-n:  \002c
-! URxvt.keysym.Mod4-m:          \002:new-window -n mutt 'ssh -qt andy tmux-mutt'\015
-! URxvt.keysym.Mod4-M:          \002:new-window -n omnimutt 'ssh -qt andy tmux-omnimutt'\015
-! URxvt.keysym.Mod4-i:          \002:new-window -n instructure 'ssh -qt andy tmux-instructuremutt'\015
-! URxvt.keysym.Mod4-s:          \002:new-window -n slrn 'ssh -qt andy tmux-slrn'\015
-! URxvt.keysym.Mod4-d:          \002:new-window -n andy 'ssh andy'\015
-! URxvt.keysym.Mod4-t:          \002:new-window -n torrent-a 'ssh torrent'\015
-! URxvt.keysym.Mod4-T:          \002:new-window -n torrent-b 'ssh media@blob'\015
 
 !!! xterm / uxterm
 ! ref: https://github.com/zma/config_files/blob/master/Xresources.for.xterm
@@ -627,157 +384,6 @@ XTerm*faceName:        DejavuSansMono for Powerline Nerd Font:size=12:antialias=
 ! Chinese fonts
 XTerm*faceNameDoublesize: Microsoft YaHei
 XTerm*allowBoldFonts:  true
-! Colors
-! XTerm*foreground: rgb:a8/a8/a8
-! XTerm*background: rgb:22/22/22
-! XTerm*color0:  rgb:00/00/00
-! XTerm*color1:  rgb:a8/00/00
-! XTerm*color2:  rgb:00/a8/00
-! XTerm*color3:  rgb:a8/54/00
-! XTerm*color4:  rgb:58/58/b8
-! XTerm*color5:  rgb:a8/00/a8
-! XTerm*color6:  rgb:00/a8/a8
-! XTerm*color7:  rgb:a8/a8/a8
-! XTerm*color8:  rgb:54/54/54
-! XTerm*color9:  rgb:fc/54/54
-! XTerm*color10: rgb:54/fc/54
-! XTerm*color11: rgb:fc/fc/54
-! XTerm*color12: rgb:54/54/fc
-! XTerm*color13: rgb:fc/54/fc
-! XTerm*color14: rgb:54/fc/fc
-! XTerm*color15: rgb:fc/fc/fc
-
-!Theme Nine
-! http://futurile.net/2016/06/15/xterm-256color-themes-molokai-terminal-theme/
-! http://web.archive.org/web/20090130061234/http://phraktured.net/terminal-colors/
-! XTerm*background: rgb:1a/1a/1a
-! XTerm*foreground: rgb:d6/d6/d6
-! XTerm*color0:     rgb:00/00/00
-! XTerm*color1:     rgb:9e/18/28
-! XTerm*color2:     rgb:00/88/00
-! XTerm*color3:     rgb:96/8a/38
-! XTerm*color4:     rgb:41/41/71
-! XTerm*color5:     rgb:96/3c/59
-! XTerm*color6:     rgb:41/81/79
-! XTerm*color7:     rgb:be/be/be
-! XTerm*color8:     rgb:66/66/66
-! XTerm*color9:     rgb:cf/61/71
-! XTerm*color10:    rgb:7c/bc/8c
-! XTerm*color11:    rgb:ff/f7/96
-! XTerm*color12:    rgb:41/86/be
-! XTerm*color13:    rgb:cf/9e/be
-! XTerm*color14:    rgb:71/be/be
-! XTerm*color15:    rgb:ff/ff/ff
-! XTerm*cursorColor: #d6d6d6
-
-!Theme Five
-! XTerm*background: rgb:ad/aa/ad
-! XTerm*foreground: rgb:00/00/00
-! XTerm*color0:     rgb:00/00/00
-! XTerm*color1:     rgb:64/0f/19
-! XTerm*color2:     rgb:63/79/6b
-! XTerm*color3:     rgb:ad/71/42
-! XTerm*color4:     rgb:4f/4f/89
-! XTerm*color5:     rgb:b2/5c/7c
-! XTerm*color6:     rgb:52/75/6b
-! XTerm*color7:     rgb:ad/aa/ad
-! XTerm*color8:     rgb:52/55/52
-! XTerm*color9:     rgb:a5/61/63
-! XTerm*color10:    rgb:ce/c2/63
-! XTerm*color11:    rgb:73/ae/70
-! XTerm*color12:    rgb:36/70/9f
-! XTerm*color13:    rgb:aa/82/9c
-! XTerm*color14:    rgb:51/89/89
-! XTerm*color15:    rgb:ff/ff/ef
-
-!Theme Nine
-! XTerm*background: rgb:1a/1a/1a
-! XTerm*foreground: rgb:d6/d6/d6
-! XTerm*color0:     rgb:00/00/00
-! XTerm*color1:     rgb:9e/18/28
-! XTerm*color2:     rgb:00/88/00
-! XTerm*color3:     rgb:96/8a/38
-! XTerm*color4:     rgb:41/41/71
-! XTerm*color5:     rgb:96/3c/59
-! XTerm*color6:     rgb:41/81/79
-! XTerm*color7:     rgb:be/be/be
-! XTerm*color8:     rgb:66/66/66
-! XTerm*color9:     rgb:cf/61/71
-! XTerm*color10     rgb:7c/bc/8c
-! XTerm*color11     rgb:ff/f7/96
-! XTerm*color12     rgb:41/86/be
-! XTerm*color13     rgb:cf/9e/be
-! XTerm*color14     rgb:71/be/be
-! XTerm*color15:    rgb:ff/ff/ff
-
-!Theme rezza
-! !!colors ripped from rezza: http://metawire.org/~rezza/index.php
-! XTerm*foreground:     rgb:dd/dd/dd
-! XTerm*background:     rgb:22/22/22
-! !black
-! XTerm*color0:         rgb:19/19/19
-! XTerm*color8:         rgb:25/25/25
-! !red
-! XTerm*color1:         rgb:80/32/32
-! XTerm*color9:         rgb:98/2b/2b
-! !green
-! XTerm*color2:         rgb:5b/76/2f
-! XTerm*color10:        rgb:89/b8/3f
-! !brown/yellow
-! XTerm*color3:         rgb:aa/99/43
-! XTerm*color11:        rgb:ef/ef/60
-! !blue
-! XTerm*color4:         rgb:32/4c/80
-! XTerm*color12:        rgb:2b/4f/98
-! !magenta
-! XTerm*color5:         rgb:70/6c/9a
-! XTerm*color13:        rgb:82/6a/b1
-! !cyan
-! XTerm*color6:         rgb:92/b1/9e
-! XTerm*color14:        rgb:a1/cd/cd
-! !white
-! XTerm*color7:         rgb:ff/ff/ff
-! XTerm*color15:        rgb:dd/dd/dd
-
-!Theme One
-! XTerm*background: rgb:00/00/00
-! XTerm*foreground: rgb:a8/a8/a8
-! XTerm*color0:     rgb:00/00/00
-! XTerm*color1:     rgb:a8/00/00
-! XTerm*color2:     rgb:00/a8/00
-! XTerm*color3:     rgb:a8/54/00
-! XTerm*color4:     rgb:00/00/a8
-! XTerm*color5:     rgb:a8/00/a8
-! XTerm*color6:     rgb:00/a8/a8
-! XTerm*color7:     rgb:a8/a8/a8
-! XTerm*color8:     rgb:54/50/54
-! XTerm*color9:     rgb:f8/54/50
-! XTerm*color10:    rgb:50/fc/50
-! XTerm*color11:    rgb:f8/fc/50
-! XTerm*color12:    rgb:50/54/f8
-! XTerm*color13:    rgb:f8/54/f8
-! XTerm*color14:    rgb:50/fc/f8
-! XTerm*color15:    rgb:f8/fc/f8
-
-!Theme Fifteen
-XTerm*background: rgb:1d/2b/3a
-XTerm*foreground: rgb:be/be/be
-XTerm*color0:     rgb:00/00/00
-XTerm*color1:     rgb:d3/62/65
-XTerm*color2:     rgb:ae/ce/91
-XTerm*color3:     rgb:e7/e1/8c
-XTerm*color4:     rgb:7a/7a/b0
-XTerm*color5:     rgb:96/3c/59
-XTerm*color6:     rgb:41/81/79
-XTerm*color7:     rgb:be/be/be
-XTerm*color8:     rgb:66/66/66
-XTerm*color9:     rgb:ef/81/71
-XTerm*color10:    rgb:e5/f7/79
-XTerm*color11:    rgb:ff/f7/99
-XTerm*color12:    rgb:41/86/be
-XTerm*color13:    rgb:ef/9e/be
-XTerm*color14:    rgb:71/be/be
-XTerm*color15:    rgb:ff/ff/ff
 
 ! lang
 XTerm*locale:          true
@@ -803,3 +409,92 @@ XTerm*selectToClipboard: true
 !! emacs*useXIM:true
 !! Emacs.font: ProFont-11
 !! Emacs*background:[80]#000000
+
+! Background colors
+URxvt*background:  [90]#261c14
+XTerm*background:  #261c14
+UXTerm*background: #261c14
+! emacs*background:  [85]#261c14	! not 100% sure this does anything
+! Foreground colors
+URxvt*foreground:  #a3adb8
+XTerm*foreground:  #a3adb8
+UXTerm*foreground: #a3adb8
+! emacs*foreground:  #a3adb8	! not 100% sure this does anything
+
+! Cursor colors
+URxvt*cursorColor:  #a3adb8
+XTerm*cursorColor:  #a3adb8
+UXTerm*cursorColor: #a3adb8
+
+! Rxvt-unicode border color
+URxvt*borderColor:  #a3adb8
+
+! Terminal Colors
+! black
+*color0:  #493829
+! red
+*color1:  #613318
+! green
+*color2:  #404f24
+! yellow
+*color3:  #a1941d
+! blue
+*color4:  #246024
+! pink
+*color5:  #9f572b
+! cyan
+*color6:  #326b62
+! white
+*color7:  #83929f
+! bold black
+*color8:  #816c5b
+! bold red
+*color9:  #8f3b1b
+! bold green
+*color10:  #668d3c
+! bold yellow
+*color11:  #dbca69
+! bold blue
+*color12:  #397628
+! bold pink
+*color13:  #af8152
+! bold cyan
+*color14:  #7fa292
+! bold white
+*color15:  #a3adb8
+
+! XClock
+
+XClock*foreground: rgb:61/33/18
+XClock*background: rgb:26/1c/14
+XClock*hands:      rgb:40/4f/24
+
+XClock.Clock.hourColor:   rgba:40/4f/24/ff
+XClock.Clock.minuteColor: rgba:66/8d/3c/ff
+XClock.Clock.majorColor:  rgba:9f/57/2b/ff
+XClock.Clock.minorColor:  rgba:a1/94/1d/ff
+
+
+! catclock
+! https://github.com/BarkyTheDog/catclock
+
+! xclock*background:  rgb:9e/8f/79
+xclock.background:        rgb:26/1c/14
+xclock*menu*background:   rgb:9e/8f/79
+xclock*menu*foreground:   rgb:00/00/00
+xclock*catColor:          rgb:49/5b/23
+xclock*detailColor:       rgb:9e/8f/79
+xclock*tieColor:          rgb:84/8d/55
+xclock*hands:             rgb:84/8d/55
+xclock*highlight:         rgb:40/4f/24
+xclock.foreground:        rgb:9e/8f/79
+xclock*bottomShadowColor: #564e42
+xclock*topShadowColor:    #e6d0b1
+
+! emacs-x11 resources: tested with openSUSE emacs package
+! I am not sure, but I think that the lowercase emacs resources are different
+! from the uppercase Emacs resources. Would love to know more about this
+! Emacs*foreground:        #000000
+! Emacs*background:        #9e8f79
+! Emacs*topShadowColor:    #e6d0b1
+! Emacs*bottomShadowColor: #564e42

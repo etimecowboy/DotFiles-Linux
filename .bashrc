@@ -1,4 +1,4 @@
-# Time-stamp: <2020-01-14 星期二 10:41 by xin on legion>
+# Time-stamp: <2020-04-27 Mon 17:38 by xin on legion>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -578,3 +578,5 @@ conda deactivate
 # LANG="zh_CN.UTF-8"
 # LC_MESSAGES="zh_CN.UTF-8"
 # export LANG LC_MESSAGES
+
+export TERM=screen-256color
