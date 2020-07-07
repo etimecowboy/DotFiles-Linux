@@ -1,85 +1,100 @@
+!!! Terminal default colors
+! black
+! *color0:  #493829
+! red
+! *color1:  #613318
+! green
+! *color2:  #404f24
+! yellow
+! *color3:  #a1941d
+! blue
+! *color4:  #246024
+! pink
+! *color5:  #9f572b
+! cyan
+! *color6:  #326b62
+! white
+! *color7:  #83929f
+! bold black
+! *color8:  #816c5b
+! bold red
+! *color9:  #8f3b1b
+! bold green
+! *color10: #668d3c
+! bold yellow
+! *color11: #dbca69
+! bold blue
+! *color12: #397628
+! bold pink
+! *color13: #af8152
+! bold cyan
+! *color14: #7fa292
+! bold white
+! *color15: #a3adb8
+
 !!! Xft settings
-Xft*dpi:96
-Xft*antialias:true
-Xft*hinting:full
-Xft*hintstyle:hintslight
-Xft*rgba:rgb
-! Xft*rgba:subpixel
-Xft*lcdfilter:lcddefault
+Xft*dpi:              96
+Xft*antialias:        true
+Xft*hinting:          full
+Xft*hintstyle:        hintslight
+Xft*rgba:             rgb
+! Xft*rgba:             subpixel
+Xft*lcdfilter:        lcddefault
 
 !!! URxvt settings
-!! URxvt (also known as rxvt-unicode) is a lightweight but extensible
-!! X11 terminal emulator. URxvt takes its configuration from this file
-!! as variables prefixed with its name. The variables used here are
-!! but a small sampling of those available, but should give the user
-!! some indication of its capabilities. Each variable is explained in
-!! more detail here.
+! Env setting
+URxvt*loginShell:     true
+URxvt*locale:         true
+URxvt*saveLines:      32767
+URxvt*urgentOnBell:   true
+URxvt*visualBell:     true
+URxvt*depth:          32
+URxvt*meta8:          false
+! For vim users
+URxvt*altSendsEscape: true
 
-!!!! Env settings
-URxvt*loginShell:t
-URxvt.locale:true
-URxvt*saveLines:32767
-!! with this set to true, when an app sends a bell to the terminal,
-!! awesome hilights the appropriate tag(s) ;)
-URxvt*urgentOnBell:true
-URxvt*visualBell:true
-
-!!!! Keyboard
-URxvt*meta8: false
-
-!!!! Appearance
-!! The following variables hold aesthetic information about URxvt.
-!! Background and foreground are obvious. The font must be an XOrg font
-!! string, which can be selected graphically using the `xfontsel` tool.
-!! `scrollBar` indicates whether a scroll bar will be visible; other
-!! options include `left` and `right`.
-
-!! True transparency (need support of WM)
-URxvt*depth:32
-!! URxvt*background:rgba:0000/0000/00000/bbbb
-!! URxvt*background:[85]#000000
-URxvt*geometry:80x25
-URxvt*borderLess:false
-! URxvt*borderColor:#182218
-URxvt*internalBorder:1
-
-!! Native transparency (software transparency, bad looking)
-!! URxvt*transparent:true
-!! Shading: 0 to 99 darkens, 101 to 200 lightens
-URxvt*shading:20
-!! Fade the terminal by 40% when it looses focus
-! URxvt*fading:40
-URxvt*fading:20
-URxvt*blurRadius:HxV
-! URxvt*blurRadius:5
-
-!!!! cursor
-URxvt*cursorUnderline:false
-URxvt*cursorBlink:true
-URxvt*pointerBlank:true
-
-!!!! Scroll bar
-URxvt*scrollBar:false
-!! URxvt*scrollstyle:plain
-!! URxvt*scrollBar_right:true
-!! URxvt*scrollBar_floating:false
-!! URxvt*secondaryScroll:true
-!! URxvt*troughColor:#000000
-!! URxvt*scrollColor:#222222
-URxvt.scrollTtyOutput:false
-URxvt.scrollTtyKeypress:true
-
-!!!! Fonts
-URxvt*font:xft:DejavuSansMono for Powerline Nerd Font:size=11,xft:Microsoft YaHei
-URxvt*letterSpace:-1
-URxvt*lineSpace:-1
-
-!!!! Printing
-!! The string will be interpreted as if typed into the shell as-is. In
-!! this example, printing will be disabled altogether.
+! Printing
+! The string will be interpreted as if typed into the shell as-is. In
+! this example, printing will be disabled altogether.
 URxvt*print-pipe: "cat > /dev/null"
 
-!!!! Perl extentions
+! Appearance
+! URxvt*background:rgba:0000/0000/00000/bbbb
+! URxvt*background:[85]#000000
+! URxvt*borderColor:#182218
+! URxvt*transparent:true ! Native transparency (software transparency, bad looking)
+! True transparency (need support of WM)
+! URxvt*background:      [85]#493829
+URxvt*background:      [85]#000000
+URxvt*foreground:      #a3adb8
+URxvt*borderColor:     #182218
+URxvt*cursorColor:     #a3adb8
+URxvt*cursorUnderline: false
+URxvt*cursorBlink:     true
+URxvt*pointerBlank:    true
+URxvt*geometry:        80x25
+URxvt*borderLess:      false
+URxvt*internalBorder:  2
+! Shading: 0 to 99 darkens, 101 to 200 lightens
+URxvt*shading:         20
+! Fade the terminal by 20% when it looses focus
+URxvt*fading:          20
+URxvt*blurRadius:      HxV
+URxvt*scrollBar:       false
+! URxvt*blurRadius:5
+! URxvt*scrollstyle:plain
+! URxvt*scrollBar_right:true
+! URxvt*scrollBar_floating:false
+! URxvt*secondaryScroll:true
+! URxvt*troughColor:#000000
+! URxvt*scrollColor:#222222
+URxvt.scrollTtyOutput:  false
+URxvt.scrollTtyKeypress:true
+URxvt*font:  xft:DejavuSansMono for Powerline Nerd Font:size=12,xft:Microsoft YaHei
+URxvt*letterSpace:      -1
+URxvt*lineSpace:        -1
+
+! Perl extentions
 !! URxvt can be extended using Perl scripts. The system-wide dir for
 !! scripts is `/usr/lib/urxvt/perl`. The `perl-ext` and
 !! `perl-ext-common` variables list the plugins that should be loaded.
@@ -92,53 +107,44 @@ URxvt*print-pipe: "cat > /dev/null"
 !! pattern I use here, which is to place all custom plugins in
 !! `perl-ext-common`.
 !!
+!! the Perl modules URxvt enables by default.
 !! NOTE: for version older than 9.14, you will have to add the path to
 !! the script to the `URxvt.perl-lib` resource. For version newer than
 !! 9.14, the default local path of the perl extensions is
 !! `~/.urxvt/ext/`, and you must put your script there. (I tried
 !! `~/.urxvt/perl/`, but failed even it was added to perl-lib)
-URxvt*perl-lib:/usr/lib/urxvt/perl:~/.urxvt/ext
 
-!! URxvt*perl-ext-common: default,url-select,clipboard
-!! URxvt*perl-ext: default
+! URxvt*perl-lib:/usr/lib/urxvt/perl:~/.urxvt/ext
+URxvt*perl-lib:/home/xin/.urxvt/ext
+! URxvt*perl-ext-common: default,url-select,clipboard
+! URxvt*perl-ext: default
 
-!! URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine
-!! URxvt*matcher.button: 1
-
-!! URxvt*perl-ext-common : default,tabbed,url-select,clipboard,keyboard-select
-!! URxvt*perl-ext-common : default,url-select,clipboard,keyboard-select,font-size,kuake
-!! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,kuake
-!! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,digital-clock
-! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,tabbed,sixel-proof-of-concept
-! URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size,tabbed
+! URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine
+! URxvt*matcher.button: 1
 URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-select,font-size
 
-!! URxvt*perl-ext : default
+! URxvt*perl-ext : default
 ! URxvt*perl-ext : -searchable-scrollback
 
-!!!!! default
-!! the Perl modules URxvt enables by default.
-
-!!!!! matcher
+! matcher
 !! URxvt*matcher.button: 1
 !! URxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 !! URxvt*keysym.C-Delete: perl:matcher:last
 !! URxvt*keysym.M-Delete: perl:matcher:list
 
-!!!!! tabbed: not in used, tmux is used for session managment
+! tabbed: not in used, tmux is used for session managment
 !! TODO: How to unset prefix key - shift?
 !! Display the title of terminal next to tabs list
 !! URxvt*tabbed.title: true
 !! URxvt*tabbed.title-bg: 8
 !! URxvt*tabbed.title-fg: 7
-
-!!!!!! theme1
+!theme1
 !! URxvt*tabbed.tabbar-fg: 2
 !! URxvt*tabbed.tabbar-bg: 0
 !! URxvt*tabbed.tab-fg: 3
 !! URxvt*tabbed.tab-bg: 0
 
-!!!!! theme2
+!theme2
 !! gray background, ~white text (used) and the opposite for the
 !! currently focused tab
 !! URxvt*tabbed.tabbar-fg: 7
@@ -146,13 +152,13 @@ URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-sel
 !! URxvt*tabbed.tab-fg: 8
 !! URxvt*tabbed.tab-bg: 7
 
-!!!!! theme3
+!theme3
 ! URxvt*tabbed.tabbar-fg:           28
 ! URxvt*tabbed.tabbar-bg:           22
 ! URxvt*tabbed.tab-fg:              46
 ! URxvt*tabbed.tab-bg:              22
 
-!!!!! more settings
+!more settings
 ! URxvt*tabbed.tab-prefix:          \040 !! what is this key?
 ! URxvt.tabbed.tab-suffix:          \040
 ! URxvt.tabbed.active-tab-fg:       51
@@ -170,11 +176,10 @@ URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-sel
 ! URxvt.tabbed.new-label:           ++
 ! URxvt.tabbed.separator:           |
 
-!!!!! tabbedex
+! tabbedex
 !! an improved version of the included `tabbed` created by stepb; this
 !! plugin allows multiple tabs within the same window with the ability
 !! to reorder and rename.
-
 !! The default keybindings for moving tabs with `tabbedex` are C-Left
 !! and C-Right, but I re-assigned those earlier to advance and
 !! withdraw one word at a time. Here, I remap the tab move keybindings
@@ -189,14 +194,15 @@ URxvt*perl-ext-common : -searchable-scrollback,url-select,clipboard,keyboard-sel
 ! URxvt*keysym.C-S-Left:  perl:tabbex:move_tab_left
 ! URxvt*keysym.C-S-right: perl:tabbex:move_tab_right
 
-!!!!! keyboard-select
+! keyboard-select
 !! Use keyboard shortcuts to select and copy text.
 
 !! After installing, put the following lines in your
 !! .Xdefaults / .Xresources:
-!! URxvt.perl-ext-common: ...,keyboard-select
-!! URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt*keysym.M-Escape: perl:keyboard-select:activate
+! URxvt.perl-ext-common: ...,keyboard-select
+! URxvt.keysym.M-Escape: perl:keyboard-select:activate
+! URxvt*keysym.M-Escape: perl:keyboard-select:activate
+URxvt*keysym.C-@: perl:keyboard-select:activate
 
 !! The following line overwrites the default Meta-s binding and allows
 !! to activate keyboard-select directly in backward search mode:
@@ -216,7 +222,7 @@ URxvt*keysym.M-s: perl:keyboard-select:search
 !! - y/Return:   Copy selection to primary buffer, Return: deactivate afterwards
 !! - q/Escape:   Deactivate keyboard selection mode
 
-!!!!! url-select
+! url-select
 !! Use keyboard shortcuts to select URLs.
 !! This should be used as a replacement for the default matcher
 !! extension, it also makes URLs clickable with the middle mouse
@@ -255,10 +261,14 @@ URxvt*url-select.button:    1
 ! TODO:
 ! URxvt*url-select.launcher:  firefox -new-tab
 URxvt*urlLauncher: google-chrome --new-window
+URxvt*underlineURLs: true
+!! URxvt*urlButton: 2
+!! URxvt*colorUL: #4682B4
 URxvt*url-select.launcher:  google-chrome --new-window
 URxvt*url-select.underline: true
 
-!! -------------- old url-select
+
+! -------------- old url-select
 !! an improved version of the included plugin of the same name, which
 !! allows using the keyboad to select and copy URLs printed to the
 !! terminal.
@@ -281,7 +291,7 @@ URxvt*url-select.underline: true
 !! URxvt.keysym.M-u : perl:url-select:select_next
 !! --------------- old url-selct ends
 
-!!!!! clipboard
+! clipboard
 !! Use keyboard shortcuts to copy the selection to the clipboard and to
 !! paste the clipboard contents (optionally escaping all special
 !! characters).
@@ -320,24 +330,18 @@ URxvt*clipboard.pastecmd: xclip -o -selection clipboard
 !! URxvt.clipboard.copycmd:  pbcopy
 !! URxvt.clipboard.pastecmd: pbpaste
 
-!! The use of the functions should be self-explanatory!
-
-!!!!! font-size
-! URxvt.keysym.C-Up:     font-size:increase
-! URxvt.keysym.C-Down:   font-size:decrease
-! URxvt.keysym.C-S-Up:   font-size:incglobal
-! URxvt.keysym.C-S-Down: font-size:decglobal
-!! NOTE: for urxvt versions older than 9.21 the resources have to look
-!! like this:
-URxvt.keysym.C-S-F12:   perl:font-size:increase
-URxvt.keysym.C-S-F11:   perl:font-size:decrease
-URxvt.keysym.C-F12: perl:font-size:incglobal
-URxvt.keysym.C-F11: perl:font-size:decglobal
-URxvt*font-size.step: 1
-
 !!!!! kuake: not in use, multiple visual desktop is more useful.
 !! TODO: How to unset the activation key F10?
 !! URxvt*kuake.hotkey: Mod4-a
+
+!! The use of the functions should be self-explanatory!
+
+! font-size
+URxvt.keysym.C-S-F12:   perl:font-size:increase
+URxvt.keysym.C-S-F11:   perl:font-size:decrease
+URxvt.keysym.C-F12:     perl:font-size:incglobal
+URxvt.keysym.C-F11:     perl:font-size:decglobal
+URxvt*font-size.step:   1
 
 !! -------------- old clipboard
 !! an extension for improved management of the clipboard,
@@ -361,14 +365,81 @@ URxvt*font-size.step: 1
 !! URxvt*keysym.C-S-Insert: perl:clipboard:paste_escaped
 !! --------------- old clipboard ends
 
-!!!! Key bindings
+!!! Key bindings
 !! URxvt by default does not support using the control+arrows to
 !! advance or retreat one word at a time. The following two codes
 !! re-enable this.
-!!
+! emulate XTerm for proper recognition of key combinations in Vim
+! !URxvt.keysym.Up              : \033[A  !breaks arrow keys in Vim
+! !URxvt.keysym.Down            : \033[B  !breaks arrow keys in Vim
+! !URxvt.keysym.Right           : \033[C  !breaks arrow keys in Vim
+! !URxvt.keysym.Left            : \033[D  !breaks arrow keys in Vim
+! !URxvt.keysym.Page_Up         : \033[5~ !breaks scrolling in Rxvt
+! !URxvt.keysym.Page_Down       : \033[6~ !breaks scrolling in Rxvt
+! !URxvt.keysym.Home            : \033[H  !breaks navigation in Vim
+! !URxvt.keysym.End             : \033[F  !breaks navigation in Vim
+! URxvt.keysym.S-Up             : \033[1;2A
+! URxvt.keysym.S-Down           : \033[1;2B
+! URxvt.keysym.S-Right          : \033[1;2C
+! URxvt.keysym.S-Left           : \033[1;2D
+! !URxvt.keysym.S-Page_Up       : captured by terminal for scrolling
+! !URxvt.keysym.S-Page_Down     : captured by terminal for scrolling
+! URxvt.keysym.S-Home           : \033[1;2H
+! URxvt.keysym.S-End            : \033[1;2F
+! URxvt.keysym.M-Up             : \033[1;3A
+! URxvt.keysym.M-Down           : \033[1;3B
+! URxvt.keysym.M-Right          : \033[1;3C
+! URxvt.keysym.M-Left           : \033[1;3D
+! URxvt.keysym.M-Page_Up        : \033[5;3~
+! URxvt.keysym.M-Page_Down      : \033[6;3~
+! URxvt.keysym.M-Home           : \033[1;3H
+! URxvt.keysym.M-End            : \033[1;3F
+! URxvt.keysym.M-S-Up           : \033[1;4A
+! URxvt.keysym.M-S-Down         : \033[1;4B
+! URxvt.keysym.M-S-Right        : \033[1;4C
+! URxvt.keysym.M-S-Left         : \033[1;4D
+! !URxvt.keysym.M-S-Page_Up     : seen as Rxvt.keysym.S-Page_Up
+! !URxvt.keysym.M-S-Page_Down   : seen as Rxvt.keysym.S-Page_Down
+! URxvt.keysym.M-S-Home         : \033[1;4H
+! URxvt.keysym.M-S-End          : \033[1;4F
+! URxvt.keysym.C-Up             : \033[1;5A
+! URxvt.keysym.C-Down           : \033[1;5B
+! URxvt.keysym.C-Right          : \033[1;5C
+! URxvt.keysym.C-Left           : \033[1;5D
+! URxvt.keysym.C-Page_Up        : \033[5;5~
+! URxvt.keysym.C-Page_Down      : \033[6;5~
+! URxvt.keysym.C-Home           : \033[1;5H
+! URxvt.keysym.C-End            : \033[1;5F
+! URxvt.keysym.C-S-Up           : \033[1;6A
+! URxvt.keysym.C-S-Down         : \033[1;6B
+! URxvt.keysym.C-S-Right        : \033[1;6C
+! URxvt.keysym.C-S-Left         : \033[1;6D
+! !URxvt.keysym.C-S-Page_Up     : seen as Rxvt.keysym.S-Page_Up
+! !URxvt.keysym.C-S-Page_Down   : seen as Rxvt.keysym.S-Page_Down
+! URxvt.keysym.C-S-Home         : \033[1;6H
+! URxvt.keysym.C-S-End          : \033[1;6F
+! URxvt.keysym.M-C-Up           : \033[1;7A
+! URxvt.keysym.M-C-Down         : \033[1;7B
+! URxvt.keysym.M-C-Right        : \033[1;7C
+! URxvt.keysym.M-C-Left         : \033[1;7D
+! URxvt.keysym.M-C-Page_Up      : \033[5;7~
+! URxvt.keysym.M-C-Page_Down    : \033[6;7~
+! URxvt.keysym.M-C-Home         : \033[1;7H
+! URxvt.keysym.M-C-End          : \033[1;7F
+! URxvt.keysym.M-C-S-Up         : \033[1;8A
+! URxvt.keysym.M-C-S-Down       : \033[1;8B
+! URxvt.keysym.M-C-S-Right      : \033[1;8C
+! URxvt.keysym.M-C-S-Left       : \033[1;8D
+! !URxvt.keysym.M-C-S-Page_Up   : seen as Rxvt.keysym.S-Page_Up
+! !URxvt.keysym.M-C-S-Page_Down : seen as Rxvt.keysym.S-Page_Down
+! URxvt.keysym.M-C-S-Home       : \033[1;8H
+! URxvt.keysym.M-C-S-End        : \033[1;8F
 
 !!! xterm / uxterm
 ! ref: https://github.com/zma/config_files/blob/master/Xresources.for.xterm
+XTerm*background:  #261c14
+XTerm*foreground:  #a3adb8
+XTerm*cursorColor: #a3adb8
 ! Make alt work
 XTerm*eightBitInput:   false
 XTerm*eightBitOutput:  true
@@ -380,121 +451,68 @@ XTerm*savelines:       16384
 XTerm*charClass:       33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
 ! Default font and size
 XTerm*faceName:        DejavuSansMono for Powerline Nerd Font:size=12:antialias=true
+! xft:DejavuSansMono for Powerline Nerd Font:size=11,xft:Microsoft YaHei
 ! XTerm*faceSize:        10
 ! Chinese fonts
 XTerm*faceNameDoublesize: Microsoft YaHei
-XTerm*allowBoldFonts:  true
+XTerm*allowBoldFonts:     true
 
 ! lang
 XTerm*locale:          true
 XTerm*termName:        xterm-256color
-! XTerm*metaSendsEscape: true
+XTerm*metaSendsEscape: true
+XTerm*modifyOtherKeys: true
 ! Right-side scrollbar
 XTerm*rightScrollBar:  true
-XTerm*ScrollBar: true
+XTerm*ScrollBar:       true
 ! Stop output to terminal from jumping down to bottom of scroll again
 XTerm*scrollTtyOutput: false
 ! sixel graphic support (required by sixel)
 XTerm*decTerminalID:   vt340
+! utf8 supports
+XTerm*vt100.utf8:      true
+XTerm*vt100.utf8Fonts: true
+XTerm*vt100.utf8Title: true
 ! copy/paste
-XTerm*VT100.Translations: #override \
+XTerm*vt100.Translations: #override \
                  Shift <Key>Insert:    insert-selection(SELECT) \n\
                  Ctrl Shift <Key>V:    insert-selection(SELECT) \n\
                  Ctrl Shift <Key>C:    copy-selection(SELECT)
 XTerm*selectToClipboard: true
+XTerm*vt100.allowTitleOps: true
+XTerm*vt100.blink: true
 
 !!! Emacs
 !! Disable xim-based im
 !! not use this, it will diable fcitx in X as well
-!! emacs*useXIM:true
-!! Emacs.font: ProFont-11
-!! Emacs*background:[80]#000000
-
-! Background colors
-URxvt*background:  [90]#261c14
-XTerm*background:  #261c14
-UXTerm*background: #261c14
-! emacs*background:  [85]#261c14	! not 100% sure this does anything
-! Foreground colors
-URxvt*foreground:  #a3adb8
-XTerm*foreground:  #a3adb8
-UXTerm*foreground: #a3adb8
-! emacs*foreground:  #a3adb8	! not 100% sure this does anything
-
-! Cursor colors
-URxvt*cursorColor:  #a3adb8
-XTerm*cursorColor:  #a3adb8
-UXTerm*cursorColor: #a3adb8
-
-! Rxvt-unicode border color
-URxvt*borderColor:  #a3adb8
-
-! Terminal Colors
-! black
-*color0:  #493829
-! red
-*color1:  #613318
-! green
-*color2:  #404f24
-! yellow
-*color3:  #a1941d
-! blue
-*color4:  #246024
-! pink
-*color5:  #9f572b
-! cyan
-*color6:  #326b62
-! white
-*color7:  #83929f
-! bold black
-*color8:  #816c5b
-! bold red
-*color9:  #8f3b1b
-! bold green
-*color10:  #668d3c
-! bold yellow
-*color11:  #dbca69
-! bold blue
-*color12:  #397628
-! bold pink
-*color13:  #af8152
-! bold cyan
-*color14:  #7fa292
-! bold white
-*color15:  #a3adb8
-
-! XClock
-
-XClock*foreground: rgb:61/33/18
-XClock*background: rgb:26/1c/14
-XClock*hands:      rgb:40/4f/24
-
-XClock.Clock.hourColor:   rgba:40/4f/24/ff
-XClock.Clock.minuteColor: rgba:66/8d/3c/ff
-XClock.Clock.majorColor:  rgba:9f/57/2b/ff
-XClock.Clock.minorColor:  rgba:a1/94/1d/ff
-
-
-! catclock
-! https://github.com/BarkyTheDog/catclock
-
-! xclock*background:  rgb:9e/8f/79
-xclock.background:        rgb:26/1c/14
-xclock*menu*background:   rgb:9e/8f/79
-xclock*menu*foreground:   rgb:00/00/00
-xclock*catColor:          rgb:49/5b/23
-xclock*detailColor:       rgb:9e/8f/79
-xclock*tieColor:          rgb:84/8d/55
-xclock*hands:             rgb:84/8d/55
-xclock*highlight:         rgb:40/4f/24
-xclock.foreground:        rgb:9e/8f/79
-xclock*bottomShadowColor: #564e42
-xclock*topShadowColor:    #e6d0b1
-
-! emacs-x11 resources: tested with openSUSE emacs package
-! I am not sure, but I think that the lowercase emacs resources are different
-! from the uppercase Emacs resources. Would love to know more about this
-! Emacs*foreground:        #000000
+! Emacs*useXIM:true
+! Emacs*font: ProFont-11
+! Emacs*background:        [85]#493829
 ! Emacs*background:        #9e8f79
+! Emacs*foreground:        #000000
 ! Emacs*topShadowColor:    #e6d0b1
 ! Emacs*bottomShadowColor: #564e42
+
+!!! XClock
+! XClock*foreground: rgb:61/33/18
+! XClock*background: rgb:26/1c/14
+! XClock*hands:      rgb:40/4f/24
+! XClock*Clock.hourColor:   rgba:40/4f/24/ff
+! XClock*Clock.minuteColor: rgba:66/8d/3c/ff
+! XClock*Clock.majorColor:  rgba:9f/57/2b/ff
+! XClock*Clock.minorColor:  rgba:a1/94/1d/ff
+
+!!! catclock
+! https://github.com/BarkyTheDog/catclock
+! xclock*background:  rgb:9e/8f/79
+! XClock*background:        rgb:26/1c/14
+! XClock*menu*background:   rgb:9e/8f/79
+! XClock*menu*foreground:   rgb:00/00/00
+! XClock*catColor:          rgb:49/5b/23
+! XClock*detailColor:       rgb:9e/8f/79
+! XClock*tieColor:          rgb:84/8d/55
+! XClock*hands:             rgb:84/8d/55
+! XClock*highlight:         rgb:40/4f/24
+! XClock*foreground:        rgb:9e/8f/79
+! XClock*bottomShadowColor: #564e42
+! XClock*topShadowColor:    #e6d0b1

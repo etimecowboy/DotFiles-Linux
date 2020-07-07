@@ -1,4 +1,4 @@
-# Time-stamp: <2020-04-27 Mon 17:38 by xin on legion>
+# Time-stamp: <2020-06-04 Thu 16:59 by xin on legion>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -37,6 +37,7 @@ shopt -s checkwinsize
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
+
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -249,9 +250,9 @@ alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf'
 if [ -n "$DISPLAY" ]; then
     # Turn off system bell in Xorg
     xset b off
-    # Remap keyboard, NOTE: when using mate or gnome2, the remap can be done by keyboard config
-    setxkbmap -option "altwin:ctrl_alt_win"
-    setxkbmap -option "altwin:ctrl_win"
+    # NOTE: kde, mate, and gnome2 also support remap keys
+    # setxkbmap -option "altwin:ctrl_alt_win"
+    # setxkbmap -option "altwin:ctrl_win"
 fi
 
 # Safe rm use trash-cli
@@ -579,4 +580,7 @@ conda deactivate
 # LC_MESSAGES="zh_CN.UTF-8"
 # export LANG LC_MESSAGES
 
-export TERM=screen-256color
+# export TERM=screen-256color
+export TERM='xterm-256color'
+# export TERM='rxvt-unicode'
+# export COLORTERM='rxvt-unicode-256color'
