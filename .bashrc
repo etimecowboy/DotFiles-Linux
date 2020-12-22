@@ -1,4 +1,4 @@
-# Time-stamp: <2020-06-04 Thu 16:59 by xin on legion>
+# Time-stamp: <2020-12-08 Tue 15:50 by xin on legion>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -192,8 +192,8 @@ alias ec='emacsclient -c'
 # alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs --debug-init'
 # alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
 ## Already using zh_CN locale
-alias emacs='conda activate py37_test && emacs --debug-init'
-alias em='conda activate py37_test && emacs --daemon'
+alias emacs='conda activate py38_data && emacs --debug-init'
+alias em='conda activate py38_data && emacs --daemon'
 alias ek="emacsclient -e '(client-save-kill-emacs)'"
 # alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
 # alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
@@ -242,6 +242,7 @@ fi
 # alias fl='fcitx-fbterm-helper -l'
 # alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf --font-names "Noto Sans Mono CJK SC Regular"'
 alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf'
+[[ $(tty) == \/dev\/tty[2-6]* ]] && fbterm && echo && exit
 
 # Git prompt
 # file does not exist

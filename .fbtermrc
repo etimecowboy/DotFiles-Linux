@@ -15,7 +15,7 @@
 # font-name = TerminusBold
 font-name = unifont.pcf,WenQuanYi Bitmap Song
 # font-name = unifont.pcf,LiSu
-font-size=12
+font-size=14
 
 # force font width (and/or height), usually for non-fixed width fonts
 # legal value format: n (fw_new = n), +n (fw_new = fw_old + n), -n (fw_new = fw_old - n)
