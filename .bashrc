@@ -1,4 +1,4 @@
-# Time-stamp: <2020-12-08 Tue 15:50 by xin on legion>
+# Time-stamp: <2021-02-13 Sat 15:04 by xin on legion>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -192,8 +192,8 @@ alias ec='emacsclient -c'
 # alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs --debug-init'
 # alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
 ## Already using zh_CN locale
-alias emacs='conda activate py38_data && emacs --debug-init'
-alias em='conda activate py38_data && emacs --daemon'
+alias emacs='emacs --debug-init'
+alias em='emacs --daemon'
 alias ek="emacsclient -e '(client-save-kill-emacs)'"
 # alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
 # alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
@@ -202,6 +202,9 @@ alias eeq='emacs -nw -q'
 # alias today="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"d\")' 2> /dev/null | less"
 # alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 2> /dev/null | less"
 # export LC_CTYPE=zh_CN.UTF-8 # moved to ~/.profile
+# ## Add cask path
+# export PATH="~/.cask/bin:$PATH"
+
 
 # Matlab
 alias mat='matlab -nodesktop -nosplash'
@@ -585,3 +588,10 @@ conda deactivate
 export TERM='xterm-256color'
 # export TERM='rxvt-unicode'
 # export COLORTERM='rxvt-unicode-256color'
+
+# Add cask path
+export PATH="~/.cask/bin:$PATH"
+
+# alacritty
+. ~/src/DotFiles-Linux/alacritty.bash
+. "$HOME/.cargo/env"

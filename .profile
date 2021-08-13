@@ -35,3 +35,4 @@ fi
 # Fix KDE bug: missing icons
 # https://bugs.launchpad.net/ubuntu/+source/kubuntu-meta/+bug/1450068
 export QT_QPA_PLATFORMTHEME=kde
+. "$HOME/.cargo/env"

@@ -1,0 +1,113 @@
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 100000
+
+  # Number of lines the viewport will move for every line scrolled when
+  # scrollback is enabled (history > 0).
+  multiplier: 3
+
+  # Faux Scrolling (deprecated)
+  #
+  # The `faux_multiplier` setting controls the number of lines the terminal
+  # should scroll when the alternate screen buffer is active. This is used
+  # to allow mouse scrolling for applications like `man`.
+  #
+  # Specifying `0` will disable faux scrolling.
+  # faux_multiplier: 3
+
+  # Scroll to the bottom when new text is written to the terminal. (removed, always disabled)
+  # auto_scroll: false
+
+# 原来tabspaces是8，现在只能是 8
+# tabspaces: 4
+
+# Specifying a `duration` of `0` will disable the visual bell.
+bell:
+  animation: EaseOutExpo
+  duration: 2
+  color: '0xffffff'
+
+# 实时重载配置文件，不用重启测试配置选项
+live_config_reload: true
+
+# 背景半透明，方便抄代码
+background_opacity: 0.8
+
+# 默认窗口无标题栏，16:9的窗口比例启动
+# window:
+#     decorations: "none"
+#     dimensions:
+#       columns: 120
+#       lines: 30
+
+# 主题，抄肥猫的主题配色
+colors:
+  primary:
+    foreground: '0xeeeeec'
+
+  normal:
+     black:   '0x2e3436'
+     red:     '0xcc0000'
+     green:   '0x73d216'
+     yellow:  '0xedd400'
+     blue:    '0x3465a4'
+     magenta: '0x75507b'
+     cyan:    '0x06989a'
+     white:   '0xd3d7cf'
+
+  bright:
+     black:   '0x2e3436'
+     red:     '0xef2929'
+     green:   '0x8ae234'
+     yellow:  '0xfce94f'
+     blue:    '0x729fcf'
+     magenta: '0xad7fa8'
+     cyan:    '0x34e2e2'
+     white:   '0xeeeeec'
+
+# 字体设置为等宽字体，可以用命令 fc-list 查看你系统的字体
+# font:
+#   size: 11
+
+#   normal:
+#     family: DejaVuSansMonoForPowerline Nerd Font
+#     style: Regular
+
+#   bold:
+#     family: DejaVuSansMonoForPowerline Nerd Font
+#     style: Bold
+
+#   italic:
+#     family: DejaVuSansMonoForPowerline Nerd Font
+#     style: Italic
+
+font:
+  size: 12
+
+  normal:
+    family: DejaVu Sans Mono for Powerline
+    style: Regular
+
+  bold:
+    family: DejaVu Sans Mono for Powerline
+    style: Bold
+
+  italic:
+    family: DejaVu Sans Mono for Powerline
+    style: Italic
+
+# font:
+#   size: 12
+
+#   normal:
+#     family: Consolas
+#     style: Regular
+
+#   bold:
+#     family: Consolas
+#     style: Bold
+
+#   italic:
+#     family: Consolas
+#     style: Italic

@@ -1,15 +1,15 @@
 #!/bin/bash
-# Install emacs25 on Ubuntu
+# Install emacs27 on Ubuntu
 
 ## Store current dir
 configDir=$(pwd)
 ## Sotre parent dir (where git repos reside)
 gitrootDir="$(dirname "$configDir")"
 
-## Install emacs25 from thiry-party repository
+## Install emacs27 from thiry-party repository
 sudo add-apt-repository ppa:kelleyk/emacs
 sudo apt update
-sudo apt -y install emacs25 emacs25-el #emacs25-nox # if you don't like graphical emacs
+sudo apt -y install emacs27 emacs27-el #emacs25-nox # if you don't like graphical emacs
 
 ## Clone spacemacs and dotfiles
 if [ ! -d "$gitrootDir" ]; then mkdir -p "$gitrootDir"; fi
@@ -57,7 +57,9 @@ if [[ -L "$gitrootDir"/spacemacs/private/snippets ]] || [[ -d "$gitrootDir"/spac
 fi
 ln -s "$gitrootDir"/DotSpacemacs/chinese "$gitrootDir"/spacemacs/private/chinese
 ln -s "$gitrootDir"/DotSpacemacs/org "$gitrootDir"/spacemacs/private/org
-ln -s "$gitrootDir"/DotSpacemacs/snippets "$gitrootDir"/spacemacs/private/snippets
+ln -s "$gitrootDir"/DotSpacemacs/tmux-extra "$gitrootDir"/spacemacs/private/tmux-extra
+ln -s "$gitrootDir"/DotSpacemacs/shell-extra "$gitrootDir"/spacemacs/private/shell-extra
+ln -s "$gitrootDir"/DotSpacemacs/snippets-private "$gitrootDir"/spacemacs/private/snippets
 
 if [ ! -d "~/.local/share/applications/" ]; then
     mkdir -p ~/.local/share/applications/
@@ -72,6 +74,12 @@ fi
 
 ln -s "$gitrootDir"/DotFiles-Linux/.local/share/applications/EmacsClient.desktop ~/.local/share/applications/EmacsClient.desktop
 ln -s "$gitrootDir"/DotFiles-Linux/.local/share/applications/org-protocol.desktop ~/.local/share/applications/org-protocol.desktop
+
+## install libvterm
+cd $(find $HOME/.emacs.d/elpa -type d -regex "^.*vterm\-.*/build$" -print0)
+conda activate py38_data
+cmake ..
+make
 
 ## Update desktop database
 update-desktop-database ~/.local/share/applications/
