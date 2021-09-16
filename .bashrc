@@ -108,24 +108,17 @@ function aa_prompt_defaults ()
 # # On Ubuntu (16.04 or 16.10), a symlink is probably missing. You can create it with:
 # # ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
 # NOTE: not using powerline
-# powerline
-# if [ -f `which powerline-daemon` ]; then
-#     powerline-daemon -q
-#     POWERLINE_BASH_CONTINUATION=1
-#     POWERLINE_BASH_SELECT=1
-#     . /usr/share/powerline/bindings/bash/powerline.sh
-# fi
 
-# NOTE: not using powerline-shell
-# # powerline-shell
-# # - https://github.com/b-ryan/powerline-shell
+# powerline-shell
+# - https://github.com/b-ryan/powerline-shell
 # function _update_ps1() {
 #     PS1=$(powerline-shell $?)
 # }
-# 
 # if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
 #     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 # fi
+# deb package system integration script
+. /usr/share/powerline/integrations/powerline.sh
 
 # set PATH so it includes user's private bin if it exists
 # already in ~/.profile

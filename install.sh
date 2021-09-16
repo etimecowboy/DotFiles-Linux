@@ -35,7 +35,7 @@ sudo apt -y upgrade    # Strictly upgrades the current packages
 ## Install some CLI software
 sudo apt -y install ssh git build-essential # cmake automake clang cscope scons
 sudo apt -y install aptitude htop iftop tmux rsync lrzsz curl wget net-tools iproute2
-sudo apt -y install yank xclip trash-cli fzf fasd fbterm fbterm-ucimf
+sudo apt -y install yank xclip trash-cli fzf fasd fbterm fbterm-ucimf powerline
 sudo apt -y install tree mc ranger caca-utils highlight w3m w3m-img poppler-utils mediainfo
 sudo apt -y install sox cmus graphviz imagemagick
 
@@ -53,8 +53,6 @@ sudo apt -y install sox cmus graphviz imagemagick
 #     fi
 #     # TODO: check and handle different git status
 # done
-
-
 
 ## Update desktop database
 # update-desktop-database ~/.local/share/applications/
