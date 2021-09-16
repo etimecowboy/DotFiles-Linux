@@ -41,23 +41,22 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability.
-#
-# Turned off by default to not distract the user: the focus in a terminal window
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-force_color_prompt=yes
+#force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-	      # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	      # a case would tend to support setf rather than setaf.)
-	      color_prompt=yes
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
     else
-	      color_prompt=
+	color_prompt=
     fi
 fi
 
@@ -66,13 +65,7 @@ if [ "$color_prompt" = yes ]; then
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
-# # shorten version
-# if [ "$color_prompt" = yes ]; then
-#     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
-# else
-#     PS1='${debian_chroot:+($debian_chroot)}\u:\W\$ '
-# fi
-# unset color_prompt force_color_prompt
+unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -123,15 +116,16 @@ function aa_prompt_defaults ()
 #     . /usr/share/powerline/bindings/bash/powerline.sh
 # fi
 
-# powerline-shell
-# - https://github.com/b-ryan/powerline-shell
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
-
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
+# NOTE: not using powerline-shell
+# # powerline-shell
+# # - https://github.com/b-ryan/powerline-shell
+# function _update_ps1() {
+#     PS1=$(powerline-shell $?)
+# }
+# 
+# if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+# fi
 
 # set PATH so it includes user's private bin if it exists
 # already in ~/.profile
@@ -150,14 +144,14 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
+
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
 
-# New in debian-testing (jessie)
 # colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -205,7 +199,6 @@ alias eeq='emacs -nw -q'
 # ## Add cask path
 # export PATH="~/.cask/bin:$PATH"
 
-
 # Matlab
 alias mat='matlab -nodesktop -nosplash'
 alias matlab='matlab -desktop'
@@ -213,7 +206,7 @@ alias matlab='matlab -desktop'
 # export USERNAME='xin' # added for matlab getenv function
 
 # urxvt
-alias urxvt='urxvtcd'
+# alias urxvt='urxvtcd'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -228,11 +221,11 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion
-    elif [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
-    fi
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
 fi
 
 # Run fbterm after log in tty for Chinese display
@@ -308,11 +301,11 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # mplayer: multithread support
 # TODO: test
-alias mplayer='mplayer -lavdopts threads=N'
+# alias mplayer='mplayer -lavdopts threads=N'
 
 # tightvnc
-alias vncs='vncserver :1 -geometry 1280x800 -depth 24 -compatiblekbd'
-alias vnck='vncserver -kill :1'
+# alias vncs='vncserver :1 -geometry 1280x800 -depth 24 -compatiblekbd'
+# alias vnck='vncserver -kill :1'
 
 # pbcopy
 alias pbcopy='xclip -selection clipboard'
@@ -323,6 +316,12 @@ alias pbpaste='xclip -selection clipboard -o'
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Copy from /usr/share/doc/fzf/README.Debian
+# Append this line to ~/.bashrc to enable fzf keybindings for Bash:
+[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+# Append this line to ~/.bashrc to enable fuzzy auto-completion for Bash:
+[ -f /usr/share/doc/fzf/examples/completion.bash ] && source /usr/share/doc/fzf/examples/completion.bash
 
 # fzf + cd
 # - https://github.com/junegunn/fzf/wiki/examples#interactive-cd
@@ -552,22 +551,22 @@ shopt -s extglob # allows egrep-style extended pattern matching
 # alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
 # alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-# don't activate base envrionment by default
-conda deactivate
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/opt/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/opt/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+# # don't activate base envrionment by default
+# conda deactivate
 
 # Intel MKL library
 # export PATH=~/intel/bin:$PATH
@@ -585,13 +584,13 @@ conda deactivate
 # export LANG LC_MESSAGES
 
 # export TERM=screen-256color
-export TERM='xterm-256color'
+# export TERM='xterm-256color'
 # export TERM='rxvt-unicode'
 # export COLORTERM='rxvt-unicode-256color'
 
 # Add cask path
-export PATH="~/.cask/bin:$PATH"
+# export PATH="~/.cask/bin:$PATH"
 
 # alacritty
-. ~/src/DotFiles-Linux/alacritty.bash
-. "$HOME/.cargo/env"
+# . ~/src/DotFiles-Linux/alacritty.bash
+# . "$HOME/.cargo/env"
