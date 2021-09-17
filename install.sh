@@ -2,11 +2,6 @@
 # Install required CLI tools before any other software
 # Inputs:
 #     - $1 : path to my software installation file path (~/software)
-# ChangeLogs:
-# - 2021.9.16
-#   1. Remove git clone scripts
-#   1. Remove desktop app installation and/or config scripts: urxvt
-#   2. Remove some cli app installation sccripts: atool, vim, powerline-shell,
 
 ## The first thing to do is to install ssh and get your private ssh key
 if [ ! -e ~/.ssh/id_rsa ]; then exit 1; fi
@@ -18,7 +13,7 @@ gitrootDir="$(dirname "$configDir")"
 
 ## make links
 export IFS=";"
-dotfiles=".Xresources;.inputrc;.bashrc;.bash_logout;.profile;.gitconfig;.fbtermrc;.tmux.conf;.latexmkrc;.config/ranger;.config/mc" 
+dotfiles=".Xresources;.inputrc;.bashrc;.bash_logout;.profile;.gitconfig;.fbtermrc;.tmux.conf;.latexmkrc;.config/ranger;.config/mc;.config/powerline" 
 #.local/share/applications" #.xsession;.config/openbox/lxde-rc.xml;.vnc # .urxvt
 for fileName in $dotfiles; do
     myFile=~/"$fileName"
@@ -34,9 +29,11 @@ sudo apt -y upgrade    # Strictly upgrades the current packages
 
 ## Install some CLI software
 sudo apt -y install ssh git build-essential # cmake automake clang cscope scons
-sudo apt -y install aptitude htop iftop tmux rsync lrzsz curl wget net-tools iproute2
-sudo apt -y install yank xclip trash-cli fzf fasd fbterm fbterm-ucimf powerline
-sudo apt -y install tree mc ranger caca-utils highlight w3m w3m-img poppler-utils mediainfo
+sudo apt -y install aptitude htop iftop tmux tmux-themepack-jimeh net-tools iproute2
+sudo apt -y install rsync lrzsz curl wget tree vim zile
+sudo apt -y install yank xclip trash-cli fbterm fbterm-ucimf
+sudo apt -y install fzf fasd powerline powerline-gitstatus 
+sudo apt -y install mc ranger caca-utils highlight w3m w3m-img poppler-utils mediainfo
 sudo apt -y install sox cmus graphviz imagemagick
 
 ## Install python version powerline-shell instead of the powerline package for the bash prompt

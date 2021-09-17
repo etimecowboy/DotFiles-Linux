@@ -1,0 +1,27 @@
+{
+  "cursor_space": 50,
+  "segments": {
+    "above": [
+      {
+        "left": [
+          { "function": "powerline.segments.shell.mode" },
+          {
+            "function": "powerline.segments.shell.cwd",
+            "priority": 10,
+            "args": { "dir_shorten_len": 10, "dir_limit_depth": 8 }
+          },
+          { "function": "powerline.segments.shell.last_status", "priority": 20 }
+        ],
+        "right": []
+      }
+    ],
+    "left": [
+      {
+        "type": "string",
+        "contents": "$ ",
+        "highlight_groups": ["continuation:current"]
+      }
+    ],
+    "right": []
+  }
+}
