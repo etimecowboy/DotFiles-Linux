@@ -1,4 +1,4 @@
-# Time-stamp: <2021-02-13 Sat 15:04 by xin on legion>
+# Time-stamp: <2021-09-24 Fri 14:12 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -229,9 +229,30 @@ fi
 # [[ $(tty) == \/dev\/tty[0-9]* ]] && fcitx-fbterm-helper -d 0
 # alias fb='env DISPLAY=:0 fcitx-fbterm-helper'
 # alias fl='fcitx-fbterm-helper -l'
+
+# fcitx-front-fbterm
+# note gnome-shell tooks tty1 and tty2
+[[ $(tty) == \/dev\/tty[3-9]* ]] && fcitx-fbterm-helper -d 1 && echo && exit
+
+# fbterm-ucimf, working, but not very good
+    #    fbterm_ucimf  is  a  program that providing an interface for fbterm using ucimf, the Linux
+    #    unicode framebuffer consle input method framework.
+
+    #    This program is intended to be work with a non-setuid fbterm using fbterm -i  fbterm_ucimf
+    #    command,  however  because  of  some unresolved problem in fbterm package this aim has not
+    #    been achieved yet.
+
+    #    Currently this program is the only known working solution to start ucimf in Debian. Setuid
+    #    fbterm  is  required, use command chown root:utmp /usr/bin/fbterm to change its user/group
+    #    to root/utmp, and chmod 6755 /usr/bin/fbterm to change make it  setuid.   After  doing  so
+    #    users without root privilege are able to load the input method with fbterm -i fbterm_ucimf
+    #    while starting fbterm, then press Ctrl+Space to activate the input method, and  Ctrl+Shift
+    #    to switch among the input methods to find your preferred one.
 # alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf --font-names "Noto Sans Mono CJK SC Regular"'
-alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf'
-[[ $(tty) == \/dev\/tty[2-6]* ]] && fbterm && echo && exit
+# alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf'
+# [[ $(tty) == \/dev\/tty[3-6]* ]] && fbterm && echo && exit
+
+
 
 # Git prompt
 # file does not exist
@@ -392,10 +413,11 @@ ftpane() {
 # bind-key 0 run "tmux split-window -l 12 'bash -ci ftpane'"
 
 # fasd
+# NOTE: fasd doesn't work in tty mode
 if [ -x "$(command -v fasd)" ]; then
     eval "$(fasd --init auto)"
     alias e='f -e $EDITOR' # quick opening files with emacs
-    alias m='f -e mpv'             # quick opening files with mplayer
+    alias m='f -e mpv'             # quick opening files with mpv
     alias o='a -e xdg-open'        # quick opening files with xdg-open
     _fasd_bash_hook_cmd_complete e m o
 fi
@@ -499,7 +521,7 @@ function ds() {
     [ -n "$cid" ] && docker stop "$cid"
 }
 
-export CDPATH=.:~:~/work:~/work/jupyter/work:~/work/data:~/src:~/software:~/桌面:~/Desktop:/mnt:/opt
+export CDPATH=.:~:~/src:~/emacs:~/Desktop~/桌面
 export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
 # export vblank_mode=0 # Boost gpu performance
 
@@ -507,6 +529,10 @@ shopt -s cdspell # correct minor spelling errors in a cd command
 shopt -s cmdhist # multi-line commands to be appended to your bash history as a single line command
 shopt -s dotglob # allows dot-begin files to be returned in the results of path-name expansion
 shopt -s extglob # allows egrep-style extended pattern matching
+
+# docker-ce-rootless-extra
+uid=$(id -u)
+export DOCKER_HOST=unix:///run/user/$UID/docker.sock
 
 # kaldi ASR
 # [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
@@ -544,23 +570,6 @@ shopt -s extglob # allows egrep-style extended pattern matching
 # alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
 # alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
 
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/opt/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/opt/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
-# # don't activate base envrionment by default
-# conda deactivate
-
 # Intel MKL library
 # export PATH=~/intel/bin:$PATH
 # export LD_LIBRARY_PATH= ~/intel/lib/intel64:~/intel/mkl/lib/intel64:$LD_LIBRARY_PATH
@@ -587,3 +596,18 @@ shopt -s extglob # allows egrep-style extended pattern matching
 # alacritty
 # . ~/src/DotFiles-Linux/alacritty.bash
 # . "$HOME/.cargo/env"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<

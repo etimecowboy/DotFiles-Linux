@@ -4,9 +4,9 @@
 #   - $1 : path to my software installation files (~/software)
 
 ## Install some GUI software
-sudo apt -y install synaptic rxvt-unicode-256color gimp audacity fbterm fcitx-frontend-fbterm mupdf grsync
+sudo apt -y install synaptic rxvt-unicode-256color gimp audacity fbterm fcitx-frontend-fbterm mupdf grsync mpv
 # KDE applications
-sudo apt -y install okular kuser kcron kate
+# sudo apt -y install okular kuser kcron kate
 
 ## Install some fonts
 if [ -d $1/fonts ]; then

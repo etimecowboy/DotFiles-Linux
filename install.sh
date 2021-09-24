@@ -28,47 +28,19 @@ sudo apt update        # Fetches the list of available updates
 sudo apt -y upgrade    # Strictly upgrades the current packages
 
 ## Install some CLI software
-sudo apt -y install ssh git build-essential # cmake automake clang cscope scons
-sudo apt -y install aptitude htop iftop tmux tmux-themepack-jimeh net-tools iproute2
-sudo apt -y install rsync lrzsz curl wget tree vim zile
-sudo apt -y install yank xclip trash-cli fbterm fbterm-ucimf
+sudo apt -y install ssh git build-essential aptitude ppa-purge # cmake automake clang cscope scons
+sudo apt -y install most htop iftop tmux tmux-themepack-jimeh net-tools iproute2
+sudo apt -y install rsync lrzsz curl wget tree vim zile yank xclip trash-cli 
+sudo apt -y install fbterm fbterm-ucimf fctix fcitx-frontend-fbterm 
+sudo apt -y install xfonts-wqy fonts-wqy-microhei fonts-wqy-zenhei
 sudo apt -y install fzf fasd powerline powerline-gitstatus 
 sudo apt -y install mc ranger caca-utils highlight w3m w3m-img poppler-utils mediainfo
-sudo apt -y install sox cmus graphviz imagemagick
+sudo apt -y install sox cmus graphviz imagemagick youtube-dl ffmpeg
 
-## Install python version powerline-shell instead of the powerline package for the bash prompt
-#pip install powerline-shell --user
-
-## Clone my git
-# if [ ! -d "$gitrootDir" ]; then mkdir -p "$gitrootDir"; fi
-
-# export IFS=";"
-# mygits="DotFiles-Linux;DotSpacemacs" #DotEmacs
-# for gitName in $mygits; do
-#     if [ ! -d "$localGit" ]; then
-#         git clone --recurse-submodules --depth=1 git@github.com:etimecowboy/"$gitName".git "$gitrootDir"/"$gitName"
-#     fi
-#     # TODO: check and handle different git status
-# done
+## For fbterm privilege
+sudo usermod -aG video $USER
+sudo chown root:utmp /usr/bin/fbterm
+sudo chmod 6755 /usr/bin/fbterm
 
 ## Update desktop database
 # update-desktop-database ~/.local/share/applications/
-
-# ## Install Oracle Java
-# ./install_java.sh
-# cd "$configDir"
-
-# ## Install GUI software
-# ./install_gui.sh $1
-# cd "$configDir"
-
-# ## Install Emacs
-# ./install_emacs.sh
-# cd "$configDir"
-
-# ## Install fzf
-# ./install_fzf.sh
-# cd "$configDir"
-
-# ## Install anaconda
-# ./install_anaconda.sh $1

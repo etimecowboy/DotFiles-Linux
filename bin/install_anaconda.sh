@@ -10,14 +10,14 @@ configDir=$(pwd)
 cd $1
 if [ ! -e $1/Miniconda2-latest-Linux-x86_64.sh ]; then
     # wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda2-latest-Linux-x86_64.sh $1
-    wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda2-latest-Linux-x86_64.sh
+    wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh
 fi
 
-chmod +x $1/Miniconda2-latest-Linux-x86_64.sh
+chmod +x $1/Miniconda3-latest-Linux-x86_64.sh
 # chmod +x Anaconda3-5.1.0-Linux-x86_64.sh
 
-if [ ! -d /opt/miniconda2 ]; then
-    sudo $1/Miniconda2-latest-Linux-x86_64.sh
+if [ ! -d /opt/miniconda3 ]; then
+    sudo $1/Miniconda3-latest-Linux-x86_64.sh
 fi
 
 ### Anaconda2 (installed in /opt/miniconda2)
@@ -43,17 +43,17 @@ export PATH="/opt/minconda2/bin:$PATH"
 sudo "$conda" update -n base conda
 sudo "$conda" update --all
 
-"$conda" create -n py27 python=2.7
-source activate py27
-"$conda" install autopep8 notebook ipywidgets jupyter jupyter_contrib_nbextensions # jupyterhub is only avaiable for python3y
-ipython kernel install --user
-source deactivate
+# "$conda" create -n py27 python=2.7
+# source activate py27
+# "$conda" install autopep8 notebook ipywidgets jupyter jupyter_contrib_nbextensions # jupyterhub is only avaiable for python3y
+# ipython kernel install --user
+# source deactivate
 
-"$conda" create -n py35 python=3.5
-source activate py35
-"$conda" install autopep8 notebook ipywidgets jupyterhub jupyter_contrib_nbextensions # jupyterhub is only avaiable for python3
-ipython kernel install --user
-source deactivate
+# "$conda" create -n py35 python=3.5
+# source activate py35
+# "$conda" install autopep8 notebook ipywidgets jupyterhub jupyter_contrib_nbextensions # jupyterhub is only avaiable for python3
+# ipython kernel install --user
+# source deactivate
 
 # NOTE: some packages cannot installed via conda, you need to install them in your env
 # $pip install <package> --user
@@ -67,7 +67,7 @@ source deactivate
 # if [[ -d "$jupyterConfDir" ]] || [[ -L "$jupyterConfDir" ]]; then trash "$jupyterConfDir"; fi
 # ln -s "$jupyterConfDir" ~/.jupyter
 
-## jupyterhub (only avaiable for python3)
-if [ -e ~/jupyterhub_config.py ]; then mv ~/jupyterhub_config.py ~/jupyterhub_config.py.orig; fi
-if [ -L ~/jupyterhub_config.py ]; then rm ~/jupyterhub_config.py; fi
-ln -s "$configDir"/jupyterhub/jupyterhub_config.py ~/jupyterhub_config.py
+# ## jupyterhub (only avaiable for python3)
+# if [ -e ~/jupyterhub_config.py ]; then mv ~/jupyterhub_config.py ~/jupyterhub_config.py.orig; fi
+# if [ -L ~/jupyterhub_config.py ]; then rm ~/jupyterhub_config.py; fi
+# ln -s "$configDir"/jupyterhub/jupyterhub_config.py ~/jupyterhub_config.py
