@@ -1,4 +1,4 @@
-# Time-stamp: <2021-09-24 Fri 14:12 by xin on tufg>
+# Time-stamp: <2021-09-25 Sat 15:21 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -76,29 +76,37 @@ xterm*|rxvt*)
     ;;
 esac
 
-# customized prompt
-# REF: http://www.askapache.com/linux/bash-power-prompt.html
-function aa_prompt_defaults ()
-{
-   local colors=`tput colors 2>/dev/null||echo -n 1` C=;
+# Run fbterm after log in tty for Chinese display
+# Note: fbterm displays not very good now. Don't start it until it is necessary by fb
+# solution 1: use DISPLAY env var
+# [[ $(tty) == \/dev\/tty[0-9]* ]] && env DISPLAY=:0 fcitx-fbterm-helper
+# solution 2: use -d switch of fcitx-fbterm-helper
+# [[ $(tty) == \/dev\/tty[0-9]* ]] && fcitx-fbterm-helper -d 0
+# alias fb='env DISPLAY=:0 fcitx-fbterm-helper'
+# alias fl='fcitx-fbterm-helper -l'
 
-   if [[ $colors -ge 256 ]]; then
-      C="`tput setaf 33 2>/dev/null`";
-      AA_P='mf=x mt=x n=0; while [[ $n < 1 ]];do read a mt a; read a mf a; (( n++ )); done</proc/meminfo; export AA_PP="\033[38;5;2m"$((mf/1024))/"\033[38;5;89m"$((mt/1024))MB; unset -v mf mt n a';
-   else
-      C="`tput setaf 4 2>/dev/null`";
-      AA_P='mf=x mt=x n=0; while [[ $n < 1 ]];do read a mt a; read a mf a; (( n++ )); done</proc/meminfo; export AA_PP="\033[92m"$((mf/1024))/"\033[32m"$((mt/1024))MB; unset -v mf mt n a';
-   fi;
+# fcitx-front-fbterm
+# note gnome-shell tooks tty1 and tty2
+[[ $(tty) == \/dev\/tty[3-9]* ]] && fcitx-fbterm-helper -d 1 
+# && eval "$(fasd --init auto)" && source /usr/share/powerline/integrations/powerline.sh
 
-   eval $AA_P;
+# fbterm-ucimf, working, but not very good
+    #    fbterm_ucimf  is  a  program that providing an interface for fbterm using ucimf, the Linux
+    #    unicode framebuffer consle input method framework.
 
-   PROMPT_COMMAND='stty echo; history -a; echo -en "\e[34h\e[?25h"; (($SECONDS % 2==0 )) && eval $AA_P; echo -en "$AA_PP";';
-   SSH_TTY=${SSH_TTY:-`tty 2>/dev/null||readlink /proc/$$/fd/0 2>/dev/null`}
+    #    This program is intended to be work with a non-setuid fbterm using fbterm -i  fbterm_ucimf
+    #    command,  however  because  of  some unresolved problem in fbterm package this aim has not
+    #    been achieved yet.
 
-   PS1="\[\e[m\n\e[1;30m\][\$\$:\$PPID \j:\!\[\e[1;30m\]]\[\e[0;36m\] \T \d \[\e[1;30m\][${C}\u@\H\[\e[1;30m\]:\[\e[0;37m\]${SSH_TTY/\/dev\/} \[\e[0;32m\]+${SHLVL}\[\e[1;30m\]] \[\e[1;37m\]\w\[\e[0;37m\]\n\\$ ";
-
-   export PS1 AA_P PROMPT_COMMAND SSH_TTY
-}
+    #    Currently this program is the only known working solution to start ucimf in Debian. Setuid
+    #    fbterm  is  required, use command chown root:utmp /usr/bin/fbterm to change its user/group
+    #    to root/utmp, and chmod 6755 /usr/bin/fbterm to change make it  setuid.   After  doing  so
+    #    users without root privilege are able to load the input method with fbterm -i fbterm_ucimf
+    #    while starting fbterm, then press Ctrl+Space to activate the input method, and  Ctrl+Shift
+    #    to switch among the input methods to find your preferred one.
+# alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf --font-names "Noto Sans Mono CJK SC Regular"'
+# alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf'
+# [[ $(tty) == \/dev\/tty[3-6]* ]] && fbterm && echo && exit
 
 # NOTE: not using terminix
 # # terminix config fixes
@@ -107,7 +115,6 @@ function aa_prompt_defaults ()
 # fi
 # # On Ubuntu (16.04 or 16.10), a symlink is probably missing. You can create it with:
 # # ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
-# NOTE: not using powerline
 
 # powerline-shell
 # - https://github.com/b-ryan/powerline-shell
@@ -118,18 +125,8 @@ function aa_prompt_defaults ()
 #     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 # fi
 # deb package system integration script
+# [[ $(tty) == \/dev\/tty[1-2]* ]] && . /usr/share/powerline/integrations/powerline.sh
 . /usr/share/powerline/integrations/powerline.sh
-
-# set PATH so it includes user's private bin if it exists
-# already in ~/.profile
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# for installed py packages
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -160,7 +157,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 export ALTERNATE_EDITOR='emacs -nw'
 export EDITOR='emacsclient -ntc'
 export VISUAL='emacsclient -ntc'
-# export PAGER='less
 export PAGER='most'
 
 # Browser
@@ -220,39 +216,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# Run fbterm after log in tty for Chinese display
-# Note: fbterm displays not very good now. Don't start it until it is necessary by fb
-# solution 1: use DISPLAY env var
-# [[ $(tty) == \/dev\/tty[0-9]* ]] && env DISPLAY=:0 fcitx-fbterm-helper
-# solution 2: use -d switch of fcitx-fbterm-helper
-# [[ $(tty) == \/dev\/tty[0-9]* ]] && fcitx-fbterm-helper -d 0
-# alias fb='env DISPLAY=:0 fcitx-fbterm-helper'
-# alias fl='fcitx-fbterm-helper -l'
-
-# fcitx-front-fbterm
-# note gnome-shell tooks tty1 and tty2
-[[ $(tty) == \/dev\/tty[3-9]* ]] && fcitx-fbterm-helper -d 1 && echo && exit
-
-# fbterm-ucimf, working, but not very good
-    #    fbterm_ucimf  is  a  program that providing an interface for fbterm using ucimf, the Linux
-    #    unicode framebuffer consle input method framework.
-
-    #    This program is intended to be work with a non-setuid fbterm using fbterm -i  fbterm_ucimf
-    #    command,  however  because  of  some unresolved problem in fbterm package this aim has not
-    #    been achieved yet.
-
-    #    Currently this program is the only known working solution to start ucimf in Debian. Setuid
-    #    fbterm  is  required, use command chown root:utmp /usr/bin/fbterm to change its user/group
-    #    to root/utmp, and chmod 6755 /usr/bin/fbterm to change make it  setuid.   After  doing  so
-    #    users without root privilege are able to load the input method with fbterm -i fbterm_ucimf
-    #    while starting fbterm, then press Ctrl+Space to activate the input method, and  Ctrl+Shift
-    #    to switch among the input methods to find your preferred one.
-# alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf --font-names "Noto Sans Mono CJK SC Regular"'
-# alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf'
-# [[ $(tty) == \/dev\/tty[3-6]* ]] && fbterm && echo && exit
-
-
 
 # Git prompt
 # file does not exist
@@ -531,7 +494,6 @@ shopt -s dotglob # allows dot-begin files to be returned in the results of path-
 shopt -s extglob # allows egrep-style extended pattern matching
 
 # docker-ce-rootless-extra
-uid=$(id -u)
 export DOCKER_HOST=unix:///run/user/$UID/docker.sock
 
 # kaldi ASR

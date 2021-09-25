@@ -1,4 +1,4 @@
-#!/bin/bash
+
 # Install Anaconda python distribution
 # Inputs:
 #     - $1: the path to the downloaded install file: (~/software)
