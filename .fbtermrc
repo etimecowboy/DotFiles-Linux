@@ -13,9 +13,10 @@
 # font-names=Dejavu Sans Mono,Microsoft YaHei
 # font-name = unifont.pcf,simsun
 # font-name = TerminusBold
-font-name = unifont.pcf,WenQuanYi Bitmap Song
 # font-name = unifont.pcf,LiSu
-font-size=14
+# font-name = unifont.pcf,WenQuanYi Bitmap Song
+font-name = Dejavu Sans Mono
+font-size=16
 
 # force font width (and/or height), usually for non-fixed width fonts
 # legal value format: n (fw_new = n), +n (fw_new = fw_old + n), -n (fw_new = fw_old - n)

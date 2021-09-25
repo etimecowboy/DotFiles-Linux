@@ -90,32 +90,6 @@ esac
 [[ $(tty) == \/dev\/tty[3-9]* ]] && fcitx-fbterm-helper -d 1 
 # && eval "$(fasd --init auto)" && source /usr/share/powerline/integrations/powerline.sh
 
-# fbterm-ucimf, working, but not very good
-    #    fbterm_ucimf  is  a  program that providing an interface for fbterm using ucimf, the Linux
-    #    unicode framebuffer consle input method framework.
-
-    #    This program is intended to be work with a non-setuid fbterm using fbterm -i  fbterm_ucimf
-    #    command,  however  because  of  some unresolved problem in fbterm package this aim has not
-    #    been achieved yet.
-
-    #    Currently this program is the only known working solution to start ucimf in Debian. Setuid
-    #    fbterm  is  required, use command chown root:utmp /usr/bin/fbterm to change its user/group
-    #    to root/utmp, and chmod 6755 /usr/bin/fbterm to change make it  setuid.   After  doing  so
-    #    users without root privilege are able to load the input method with fbterm -i fbterm_ucimf
-    #    while starting fbterm, then press Ctrl+Space to activate the input method, and  Ctrl+Shift
-    #    to switch among the input methods to find your preferred one.
-# alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf --font-names "Noto Sans Mono CJK SC Regular"'
-# alias fb='LC_ALL=zh_CN.UTF-8 fbterm -i fbterm_ucimf'
-# [[ $(tty) == \/dev\/tty[3-6]* ]] && fbterm && echo && exit
-
-# NOTE: not using terminix
-# # terminix config fixes
-# if [ $TERMINIX_ID ] || [ $VTE_VERSION ]; then
-#     source /etc/profile.d/vte.sh
-# fi
-# # On Ubuntu (16.04 or 16.10), a symlink is probably missing. You can create it with:
-# # ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
-
 # powerline-shell
 # - https://github.com/b-ryan/powerline-shell
 # function _update_ps1() {
@@ -229,60 +203,12 @@ if [ -n "$DISPLAY" ]; then
     # setxkbmap -option "altwin:ctrl_win"
 fi
 
-# Safe rm use trash-cli
-# alias rm='trash'
-
-# fix wrong window button display on xfce4-panel after computer wakes up from sleep
-# xfce4-panel -r
-
-# Use parallel compressor and decompressor
-# choices:
-# a) lbzip2
-# b) pbzip2
-# c) pigz
-# d) pxz
-# alias tar='tar -I lbzip2'
-
 # tmux
 alias muxk='tmux kill-server'
 alias muxa='tmux attach'
 alias muxt='tmux attach -t'
 # preserve bash history in multiple bash shells
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
-# tmuxinator
-# NOTE: not used any more
-# copy from tmuxinator/completion/tmuxinator.bash
-# _tmuxinator() {
-#     COMPREPLY=()
-#     local word
-#     word="${COMP_WORDS[COMP_CWORD]}"
-
-#     if [ "$COMP_CWORD" -eq 1 ]; then
-#         local commands="$(compgen -W "$(tmuxinator commands)" -- "$word")"
-#         local projects="$(compgen -W "$(tmuxinator completions start)" -- "$word")"
-
-#         COMPREPLY=( $commands $projects )
-#     elif [ "$COMP_CWORD" -eq 2 ]; then
-#         local words
-#         words=("${COMP_WORDS[@]}")
-#         unset words[0]
-#         unset words[$COMP_CWORD]
-#         local completions
-#         completions=$(tmuxinator completions "${words[@]}")
-#         COMPREPLY=( $(compgen -W "$completions" -- "$word") )
-#     fi
-# }
-# complete -F _tmuxinator tmuxinator mux
-# alias mux='tmuxinator'
-
-# mplayer: multithread support
-# TODO: test
-# alias mplayer='mplayer -lavdopts threads=N'
-
-# tightvnc
-# alias vncs='vncserver :1 -geometry 1280x800 -depth 24 -compatiblekbd'
-# alias vnck='vncserver -kill :1'
 
 # pbcopy
 alias pbcopy='xclip -selection clipboard'
@@ -495,69 +421,6 @@ shopt -s extglob # allows egrep-style extended pattern matching
 
 # docker-ce-rootless-extra
 export DOCKER_HOST=unix:///run/user/$UID/docker.sock
-
-# kaldi ASR
-# [ -f ~/src/kaldi/tools/env.sh ] && source ~/src/kaldi/tools/env.sh
-
-# python virtual environments
-# FIXME: disable this part to supress errors on sony s13.
-######## virtualenvwrapper
-# export WORKON_HOME=$HOME/.virtualenvs   # optional
-# # export PROJECT_HOME=$HOME/projects      # optional
-# # source /usr/local/bin/virtualenvwrapper.sh
-# # use python3 with virtualenvwrapper
-# VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3' # This needs to be placed before the virtualenvwrapper command
-# source /usr/local/bin/virtualenvwrapper.sh
-######## pyenv
-# export PATH="/home/xin/.pyenv/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-
-# conda
-# export PATH="/opt/miniconda2/bin:$PATH"
-# export PATH="/opt/anaconda3/bin:$PATH"  # commented out by conda initialize
-
-# Python jupyter notebook server
-# alias jss='jupyter notebook --no-browser --notebook-dir=~/work/jupyter &'
-# alias jsk='kill $(pgrep jupyter)'
-
-# function jnp() {
-#     # sudo:
-#     #   jupyter-nbextension install rise --py --sys-prefix
-#     #   jupyter-nbextension enable rise --py --sys-prefix
-#     jupyter-nbconvert $1 --to slides --post serve
-# }
-
-# Upgrade Python pip packages
-# alias pip2up='sudo -H pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U'
-# alias pip3up='sudo -H pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U'
-
-# Intel MKL library
-# export PATH=~/intel/bin:$PATH
-# export LD_LIBRARY_PATH= ~/intel/lib/intel64:~/intel/mkl/lib/intel64:$LD_LIBRARY_PATH
-
-# wav2letter++
-# export KENLM_ROOT_DIR=~/learn/asr/wav2letter/kenlm
-# export MKLROOT=~/intel/mkl
-
-# For terminology terminal
-# export ECORE_IMF_MODULE="fcitx"
-# export XMODIFIERS="@im=fcitx"
-# LANG="zh_CN.UTF-8"
-# LC_MESSAGES="zh_CN.UTF-8"
-# export LANG LC_MESSAGES
-
-# export TERM=screen-256color
-# export TERM='xterm-256color'
-# export TERM='rxvt-unicode'
-# export COLORTERM='rxvt-unicode-256color'
-
-# Add cask path
-# export PATH="~/.cask/bin:$PATH"
-
-# alacritty
-# . ~/src/DotFiles-Linux/alacritty.bash
-# . "$HOME/.cargo/env"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
