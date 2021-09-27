@@ -1,4 +1,4 @@
-# Time-stamp: <2021-09-25 Sat 15:21 by xin on tufg>
+# Time-stamp: <2021-09-27 Mon 11:12 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -199,8 +199,8 @@ if [ -n "$DISPLAY" ]; then
     # Turn off system bell in Xorg
     xset b off
     # NOTE: kde, mate, and gnome2 also support remap keys
-    # setxkbmap -option "altwin:ctrl_alt_win"
-    # setxkbmap -option "altwin:ctrl_win"
+    setxkbmap -option "altwin:ctrl_alt_win"
+    setxkbmap -option "altwin:ctrl_win"
 fi
 
 # tmux
