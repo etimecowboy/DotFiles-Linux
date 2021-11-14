@@ -32,7 +32,7 @@ bell:
 live_config_reload: true
 
 # 背景半透明，方便抄代码
-background_opacity: 0.8
+background_opacity: 0.7
 
 # 默认窗口无标题栏，16:9的窗口比例启动
 # window:
@@ -83,7 +83,7 @@ colors:
 #     style: Italic
 
 font:
-  size: 12
+  size: 10
 
   normal:
     family: DejaVu Sans Mono for Powerline

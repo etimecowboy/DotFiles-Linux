@@ -1,4 +1,4 @@
-# Time-stamp: <2021-09-27 Mon 11:12 by xin on tufg>
+# Time-stamp: <2021-11-09 Tue 15:57 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -101,6 +101,15 @@ esac
 # deb package system integration script
 # [[ $(tty) == \/dev\/tty[1-2]* ]] && . /usr/share/powerline/integrations/powerline.sh
 . /usr/share/powerline/integrations/powerline.sh
+
+# change some default behavior
+shopt -s cdspell # correct minor spelling errors in a cd command
+shopt -s cmdhist # multi-line commands to be appended to your bash history as a single line command
+shopt -s dotglob # allows dot-begin files to be returned in the results of path-name expansion
+shopt -s extglob # allows egrep-style extended pattern matching
+
+# preserve bash history in multiple bash shells
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -207,8 +216,6 @@ fi
 alias muxk='tmux kill-server'
 alias muxa='tmux attach'
 alias muxt='tmux attach -t'
-# preserve bash history in multiple bash shells
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # pbcopy
 alias pbcopy='xclip -selection clipboard'
@@ -306,7 +313,7 @@ ftpane() {
 if [ -x "$(command -v fasd)" ]; then
     eval "$(fasd --init auto)"
     alias e='f -e $EDITOR' # quick opening files with emacs
-    alias m='f -e mpv'             # quick opening files with mpv
+    alias m='f -e smplayer'        # quick opening files with smplayer
     alias o='a -e xdg-open'        # quick opening files with xdg-open
     _fasd_bash_hook_cmd_complete e m o
 fi
@@ -414,13 +421,8 @@ export CDPATH=.:~:~/src:~/emacs:~/Desktop~/桌面
 export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
 # export vblank_mode=0 # Boost gpu performance
 
-shopt -s cdspell # correct minor spelling errors in a cd command
-shopt -s cmdhist # multi-line commands to be appended to your bash history as a single line command
-shopt -s dotglob # allows dot-begin files to be returned in the results of path-name expansion
-shopt -s extglob # allows egrep-style extended pattern matching
-
 # docker-ce-rootless-extra
-export DOCKER_HOST=unix:///run/user/$UID/docker.sock
+# export DOCKER_HOST=unix:///run/user/$UID/docker.sock
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
