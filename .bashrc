@@ -1,4 +1,4 @@
-# Time-stamp: <2021-11-09 Tue 15:57 by xin on tufg>
+# Time-stamp: <2021-12-25 Sat 00:58 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -438,3 +438,11 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# Setting for snap version terminology
+# NOT working
+# if [[ -d "/sanp/terminology/current" ]]; then
+#     export ECORE_IMF_MODULE="fcitx"
+#     export XMODIFIERS="@im=none"
+#     export PATH="/snap/terminolog/current/usr/bin:$PATH"
+# fi

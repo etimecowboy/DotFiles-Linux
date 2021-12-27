@@ -7,9 +7,13 @@ configDir=$(pwd)
 gitrootDir="$(dirname "$configDir")"
 
 ## Install emacs27 from thiry-party repository
-sudo add-apt-repository ppa:kelleyk/emacs
+# sudo add-apt-repository ppa:kelleyk/emacs
+# sudo apt update
+# sudo apt -y install emacs27 emacs27-el #emacs25-nox # if you don't like graphical emacs
+## Install emacs-snapshot from official emacs daily snapshot ppa
+sudo add-apt-repository -y ppa:ubuntu-elisp/ppa
 sudo apt update
-sudo apt -y install emacs27 emacs27-el #emacs25-nox # if you don't like graphical emacs
+sudo apt -y install emacs-snapshot
 
 ## Clone spacemacs and dotfiles
 if [ ! -d "$gitrootDir" ]; then mkdir -p "$gitrootDir"; fi
