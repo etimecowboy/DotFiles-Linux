@@ -1,4 +1,4 @@
-# Time-stamp: <2021-12-25 Sat 00:58 by xin on tufg>
+# Time-stamp: <2022-02-08 Tue 15:39 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -84,12 +84,33 @@ esac
 # [[ $(tty) == \/dev\/tty[0-9]* ]] && fcitx-fbterm-helper -d 0
 # alias fb='env DISPLAY=:0 fcitx-fbterm-helper'
 # alias fl='fcitx-fbterm-helper -l'
+# Solution[working]: fcitx-front-fbterm, note tty1 and tty2 has been taken by gnome-shell
+# [2022-01-24] switched to ibus input method
+# [[ $(tty) == \/dev\/tty[3-9]* ]] && fbterm
+# [2022-02-08] switched to ucimf input method, and add 256-color support
+# REF: https://unix.stackexchange.com/questions/235455/can-fbterm-support-256-colors
+# REF: https://gist.github.com/dylon/5281572
+# virtual_terminal="$( tty | grep -oE ....$ )"
+# case "$virtual_terminal" in
+#     tty1|tty2|tty3|tty4|tty5|tty6)
+#         exec fbterm -- bash -c 'TERM=fbterm screen'
+#         ;;
+# esac
+# Inspired method: negate a case pattern
+# REF: https://unix.stackexchange.com/questions/178832/how-to-negate-a-case-pattern
+# NOT working
+# virtual_terminal="$( tty | grep -oE ....$ )"
+# case "$virtual_terminal" in
+# tty1|tty2)
+# ;;
+# *)
+#     exec fbterm -- bash -c 'TERM=fbterm screen'
+#     ;;
+# esac
+# My working method:
+[[ $(tty) == \/dev\/tty[3-9]* ]] && exec fbterm -- bash -c 'TERM=fbterm screen'
 
-# fcitx-front-fbterm
-# note gnome-shell tooks tty1 and tty2
-[[ $(tty) == \/dev\/tty[3-9]* ]] && fcitx-fbterm-helper -d 1 
 # && eval "$(fasd --init auto)" && source /usr/share/powerline/integrations/powerline.sh
-
 # powerline-shell
 # - https://github.com/b-ryan/powerline-shell
 # function _update_ps1() {
@@ -99,8 +120,9 @@ esac
 #     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 # fi
 # deb package system integration script
-# [[ $(tty) == \/dev\/tty[1-2]* ]] && . /usr/share/powerline/integrations/powerline.sh
-. /usr/share/powerline/integrations/powerline.sh
+# Only for tty1 and tty2 (Ubuntu Gnome GUI mode)
+[[ $(tty) == \/dev\/tty[1-2]* ]] && . /usr/share/powerline/integrations/powerline.sh
+# # . /usr/share/powerline/integrations/powerline.sh
 
 # change some default behavior
 shopt -s cdspell # correct minor spelling errors in a cd command
