@@ -1,4 +1,4 @@
-# Time-stamp: <2022-02-08 Tue 15:39 by xin on tufg>
+# Time-stamp: <2022-02-08 Tue 21:23 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -108,7 +108,7 @@ esac
 #     ;;
 # esac
 # My working method:
-[[ $(tty) == \/dev\/tty[3-9]* ]] && exec fbterm -- bash -c 'TERM=fbterm screen'
+[[ $(tty) == \/dev\/tty[3-6]* ]] && exec fbterm -- bash -c 'TERM=fbterm screen'
 
 # && eval "$(fasd --init auto)" && source /usr/share/powerline/integrations/powerline.sh
 # powerline-shell
