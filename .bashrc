@@ -1,4 +1,4 @@
-# Time-stamp: <2022-02-08 Tue 21:23 by xin on tufg>
+# Time-stamp: <2022-03-07 Mon 18:13 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -108,9 +108,10 @@ esac
 #     ;;
 # esac
 # My working method:
-[[ $(tty) == \/dev\/tty[3-6]* ]] && exec fbterm -- bash -c 'TERM=fbterm screen'
+# [[ $(tty) == \/dev\/tty[3-6]* ]] && exec fbterm -- bash -c 'TERM=fbterm screen'
+[[ $(tty) == \/dev\/tty[3-6]* ]] && exec fbterm -- bash -c 'TERM=fbterm tmux'
+# && eval "$(fasd --init auto)" && . /usr/share/powerline/integrations/powerline.sh # run anyway
 
-# && eval "$(fasd --init auto)" && source /usr/share/powerline/integrations/powerline.sh
 # powerline-shell
 # - https://github.com/b-ryan/powerline-shell
 # function _update_ps1() {
@@ -121,8 +122,8 @@ esac
 # fi
 # deb package system integration script
 # Only for tty1 and tty2 (Ubuntu Gnome GUI mode)
-[[ $(tty) == \/dev\/tty[1-2]* ]] && . /usr/share/powerline/integrations/powerline.sh
-# # . /usr/share/powerline/integrations/powerline.sh
+# [[ $(tty) == \/dev\/tty[012]* ]] && . /usr/share/powerline/integrations/powerline.sh
+. /usr/share/powerline/integrations/powerline.sh
 
 # change some default behavior
 shopt -s cdspell # correct minor spelling errors in a cd command
@@ -468,3 +469,6 @@ unset __conda_setup
 #     export XMODIFIERS="@im=none"
 #     export PATH="/snap/terminolog/current/usr/bin:$PATH"
 # fi
+
+# mc
+alias mc='. /usr/lib/mc/mc-wrapper.sh'
