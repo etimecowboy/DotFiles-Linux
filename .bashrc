@@ -1,4 +1,4 @@
-# Time-stamp: <2022-03-07 Mon 18:13 by xin on tufg>
+# Time-stamp: <2022-03-13 Sun 14:47 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -472,3 +472,14 @@ unset __conda_setup
 
 # mc
 alias mc='. /usr/lib/mc/mc-wrapper.sh'
+
+# flatpak
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
+fi
+
+unset rc
