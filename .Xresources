@@ -40,6 +40,7 @@ Xft*hintstyle:        hintslight
 Xft*rgba:             rgb
 ! Xft*rgba:             subpixel
 Xft*lcdfilter:        lcddefault
+! xft:DejavuSansMono for Powerline Nerd Font:size=11,xft:Microsoft YaHei
 
 !!! URxvt settings
 ! Env setting
@@ -437,54 +438,59 @@ URxvt*font-size.step:   1
 
 !!! xterm / uxterm
 ! ref: https://github.com/zma/config_files/blob/master/Xresources.for.xterm
-XTerm*background:  #261c14
-XTerm*foreground:  #a3adb8
-XTerm*cursorColor: #a3adb8
+UXTerm*background:  #261c14
+UXTerm*foreground:  #a3adb8
+UXTerm*cursorColor: #a3adb8
 ! Make alt work
-XTerm*eightBitInput:   false
-XTerm*eightBitOutput:  true
+UXTerm*eightBitInput:   false
+UXTerm*eightBitOutput:  true
 ! Every shell is a login shell by default (for inclusion of all necessary environment variables)
-XTerm*loginShell:      true
+UXTerm*loginShell:      true
 ! Scrollbacks
-XTerm*savelines:       16384
+UXTerm*savelines:       16384
 ! Double-click to select whole URLs :D
-XTerm*charClass:       33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+!UXTerm*charClass:       33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+UXTerm*charClass:       33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 ! Default font and size
-! XTerm*faceName:        DejavuSansMono for Powerline Nerd Font:size=12:antialias=true
-XTerm*faceName:        Source Code Pro Semibold:size=10:antialias=true
-! XTerm*faceName:        YaHei Consolas Hybrid:size=11:antialias=true
-! xft:DejavuSansMono for Powerline Nerd Font:size=11,xft:Microsoft YaHei
-! XTerm*faceSize:        10
+! UXTerm*faceName:        DejavuSansMono for Powerline Nerd Font:size=12:antialias=true
+! UXTerm*faceName:        Source Code Pro for Powerline:size=10:antialias=true
+UXTerm*faceName:        Source Code Pro Semibold:size=10:antialias=true
+! UXTerm*faceName:        YaHei Consolas Hybrid:size=11:antialias=true
+! UXTerm*faceSize:        10
 ! Chinese fonts
-! XTerm*faceNameDoublesize: Microsoft YaHei
-! XTerm*faceNameDoublesize: Adobe 黑体 Std
-XTerm*faceNameDoublesize: 方正粗圆_GBK
-XTerm*allowBoldFonts:     true
+! UXTerm*faceNameDoublesize: Microsoft YaHei
+! UXTerm*faceNameDoublesize: Adobe 黑体 Std
+UXTerm*faceNameDoublesize: 方正粗圆_GBK
+UXTerm*allowBoldFonts:     true
 
 ! lang
-XTerm*locale:          true
-XTerm*termName:        xterm-256color
-XTerm*metaSendsEscape: true
-XTerm*modifyOtherKeys: true
+UXTerm*locale:          true
+UXTerm*termName:        xterm-256color
+UXTerm*metaSendsEscape: true
+UXTerm*modifyOtherKeys: true
 ! Right-side scrollbar
-XTerm*rightScrollBar:  true
-XTerm*ScrollBar:       true
+UXTerm*rightScrollBar:  false
+UXTerm*ScrollBar:       false
 ! Stop output to terminal from jumping down to bottom of scroll again
-XTerm*scrollTtyOutput: false
+UXTerm*scrollTtyOutput: false
 ! sixel graphic support (required by sixel)
-XTerm*decTerminalID:   vt340
+UXTerm*decTerminalID:   vt340
+UXTerm*visualBell: true
+UXTerm*bellIsUrgent: true
+UXTerm*borderWidth: 0
+UXTerm*cursorBlink: true
+! UXTerm*blink: true
+UXTerm*allowTitleOps: true
+UXTerm*selectToClipboard: true
 ! utf8 supports
-XTerm*vt100.utf8:      true
-XTerm*vt100.utf8Fonts: true
-XTerm*vt100.utf8Title: true
+UXTerm*utf8:      true
+UXTerm*utf8Fonts: true
+UXTerm*utf8Title: true
 ! copy/paste
-XTerm*vt100.Translations: #override \
+UXTerm.Translations: #override \
                  Shift <Key>Insert:    insert-selection(SELECT) \n\
                  Ctrl Shift <Key>V:    insert-selection(SELECT) \n\
                  Ctrl Shift <Key>C:    copy-selection(SELECT)
-XTerm*selectToClipboard: true
-XTerm*vt100.allowTitleOps: true
-XTerm*vt100.blink: true
 
 !!! Emacs
 !! Disable xim-based im
