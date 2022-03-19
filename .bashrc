@@ -1,4 +1,4 @@
-# Time-stamp: <2022-03-13 Sun 14:47 by xin on tufg>
+# Time-stamp: <2022-03-19 Sat 15:38 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -483,3 +483,9 @@ if [ -d ~/.bashrc.d ]; then
 fi
 
 unset rc
+
+# neofetch
+
+# shell-color-scripts
+# REF: https://gitlab.com/dwt1/shell-color-scripts
+colorscript random
