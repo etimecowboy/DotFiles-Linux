@@ -40,7 +40,7 @@ Xft*hintstyle:        hintslight
 Xft*rgba:             rgb
 ! Xft*rgba:             subpixel
 Xft*lcdfilter:        lcddefault
-! xft:DejavuSansMono for Powerline Nerd Font:size=11,xft:Microsoft YaHei
+! Xft:DejavuSansMono for Powerline Nerd Font:size=11,xft:Microsoft YaHei
 
 !!! URxvt settings
 ! Env setting
@@ -91,7 +91,8 @@ URxvt*scrollBar:       false
 ! URxvt*scrollColor:#222222
 URxvt.scrollTtyOutput:  false
 URxvt.scrollTtyKeypress:true
-URxvt*font:  xft:DejavuSansMono for Powerline Nerd Font:size=12,xft:Microsoft YaHei
+! font
+URxvt*font: xft:DejavuSansMono for Powerline Nerd Font:size=12,xft:Microsoft YaHei
 URxvt*letterSpace:      -1
 URxvt*lineSpace:        -1
 
@@ -438,59 +439,51 @@ URxvt*font-size.step:   1
 
 !!! xterm / uxterm
 ! ref: https://github.com/zma/config_files/blob/master/Xresources.for.xterm
-UXTerm*background:  #261c14
-UXTerm*foreground:  #a3adb8
-UXTerm*cursorColor: #a3adb8
+UXTerm*loginShell:        true
+UXTerm*savelines:         16384
+UXTerm*scrollTtyOutput:   false
+UXTerm*background:        #261c14
+UXTerm*foreground:        #a3adb8
+UXTerm*cursorColor:       #a3adb8
+UXTerm*visualBell:        true
+UXTerm*bellIsUrgent:      true
+UXTerm*borderWidth:       0
+UXTerm*cursorBlink:       true
+UXTerm*allowTitleOps:     true
+! UXTerm*rightScrollBar:    false
+UXTerm*ScrollBar:         false
+UXTerm*locale:            true
+UXTerm*termName:          xterm-256color
+UXTerm*metaSendsEscape:   false
+UXTerm*modifyOtherKeys:   true
+UXTerm*selectToClipboard: true
 ! Make alt work
-UXTerm*eightBitInput:   false
-UXTerm*eightBitOutput:  true
-! Every shell is a login shell by default (for inclusion of all necessary environment variables)
-UXTerm*loginShell:      true
-! Scrollbacks
-UXTerm*savelines:       16384
+UXTerm*eightBitInput:     false
+UXTerm*eightBitOutput:    true
+! sixel graphic support (required by sixel)
+UXTerm*decTerminalID:     vt340
+! utf8 supports
+UXTerm*utf8*:             true
+! UXTerm*utf8:              true
+! UXTerm*utf8Fonts:         true
+! UXTerm*utf8Title:         true
+! Default font and size
+! UXTerm*faceName:          Source Code Pro Semibold
+UXTerm*faceName:          Source Code Pro Semibold:size=10:antialias=true
+! UXTerm*faceSize:          10
+UXTerm*allowBoldFonts:    true
+UXTerm*faceNameDoublesize:方正粗圆_GBK
+! Key binds
 ! Double-click to select whole URLs :D
 !UXTerm*charClass:       33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
-UXTerm*charClass:       33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
-! Default font and size
-! UXTerm*faceName:        DejavuSansMono for Powerline Nerd Font:size=12:antialias=true
-! UXTerm*faceName:        Source Code Pro for Powerline:size=10:antialias=true
-UXTerm*faceName:        Source Code Pro Semibold:size=10:antialias=true
-! UXTerm*faceName:        YaHei Consolas Hybrid:size=11:antialias=true
-! UXTerm*faceSize:        10
-! Chinese fonts
-! UXTerm*faceNameDoublesize: Microsoft YaHei
-! UXTerm*faceNameDoublesize: Adobe 黑体 Std
-UXTerm*faceNameDoublesize: 方正粗圆_GBK
-UXTerm*allowBoldFonts:     true
-
-! lang
-UXTerm*locale:          true
-UXTerm*termName:        xterm-256color
-UXTerm*metaSendsEscape: true
-UXTerm*modifyOtherKeys: true
-! Right-side scrollbar
-UXTerm*rightScrollBar:  false
-UXTerm*ScrollBar:       false
-! Stop output to terminal from jumping down to bottom of scroll again
-UXTerm*scrollTtyOutput: false
-! sixel graphic support (required by sixel)
-UXTerm*decTerminalID:   vt340
-UXTerm*visualBell: true
-UXTerm*bellIsUrgent: true
-UXTerm*borderWidth: 0
-UXTerm*cursorBlink: true
-! UXTerm*blink: true
-UXTerm*allowTitleOps: true
-UXTerm*selectToClipboard: true
-! utf8 supports
-UXTerm*utf8:      true
-UXTerm*utf8Fonts: true
-UXTerm*utf8Title: true
-! copy/paste
-UXTerm.Translations: #override \
-                 Shift <Key>Insert:    insert-selection(SELECT) \n\
-                 Ctrl Shift <Key>V:    insert-selection(SELECT) \n\
-                 Ctrl Shift <Key>C:    copy-selection(SELECT)
+! Single-click to follow the link
+UXTerm*charClass:         33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+UXTerm*translations:      #override \n\
+    Shift <Key>Insert:    insert-selection(SELECT) \n\
+    Ctrl Shift <Key>V:    insert-selection(SELECT) \n\
+    Ctrl Shift <Key>C:    copy-selection(SELECT) \n\
+    Ctrl <Key>+:          larger-vt-font() \n\
+    Ctrl <Key>-:          smaller-vt-font()
 
 !!! Emacs
 !! Disable xim-based im
