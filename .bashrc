@@ -1,4 +1,4 @@
-# Time-stamp: <2022-03-19 Sat 15:38 by xin on tufg>
+# Time-stamp: <2022-03-29  二 02:29 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -111,6 +111,8 @@ esac
 # [[ $(tty) == \/dev\/tty[3-6]* ]] && exec fbterm -- bash -c 'TERM=fbterm screen'
 [[ $(tty) == \/dev\/tty[3-6]* ]] && exec fbterm -- bash -c 'TERM=fbterm tmux'
 # && eval "$(fasd --init auto)" && . /usr/share/powerline/integrations/powerline.sh # run anyway
+## Test sixel-tmux, not working
+# [[ $(tty) == \/dev\/tty[3-6]* ]] && exec fbterm -- bash -c 'TERM=fbterm /home/xin/src/sixel-tmux/tmux
 
 # powerline-shell
 # - https://github.com/b-ryan/powerline-shell
@@ -474,15 +476,15 @@ unset __conda_setup
 alias mc='. /usr/lib/mc/mc-wrapper.sh'
 
 # flatpak
-if [ -d ~/.bashrc.d ]; then
-    for rc in ~/.bashrc.d/*; do
-        if [ -f "$rc" ]; then
-            . "$rc"
-        fi
-    done
-fi
-
-unset rc
+# Adding aliases for flatpaks is not a good method.
+# if [ -d ~/.bashrc.d ]; then
+#     for rc in ~/.bashrc.d/*; do
+#         if [ -f "$rc" ]; then
+#             . "$rc"
+#         fi
+#     done
+# fi
+# unset rc
 
 # neofetch
 
