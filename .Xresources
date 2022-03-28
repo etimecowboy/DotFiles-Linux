@@ -468,9 +468,17 @@ UXTerm*utf8*:             true
 ! UXTerm*utf8Fonts:         true
 ! UXTerm*utf8Title:         true
 ! Default font and size
-! UXTerm*faceName:          Source Code Pro Semibold
-UXTerm*faceName:          Source Code Pro Semibold:size=10:antialias=true
-! UXTerm*faceSize:          10
+UXTerm*faceName:          Iosevka Nerd Font Mono
+! UXTerm*faceName:          Source Code Pro
+! UXTerm*faceName:          SauceCodePro Nerd Font Mono
+! UXTerm*faceName:          VictorMono Nerd Font Mono
+! UXTerm*faceName:          mononoki Nerd Font Mono
+! UXTerm*faceName:          FiraCode Nerd Font Mono
+! UXTerm*faceName:          Lekton Nerd Font Mono
+! UXTerm*faceName:          Monoid Nerd Font Mono
+! UXTerm*faceName:          UbuntuMono Nerd Font Mono
+! UXTerm*faceName:          DejaVuSansMono Nerd Font Mono
+UXTerm*faceSize:          12
 UXTerm*allowBoldFonts:    true
 UXTerm*faceNameDoublesize:方正粗圆_GBK
 ! Key binds
