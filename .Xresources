@@ -440,6 +440,7 @@ URxvt*font-size.step:   1
 !!! xterm / uxterm
 ! ref: https://github.com/zma/config_files/blob/master/Xresources.for.xterm
 UXTerm*loginShell:        true
+UXTerm*geometry:          80x30
 UXTerm*savelines:         16384
 UXTerm*scrollTtyOutput:   false
 UXTerm*background:        #261c14
@@ -468,19 +469,22 @@ UXTerm*utf8*:             true
 ! UXTerm*utf8Fonts:         true
 ! UXTerm*utf8Title:         true
 ! Default font and size
-UXTerm*faceName:          Iosevka Nerd Font Mono
+! UXTerm*faceName:          Iosevka Nerd Font Mono
 ! UXTerm*faceName:          Source Code Pro
 ! UXTerm*faceName:          SauceCodePro Nerd Font Mono
 ! UXTerm*faceName:          VictorMono Nerd Font Mono
 ! UXTerm*faceName:          mononoki Nerd Font Mono
-! UXTerm*faceName:          FiraCode Nerd Font Mono
+UXTerm*faceName:          FiraCode Nerd Font Mono
 ! UXTerm*faceName:          Lekton Nerd Font Mono
 ! UXTerm*faceName:          Monoid Nerd Font Mono
 ! UXTerm*faceName:          UbuntuMono Nerd Font Mono
 ! UXTerm*faceName:          DejaVuSansMono Nerd Font Mono
 UXTerm*faceSize:          12
 UXTerm*allowBoldFonts:    true
-UXTerm*faceNameDoublesize:方正粗圆_GBK
+! UXTerm*faceNameDoublesize:方正行楷_GBK
+! UXTerm*faceNameDoublesize:方正仿宋_GBK
+UXTerm*faceNameDoublesize:方正粗宋_GBK
+! UXTerm*faceNameDoublesize:方正粗圆_GBK
 ! Key binds
 ! Double-click to select whole URLs :D
 !UXTerm*charClass:       33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48

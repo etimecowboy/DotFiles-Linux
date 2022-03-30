@@ -1,4 +1,4 @@
-# Time-stamp: <2022-03-29  二 02:29 by xin on tufg>
+# Time-stamp: <2022-03-29 Tue 18:51 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -486,8 +486,9 @@ alias mc='. /usr/lib/mc/mc-wrapper.sh'
 # fi
 # unset rc
 
-# neofetch
+# neofetch - show system specification, useful for the audience
+neofetch
 
 # shell-color-scripts
 # REF: https://gitlab.com/dwt1/shell-color-scripts
-colorscript random
+# colorscript random
