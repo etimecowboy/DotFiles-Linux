@@ -1,4 +1,4 @@
-# Time-stamp: <2022-03-29 Tue 18:51 by xin on tufg>
+# Time-stamp: <2022-06-18 Sat 08:48 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -75,6 +75,14 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+
+# My locale settings
+unset LANG   # make the following works
+unset LANGUAGE # make the following works
+unset LC_ALL # make the following works #export LC_ALL=C
+export LC_CTYPE=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+export LC_TIME=C
 
 # Run fbterm after log in tty for Chinese display
 # Note: fbterm displays not very good now. Don't start it until it is necessary by fb
