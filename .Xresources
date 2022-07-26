@@ -474,14 +474,15 @@ UXTerm*utf8*:             true
 ! UXTerm*faceName:          SauceCodePro Nerd Font Mono
 ! UXTerm*faceName:          VictorMono Nerd Font Mono
 ! UXTerm*faceName:          mononoki Nerd Font Mono
-XTerm*faceName:           xft:FiraCode Nerd Font Mono,xft:JoyPixels
-UXTerm*faceName:          xft:FiraCode Nerd Font Mono,xft:Noto Color Emoji,xft:JoyPixels,xft:Monospace
-                          ! xft:Noto Color Emoji,xft:Twitter Color Emoji
 ! UXTerm*faceName:          Lekton Nerd Font Mono
 ! UXTerm*faceName:          Monoid Nerd Font Mono
 ! UXTerm*faceName:          UbuntuMono Nerd Font Mono
 ! UXTerm*faceName:          DejaVuSansMono Nerd Font Mono
-UXTerm*faceSize:          11
+! XTerm*faceName:           xft:Cascadia Code,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
+! UXTerm*faceName:          xft:Cascadia Code,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
+XTerm*faceName:           xft:FiraCode Nerd Font Mono,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
+UXTerm*faceName:          xft:FiraCode Nerd Font Mono,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
+UXTerm*faceSize:          10
 UXTerm*allowBoldFonts:    true
 ! UXTerm*faceNameDoublesize:方正行楷_GBK
 ! UXTerm*faceNameDoublesize:方正仿宋_GBK
