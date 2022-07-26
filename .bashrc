@@ -116,9 +116,7 @@ export LC_TIME=C
 #     ;;
 # esac
 # My working method:
-# [[ $(tty) == \/dev\/tty[3-6]* ]] && exec fbterm -- bash -c 'TERM=fbterm screen'
 [[ $(tty) == \/dev\/tty[3-6]* ]] && exec fbterm -- bash -c 'TERM=fbterm tmux'
-# && eval "$(fasd --init auto)" && . /usr/share/powerline/integrations/powerline.sh # run anyway
 ## Test sixel-tmux, not working
 # [[ $(tty) == \/dev\/tty[3-6]* ]] && exec fbterm -- bash -c 'TERM=fbterm /home/xin/src/sixel-tmux/tmux
 
@@ -133,7 +131,8 @@ export LC_TIME=C
 # deb package system integration script
 # Only for tty1 and tty2 (Ubuntu Gnome GUI mode)
 # [[ $(tty) == \/dev\/tty[012]* ]] && . /usr/share/powerline/integrations/powerline.sh
-. /usr/share/powerline/integrations/powerline.sh
+
+# . /usr/share/powerline/integrations/powerline.sh # commented out to use starship shell prompt.
 
 # change some default behavior
 shopt -s cdspell # correct minor spelling errors in a cd command
@@ -345,6 +344,16 @@ ftpane() {
 # NOTE: fasd doesn't work in tty mode
 if [ -x "$(command -v fasd)" ]; then
     eval "$(fasd --init auto)"
+    # default aliases begin
+    # alias a='fasd -a'        # any
+    # alias s='fasd -si'       # show / search / select
+    # alias d='fasd -d'        # directory
+    # alias f='fasd -f'        # file
+    # alias sd='fasd -sid'     # interactive directory selection
+    # alias sf='fasd -sif'     # interactive file selection
+    # alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+    # alias zz='fasd_cd -d -i' # cd with interactive selection
+    # default aliases end
     alias e='f -e $EDITOR' # quick opening files with emacs
     alias m='f -e smplayer'        # quick opening files with smplayer
     alias o='a -e xdg-open'        # quick opening files with xdg-open
@@ -597,20 +606,13 @@ export SCM_CHECK=true
 
 # (Advanced): Uncomment this to make Bash-it reload itself automatically
 # after enabling or disabling aliases, plugins, and completions.
-# export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
+#export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
 
 # Uncomment this to make Bash-it create alias reload.
 # export BASH_IT_RELOAD_LEGACY=1
 
 # Load Bash It
-# source "$BASH_IT"/bash_it.sh
+source "$BASH_IT"/bash_it.sh
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-# BEGIN_KITTY_SHELL_INTEGRATION
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-# END_KITTY_SHELL_INTEGRATION
+# starship shell prompt
+eval "$(starship init bash)"
