@@ -1,0 +1,31 @@
+# <%= path %>
+
+name: <%= name %>
+root: ~/
+
+windows:
+  - brain:
+      layout: main-vertical
+      root: ~/org/roam
+      panes:
+        - emacsclient -t --eval '(org-agenda nil "d")'
+  - files:
+      layout: even-vertical
+      root: ~/src
+      panes:
+        - ranger
+        - mc
+  - ops:
+      layout: main-horizontal
+      panes:
+        - conda activate py38_tools && unimatrix -abf -s 85 -l ens
+  - proj:
+      layout: main-horizontal
+      root: ~/src
+      panes:
+        - emacsclient -t ~/src
+        - ~
+  - top:
+      layout: main-vertical
+      panes:
+        - htop

@@ -30,10 +30,10 @@ sudo apt -y upgrade    # Strictly upgrades the current packages
 ## Install some CLI software
 sudo apt -y install ssh git build-essential aptitude ppa-purge # cmake automake clang cscope scons
 sudo apt -y install most htop iftop tmux tmux-themepack-jimeh net-tools iproute2
-sudo apt -y install rsync lrzsz curl wget tree vim zile yank xclip trash-cli 
-sudo apt -y install fbterm fbterm-ucimf fctix fcitx-frontend-fbterm 
-sudo apt -y install xfonts-wqy fonts-wqy-microhei fonts-wqy-zenhei
-sudo apt -y install fzf fasd powerline powerline-gitstatus 
+sudo apt -y install rsync lrzsz curl wget tree vim zile yank xclip trash-cli
+sudo apt -y install fbterm fbterm-ucimf fctix fcitx-frontend-fbterm
+sudo apt -y install xfonts-wqy fonts-wqy-microhei fonts-wqy-zenhei fonts-firacode
+sudo apt -y install fzf fasd # powerline powerline-gitstatus
 sudo apt -y install mc ranger caca-utils highlight w3m w3m-img poppler-utils mediainfo
 sudo apt -y install sox cmus graphviz imagemagick youtube-dl ffmpeg
 
