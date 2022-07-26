@@ -1,4 +1,5 @@
-# Time-stamp: <2022-07-26 Tue 02:59 by xin on tufg>
+#!/usr/bin/env bash
+# Time-stamp: <2022-07-26 Tue 06:51 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -519,26 +520,28 @@ export CARGO_HOME="$HOME/.cargo"
 
 # kitty terminal
 # alias kitty='GLFW_IM_MODULE=ibus kitty'
+# # BEGIN_KITTY_SHELL_INTEGRATION
+# if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# # END_KITTY_SHELL_INTEGRATION
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-# BEGIN_KITTY_SHELL_INTEGRATION
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-# END_KITTY_SHELL_INTEGRATION
+# starship shell prompt
+eval "$(starship init bash)"
 
 # bash_it
 # If not running interactively, don't do anything
-case $- in
-  *i*) ;;
-    *) return;;
-esac
+# case $- in
+#   *i*) ;;
+#     *) return;;
+# esac
 
 # Path to the bash it configuration
 export BASH_IT="/home/xin/.bash_it"
+# export BASH_IT="{{BASH_IT}}"
 
 # Lock and Load a custom theme file.
 # Leave empty to disable theming.
@@ -573,7 +576,7 @@ unset MAILCHECK
 #BASH_IT_PROJECT_PATHS="${HOME}/Projects:/Volumes/work/src"
 
 # Set this to false to turn off version control status checking within the prompt for all themes
-export SCM_CHECK=true
+#export SCM_CHECK=true
 # Set to actual location of gitstatus directory if installed
 #export SCM_GIT_GITSTATUS_DIR="$HOME/gitstatus"
 # per default gitstatus uses 2 times as many threads as CPU cores, you can change this here if you must
@@ -613,6 +616,3 @@ export SCM_CHECK=true
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
-
-# starship shell prompt
-eval "$(starship init bash)"
