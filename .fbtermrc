@@ -17,7 +17,7 @@
 # font-name = unifont.pcf,WenQuanYi Bitmap Song
 # font-name = Dejavu Sans Mono
 font-names=FiraCode Nerd Font Mono,Microsoft YaHei
-font-size=20
+font-size=16
 
 # force font width (and/or height), usually for non-fixed width fonts
 # legal value format: n (fw_new = n), +n (fw_new = fw_old + n), -n (fw_new = fw_old - n)
