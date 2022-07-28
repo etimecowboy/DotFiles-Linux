@@ -480,8 +480,8 @@ UXTerm*utf8*:             true
 ! UXTerm*faceName:          DejaVuSansMono Nerd Font Mono
 ! XTerm*faceName:           xft:Cascadia Code,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
 ! UXTerm*faceName:          xft:Cascadia Code,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
-XTerm*faceName:           xft:FiraCode Nerd Font Mono,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
-UXTerm*faceName:          xft:FiraCode Nerd Font Mono,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
+XTerm*faceName:           xft:FiraCode Nerd Font Mono,xft:Symbols Nerd Font,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
+UXTerm*faceName:          xft:FiraCode Nerd Font Mono,xft:Symbols Nerd Font,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
 UXTerm*faceSize:          10
 UXTerm*allowBoldFonts:    true
 ! UXTerm*faceNameDoublesize:方正行楷_GBK
