@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Time-stamp: <2022-07-26 Tue 06:51 by xin on tufg>
+# Time-stamp: <2022-07-28 Thu 08:36 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -467,21 +467,6 @@ export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
 # docker-ce-rootless-extra
 # export DOCKER_HOST=unix:///run/user/$UID/docker.sock
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 # Setting for snap version terminology
 # NOT working
 # if [[ -d "/sanp/terminology/current" ]]; then
@@ -514,20 +499,11 @@ alias mc='. /usr/lib/mc/mc-wrapper.sh'
 # fortune
 # fortune-zh
 
-# Rust
-. "$HOME/.cargo/env"
-export CARGO_HOME="$HOME/.cargo"
-
 # kitty terminal
 # alias kitty='GLFW_IM_MODULE=ibus kitty'
 # # BEGIN_KITTY_SHELL_INTEGRATION
 # if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # # END_KITTY_SHELL_INTEGRATION
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # starship shell prompt
 eval "$(starship init bash)"
@@ -538,6 +514,21 @@ eval "$(starship init bash)"
 #   *i*) ;;
 #     *) return;;
 # esac
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 # Path to the bash it configuration
 export BASH_IT="/home/xin/.bash_it"
