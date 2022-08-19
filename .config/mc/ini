@@ -85,6 +85,8 @@ skin=modarcon16-defbg
 
 safe_overwrite=false
 
+shadows=true
+
 [Layout]
 message_visible=true
 keybar_visible=true
@@ -95,7 +97,7 @@ menubar_visible=true
 free_space=true
 horizontal_split=false
 vertical_equal=true
-left_panel_size=119
+left_panel_size=54
 horizontal_equal=true
 top_panel_size=1
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Time-stamp: <2022-07-28 Thu 08:36 by xin on tufg>
+# Time-stamp: <2022-07-30 Sat 04:12 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -49,6 +49,18 @@ esac
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
 #force_color_prompt=yes
+
+# set as a turecolor term
+case "$TERM" in
+        iterm   |\
+        screen* |\
+        tmux*   |\
+        xterm*  |\
+        uxterm* |\
+        kitty*  |\
+        *-256color )    export COLORTERM=truecolor ;;
+    vte*)
+esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
