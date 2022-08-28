@@ -44,7 +44,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Go
-export PATH="/usr/local/go/bin:$PATH"
+export GOPATH=$HOME/go/
+export GOROOT=/usr/local/go
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+# export PATH="$PATH:$GOPATH/bin"
 
 # Rust
 . "$HOME/.cargo/env"
