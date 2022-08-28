@@ -1,0 +1,18 @@
+session_name: files
+start_directory: ~/
+windows:
+  - window_name: ranger
+    layout: main-horizontal
+    panes:
+      - shell_command:
+          - ranger
+  - window_name: mc
+    layout: main-horizontal
+    panes:
+      - shell_command:
+          - mc
+  - window_name: ssh_zbox
+    layout: main-horizontal
+    panes:
+      - shell_command:
+          - ssh zbox

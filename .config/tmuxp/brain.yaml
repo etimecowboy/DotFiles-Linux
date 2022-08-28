@@ -1,0 +1,15 @@
+session_name: brain
+start_directory: ~/org/roam
+windows:
+  - window_name: todo
+    panes:
+      - shell_command:
+          - emacsclient -tc --eval '(org-agenda nil "d")'
+  - window_name: notes
+    panes:
+      - shell_command:
+          - emacsclient -tc .
+  - window_name: org-files
+    panes:
+      - shell_command:
+          - ranger

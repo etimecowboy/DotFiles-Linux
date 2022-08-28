@@ -4,15 +4,13 @@ windows:
     start_directory: ~/org/roam
     panes:
       - shell_command:
-          - emacsclient -t --eval '(org-agenda nil "d")'
+          - emacsclient -tc --eval '(org-agenda nil "d")'
   - window_name: files
     start_directory: ~/src
     layout: even-vertical
     panes:
       - shell_command:
           - ranger
-      - shell_command:
-          - mc
   - window_name: ops
     start_directory: ~/src
     layout: main-horizontal
@@ -28,12 +26,3 @@ windows:
           - htop
       - shell_command:
           - nvidia-smi -l 2
-  - window_name: cheatsheets
-    layout: even-vertical
-    panes:
-      - shell_command:
-        - emacsclient -tc "~/org/roam/20220626090830-cheat_sheet.org"
-      - shell_command:
-          - emacsclient -tc "~/org/roam/tmux_cheat_sheet_quick_reference.org"
-      - shell_command:
-          - emacsclient -tc "~/org/roam/20220625162855-kitty_default_keybindings.org"

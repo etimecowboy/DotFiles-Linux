@@ -1,0 +1,12 @@
+session_name: workflows
+start_directory: ~/org/roam
+windows:
+  - window_name: tmuxp
+    panes:
+      - shell_command:
+          - emacsclient -tc
+  - window_name: tmux
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - ranger

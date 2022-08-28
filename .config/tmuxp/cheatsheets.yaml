@@ -1,0 +1,23 @@
+session_name: cheatsheets
+windows:
+  - window_name: kitty
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - emacsclient -tc "~/org/roam/20220625162855-kitty_default_keybindings.org"
+      - shell_command:
+          - emacsclient -tc "~/.config/kitty/kitty.conf"
+  - window_name: tmux
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - emacsclient -tc "~/org/roam/tmux_cheat_sheet_quick_reference.org"
+      - shell_command:
+          - emacsclient -tc "~/.config/tmux/tmux.conf"
+  - window_name: ranger
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - emacsclient -tc "~/org/roam/ranger_cheatsheet.org"
+      - shell_command:
+          - emacsclient -tc "~/.config/ranger/rc.conf"
