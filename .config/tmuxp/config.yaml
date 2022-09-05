@@ -1,0 +1,20 @@
+session_name: config
+start_directory: "~/src"
+windows:
+  - window_name: spacemacs
+    layout: even-horizontal
+    focus: true
+    panes:
+      - shell_command:
+          - cmd: emacsclient -tc "~/src/DotSpacemacs/.spacemacs"
+            sleep_after: 1
+        focus: true
+      - shell_command:
+          - cmd: emacsclient -tc "~/src/DotSpacemacs"
+  - window_name: dotfiles
+    layout: even-horizontal
+    panes:
+      - shell_command:
+          - cmd: emacsclient -tc "~/src/DotFiles-Linux"
+            sleep_after: 1
+        focus: true
