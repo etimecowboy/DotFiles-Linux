@@ -1,23 +1,37 @@
 session_name: cheatsheets
+start_directory: "~/org/roam"
 windows:
   - window_name: kitty
-    layout: even-vertical
+    layout: even-horizontal
+    focus: true
     panes:
       - shell_command:
-          - emacsclient -tc "~/org/roam/20220625162855-kitty_default_keybindings.org"
+          - cmd: emacsclient -tc "~/org/roam/20220625162855-kitty_default_keybindings.org"
+            sleep_after: 1
+        focus: true
       - shell_command:
-          - emacsclient -tc "~/.config/kitty/kitty.conf"
+          - cmd: emacsclient -tc "~/.config/kitty/kitty.conf"
+            sleep_after: 1
   - window_name: tmux
-    layout: even-vertical
+    layout: main-vertical
     panes:
       - shell_command:
-          - emacsclient -tc "~/org/roam/tmux_cheat_sheet_quick_reference.org"
+          - cmd: emacsclient -tc "~/src/tao-of-tmux/manuscript/99-cheatsheets.org"
+            sleep_after: 1
+            focus: true
       - shell_command:
-          - emacsclient -tc "~/.config/tmux/tmux.conf"
-  - window_name: ranger
-    layout: even-vertical
+          - cmd: emacsclient -tc "~/org/roam/tmux_cheat_sheet_quick_reference.org"
+            sleep_after: 1
+      - shell_command:
+          - cmd: emacsclient -tc "~/.config/tmux/tmux.conf"
+            sleep_after: 1
+  - window_name: eaf-browser
+    layout: even-horizontal
     panes:
       - shell_command:
-          - emacsclient -tc "~/org/roam/ranger_cheatsheet.org"
+          - cmd: emacsclient -tc "~/org/roam/20220817010326-eaf_browser_default_key_bindings.org"
+            sleep_after: 1
+        focus: true
       - shell_command:
-          - emacsclient -tc "~/.config/ranger/rc.conf"
+          - cmd: emacsclient -tc "~/org/roam/20220817010326-eaf_browser.org"
+            sleep_after: 1

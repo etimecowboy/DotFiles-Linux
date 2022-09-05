@@ -4,7 +4,9 @@ windows:
   - window_name: todo
     panes:
       - shell_command:
-          - emacsclient -tc --eval '(org-agenda nil "d")'
+          - cmd: emacsclient -tc --eval '(org-agenda nil "d")'
+            sleep_before: 1
+            sleep_after: 1
   - window_name: notes
     panes:
       - shell_command:

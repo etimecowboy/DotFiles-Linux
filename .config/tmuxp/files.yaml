@@ -3,14 +3,27 @@ start_directory: ~/
 windows:
   - window_name: ranger
     layout: main-horizontal
+    focus: true
     panes:
       - shell_command:
           - ranger
+        focus: true
+      - shell_command:
+          - cmd: emacsclient -tc "~/org/roam/ranger_cheatsheet.org"
+            sleep_after: 1
+      - shell_command:
+          - cmd: emacsclient -tc "~/.config/ranger/rc.conf"
   - window_name: mc
     layout: main-horizontal
     panes:
       - shell_command:
           - mc
+        focus: true
+      - shell_command:
+          - cmd: emacsclient -tc "~/org/roam/20220307093602-midnight_commander.org"
+            sleep_after: 1
+      - shell_command:
+          - cmd: emacsclient -tc "~/.config/mc/"
   - window_name: ssh_zbox
     layout: main-horizontal
     panes:
