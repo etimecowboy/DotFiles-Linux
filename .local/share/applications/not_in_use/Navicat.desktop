@@ -1,0 +1,15 @@
+[Desktop Entry]
+Exec=/home/xin/opt/navicat/start_navicat
+GenericName=Multiple database GUI
+Icon=/home/xin/opt/navicat/download/navicat-logo.png
+MimeType=
+Name=Navicat
+Path=/home/xin
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=none
+X-KDE-SubstituteUID=false
+X-KDE-Username=

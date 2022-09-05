@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Name=Emacs Client Mode
+GenericName=Emacs Client
+Comment=Create an new emacs frame
+MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
+Exec=emacsclient -nc %F
+Icon=/home/xin/src/DotFiles-Linux/.local/share/icons/emacs48.png
+Type=Application
+Terminal=false
+Categories=Utility;Development;TextEditor;

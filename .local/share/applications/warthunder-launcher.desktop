@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=War Thunder
+Exec=/home/xin/.local/share/Steam/steamapps/common/War Thunder/launcher
+Terminal=false
+Type=Application
+Icon=/home/xin/.local/share/Steam/steamapps/common/War Thunder/launcher.ico
+Categories=GNOME;GTK;Network
+StartupNotify=true

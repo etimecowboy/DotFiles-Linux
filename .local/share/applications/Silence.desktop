@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Silence
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/314790
+Icon=steam_icon_314790
+Terminal=false
+Type=Application
+Categories=Game;

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=A Wine application
+MimeType=application/wps-office.doc;
+Exec=env WINEPREFIX="/home/xin/.deepinwine/Deepin-QQ" deepin-wine5 start /ProgIDOpen rtffile %f
+NoDisplay=true
+StartupNotify=true

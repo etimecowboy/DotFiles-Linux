@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Shadow Tactics: Blades of the Shogun
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/418240
+Icon=steam_icon_418240
+Terminal=false
+Type=Application
+Categories=Game;
