@@ -1,0 +1,23 @@
+!!! XClock
+! XClock*foreground: rgb:61/33/18
+! XClock*background: rgb:26/1c/14
+! XClock*hands:      rgb:40/4f/24
+! XClock*Clock.hourColor:   rgba:40/4f/24/ff
+! XClock*Clock.minuteColor: rgba:66/8d/3c/ff
+! XClock*Clock.majorColor:  rgba:9f/57/2b/ff
+! XClock*Clock.minorColor:  rgba:a1/94/1d/ff
+
+!!! catclock
+! https://github.com/BarkyTheDog/catclock
+! xclock*background:  rgb:9e/8f/79
+! XClock*background:        rgb:26/1c/14
+! XClock*menu*background:   rgb:9e/8f/79
+! XClock*menu*foreground:   rgb:00/00/00
+! XClock*catColor:          rgb:49/5b/23
+! XClock*detailColor:       rgb:9e/8f/79
+! XClock*tieColor:          rgb:84/8d/55
+! XClock*hands:             rgb:84/8d/55
+! XClock*highlight:         rgb:40/4f/24
+! XClock*foreground:        rgb:9e/8f/79
+! XClock*bottomShadowColor: #564e42
+! XClock*topShadowColor:    #e6d0b1
