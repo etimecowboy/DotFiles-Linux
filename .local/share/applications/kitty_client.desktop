@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Kitty (Client)
+Name=Kitty (New Tab)
 GenericName=Terminal emulator
 Comment=Fast, feature-rich, GPU based terminal
 TryExec=/home/xin/.local/kitty.app/bin/kitty
