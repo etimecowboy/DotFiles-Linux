@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Time-stamp: <2022-07-30 Sat 04:12 by xin on tufg>
+# Time-stamp: <2022-09-11 Sun 03:31 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
