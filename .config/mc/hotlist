@@ -1,0 +1,27 @@
+GROUP "source code"
+  ENTRY "/home/xin/src/DotFiles-Linux" URL "/home/xin/src/DotFiles-Linux"
+  ENTRY "/home/xin/src/DotSpacemacs" URL "/home/xin/src/DotSpacemacs"
+  ENTRY "/home/xin/src/spacemacs" URL "/home/xin/src/spacemacs"
+ENDGROUP
+GROUP "config"
+  ENTRY "/home/xin/.config" URL "/home/xin/.config"
+ENDGROUP
+GROUP "ebooks"
+ENDGROUP
+GROUP "dowloads"
+  ENTRY "/home/xin/下载/chrome" URL "/home/xin/下载/chrome"
+ENDGROUP
+GROUP "remotes"
+  ENTRY "/sftp://xin@192.168.0.23/mnt/ext2/xin/music" URL "/sftp://xin@192.168.0.23/mnt/ext2/xin/music"
+  ENTRY "/sftp://xin@192.168.0.23/mnt/ext2/xin/Video2" URL "/sftp://xin@192.168.0.23/mnt/ext2/xin/Video2"
+  ENTRY "/sftp://xin@192.168.0.23/mnt/ext1/xin/Video1" URL "/sftp://xin@192.168.0.23/mnt/ext1/xin/Video1"
+  ENTRY "/sftp://xin@192.168.0.23/mnt/data/xin/download/bt" URL "/sftp://xin@192.168.0.23/mnt/data/xin/download/bt"
+  ENTRY "/sftp://xin@192.168.0.23/mnt/data/xin/public" URL "/sftp://xin@192.168.0.23/mnt/data/xin/public"
+ENDGROUP
+GROUP "writings"
+  ENTRY "/home/xin/emacs/org/brain" URL "/home/xin/emacs/org/brain"
+  ENTRY "/home/xin/emacs/org/roam" URL "/home/xin/emacs/org/roam"
+ENDGROUP
+GROUP "media"
+  ENTRY "/media/xin/TVPorn" URL "/media/xin/TVPorn"
+ENDGROUP
