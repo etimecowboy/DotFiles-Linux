@@ -182,9 +182,9 @@ alias lt='ls -lart'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Editors
-export ALTERNATE_EDITOR='emacs -nw'
-export EDITOR='emacsclient -ntc'
-export VISUAL='emacsclient -ntc'
+export ALTERNATE_EDITOR='emacs -t'
+export EDITOR='emacsclient -tc'
+export VISUAL='emacsclient -tc'
 export PAGER='most'
 
 # Browser
@@ -196,7 +196,7 @@ fi
 
 # Use script in ~/bin =====> for use in matlab command mode
 alias ee='emacsclient -tc'
-alias ec='emacsclient -c'
+alias ec='emacsclient -nc'
 # English locale leads to the dysfunction of im (fcitx) in X LC_CTYPE
 # should be set when starting the daemon. If the locale already been
 # set as zh_CN.UTF-8 then, don't set it here.
