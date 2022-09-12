@@ -12,6 +12,7 @@ GROUP "dowloads"
   ENTRY "/home/xin/下载/chrome" URL "/home/xin/下载/chrome"
 ENDGROUP
 GROUP "remotes"
+  ENTRY "/home/xin/zbox_sshfs" URL "/home/xin/zbox_sshfs"
   ENTRY "/sftp://xin@192.168.0.23/mnt/ext2/xin/music" URL "/sftp://xin@192.168.0.23/mnt/ext2/xin/music"
   ENTRY "/sftp://xin@192.168.0.23/mnt/ext2/xin/Video2" URL "/sftp://xin@192.168.0.23/mnt/ext2/xin/Video2"
   ENTRY "/sftp://xin@192.168.0.23/mnt/ext1/xin/Video1" URL "/sftp://xin@192.168.0.23/mnt/ext1/xin/Video1"
@@ -23,5 +24,6 @@ GROUP "writings"
   ENTRY "/home/xin/emacs/org/roam" URL "/home/xin/emacs/org/roam"
 ENDGROUP
 GROUP "media"
+  ENTRY "/media/xin/NewPron" URL "/media/xin/NewPron"
   ENTRY "/media/xin/TVPorn" URL "/media/xin/TVPorn"
 ENDGROUP

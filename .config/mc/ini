@@ -5,7 +5,7 @@ shell_patterns=true
 auto_save_setup=true
 preallocate_space=false
 auto_menu=false
-use_internal_view=true
+use_internal_view=false
 use_internal_edit=false
 clear_before_exec=true
 confirm_delete=true
@@ -97,7 +97,7 @@ menubar_visible=true
 free_space=true
 horizontal_split=false
 vertical_equal=true
-left_panel_size=52
+left_panel_size=96
 horizontal_equal=true
 top_panel_size=1
 
@@ -128,6 +128,8 @@ alacritty=
 
 xterm-kitty=
 
+tmux-256color=
+
 [Panels]
 show_mini_info=true
 kilobyte_si=false
@@ -145,7 +147,7 @@ mouse_move_pages=true
 filetype_mode=true
 permission_mode=false
 torben_fj_mode=false
-quick_search_mode=2
+quick_search_mode=0
 select_flags=6
 
 simple_swap=false
