@@ -6,12 +6,15 @@ windows:
     focus: true
     panes:
       - shell_command:
-          - cmd: emacsclient -tc "~/org/roam/20220625162855-kitty_default_keybindings.org"
+          - cmd: emacsclient -tc "20220625162855-kitty_default_keybindings.org"
             sleep_after: 1
         focus: true
       - shell_command:
-          - cmd: emacsclient -tc "~/.config/kitty/kitty.conf"
+          - cmd: emacsclient -tc "20220915152532-my_customized_kitty_keybinds.org"
             sleep_after: 1
+      - shell_command:
+          - cmd: emacsclient -tc "~/.config/kitty/kitty.conf"
+            sleep_after: 2
   - window_name: tmux
     layout: main-vertical
     panes:
@@ -20,18 +23,25 @@ windows:
             sleep_after: 1
             focus: true
       - shell_command:
-          - cmd: emacsclient -tc "~/org/roam/tmux_cheat_sheet_quick_reference.org"
+          - cmd: emacsclient -tc "tmux_cheat_sheet_quick_reference.org"
             sleep_after: 1
       - shell_command:
           - cmd: emacsclient -tc "~/.config/tmux/tmux.conf"
             sleep_after: 1
+  - window_name: midnight commander
+    layout: even-horizontal
+    panes:
+      - shell_command:
+          - cmd: emacsclient -tc "20220911005423-midnight_commander_cheatsheet.org"
+            sleep_after: 1
+        focus: true
   - window_name: eaf-browser
     layout: even-horizontal
     panes:
       - shell_command:
-          - cmd: emacsclient -tc "~/org/roam/20220817010326-eaf_browser_default_key_bindings.org"
+          - cmd: emacsclient -tc "20220817010326-eaf_browser_default_key_bindings.org"
             sleep_after: 1
         focus: true
       - shell_command:
-          - cmd: emacsclient -tc "~/org/roam/20220817010326-eaf_browser.org"
+          - cmd: emacsclient -tc "20220817010326-eaf_browser.org"
             sleep_after: 1
