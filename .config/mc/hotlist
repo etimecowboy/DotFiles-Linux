@@ -1,4 +1,5 @@
 GROUP "source code"
+  ENTRY "/home/xin/src/spacemacs/elpa/28.1/develop" URL "/home/xin/src/spacemacs/elpa/28.1/develop"
   ENTRY "/home/xin/src/DotFiles-Linux" URL "/home/xin/src/DotFiles-Linux"
   ENTRY "/home/xin/src/DotSpacemacs" URL "/home/xin/src/DotSpacemacs"
   ENTRY "/home/xin/src/spacemacs" URL "/home/xin/src/spacemacs"

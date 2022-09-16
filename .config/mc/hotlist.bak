@@ -24,5 +24,6 @@ GROUP "writings"
   ENTRY "/home/xin/emacs/org/roam" URL "/home/xin/emacs/org/roam"
 ENDGROUP
 GROUP "media"
+  ENTRY "/media/xin/NewPron" URL "/media/xin/NewPron"
   ENTRY "/media/xin/TVPorn" URL "/media/xin/TVPorn"
 ENDGROUP
