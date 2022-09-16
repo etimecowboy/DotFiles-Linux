@@ -1,0 +1,9 @@
+[Desktop Entry]
+Exec=/opt/navicat/navicat16-premium-en.AppImage -uri %u
+MimeType=x-scheme-handler/navicat;
+Name=Navicat Premium 16
+NoDisplay=true
+StartupNotify=true
+StartupWMClass=Navicat Premium
+Terminal=false
+Type=Application
