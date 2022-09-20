@@ -52,3 +52,6 @@ export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 # Rust
 . "$HOME/.cargo/env"
 export CARGO_HOME="$HOME/.cargo"
+
+# cask
+export PATH="/home/xin/.cask/bin:$PATH"
