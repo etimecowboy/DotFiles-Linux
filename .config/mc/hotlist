@@ -1,8 +1,12 @@
 GROUP "source code"
+  ENTRY "/home/xin/.local/lib/python3.10/site-packages" URL "/home/xin/.local/lib/python3.10/site-packages"
   ENTRY "/home/xin/src/spacemacs/elpa/28.1/develop" URL "/home/xin/src/spacemacs/elpa/28.1/develop"
   ENTRY "/home/xin/src/DotFiles-Linux" URL "/home/xin/src/DotFiles-Linux"
   ENTRY "/home/xin/src/DotSpacemacs" URL "/home/xin/src/DotSpacemacs"
   ENTRY "/home/xin/src/spacemacs" URL "/home/xin/src/spacemacs"
+ENDGROUP
+GROUP "virtual_env"
+  ENTRY "/home/xin/.conda/envs" URL "/home/xin/.conda/envs"
 ENDGROUP
 GROUP "config"
   ENTRY "/home/xin/.config" URL "/home/xin/.config"
