@@ -16,7 +16,7 @@ windows:
           - cmd: emacsclient -tc "~/.config/kitty/kitty.conf"
             sleep_after: 2
   - window_name: tmux
-    layout: main-vertical
+    layout: even-horizontal
     panes:
       - shell_command:
           - cmd: emacsclient -tc "~/src/tao-of-tmux/manuscript/99-cheatsheets.org"
