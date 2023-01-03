@@ -55,3 +55,6 @@ export CARGO_HOME="$HOME/.cargo"
 
 # cask
 export PATH="/home/xin/.cask/bin:$PATH"
+
+# Nix
+if [ -e /home/xin/.nix-profile/etc/profile.d/nix.shn ]; then . /home/xin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
