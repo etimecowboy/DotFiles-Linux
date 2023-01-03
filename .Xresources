@@ -40,28 +40,14 @@ UXTerm*utf8*:             true
 ! UXTerm*utf8Fonts:         true
 ! UXTerm*utf8Title:         true
 ! Default font and size
-! UXTerm*faceName:          Iosevka Nerd Font Mono
-! UXTerm*faceName:          Source Code Pro
-! UXTerm*faceName:          SauceCodePro Nerd Font Mono
-! UXTerm*faceName:          VictorMono Nerd Font Mono
-! UXTerm*faceName:          mononoki Nerd Font Mono
-! UXTerm*faceName:          Lekton Nerd Font Mono
-! UXTerm*faceName:          Monoid Nerd Font Mono
-! UXTerm*faceName:          UbuntuMono Nerd Font Mono
-! UXTerm*faceName:          DejaVuSansMono Nerd Font Mono
 ! XTerm*faceName:           xft:Cascadia Code,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
 ! UXTerm*faceName:          xft:Cascadia Code,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
 XTerm*faceName:           xft:FiraCode Nerd Font Mono,xft:Symbols Nerd Font,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
 UXTerm*faceName:          xft:FiraCode Nerd Font Mono,xft:Symbols Nerd Font,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
-UXTerm*faceSize:          11
+UXTerm*faceSize:          12
 UXTerm*allowBoldFonts:    true
-! UXTerm*faceNameDoublesize:方正行楷_GBK
-! UXTerm*faceNameDoublesize:方正仿宋_GBK
-! UXTerm*faceNameDoublesize:方正粗宋_GBK
-! XTerm*faceNameDoublesize: 方正粗圆_GBK
-! UXTerm*faceNameDoublesize: 方正粗圆_GBK
-XTerm*faceNameDoublesize: xft:Adobe 黑体 Std
-UXTerm*faceNameDoublesize: xft:Adobe 黑体 Std
+XTerm*faceNameDoublesize: xft:Adobe Heiti Std
+UXTerm*faceNameDoublesize: xft:Adobe Heiti Std
 ! Key binds
 ! Double-click to select whole URLs :D
 !UXTerm*charClass:       33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
