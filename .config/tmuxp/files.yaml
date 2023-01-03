@@ -11,8 +11,8 @@ windows:
       - shell_command:
           - cmd: emacsclient -tc "~/org/roam/ranger_cheatsheet.org"
             sleep_after: 1
-      - shell_command:
-          - cmd: emacsclient -tc "~/.config/ranger/rc.conf"
+      # - shell_command:
+      #     - cmd: emacsclient -tc "~/.config/ranger/rc.conf"
   - window_name: mc
     layout: main-horizontal
     panes:
@@ -22,8 +22,8 @@ windows:
       - shell_command:
           - cmd: emacsclient -tc "~/org/roam/20220307093602-midnight_commander.org"
             sleep_after: 1
-      - shell_command:
-          - cmd: emacsclient -tc "~/.config/mc/"
+      # - shell_command:
+      #     - cmd: emacsclient -tc "~/.config/mc/"
   - window_name: ssh_zbox
     layout: main-horizontal
     panes:
