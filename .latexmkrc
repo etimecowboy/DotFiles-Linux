@@ -18,11 +18,12 @@
 # $preview_continuous_mode = 1;
 
 # The name of the LaTeX program that produces PDF files by default
-# $pdflatex = 'pdflatex %O -interaction=nonstopmode -synctex=1 %S';
-# $latex = 'latex -shell-escape -synctex=1 %O %S';
+$latex = 'latex -shell-escape -synctex=1 %O %S';
+$pdflatex = 'pdflatex %O -interaction=nonstopmode -shell-escape -synctex=1 %S';
+# $pdflatex = 'pdflatex -shell-escape -interaction=nonstopmode -synctex=1 %O %S';
 # $pdflatex = "xelatex -shell-escape -synctex=1 %O %S";
 # $pdflatex = "xelatex -shell-escape -interaction=nonstopmode -synctex=1 %O %S";
-$pdflatex = "xelatex -shell-escape -synctex=1 %O %S";
+$xelatex = 'xelatex -shell-escape -interaction=nonstopmode -synctex=1 %O %S';
 
 # If nonzero, continue processing past minor LaTeX errors.  This option is made nonzero if the -pvc command line option is used.
 $force_mode = 1;
@@ -31,9 +32,9 @@ $force_mode = 1;
 # $pdf_previewer = 'open -a /Applications/Adobe\ Acrobat\ 9\ Pro/Adobe\ Acrobat\ Pro.app';
 # $pdf_previewer = 'open -a Skim.app %O %S';
 # $pdf_previewer = 'Start %HOME%/.emacs.d/bin/win32/SumatraPDF.exe -reuse-instance %O %S';
-$pdf_previewer = "okular --unique %O %S";
-# $pdf_previewer = "mupdf -b 8 -r 96 %O %S";
+# $pdf_previewer = "okular --unique %O %S";
 # $pdf_previewer = "evince %O %S";
+$pdf_previewer = "mupdf -b 8 -r 96 %O %S";
 
 # 0 = do not create a PDF file
 # 1 = Create a PDF file with pdflatex
@@ -135,7 +136,7 @@ $bibtex_silent_switch = '-terse';
 # Whether to run bibtex to update bbl files: 0 means never run bibtex, 1 means
 # run bibtex only if the source files exist and the bbl files are out of date,
 # 2 means run bibtex whenever the bbl files are out of date.
-$bibtex_use = 1;
+$bibtex_use = 2;
 
 # A custom dependency list; see the man page for details
 # @cus_dep_list = ();
@@ -221,13 +222,13 @@ $bibtex_use = 1;
 
 # 1 = process files regardless of timestamps
 # 2 = do a full cleanup first
-# $go_mode = 0;
+# $go_mode = 2;
 
 # The basename of generated files
-# $jobname = "";
+$jobname = 'latexmk_build/%A';
 
 # The command to search for tex-related files
-# $kpsewhich = 'kpsewhich %S';
+$kpsewhich = 'kpsewhich %S';
 
 # If nonzero, run in landscape mode; otherwise in portrait mode
 # $landscape_mode = 0;
