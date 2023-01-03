@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Time-stamp: <2022-09-11 Sun 03:31 by xin on tufg>
+# Time-stamp: <2022-10-22 Sat 08:51 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -524,7 +524,7 @@ alias mc='. /usr/lib/mc/mc-wrapper.sh'
 # # END_KITTY_SHELL_INTEGRATION
 
 # starship shell prompt
-eval "$(starship init bash)"
+# eval "$(starship init bash)"
 
 # bash_it
 # If not running interactively, don't do anything
