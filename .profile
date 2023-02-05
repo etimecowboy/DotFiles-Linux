@@ -36,6 +36,7 @@ fi
 # export QT_QPA_PLATFORMTHEME=kde
 # . "$HOME/.cargo/env"
 
+# Poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 
 # NVM
@@ -53,8 +54,10 @@ export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 . "$HOME/.cargo/env"
 export CARGO_HOME="$HOME/.cargo"
 
-# cask
-export PATH="/home/xin/.cask/bin:$PATH"
+# Emacs
+export PATH="$HOME/.emacs.d/bin:$PATH"
+## cask
+export PATH="$HOME/.cask/bin:$PATH"
 
 # Nix
 if [ -e /home/xin/.nix-profile/etc/profile.d/nix.shn ]; then . /home/xin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
