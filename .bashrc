@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Time-stamp: <2022-10-22 Sat 08:51 by xin on tufg>
+# Time-stamp: <2023-02-12 Sun 02:00 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -221,6 +221,8 @@ alias eeq='emacs -nw -q'
 # export LC_CTYPE=zh_CN.UTF-8 # moved to ~/.profile
 # ## Add cask path
 # export PATH="~/.cask/bin:$PATH"
+alias spacemacs="emacs --with-profile spacemacs"
+alias doomemacs="emacs --with-profile doomemacs"
 
 # Matlab
 alias mat='matlab -nodesktop -nosplash'
@@ -624,4 +626,19 @@ unset MAILCHECK
 # export BASH_IT_RELOAD_LEGACY=1
 
 # Load Bash It
-source "$BASH_IT"/bash_it.sh
+# source "$BASH_IT"/bash_it.sh
+
+# Load rustup completion
+if [ -f ~/.local/share/bash_completion/completions/rustup ]; then
+    . ~/.local/share/bash_completion/completions/rustup
+fi
+
+# Load cargo completion
+if [ -f ~/.local/share/bash_completion/completions/cargo ]; then
+    . ~/.local/share/bash_completion/completions/cargo
+fi
+
+# Load zellij completion
+if [ -f ~/.local/share/bash_completion/completions/zellij ]; then
+    . ~/.local/share/bash_completion/completions/zellij
+fi

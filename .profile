@@ -54,8 +54,8 @@ export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 . "$HOME/.cargo/env"
 export CARGO_HOME="$HOME/.cargo"
 
-# Emacs
-export PATH="$HOME/.emacs.d/bin:$PATH"
+# doom emacs
+export PATH="$HOME/src/doomemacs/bin:$PATH"
 ## cask
 export PATH="$HOME/.cask/bin:$PATH"
 

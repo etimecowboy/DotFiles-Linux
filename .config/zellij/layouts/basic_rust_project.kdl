@@ -1,0 +1,22 @@
+layout {
+    cwd "/tmp/rust_prj"
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    pane split_direction="vertical" size="60%" {
+        pane cwd="/tmp/rust_prj" edit="src/main.rs"
+        pane cwd="/tmp/rust_prj" edit="Cargo.toml"
+    }
+    pane split_direction="vertical" size="40%" {
+        pane cwd="/tmp/rust_prj" command="cargo" {
+            args "run"
+            focus true
+        }
+        pane cwd="/tmp/rust_prj" command="cargo" {
+            args "test"
+        }
+    }
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}
