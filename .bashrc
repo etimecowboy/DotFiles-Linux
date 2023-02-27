@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Time-stamp: <2023-02-12 Sun 02:00 by xin on tufg>
+# Time-stamp: <2023-02-27 Mon 00:17 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -210,7 +210,7 @@ alias ec='emacsclient -nc'
 # alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
 ## Already using zh_CN locale
 alias emacs='emacs --debug-init'
-alias em='emacs --daemon'
+#alias em='emacs --daemon'
 alias ek="emacsclient -e '(client-save-kill-emacs)'"
 # alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
 # alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
@@ -223,6 +223,12 @@ alias eeq='emacs -nw -q'
 # export PATH="~/.cask/bin:$PATH"
 alias spacemacs="emacs --with-profile spacemacs"
 alias doomemacs="emacs --with-profile doomemacs"
+alias efsemacs="emacs --with-profile efs"
+alias lazycatemacs="emacs --with-profile lazycat"
+alias spaces="emacs --with-profile spacemacs -daemon"
+alias dooms="emacs --with-profile doomemacs -daemon"
+alias efss="emacs --with-profile efs -daemon"
+alias lazycats="emacs --with-profile lazycat -daemon"
 
 # Matlab
 alias mat='matlab -nodesktop -nosplash'
