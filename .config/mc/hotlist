@@ -15,6 +15,7 @@ GROUP "ebooks"
 ENDGROUP
 GROUP "dowloads"
   ENTRY "/home/xin/下载/chrome" URL "/home/xin/下载/chrome"
+  ENTRY "bt@zbox" URL "/home/xin/zbox_sshfs/data/download/bt"
 ENDGROUP
 GROUP "remotes"
   ENTRY "/home/xin/zbox_sshfs" URL "/home/xin/zbox_sshfs"
