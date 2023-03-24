@@ -840,8 +840,8 @@ include/video
 
 # Default target for anything not described above
 default/*
-	Open=
-	View=
+	Open=xdg-open %s
+	View=xdg-open %s
 
 
 ### EOF ###

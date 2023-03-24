@@ -88,7 +88,7 @@ safe_overwrite=false
 shadows=true
 
 [Layout]
-message_visible=true
+message_visible=false
 keybar_visible=true
 xterm_title=true
 output_lines=0
@@ -97,9 +97,9 @@ menubar_visible=true
 free_space=true
 horizontal_split=false
 vertical_equal=true
-left_panel_size=119
+left_panel_size=106
 horizontal_equal=true
-top_panel_size=1
+top_panel_size=21
 
 [Misc]
 timeformat_recent=%b %e %H:%M
