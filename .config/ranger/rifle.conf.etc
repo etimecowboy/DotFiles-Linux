@@ -137,8 +137,6 @@ mime ^video, terminal, !X, has mpv       = mpv -- "$@"
 mime ^video, terminal, !X, has mplayer2  = mplayer2 -- "$@"
 mime ^video, terminal, !X, has mplayer   = mplayer -- "$@"
 
-ext rmvb, has mpv, X, flag f = mpv -- "$@"
-
 #-------------------------------------------
 # Documents
 #-------------------------------------------
