@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Time-stamp: <2023-03-03 Fri 21:17 by xin on tufg>
+# Time-stamp: <2023-03-24 Fri 07:05 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -172,15 +172,15 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias lt='ls -lart'
+alias ll='ls -alFh'
+alias la='ls -Ah'
+alias l='ls -CFh'
+alias lt='ls -larth'
 
 # use exa to replace ls
-alias li='exa -alF --icons'
-alias lg='exa -alF --icons --git'
-alias lit='exa -lar -t modified --icons'
+alias li='exa -alFh --icons'
+alias lg='exa -alFh --icons --git'
+alias lit='exa -larh -t modified --icons'
 alias ltree='exa --tree --icons'
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -294,7 +294,7 @@ alias pbpaste='xclip -selection clipboard -o'
 
 # fzf + cd
 # - https://github.com/junegunn/fzf/wiki/examples#interactive-cd
-function cd() {
+function fcd() {
     if [[ "$#" != 0 ]]; then
         builtin cd "$@";
         return
@@ -344,8 +344,8 @@ fs() {
         tmux switch-client -t "$session"
 }
 
-# ftpane - switch pane (@george-b)
-ftpane() {
+# fp - switch pane (@george-b)
+fp() {
     local panes current_window current_pane target target_window target_pane
     panes=$(tmux list-panes -s -F \
                  '#I:#P - #{pane_current_path} #{pane_current_command}')
@@ -365,25 +365,25 @@ ftpane() {
     fi
 }
 # In tmux.conf
-# bind-key 0 run "tmux split-window -l 12 'bash -ci ftpane'"
+# bind-key 0 run "tux split-window -l 12 'bash -ci ftpane'"
 
 # fasd
 # NOTE: fasd doesn't work in tty mode
 if [ -x "$(command -v fasd)" ]; then
     eval "$(fasd --init auto)"
     # default aliases begin
-    # alias a='fasd -a'        # any
-    # alias s='fasd -si'       # show / search / select
-    # alias d='fasd -d'        # directory
-    # alias f='fasd -f'        # file
-    # alias sd='fasd -sid'     # interactive directory selection
-    # alias sf='fasd -sif'     # interactive file selection
-    # alias z='fasd_cd -d'     # cd, same functionality as j in autojump
-    # alias zz='fasd_cd -d -i' # cd with interactive selection
+    alias a='fasd -a'        # any
+    alias s='fasd -si'       # show / search / select
+    alias d='fasd -d'        # directory
+    alias f='fasd -f'        # file
+    alias sd='fasd -sid'     # interactive directory selection
+    alias sf='fasd -sif'     # interactive file selection
+    alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+    alias zz='fasd_cd -d -i' # cd with interactive selection
     # default aliases end
-    alias e='f -e $EDITOR' # quick opening files with emacs
-    alias m='f -e smplayer'        # quick opening files with smplayer
-    alias o='a -e xdg-open'        # quick opening files with xdg-open
+    alias e='f -e $EDITOR'   # quick opening files with emacs
+    alias m='f -e smplayer'  # quick opening files with smplayer
+    alias o='a -e xdg-open'  # quick opening files with xdg-open
     _fasd_bash_hook_cmd_complete e m o
 fi
 
@@ -399,13 +399,14 @@ t() {
         cd "$fasdlist"
 }
 
-# https://cdewaka.com/2018/02/07/fasd-for-navigation/
+# HTTP://cdewaka.com/2018/02/07/fasd-for-navigation/
 # cd into recent directories
 # j() {
 #     local dir
 #     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && \
 #         cd "${dir}" || return 1
 # }
+
 # View recent f files
 v() {
     local file
@@ -471,7 +472,7 @@ c() {
 # fzf + docker
 # https://github.com/junegunn/fzf/wiki/examples#docker
 # Select a docker container to start and attach to
-function da() {
+function fda() {
     local cid
     cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
 
@@ -479,7 +480,7 @@ function da() {
 }
 
 # Select a running docker container to stop
-function ds() {
+function fds() {
     local cid
     cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
 
@@ -653,3 +654,9 @@ fi
 export https_proxy=http://127.0.0.1:7890
 export http_proxy=http://127.0.0.1:7890
 export all_proxy=socks5://127.0.0.1:7890
+
+# Fix errors
+#    bash: __bp_precmd_invoke_cmd: command not found
+#    bash: __bp_interactive_mode: command not found
+# REF: https://superuser.com/questions/1007647/bash-how-to-remove-bp-precmd-invoke-cmd-error
+unset PROMPT_COMMAND
