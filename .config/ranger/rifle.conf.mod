@@ -136,8 +136,9 @@ mime ^video|audio, has totem,    X, flag f = totem --fullscreen -- "$@"
 mime ^video, terminal, !X, has mpv       = mpv -- "$@"
 mime ^video, terminal, !X, has mplayer2  = mplayer2 -- "$@"
 mime ^video, terminal, !X, has mplayer   = mplayer -- "$@"
-
-ext rmvb, has mpv, X, flag f = mpv -- "$@"
+ext rmvb,    terminal, !X, has mpv       = mpv -- "$@"
+ext ts,      terminal, !X, has mpv       = mpv -- "$@"
+ext TS,      terminal, !X, has mpv       = mpv -- "$@"
 
 #-------------------------------------------
 # Documents
