@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Time-stamp: <2023-03-24 Fri 07:05 by xin on tufg>
+# Time-stamp: <2023-03-27 Mon 00:41 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -284,13 +284,38 @@ alias pbpaste='xclip -selection clipboard -o'
 # [ -f ~/.xsh ] && source ~/.xsh
 
 # fzf
+
+## If fzf is installed by the install script in the git repo
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+## If fzf is installed by apt install of deb package
 # Copy from /usr/share/doc/fzf/README.Debian
 # Append this line to ~/.bashrc to enable fzf keybindings for Bash:
-[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && \
+    source /usr/share/doc/fzf/examples/key-bindings.bash
 # Append this line to ~/.bashrc to enable fuzzy auto-completion for Bash:
-[ -f /usr/share/doc/fzf/examples/completion.bash ] && source /usr/share/doc/fzf/examples/completion.bash
+[ -f /usr/share/doc/fzf/examples/completion.bash ] && \
+    source /usr/share/doc/fzf/examples/completion.bash
+
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_TMUX_OPTS="-p80%,60%"
+
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+# CTRL-/ to toggle small preview window to see the full command
+# CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 
 # fzf + cd
 # - https://github.com/junegunn/fzf/wiki/examples#interactive-cd
