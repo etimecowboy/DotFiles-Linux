@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Time-stamp: <2023-03-27 Mon 00:41 by xin on tufg>
+# Time-stamp: <2023-03-28 Tue 07:52 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -285,9 +285,6 @@ alias pbpaste='xclip -selection clipboard -o'
 
 # fzf
 
-## If fzf is installed by the install script in the git repo
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 ## If fzf is installed by apt install of deb package
 # Copy from /usr/share/doc/fzf/README.Debian
 # Append this line to ~/.bashrc to enable fzf keybindings for Bash:
@@ -297,25 +294,85 @@ alias pbpaste='xclip -selection clipboard -o'
 [ -f /usr/share/doc/fzf/examples/completion.bash ] && \
     source /usr/share/doc/fzf/examples/completion.bash
 
-export FZF_DEFAULT_COMMAND='fd --type f'
+## If fzf is installed by the install script in the git repo
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+## always use fzf-tmux
+alias fzf='fzf-tmux'
+
+FD_OPTS="--follow --exclude '.git' --hidden"  # --exclude node_modules
+export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | \
+  fd --type f --type l $FD_OPTS"
+export FZF_DEFAULT_OPTS="
+  --multi --layout=reverse --inline-info
+  --preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || \
+            (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | \
+            head -100'
+  --preview-window='right:hidden:wrap'
+  --bind 'f2:toggle-preview'
+  --bind 'alt-t:toggle-preview'
+  --bind 'f3:execute(bat --style=numbers --color=always {} || less -f {})'
+  --bind 'alt-e:execute(bat --style=numbers --color=always {} || less -f {})'
+  --bind 'ctrl-r:reload(eval "$FZF_DEFAULT_COMMAND")'
+  --bind 'ctrl-v:half-page-down'
+  --bind 'alt-v:half-page-up'
+  --bind 'ctrl-h:select-all+accept'
+  --bind 'ctrl-y:execute-silent(echo {+} | xclip -sel clip)'"
 export FZF_TMUX_OPTS="-p80%,60%"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
-export FZF_CTRL_T_OPTS="
-  --preview 'bat -n --color=always {}'
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+export FZF_CTRL_T_COMMAND="fd $FD_OPTS"
+# export FZF_CTRL_T_OPTS="
+#   --preview 'bat -n --color=always {}'
+#   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+export FZF_CTRL_T_OPTS=$FZF_DEFAULT_OPTS
 
 # CTRL-/ to toggle small preview window to see the full command
 # CTRL-Y to copy the command into clipboard using pbcopy
 export FZF_CTRL_R_OPTS="
   --preview 'echo {}' --preview-window up:3:hidden:wrap
-  --bind 'ctrl-/:toggle-preview'
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -sel clip)+abort'
   --color header:italic
   --header 'Press CTRL-Y to copy command into clipboard'"
 
 # Print tree structure in the preview window
-export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+export FZF_ALT_C_COMMAND="fd --type d $FD_OPTS"
+export FZF_ALT_C_OPTS="
+  --preview 'tree -C {}'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -sel clip)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy path into clipboard'"
+
+# Overriding fzf functions
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+    fd $FD_OPTS . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+    fd --type d $FD_OPTS . "$1"
+}
+
+## enable more completions
+# usage: _fzf_setup_completion path|dir|var|alias|host COMMANDS...
+_fzf_setup_completion path rg ag git kubectl
+_fzf_setup_completion dir tree
+
+## define some custom functions
+
+# fzf + open (xdg-open)
+function fo() {
+    xdg-open "$(fd --type f $FD_OPTS | fzf)" &
+}
+
+# fzf + kill
+function fkill() {
+    ps aux | fzf | awk '{print $2}' | xargs kill
+}
 
 # fzf + cd
 # - https://github.com/junegunn/fzf/wiki/examples#interactive-cd
