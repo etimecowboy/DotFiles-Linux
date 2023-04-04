@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Time-stamp: <2023-03-28 Tue 07:52 by xin on tufg>
+# Time-stamp: <2023-04-03 Mon 06:57 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -316,8 +316,8 @@ export FZF_DEFAULT_OPTS="
   --bind 'ctrl-r:reload(eval "$FZF_DEFAULT_COMMAND")'
   --bind 'ctrl-v:half-page-down'
   --bind 'alt-v:half-page-up'
-  --bind 'ctrl-h:select-all+accept'
-  --bind 'ctrl-y:execute-silent(echo {+} | xclip -sel clip)'"
+  --bind 'alt-a:select-all+accept'
+  --bind 'alt-w:execute-silent(echo {+} | xclip -sel clip)'"
 export FZF_TMUX_OPTS="-p80%,60%"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
@@ -370,7 +370,7 @@ function fo() {
 }
 
 # fzf + kill
-function fkill() {
+function fpk() {
     ps aux | fzf | awk '{print $2}' | xargs kill
 }
 
