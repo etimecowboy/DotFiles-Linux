@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-# Time-stamp: <2023-04-03 Mon 06:57 by xin on tufg>
+#!/use/bin/env bash
+# Time-stamp: <2023-05-17 Wed 07:05 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -201,8 +201,6 @@ else
 fi
 
 # Use script in ~/bin =====> for use in matlab command mode
-alias ee='emacsclient -tc'
-alias ec='emacsclient -nc'
 # English locale leads to the dysfunction of im (fcitx) in X LC_CTYPE
 # should be set when starting the daemon. If the locale already been
 # set as zh_CN.UTF-8 then, don't set it here.
@@ -210,11 +208,14 @@ alias ec='emacsclient -nc'
 # alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
 ## Already using zh_CN locale
 alias emacs='emacs --debug-init'
-#alias em='emacs --daemon'
+alias em='emacs --daemon'
 alias ek="emacsclient -e '(client-save-kill-emacs)'"
 # alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
 # alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
-alias eeq='emacs -nw -q'
+alias eq='emacs -nw -q'
+alias eQ='emacs -nw -Q'
+alias ee="emacsclient -tc"
+alias ec="emacsclient -nc"
 # alias vi='emacsclient -tc' # Use emacs instead of vi
 # alias today="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"d\")' 2> /dev/null | less"
 # alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 2> /dev/null | less"
@@ -614,9 +615,6 @@ alias mc='. /usr/lib/mc/mc-wrapper.sh'
 # if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # # END_KITTY_SHELL_INTEGRATION
 
-# starship shell prompt
-# eval "$(starship init bash)"
-
 # bash_it
 # If not running interactively, don't do anything
 # case $- in
@@ -640,7 +638,7 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # Path to the bash it configuration
-export BASH_IT="/home/xin/.bash_it"
+# export BASH_IT="/home/xin/.bash_it"
 # export BASH_IT="{{BASH_IT}}"
 
 # Lock and Load a custom theme file.
@@ -732,6 +730,9 @@ if [ -f ~/.local/share/bash_completion/completions/zellij ]; then
     . ~/.local/share/bash_completion/completions/zellij
 fi
 
+# imagemagick
+# export MAGICK_CONFIGURE_PATH="~/.config/ImageMagick/:/etc/ImageMagick-6/"
+
 # Proxy
 export https_proxy=http://127.0.0.1:7890
 export http_proxy=http://127.0.0.1:7890
@@ -742,3 +743,45 @@ export all_proxy=socks5://127.0.0.1:7890
 #    bash: __bp_interactive_mode: command not found
 # REF: https://superuser.com/questions/1007647/bash-how-to-remove-bp-precmd-invoke-cmd-error
 unset PROMPT_COMMAND
+
+# starship shell prompt
+# eval "$(starship init bash)"
+
+# broot
+# source /home/xin/.config/broot/launcher/bash/br
+function br {
+    local cmd cmd_file code
+    cmd_file=$(mktemp)
+    if broot --outcmd "$cmd_file" "$@"; then
+        cmd=$(<"$cmd_file")
+        command rm -f "$cmd_file"
+        eval "$cmd"
+    else
+        code=$?
+        command rm -f "$cmd_file"
+        return "$code"
+    fi
+}
+
+# NVM
+# export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# REF: https://stackoverflow.com/questions/11821378/what-does-bashno-job-control-in-this-shell-mean
+# try to fix ob-shell warning:
+#
+#   bash: cannot set terminal process group (1374396): Inappropriate ioctl for device
+#
+#   bash: no job control in this shell
+#
+#   [ Babel evaluation exited with code 0 ]
+set -m
+
+# Rust
+[ -s "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env"
+
+# Nix
+[ -s "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && \. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+
+# QT
+export QT_MEDIA_BACKEND=ffmpeg

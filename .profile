@@ -39,25 +39,26 @@ fi
 # Poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 
-# NVM
+# NVM [moved to "~/.bashrc"]
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Go
-export GOPATH=$HOME/go/
+export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 # export PATH="$PATH:$GOPATH/bin"
 
 # Rust
-. "$HOME/.cargo/env"
 export CARGO_HOME="$HOME/.cargo"
+# [ -s "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env" [moved to .bashrc]
 
 # doom emacs
 export PATH="$HOME/src/doomemacs/bin:$PATH"
+
 ## cask
 export PATH="$HOME/.cask/bin:$PATH"
 
-# Nix
-if [ -e /home/xin/.nix-profile/etc/profile.d/nix.shn ]; then . /home/xin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# Nix [moved to .bashrc]
+# if [ -e /home/xin/.nix-profile/etc/profile.d/nix.shn ]; then . /home/xin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
