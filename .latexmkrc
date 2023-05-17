@@ -225,7 +225,7 @@ $bibtex_use = 2;
 # $go_mode = 2;
 
 # The basename of generated files
-$jobname = 'latexmk_build/%A';
+# $jobname = 'latexmk_build/%A';
 
 # The command to search for tex-related files
 $kpsewhich = 'kpsewhich %S';
