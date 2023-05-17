@@ -1,0 +1,7 @@
+<policymap>
+    <policy domain="coder" rights="read|write" pattern="PDF"/>
+    <policy domain="path" rights="read|write" value="/home/xin/org/ltximg"/>
+    <policy domain="path" rights="read|write" value="/home/xin/org/ltximg/*"/>
+    <policy domain="path" rights="read|write" value="/tmp"/>
+    <policy domain="path" rights="read|write" value="/tmp/*"/>
+</policymap>
