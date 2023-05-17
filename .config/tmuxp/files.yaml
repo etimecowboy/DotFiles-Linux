@@ -24,6 +24,16 @@ windows:
             sleep_after: 1
       # - shell_command:
       #     - cmd: emacsclient -tc "~/.config/mc/"
+  - window_name: lf
+    layout: main-horizontal
+    focus: true
+    panes:
+      - shell_command:
+          - lf
+        focus: true
+      - shell_command:
+          - cmd: emacsclient -tc "~/src/DotFiles-Linux/.config/lf/lfrc"
+            sleep_after: 1
   - window_name: ssh_zbox
     layout: main-horizontal
     panes:
