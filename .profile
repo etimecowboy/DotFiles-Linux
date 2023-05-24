@@ -62,3 +62,9 @@ export PATH="$HOME/.cask/bin:$PATH"
 
 # Nix [moved to .bashrc]
 # if [ -e /home/xin/.nix-profile/etc/profile.d/nix.shn ]; then . /home/xin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# hardware video acceleration via vaapi for NVIDIA’s Propriety Driver
+export LIBVA_DRIVER_NAME=nvidia
+export MOZ_X11_EGL=1
+export MOZ_ENABLE_WAYLAND=1
+export MOZ_DISABLE_RDD_SANDBOX=1

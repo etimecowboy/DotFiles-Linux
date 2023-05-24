@@ -1,5 +1,5 @@
 #!/use/bin/env bash
-# Time-stamp: <2023-05-17 Wed 07:05 by xin on tufg>
+# Time-stamp: <2023-05-24 Wed 08:16 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -588,17 +588,6 @@ export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
 # mc
 alias mc='. /usr/lib/mc/mc-wrapper.sh'
 
-# flatpak
-# Adding aliases for flatpaks is not a good method.
-# if [ -d ~/.bashrc.d ]; then
-#     for rc in ~/.bashrc.d/*; do
-#         if [ -f "$rc" ]; then
-#             . "$rc"
-#         fi
-#     done
-# fi
-# unset rc
-
 # neofetch - show system specification, useful for the audience
 # neofetch
 
@@ -784,4 +773,4 @@ set -m
 [ -s "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && \. "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 # QT
-export QT_MEDIA_BACKEND=ffmpeg
+# export QT_MEDIA_BACKEND=ffmpeg
