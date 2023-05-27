@@ -23,8 +23,10 @@ config.window_background_opacity = .85
 --     https://github.com/wez/wezterm/issues/1761
 --     https://wezfurlong.org/wezterm/config/lua/wezterm/font_with_fallback.html#manual-fallback-scaling
 -- config.font = wezterm.font_with_fallback({"FiraCode Nerd Font", {family="Microsoft YaHei", scale=1.5},})
-config.font = wezterm.font_with_fallback({"Cascadia Code", "Adobe Fangsong Std"})
-config.font_size = 11
+-- Chinese fonts
+-- "Adobe Fangsong Std"
+config.font = wezterm.font_with_fallback({"Cascadia Code", "KaiTi"})
+config.font_size = 13
 config.font_shaper = 'Harfbuzz'
 config.default_cursor_style = 'BlinkingBlock'
 config.enable_scroll_bar = false
@@ -36,7 +38,6 @@ config.tab_max_width = 30
 config.pane_focus_follows_mouse = true
 config.scrollback_lines = 99999
 config.window_padding = {left = 1, right = 1, top = 1, bottom = 1}
-
 
 -- Custom Key Bindings
 -- config.disable_default_key_bindings = true
