@@ -1,0 +1,29 @@
+#=================================================================
+# Key bindings
+#=================================================================
+# Cut and delete
+map d  # leave the command name empty like this for unmapping
+map dd cut
+map dD delete
+
+# Create files and folders
+map a push %touch<space>  # Make new file
+map A push %mkdir<space>  # Make new directory
+
+# Toggle line number
+map zl :set number!; set relativenumber!
+
+# Toggle mouse
+map zm set mouse!
+
+# Additional mappings of some existing commands
+map <enter> shell-wait
+map .       set hidden!
+
+# Mappings for custom functions
+map x extract
+map o push :open-with<space>
+map R bulkrename
+
+# Filter
+map <c-f> push :setfilter<space>

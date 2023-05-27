@@ -1,0 +1,30 @@
+#=================================================================
+# Bookmarks
+#=================================================================
+map gff cd /
+map gfm cd /mnt
+map gfu cd /media/xin
+map gfl cd /usr/local
+map gfe cd /etc
+map gfx cd ~/下载
+map gfw cd ~/文档
+map gfz cd ~/桌面
+map gft cd ~/图片
+map gfy cd ~/音乐
+map gfz cd ~/zbox_sshfs
+map gfb cd ~/zbox_sshfs/data/download/bt
+map gfa cd ~/zbox_sshfs/ext2/av
+map gfo cd ~/org/roam
+
+map gss cd ~/src
+map gsl cd ~/src/DotFiles-Linux
+
+map gee cd ~/src/emacs
+map ges cd ~/src/DotSpacemacs
+map ged cd ~/src/DotDoom
+map gep cd ~/src/spacemacs/elpa/29.0/develop
+
+map gcc cd ~/.config
+map gcl cd ~/.config/lf
+map gcr cd ~/.config/ranger
+

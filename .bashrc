@@ -1,5 +1,5 @@
 #!/use/bin/env bash
-# Time-stamp: <2023-05-24 Wed 08:16 by xin on tufg>
+# Time-stamp: <2023-05-25 Thu 07:50 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -774,3 +774,20 @@ set -m
 
 # QT
 # export QT_MEDIA_BACKEND=ffmpeg
+
+# LFCD="~/.config/lf/scripts/lfcd.sh"
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir" || return
+            fi
+        fi
+    fi
+}
+bind '"\C-o":"lfcd\C-m"'
+

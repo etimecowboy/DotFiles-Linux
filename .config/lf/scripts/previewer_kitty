@@ -46,6 +46,12 @@ preview_audioinfo() {
 
 preview_image() {
     file=$1
+
+    if [[ "$TERM" =~ .*tmux.* ]]; then
+        preview_metainfo "$file"
+        exit 1
+    fi
+
     if command -v kitten > /dev/null 2>&1; then
         w=$2
         h=$3
@@ -64,15 +70,13 @@ preview_image() {
         fi
     else
         preview_metainfo "$file"
-        exit 0
     fi
 
-    pistol "$file"
+    # pistol "$file"
 }
 
 preview_md() {
 	  file="$1"
-	  shift
 	  if command -v glow > /dev/null 2>&1; then
 		    glow "$file"
 	  elif command -v mdcat > /dev/null 2>&1; then
@@ -105,6 +109,7 @@ preview_docx() {
         docx2txt < "$file_docx"
     else
         preview_metainfo "$file_docx"
+        exit 0
     fi
 
     preview_text "$file_txt"
@@ -115,7 +120,7 @@ preview_excel() {
     file="$1"
     if command -v  ssconvert > /dev/null 2>&1; then
         ssconvert --export-type=Gnumeric_stf:stf_csv "$file" "fd://1" | \
-            preview_text --language=csv "$file"
+            preview_text --language=csv
     else
         preview_metainfo "$file"
     fi
@@ -123,66 +128,95 @@ preview_excel() {
 
 preview_epub() {
     file="$1"
+
+    if [[ "$TERM" =~ .*tmux.* ]]; then
+        preview_metainfo "$file"
+        exit 1
+    fi
+
     if command -v  epub-thumbnailer > /dev/null 2>&1; then
         if [ ! -f "$CACHE" ]; then
             epub-thumbnailer "$file" "$CACHE" 1024
         fi
+        preview_image "$CACHE" "$2" "$3" "$4" "$5"
     elif command -v  gnome-epub-thumbnailer > /dev/null 2>&1; then
         if [ ! -f "$CACHE" ]; then
             gnome-epub-thumbnailer -s 1024 "$file" "$CACHE"
         fi
+        preview_image "$CACHE" "$2" "$3" "$4" "$5"
     else
         preview_metainfo "$file"
     fi
-
-    preview_image "$CACHE" "$2" "$3" "$4" "$5"
 }
 
 preview_pdf() {
     file="$1"
+
+    if [[ "$TERM" =~ .*tmux.* ]]; then
+        preview_metainfo "$file"
+        exit 1
+    fi
+
     if command -v pdftoppm > /dev/null 2>&1; then
         if [ ! -f "${CACHE}.jpg" ]; then
             pdftoppm -jpeg -f 1 -singlefile "$file" "$CACHE"
         fi
+        preview_image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
     else
         preview_metainfo "$file"
     fi
-
-    preview_image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 }
 
 preview_comic() {
     file="$1"
+
+    if [[ "$TERM" =~ .*tmux.* ]]; then
+        preview_metainfo "$file"
+        exit 1
+    fi
+
     if command -v comicthumb > /dev/null 2>&1; then
         if [ ! -f "$CACHE" ]; then
             comicthumb "$file" "$CACHE" 1024
         fi
+        preview_image "$CACHE" "$2" "$3" "$4" "$5"
     else
         preview_metainfo "$file"
     fi
-
-    preview_image "$CACHE" "$2" "$3" "$4" "$5"
 }
 
 preview_html() {
     file="$1"
+
+    if [[ "$TERM" =~ .*tmux.* ]]; then
+        preview_metainfo "$file"
+        exit 1
+    fi
+
     if command -v wkhtmltopdf > /dev/null 2>&1; then
         if command -v pdftoppm > /dev/null 2>&1; then
             if [ ! -f "$CACHE" ]; then
                 wkhtmltopdf "$file" - | pdftoppm -jpeg -f 1 -singlefile - "$CACHE"
             fi
+            preview_image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
         else
             preview_text "$file"
         fi
     elif command -v w3m > /dev/null 2>&1; then
         w3m -dump "$file"
-        exit 1
+    else
+        preview_metainfo "$file"
     fi
-    preview_image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 }
 
 preview_video () {
     file=$1
+
+    if [[ "$TERM" =~ .*tmux.* ]]; then
+        preview_videoinfo "$file"
+        exit 1
+    fi
+
     if command -v ffmpegthumbnailer > /dev/null 2>&1; then
         if [ ! -f "${CACHE}.jpg" ]; then
             ffmpegthumbnailer -i "$file" -o "${CACHE}.jpg" -s 0 -q 5
@@ -198,6 +232,14 @@ preview_audio () {
     preview_audioinfo "$file"
 }
 
+# NOT working
+# preview_appimage () {
+#     file=$1
+#     temp="$file.zip"
+#     mv "$file" "$temp"
+#     unzip -l "$temp"
+#     mv "$temp" "$file"
+# }
 
 case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
     *.tgz|*.tar.gz)
@@ -209,10 +251,10 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
     *.tar.txz|*.txz)
         xz --list "$1"
         ;;
-    *.tar)
+    *.tar|*.tar.xz)
         tar tf "$1"
         ;;
-    *.zip|*.jar|*.war|*.ear|*.oxt)
+    *.zip|*.jar|*.war|*.ear|*.oxt|*.apk)
         unzip -l "$1"
         ;;
     *.rar)
@@ -221,6 +263,15 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
     *.7z)
         7z l "$1"
         ;;
+    *.deb)
+        dpkg-deb -I "$1"
+        ;;
+    *.rpm)
+        rpm -qip "$1"
+        ;;
+    # *.appimage|*.AppImage)
+    #     preview_appimage "$1"
+    #     ;;
     *.[1-8])
         man "$1" | col -b
         ;;
@@ -230,6 +281,9 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	  *.ino)
 		    preview_text --language=cpp "$1"
 		    ;;
+    *.so)
+        readelf --notes "$1"
+        ;;
     *.torrent)
         transmission-show "$1"
         ;;
