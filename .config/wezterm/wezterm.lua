@@ -25,8 +25,9 @@ config.window_background_opacity = .85
 -- config.font = wezterm.font_with_fallback({"FiraCode Nerd Font", {family="Microsoft YaHei", scale=1.5},})
 -- Chinese fonts
 -- "Adobe Fangsong Std"
-config.font = wezterm.font_with_fallback({"Cascadia Code", "KaiTi"})
-config.font_size = 13
+-- config.font = wezterm.font_with_fallback({"Cascadia Code", "KaiTi"})
+config.font = wezterm.font_with_fallback({"Sarasa Term SC Nerd Font", "Sarasa Term SC"})
+config.font_size = 14
 config.font_shaper = 'Harfbuzz'
 config.default_cursor_style = 'BlinkingBlock'
 config.enable_scroll_bar = false
