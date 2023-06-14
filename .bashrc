@@ -1,5 +1,5 @@
 #!/use/bin/env bash
-# Time-stamp: <2023-05-25 Thu 07:50 by xin on tufg>
+# Time-stamp: <2023-06-10 Sat 02:40 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -188,9 +188,11 @@ alias ltree='exa --tree --icons'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Editors
-export ALTERNATE_EDITOR='emacs -t'
-export EDITOR='emacsclient -tc'
-export VISUAL='emacsclient -tc'
+export ALTERNATE_EDITOR='emacs'
+# export EDITOR='emacsclient -tc'
+# export VISUAL='emacsclient -tc'
+export EDITOR='emacsclient'
+export VISUAL='emacsclient'
 export PAGER='most'
 
 # Browser
@@ -791,3 +793,16 @@ lfcd () {
 }
 bind '"\C-o":"lfcd\C-m"'
 
+fzf-rga() {
+	  RG_PREFIX="rga --files-with-matches"
+	  local file
+	  file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				# --preview-window="70%:wrap"
+	)" &&
+	      echo "opening $file" &&
+	      xdg-open "$file"
+}
