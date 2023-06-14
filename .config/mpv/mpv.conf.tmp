@@ -1,0 +1,5 @@
+# referrer=https://www.bilibili.com
+# sid=1
+# slang=danmaku
+# script-opts=ytdl_hook-ytdl_path=/usr/local/bin/yt-dlp
+# script-opts-append=ytdl_hook-ytdl_path=/usr/local/bin/yt-dlp
