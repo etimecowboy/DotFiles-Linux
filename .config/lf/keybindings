@@ -27,3 +27,5 @@ map R bulkrename
 
 # Filter
 map <c-f> push :setfilter<space>
+
+# override default config

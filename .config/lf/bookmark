@@ -1,6 +1,7 @@
 #=================================================================
 # Bookmarks
 #=================================================================
+# [f]iles
 map gff cd /
 map gfm cd /mnt
 map gfu cd /media/xin
@@ -14,17 +15,23 @@ map gfy cd ~/音乐
 map gfz cd ~/zbox_sshfs
 map gfb cd ~/zbox_sshfs/data/download/bt
 map gfa cd ~/zbox_sshfs/ext2/av
-map gfo cd ~/org/roam
 
-map gss cd ~/src
-map gsl cd ~/src/DotFiles-Linux
+# [p]projects
+map gpr cd ~/src
+map gpe cd ~/src/emacs
+map gps cd ~/src/spacemacs
+map gpd cd ~/src/doomemacs
 
-map gee cd ~/src/emacs
+# [e]macs
 map ges cd ~/src/DotSpacemacs
 map ged cd ~/src/DotDoom
-map gep cd ~/src/spacemacs/elpa/29.0/develop
+map gee cd ~/src/spacemacs/elpa/29.0/develop
+map geo cd ~/org/roam
+map get cd ~/org/templates
+map gey cd ~/src/DotSpacemacs/snippets-private
 
+# [c]onfig
+map gcd cd ~/src/DotFiles-Linux
 map gcc cd ~/.config
 map gcl cd ~/.config/lf
 map gcr cd ~/.config/ranger
-
