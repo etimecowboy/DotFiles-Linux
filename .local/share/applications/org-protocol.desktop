@@ -2,7 +2,7 @@
 [Desktop Entry]
 Name=org-protocol
 Exec=emacsclient %u
-Icon=emacs-icon
+Icon=/home/xin/src/DotFiles-Linux/.local/share/icons/emacs128.png
 Type=Application
 Terminal=false
 Categories=System;
