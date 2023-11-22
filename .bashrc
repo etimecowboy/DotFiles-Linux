@@ -1,5 +1,5 @@
 #!/use/bin/env bash
-# Time-stamp: <2023-06-10 Sat 02:40 by xin on tufg>
+# Time-stamp: <2023-10-14 Sat 09:11 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -272,6 +272,7 @@ if [ -n "$DISPLAY" ]; then
     # NOTE: kde, mate, and gnome2 also support remap keys
     setxkbmap -option "altwin:ctrl_alt_win"
     setxkbmap -option "altwin:ctrl_win"
+    setxkbmap -option "caps:swapescape"
 fi
 
 # tmux
@@ -572,7 +573,7 @@ function fds() {
     [ -n "$cid" ] && docker stop "$cid"
 }
 
-export CDPATH=.:~:~/src:~/emacs:~/Desktop~/桌面
+export CDPATH=".:~:~/src"
 export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
 # export vblank_mode=0 # Boost gpu performance
 
@@ -806,3 +807,6 @@ fzf-rga() {
 	      echo "opening $file" &&
 	      xdg-open "$file"
 }
+
+# Instll env_parallel
+. `which env_parallel.bash`
