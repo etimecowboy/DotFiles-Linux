@@ -42,12 +42,14 @@ UXTerm*utf8*:             true
 ! Default font and size
 ! XTerm*faceName:           xft:Cascadia Code,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
 ! UXTerm*faceName:          xft:Cascadia Code,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
-XTerm*faceName:           xft:FiraCode Nerd Font Mono,xft:Symbols Nerd Font,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
-UXTerm*faceName:          xft:FiraCode Nerd Font Mono,xft:Symbols Nerd Font,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
+! XTerm*faceName:           xft:FiraCode Nerd Font Mono,xft:Symbols Nerd Font,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
+! UXTerm*faceName:          xft:FiraCode Nerd Font Mono,xft:Symbols Nerd Font,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
+XTerm*faceName:           xft:Sarasa Mono SC Nerd Font,xft:Symbols Nerd Font,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
+UXTerm*faceName:          xft:Sarasa Mono SC Nerd Font,xft:Symbols Nerd Font,xft:Twitter Color Emoji,xft:JoyPixels,xft:Noto Color Emoji
 UXTerm*faceSize:          12
 UXTerm*allowBoldFonts:    true
-XTerm*faceNameDoublesize: xft:Adobe Heiti Std
-UXTerm*faceNameDoublesize: xft:Adobe Heiti Std
+! XTerm*faceNameDoublesize: xft:Adobe Heiti Std
+! UXTerm*faceNameDoublesize: xft:Adobe Heiti Std
 ! Key binds
 ! Double-click to select whole URLs :D
 !UXTerm*charClass:       33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
