@@ -1,14 +1,13 @@
 session_name: tops
-start_directory: "~/org/roam"
+start_directory: "/tmp"
 windows:
   - window_name: btm
+    focus: true
     panes:
       - shell_command:
           - cmd: btm
             sleep_after: 1
   - window_name: htop
-    layout: even-horizontal
-    focus: true
     panes:
       - shell_command:
           - cmd: htop
@@ -20,6 +19,7 @@ windows:
           - cmd: nvidia-smi -l 2
             sleep_after: 1
   # - window_name: matrix
+  #   layout: even-horizontal
   #   shell_command_before:
   #     - conda activate py38_tools
   #   panes:
