@@ -1,5 +1,5 @@
 #!/use/bin/env bash
-# Time-stamp: <2023-10-14 Sat 09:11 by xin on tufg>
+# Time-stamp: <2023-12-07 Thu 02:00 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -266,19 +266,28 @@ fi
 # file does not exist
 # source /usr/share/git/completion/git-prompt.sh
 
-if [ -n "$DISPLAY" ]; then
-    # Turn off system bell in Xorg
-    xset b off
-    # NOTE: kde, mate, and gnome2 also support remap keys
+# X11 config
+if [[ $XDG_SESSION_TYPE = "x11" ]]; then
+    # Turn off system bell in X11
+    # FIXME: this cause emacs-vterm pop error
+    # if [ -n "$DISPLAY" ]; then
+    #     xset b off
+    # fi
+
+    # Remap keys
+    # NOTE: - setxkbmap does not work in wayland
+    #       - GUI tools are avaiable in kde, mate, and gnome (gnome-tweaks)
+    # remap ctrl to alt, alt to win
     setxkbmap -option "altwin:ctrl_alt_win"
     setxkbmap -option "altwin:ctrl_win"
+    # swap caps and escape (vim user's favorite)
     setxkbmap -option "caps:swapescape"
 fi
 
 # tmux
-alias muxk='tmux kill-server'
-alias muxa='tmux attach'
-alias muxt='tmux attach -t'
+alias tmuxk='tmux kill-server'
+alias tmuxa='tmux attach'
+alias tmuxt='tmux attach -t'
 
 # pbcopy
 alias pbcopy='xclip -selection clipboard'
@@ -726,9 +735,17 @@ fi
 # export MAGICK_CONFIGURE_PATH="~/.config/ImageMagick/:/etc/ImageMagick-6/"
 
 # Proxy
-export https_proxy=http://127.0.0.1:7890
-export http_proxy=http://127.0.0.1:7890
-export all_proxy=socks5://127.0.0.1:7890
+# export https_proxy=http://127.0.0.1:7890
+# export http_proxy=http://127.0.0.1:7890
+# export all_proxy=socks5://127.0.0.1:7890
+# Use a universal IP - can be connected by both local and virtual machines
+# Don't forget to config Clash server to "allow LAN" in the General tab of "Clash for Windows"
+# export https_proxy=http://192.168.0.23:7890
+# export http_proxy=http://192.168.0.23:7890
+# export all_proxy=socks5://192.168.0.23:7890
+export https_proxy=http://192.168.2.2:7890
+export http_proxy=http://192.168.2.2:7890
+export all_proxy=socks5://192.168.2.2:7890
 
 # Fix errors
 #    bash: __bp_precmd_invoke_cmd: command not found
