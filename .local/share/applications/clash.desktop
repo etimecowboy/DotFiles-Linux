@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Clash
+Comment=Local proxy agent
+Exec=/home/xin/.local/clash/cfw
+Terminal=false
+Icon=
+Categories=System
