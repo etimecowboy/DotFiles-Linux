@@ -3,18 +3,20 @@
 #=================================================================
 # [f]iles
 map gff cd /
-map gfm cd /mnt
-map gfu cd /media/xin
-map gfl cd /usr/local
 map gfe cd /etc
+map gfl cd /usr/local
 map gfx cd ~/下载
 map gfw cd ~/文档
-map gfz cd ~/桌面
+map gfd cd ~/桌面
 map gft cd ~/图片
 map gfy cd ~/音乐
-map gfz cd ~/zbox_sshfs
-map gfb cd ~/zbox_sshfs/data/download/bt
-map gfa cd ~/zbox_sshfs/ext2/av
+map gfmm cd /mnt
+map gfma cd /mnt/data3/xin/AV
+map gfu cd /media/xin
+map gfzz cd ~/zbox_sshfs
+map gfzb cd ~/zbox_sshfs/data/download/bt
+map gfza cd ~/zbox_sshfs/ext2/av
+map gfzm cd ~/zbox_sshfs/ext2/music
 
 # [p]projects
 map gpr cd ~/src
