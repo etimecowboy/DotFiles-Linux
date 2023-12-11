@@ -31,10 +31,6 @@ set shellopts '-eu'
 set ifs "\n"
 
 # Graphic previewer
-set previewer "~/.config/lf/scripts/previewer_kitty"
-set cleaner   "~/.config/lf/scripts/cleaner_kitty"
+set preview
 
-# Addon scripts
-source "~/.config/lf/cmd"
-source "~/.config/lf/keybindings"
-source "~/.config/lf/bookmark"
+# vi: ft=config

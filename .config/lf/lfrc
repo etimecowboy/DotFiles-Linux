@@ -1,1 +1,15 @@
-lfrc_kitty
+# General configurations
+source "~/.config/lf/common"
+
+# Custom commands
+source "~/.config/lf/cmd"
+
+# Graphic previewer
+set previewer "~/.config/lf/scripts/previewer"
+set cleaner   "~/.config/lf/scripts/cleaner"
+
+# Key bindings
+source "~/.config/lf/keybindings"
+
+# Bookmarks
+source "~/.config/lf/bookmark"

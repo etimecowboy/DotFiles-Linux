@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# kitty +icat --clear --silent --transfer-mode file
+if [[ "$TERM" =~ .*kitty.* ]]; then
+    if command -v kitten > /dev/null 2>&1 ; then
+        kitten icat --clear --transfer-mode file < /dev/null > /dev/tty
+    fi
+fi
