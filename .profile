@@ -53,6 +53,9 @@ export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 # Rust
 export CARGO_HOME="$HOME/.cargo"
 # [ -s "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env" [moved to .bashrc]
+# China mirror
+# export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+# export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
 
 # doom emacs
 export PATH="$HOME/src/doomemacs/bin:$PATH"
