@@ -29,7 +29,7 @@ italic_font      auto
 bold_italic_font auto
 
 #: Font size (in pts)
-font_size 15
+font_size 16
 
 # force_ltr no
 
@@ -713,8 +713,8 @@ sync_to_monitor yes
 #: Window layout {{{
 
 remember_window_size  no
-initial_window_width  800
-initial_window_height 500
+initial_window_width  1600
+initial_window_height 900
 
 #: If enabled, the window size will be remembered so that new
 #: instances of kitty will have the same size as the previous
@@ -2177,8 +2177,9 @@ map alt+shift+up resize_window shorter
 map ctrl+home resize_window reset
 
 action_alias launch_tab launch --cwd=current --type=tab
-map alt+f1 launch_tab emacsclient -tc --eval '(org-agenda nil "d")'
 map ctrl+f1 launch emacsclient -tc
+map alt+f1 launch_tab emacsclient -tc
+map alt+shift+f1 launch_tab emacsclient -tc --eval '(org-agenda nil "d")'
 
 map ctrl+f11 set_tab_title
 
@@ -2187,6 +2188,6 @@ map ctrl+f11 set_tab_title
 #: }}}
 
 # BEGIN_KITTY_THEME
-# Homebrew
+# Hipster Green
 include current-theme.conf
 # END_KITTY_THEME
