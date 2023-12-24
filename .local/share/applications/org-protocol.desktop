@@ -1,7 +1,7 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=org-protocol
-Exec=emacsclient -nc %u
+Exec=emacsclient %u
 Icon=/home/xin/src/DotFiles-Linux/.local/share/icons/emacs128.png
 Type=Application
 Terminal=false
