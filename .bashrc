@@ -1,5 +1,5 @@
 #!/use/bin/env bash
-# Time-stamp: <2023-12-07 Thu 02:00 by xin on tufg>
+# Time-stamp: <2023-12-15 Fri 18:08 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -58,6 +58,7 @@ case "$TERM" in
         xterm*  |\
         uxterm* |\
         kitty*  |\
+        foot*  |\
         *-256color )    export COLORTERM=truecolor ;;
     vte*)
 esac
@@ -198,6 +199,7 @@ export PAGER='most'
 # Browser
 if [ -n "$DISPLAY" ]; then
     export BROWSER='google-chrome'
+    # export BROWSER='brave'
 else
     export BROWSER='w3m'
 fi
@@ -262,9 +264,29 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Git prompt
-# file does not exist
-# source /usr/share/git/completion/git-prompt.sh
+# Proxy
+# export https_proxy=http://127.0.0.1:7890
+# export http_proxy=http://127.0.0.1:7890
+# export all_proxy=socks5://127.0.0.1:7890
+# Use a universal IP - can be connected by both local and virtual machines
+# Don't forget to config Clash server to "allow LAN" in the General tab of "Clash for Windows"
+# export https_proxy=http://192.168.0.23:7890
+# export http_proxy=http://192.168.0.23:7890
+# export all_proxy=socks5://192.168.0.23:7890
+export https_proxy=http://192.168.2.2:7890
+export http_proxy=http://192.168.2.2:7890
+export all_proxy=socks5://192.168.2.2:7890
+
+# Basic setup
+export CDPATH=".:~:~/src"
+export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
+# export vblank_mode=0 # Boost gpu performance
+
+# Fix errors
+#    bash: __bp_precmd_invoke_cmd: command not found
+#    bash: __bp_interactive_mode: command not found
+# REF: https://superuser.com/questions/1007647/bash-how-to-remove-bp-precmd-invoke-cmd-error
+unset PROMPT_COMMAND
 
 # X11 config
 if [[ $XDG_SESSION_TYPE = "x11" ]]; then
@@ -284,6 +306,21 @@ if [[ $XDG_SESSION_TYPE = "x11" ]]; then
     setxkbmap -option "caps:swapescape"
 fi
 
+# Git prompt
+# file does not exist
+# source /usr/share/git/completion/git-prompt.sh
+
+# docker-ce-rootless-extra
+# export DOCKER_HOST=unix:///run/user/$UID/docker.sock
+
+# Setting for snap version terminology
+# NOT working
+# if [[ -d "/sanp/terminology/current" ]]; then
+#     export ECORE_IMF_MODULE="fcitx"
+#     export XMODIFIERS="@im=none"
+#     export PATH="/snap/terminolog/current/usr/bin:$PATH"
+# fi
+
 # tmux
 alias tmuxk='tmux kill-server'
 alias tmuxa='tmux attach'
@@ -293,29 +330,160 @@ alias tmuxt='tmux attach -t'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
+# mc
+alias mc='. /usr/lib/mc/mc-wrapper.sh'
+
 # xiki
 # [ -f ~/.xsh ] && source ~/.xsh
 
-# fzf
+# QT
+# export QT_MEDIA_BACKEND=ffmpeg
 
-## If fzf is installed by apt install of deb package
+# imagemagick
+# export MAGICK_CONFIGURE_PATH="~/.config/ImageMagick/:/etc/ImageMagick-6/"
+
+# env_parallel
+. `which env_parallel.bash`
+
+# neofetch - show system specification, useful for the audience
+# neofetch
+
+# shell-color-scripts
+# REF: https://gitlab.com/dwt1/shell-color-scripts
+# colorscript random
+
+# fortune
+# fortune-zh
+
+# kitty terminal
+# alias kitty='GLFW_IM_MODULE=ibus kitty'
+# # BEGIN_KITTY_SHELL_INTEGRATION
+# if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# # END_KITTY_SHELL_INTEGRATION
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# Poetry
+if [ -d "$HOME/.poetry/bin" ] ; then
+    export PATH="$HOME/.poetry/bin:$PATH"
+fi
+
+# NVM
+#
+# NOTE: NVM is commented out. My bash uses system nodejs by default.
+#
+# Currently, only emacs packages such as eaf, lsp-bridge, lsp-mode, and etc.,
+# use node packages that need to be installed via ~npm install~ commands. I do
+# that in a conda virtual environment.
+#
+# export NVM_DIR="$HOME/.nvm" ;; moved to "~/.profile"
+# Load nvm config
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# Load nvm bash_completion
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# rustup
+## rustup China mirror
+# export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+# export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+
+## Load rustup completion
+if [ -f ~/.local/share/bash_completion/completions/rustup ]; then
+    . ~/.local/share/bash_completion/completions/rustup
+fi
+
+# cargo
+export CARGO_HOME="$HOME/.cargo"
+[ -s "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env"
+
+## Load cargo completion
+if [ -f ~/.local/share/bash_completion/completions/cargo ]; then
+    . ~/.local/share/bash_completion/completions/cargo
+fi
+
+## starship prompt
+eval "$(starship init bash)"
+
+## zellij completion
+if [ -f ~/.local/share/bash_completion/completions/zellij ]; then
+    . ~/.local/share/bash_completion/completions/zellij
+fi
+
+## broot
+# source /home/xin/.config/broot/launcher/bash/br
+function br {
+    local cmd cmd_file code
+    cmd_file=$(mktemp)
+    if broot --outcmd "$cmd_file" "$@"; then
+        cmd=$(<"$cmd_file")
+        command rm -f "$cmd_file"
+        eval "$cmd"
+    else
+        code=$?
+        command rm -f "$cmd_file"
+        return "$code"
+    fi
+}
+
+# Go
+export GOPATH="$HOME/go"
+export GOROOT="/usr/local/go"
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+# export PATH="$PATH:$GOPATH/bin"
+
+## LF
+### LFCD="~/.config/lf/scripts/lfcd.sh"
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir" || return
+            fi
+        fi
+    fi
+}
+bind '"\C-o":"lfcd\C-m"'
+
+## fzf
+
+# If fzf is installed by apt install of deb package
 # Copy from /usr/share/doc/fzf/README.Debian
 # Append this line to ~/.bashrc to enable fzf keybindings for Bash:
-[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && \
-    source /usr/share/doc/fzf/examples/key-bindings.bash
-# Append this line to ~/.bashrc to enable fuzzy auto-completion for Bash:
-[ -f /usr/share/doc/fzf/examples/completion.bash ] && \
-    source /usr/share/doc/fzf/examples/completion.bash
+# [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && \
+#     source /usr/share/doc/fzf/examples/key-bindings.bash
 
-## If fzf is installed by the install script in the git repo
+# Append this line to ~/.bashrc to enable fuzzy auto-completion for Bash:
+# [ -f /usr/share/doc/fzf/examples/completion.bash ] && \
+#     source /usr/share/doc/fzf/examples/completion.bash
+
+# If fzf is installed by the install script in the git repo
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-## always use fzf-tmux
+### always use fzf-tmux
 alias fzf='fzf-tmux'
 
 FD_OPTS="--follow --exclude '.git' --hidden"  # --exclude node_modules
+
 export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | \
   fd --type f --type l $FD_OPTS"
+
 export FZF_DEFAULT_OPTS="
   --multi --layout=reverse --inline-info
   --preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || \
@@ -330,10 +498,15 @@ export FZF_DEFAULT_OPTS="
   --bind 'ctrl-v:half-page-down'
   --bind 'alt-v:half-page-up'
   --bind 'alt-a:select-all+accept'
-  --bind 'alt-w:execute-silent(echo {+} | xclip -sel clip)'"
+  --bind 'alt-w:execute-silent(echo {+} | xclip -sel clip)'
+  --color 'fg:#7d8590,bg:#30363d,hl:#ffffff'
+  --color 'fg+:#e6edf3,bg+:#313f50,hl+:#ffa657'
+  --color 'info:#d29922,prompt:#2f81f7,pointer:#a371f7'
+  --color 'marker:#3fb950,spinner:#6e7681,header:#495058'
+"
 export FZF_TMUX_OPTS="-p80%,60%"
 
-# Preview file content using bat (https://github.com/sharkdp/bat)
+### Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_COMMAND="fd $FD_OPTS"
 # export FZF_CTRL_T_OPTS="
 #   --preview 'bat -n --color=always {}'
@@ -345,18 +518,18 @@ export FZF_CTRL_T_OPTS=$FZF_DEFAULT_OPTS
 export FZF_CTRL_R_OPTS="
   --preview 'echo {}' --preview-window up:3:hidden:wrap
   --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -sel clip)+abort'
-  --color header:italic
+  --color 'header:italic'
   --header 'Press CTRL-Y to copy command into clipboard'"
 
-# Print tree structure in the preview window
+### Print tree structure in the preview window
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTS"
 export FZF_ALT_C_OPTS="
   --preview 'tree -C {}'
   --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -sel clip)+abort'
-  --color header:italic
+  --color 'header:italic'
   --header 'Press CTRL-Y to copy path into clipboard'"
 
-# Overriding fzf functions
+### Overriding fzf functions
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
@@ -370,24 +543,24 @@ _fzf_compgen_dir() {
     fd --type d $FD_OPTS . "$1"
 }
 
-## enable more completions
+### enable more completions
 # usage: _fzf_setup_completion path|dir|var|alias|host COMMANDS...
 _fzf_setup_completion path rg ag git kubectl
 _fzf_setup_completion dir tree
 
-## define some custom functions
+### define some custom functions
 
-# fzf + open (xdg-open)
+#### fzf + open (xdg-open)
 function fo() {
     xdg-open "$(fd --type f $FD_OPTS | fzf)" &
 }
 
-# fzf + kill
+#### fzf + kill
 function fpk() {
     ps aux | fzf | awk '{print $2}' | xargs kill
 }
 
-# fzf + cd
+#### fzf + cd
 # - https://github.com/junegunn/fzf/wiki/examples#interactive-cd
 function fcd() {
     if [[ "$#" != 0 ]]; then
@@ -409,10 +582,14 @@ function fcd() {
     done
 }
 
-# fzf + tmux
+#### fzf + tmux
 # - https://github.com/junegunn/fzf/wiki/examples#tmux
 
-# tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
+#### tm
+# Create new tmux session, or switch to existing one.
+#
+# Works from within tmux too. (@bag-man)
+#
 # `tm` will allow you to select your tmux session via fzf.
 # `tm irc` will attach to the irc session (if it exists), else it will create it.
 tm() {
@@ -429,8 +606,11 @@ tm() {
             echo "No sessions found."
 }
 
-# fs [FUZZY PATTERN] - Select selected tmux session
+#### fs [FUZZY PATTERN]
+# Select selected tmux session
+#
 #   - Bypass fuzzy finder if there's only one match (--select-1)
+#
 #   - Exit if there's no match (--exit-0)
 fs() {
     local session
@@ -439,7 +619,8 @@ fs() {
         tmux switch-client -t "$session"
 }
 
-# fp - switch pane (@george-b)
+#### fp
+# - switch pane (@george-b)
 fp() {
     local panes current_window current_pane target target_window target_pane
     panes=$(tmux list-panes -s -F \
@@ -459,10 +640,11 @@ fp() {
             tmux select-window -t $target_window
     fi
 }
-# In tmux.conf
+
+#### In tmux.conf
 # bind-key 0 run "tux split-window -l 12 'bash -ci ftpane'"
 
-# fasd
+### fasd
 # NOTE: fasd doesn't work in tty mode
 if [ -x "$(command -v fasd)" ]; then
     eval "$(fasd --init auto)"
@@ -482,7 +664,7 @@ if [ -x "$(command -v fasd)" ]; then
     _fasd_bash_hook_cmd_complete e m o
 fi
 
-# fzf + fasd
+#### fzf + fasd
 # https://www.gregorykapfhammer.com/software/tool/productivity/2017/05/08/Directory-Zooming/
 # to: first gets a list of all the directories you have recently and
 # frequently visited and then passes that program's output to Fzf
@@ -502,13 +684,14 @@ t() {
 #         cd "${dir}" || return 1
 # }
 
-# View recent f files
+#### View recent f files
 v() {
     local file
     file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && \
         $EDITOR "${file}" || return 1
 }
-# cd into the directory containing a recently used file
+
+#### cd into the directory containing a recently used file
 vd() {
     local dir
     local file
@@ -516,9 +699,9 @@ vd() {
         dir=$(dirname "$file") && cd "$dir"
 }
 
-# https://github.com/junegunn/fzf/wiki/examples#with-fasd-1
-# jump using `fasd` if given argument,
+#### jump using `fasd` if given argument,
 # filter output of `fasd` using `fzf` else
+# https://github.com/junegunn/fzf/wiki/examples#with-fasd-1
 j(){
     [ $# -gt 0 ] && fasd_cd -d "$*" && return
     local dir
@@ -526,8 +709,8 @@ j(){
         cd "${dir}" || return 1
 }
 
+#### c - browse chrome history
 # https://github.com/junegunn/fzf/wiki/examples#google-chrome-os-xlinux
-# c - browse chrome history
 c() {
     local cols sep google_history open
     cols=$(( COLUMNS / 3 ))
@@ -548,10 +731,10 @@ c() {
         fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
 }
 
-# b - browse chrome bookmark (requires ruby)
+#### b - browse chrome bookmark (requires ruby)
 # https://github.com/junegunn/fzf/wiki/examples#google-chrome-os-xlinux
 
-# fzf + locate
+#### fzf + locate
 # https://github.com/junegunn/fzf/wiki/examples#locate
 # ALT-I - Paste the selected entry from locate output into the command line
 # fzf-locate-widget() {
@@ -564,9 +747,9 @@ c() {
 # zle     -N    fzf-locate-widget
 # bindkey '\ei' fzf-locate-widget
 
-# fzf + docker
-# https://github.com/junegunn/fzf/wiki/examples#docker
+### fzf + docker
 # Select a docker container to start and attach to
+# https://github.com/junegunn/fzf/wiki/examples#docker
 function fda() {
     local cid
     cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
@@ -582,235 +765,8 @@ function fds() {
     [ -n "$cid" ] && docker stop "$cid"
 }
 
-export CDPATH=".:~:~/src"
-export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
-# export vblank_mode=0 # Boost gpu performance
-
-# docker-ce-rootless-extra
-# export DOCKER_HOST=unix:///run/user/$UID/docker.sock
-
-# Setting for snap version terminology
-# NOT working
-# if [[ -d "/sanp/terminology/current" ]]; then
-#     export ECORE_IMF_MODULE="fcitx"
-#     export XMODIFIERS="@im=none"
-#     export PATH="/snap/terminolog/current/usr/bin:$PATH"
-# fi
-
-# mc
-alias mc='. /usr/lib/mc/mc-wrapper.sh'
-
-# neofetch - show system specification, useful for the audience
-# neofetch
-
-# shell-color-scripts
-# REF: https://gitlab.com/dwt1/shell-color-scripts
-# colorscript random
-
-# fortune
-# fortune-zh
-
-# kitty terminal
-# alias kitty='GLFW_IM_MODULE=ibus kitty'
-# # BEGIN_KITTY_SHELL_INTEGRATION
-# if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-# # END_KITTY_SHELL_INTEGRATION
-
-# bash_it
-# If not running interactively, don't do anything
-# case $- in
-#   *i*) ;;
-#     *) return;;
-# esac
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# Path to the bash it configuration
-# export BASH_IT="/home/xin/.bash_it"
-# export BASH_IT="{{BASH_IT}}"
-
-# Lock and Load a custom theme file.
-# Leave empty to disable theming.
-# location /.bash_it/themes/
-#export BASH_IT_THEME='bobby'
-
-# Some themes can show whether `sudo` has a current token or not.
-# Set `$THEME_CHECK_SUDO` to `true` to check every prompt:
-# THEME_CHECK_SUDO='true'
-
-# (Advanced): Change this to the name of your remote repo if you
-# cloned bash-it with a remote other than origin such as `bash-it`.
-# export BASH_IT_REMOTE='bash-it'
-
-# (Advanced): Change this to the name of the main development branch if
-# you renamed it or if it was changed for some reason
-# export BASH_IT_DEVELOPMENT_BRANCH='master'
-
-# Your place for hosting Git repos. I use this for private repos.
-#export GIT_HOSTING='git@git.domain.com'
-
-# Don't check mail when opening terminal.
-unset MAILCHECK
-
-# Change this to your console based IRC client of choice.
-#export IRC_CLIENT='irssi'
-
-# Set this to the command you use for todo.txt-cli
-#export TODO="t"
-
-# Set this to the location of your work or project folders
-#BASH_IT_PROJECT_PATHS="${HOME}/Projects:/Volumes/work/src"
-
-# Set this to false to turn off version control status checking within the prompt for all themes
-#export SCM_CHECK=true
-# Set to actual location of gitstatus directory if installed
-#export SCM_GIT_GITSTATUS_DIR="$HOME/gitstatus"
-# per default gitstatus uses 2 times as many threads as CPU cores, you can change this here if you must
-#export GITSTATUS_NUM_THREADS=8
-
-# Set Xterm/screen/Tmux title with only a short hostname.
-# Uncomment this (or set SHORT_HOSTNAME to something else),
-# Will otherwise fall back on $HOSTNAME.
-#export SHORT_HOSTNAME=$(hostname -s)
-
-# Set Xterm/screen/Tmux title with only a short username.
-# Uncomment this (or set SHORT_USER to something else),
-# Will otherwise fall back on $USER.
-#export SHORT_USER=${USER:0:8}
-
-# If your theme use command duration, uncomment this to
-# enable display of last command duration.
-#export BASH_IT_COMMAND_DURATION=true
-# You can choose the minimum time in seconds before
-# command duration is displayed.
-#export COMMAND_DURATION_MIN_SECONDS=1
-
-# Set Xterm/screen/Tmux title with shortened command and directory.
-# Uncomment this to set.
-#export SHORT_TERM_LINE=true
-
-# Set vcprompt executable path for scm advance info in prompt (demula theme)
-# https://github.com/djl/vcprompt
-#export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
-
-# (Advanced): Uncomment this to make Bash-it reload itself automatically
-# after enabling or disabling aliases, plugins, and completions.
-#export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
-
-# Uncomment this to make Bash-it create alias reload.
-# export BASH_IT_RELOAD_LEGACY=1
-
-# Load Bash It
-# source "$BASH_IT"/bash_it.sh
-
-# Load rustup completion
-if [ -f ~/.local/share/bash_completion/completions/rustup ]; then
-    . ~/.local/share/bash_completion/completions/rustup
-fi
-
-# Load cargo completion
-if [ -f ~/.local/share/bash_completion/completions/cargo ]; then
-    . ~/.local/share/bash_completion/completions/cargo
-fi
-
-# Load zellij completion
-if [ -f ~/.local/share/bash_completion/completions/zellij ]; then
-    . ~/.local/share/bash_completion/completions/zellij
-fi
-
-# imagemagick
-# export MAGICK_CONFIGURE_PATH="~/.config/ImageMagick/:/etc/ImageMagick-6/"
-
-# Proxy
-# export https_proxy=http://127.0.0.1:7890
-# export http_proxy=http://127.0.0.1:7890
-# export all_proxy=socks5://127.0.0.1:7890
-# Use a universal IP - can be connected by both local and virtual machines
-# Don't forget to config Clash server to "allow LAN" in the General tab of "Clash for Windows"
-# export https_proxy=http://192.168.0.23:7890
-# export http_proxy=http://192.168.0.23:7890
-# export all_proxy=socks5://192.168.0.23:7890
-export https_proxy=http://192.168.2.2:7890
-export http_proxy=http://192.168.2.2:7890
-export all_proxy=socks5://192.168.2.2:7890
-
-# Fix errors
-#    bash: __bp_precmd_invoke_cmd: command not found
-#    bash: __bp_interactive_mode: command not found
-# REF: https://superuser.com/questions/1007647/bash-how-to-remove-bp-precmd-invoke-cmd-error
-unset PROMPT_COMMAND
-
-# starship shell prompt
-# eval "$(starship init bash)"
-
-# broot
-# source /home/xin/.config/broot/launcher/bash/br
-function br {
-    local cmd cmd_file code
-    cmd_file=$(mktemp)
-    if broot --outcmd "$cmd_file" "$@"; then
-        cmd=$(<"$cmd_file")
-        command rm -f "$cmd_file"
-        eval "$cmd"
-    else
-        code=$?
-        command rm -f "$cmd_file"
-        return "$code"
-    fi
-}
-
-# NVM
-# export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-# REF: https://stackoverflow.com/questions/11821378/what-does-bashno-job-control-in-this-shell-mean
-# try to fix ob-shell warning:
-#
-#   bash: cannot set terminal process group (1374396): Inappropriate ioctl for device
-#
-#   bash: no job control in this shell
-#
-#   [ Babel evaluation exited with code 0 ]
-set -m
-
-# Rust
-[ -s "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env"
-
-# Nix
-[ -s "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && \. "$HOME/.nix-profile/etc/profile.d/nix.sh"
-
-# QT
-# export QT_MEDIA_BACKEND=ffmpeg
-
-# LFCD="~/.config/lf/scripts/lfcd.sh"
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        if [ -d "$dir" ]; then
-            if [ "$dir" != "$(pwd)" ]; then
-                cd "$dir" || return
-            fi
-        fi
-    fi
-}
-bind '"\C-o":"lfcd\C-m"'
-
+### fzf + rga
+# Search contents in pdf, epub, office docs, zip, tar.gz etc
 fzf-rga() {
 	  RG_PREFIX="rga --files-with-matches"
 	  local file
@@ -825,5 +781,30 @@ fzf-rga() {
 	      xdg-open "$file"
 }
 
-# Instll env_parallel
-. `which env_parallel.bash`
+# Emacs
+## doom emacs
+if [ -d "$HOME/src/doomemacs/bin" ] ; then
+    export PATH="$HOME/src/doomemacs/bin:$PATH"
+fi
+
+## cask
+if [ -d "$HOME/.cask/bin" ] ; then
+    export PATH="$HOME/.cask/bin:$PATH"
+fi
+
+## try to fix ob-shell warning:
+#
+# REF: https://stackoverflow.com/questions/11821378/what-does-bashno-job-control-in-this-shell-mean
+#
+#   bash: cannot set terminal process group (1374396): Inappropriate ioctl for device
+#
+#   bash: no job control in this shell
+#
+#   [ Babel evaluation exited with code 0 ]
+set -m
+
+# Nix
+[ -s "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && \. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+
+## added by Nix installer
+# if [ -e /home/xin/.nix-profile/etc/profile.d/nix.sh ]; then . /home/xin/.nix-profile/etc/profile.d/nix.sh; fi

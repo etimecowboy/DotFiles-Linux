@@ -16,16 +16,6 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
 # Chinese IM
 # export GTK_IM_MODULE=fcitx
 # export QT_IM_MODULE=fcitx
@@ -36,38 +26,21 @@ fi
 # export QT_QPA_PLATFORMTHEME=kde
 # . "$HOME/.cargo/env"
 
-# Poetry
-export PATH="$HOME/.poetry/bin:$PATH"
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
 
-# NVM [moved to "~/.bashrc"]
-export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Go
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/go
-export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
-# export PATH="$PATH:$GOPATH/bin"
-
-# Rust
-export CARGO_HOME="$HOME/.cargo"
-# [ -s "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env" [moved to .bashrc]
-# China mirror
-# export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
-# export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
-
-# doom emacs
-export PATH="$HOME/src/doomemacs/bin:$PATH"
-
-## cask
-export PATH="$HOME/.cask/bin:$PATH"
-
-# Nix [moved to .bashrc]
-# if [ -e /home/xin/.nix-profile/etc/profile.d/nix.shn ]; then . /home/xin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 # hardware video acceleration via vaapi for NVIDIA’s Propriety Driver
 export LIBVA_DRIVER_NAME=nvidia
 export MOZ_X11_EGL=1
 export MOZ_ENABLE_WAYLAND=1
 export MOZ_DISABLE_RDD_SANDBOX=1
+
+# export PATH
+export PATH
