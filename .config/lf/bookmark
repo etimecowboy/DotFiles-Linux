@@ -8,6 +8,7 @@ map gfl cd /usr/local
 map gfx cd ~/下载
 map gfw cd ~/文档
 map gfd cd ~/桌面
+map gfn cd ~/桌面/niuniu
 map gft cd ~/图片
 map gfy cd ~/音乐
 map gfmm cd /mnt
