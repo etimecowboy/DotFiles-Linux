@@ -1,41 +1,33 @@
 session_name: files
 start_directory: ~/
 windows:
-  - window_name: ranger
-    layout: main-horizontal
+  - window_name: AV
+    layout: even-vertical
     focus: true
     panes:
       - shell_command:
-          - ranger
-        focus: true
-      - shell_command:
-          - cmd: emacsclient -tc "~/org/roam/ranger_cheatsheet.org"
+          - cmd: lfcd ~/zbox_sshfs/data/download/bt
             sleep_after: 1
-      # - shell_command:
-      #     - cmd: emacsclient -tc "~/.config/ranger/rc.conf"
-  - window_name: mc
-    layout: main-horizontal
-    panes:
-      - shell_command:
-          - mc
         focus: true
       - shell_command:
-          - cmd: emacsclient -tc "~/org/roam/20220307093602-midnight_commander.org"
+          - cmd: lfcd /mnt/data3/xin/AV
             sleep_after: 1
-      # - shell_command:
-      #     - cmd: emacsclient -tc "~/.config/mc/"
-  - window_name: lf
-    layout: main-horizontal
-    focus: true
-    panes:
       - shell_command:
-          - lf
-        focus: true
-      - shell_command:
-          - cmd: emacsclient -tc "~/src/DotFiles-Linux/.config/lf/lfrc"
+          - cmd: lfcd /media/xin
             sleep_after: 1
   - window_name: ssh_zbox
     layout: main-horizontal
     panes:
       - shell_command:
           - ssh zbox
+  # - window_name: mc
+  #   layout: main-horizontal
+  #   panes:
+  #     - shell_command:
+  #         - mc
+  #       focus: true
+  #     - shell_command:
+  #         - cmd: emacsclient -tc "~/org/roam/20220307093602-midnight_commander.org"
+  #           sleep_after: 1
+  #     # - shell_command:
+  #     #     - cmd: emacsclient -tc "~/.config/mc/"

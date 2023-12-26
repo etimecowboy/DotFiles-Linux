@@ -1,20 +1,68 @@
 session_name: config
-start_directory: "~/src"
+start_directory: ~/src/
 windows:
   - window_name: spacemacs
-    layout: even-horizontal
+    start_directory: ~/src/
+    layout: main-vertical
     focus: true
     panes:
       - shell_command:
-          - cmd: emacsclient -tc "~/src/DotSpacemacs/.spacemacs"
-            sleep_after: 1
+          - cmd: emacsclient -tc DotSpacemacs/.spacemacs
         focus: true
       - shell_command:
-          - cmd: emacsclient -tc "~/src/DotSpacemacs"
-  - window_name: dotfiles
+          - cd DotSpacemacs/
+          - git status
+      - shell_command:
+          - cd spacemacs/
+          - git pull
+  - window_name: tmux
+    start_directory: ~/src/DotFiles-Linux/.config/
+    layout: main-vertical
+    panes:
+      - shell_command:
+          - cmd: emacsclient -tc tmux/tmux.conf
+            focus: true
+      - shell_command:
+          - cmd: emacsclient -tc tmuxp/config.yaml
+      - shell_command:
+          - cmd: lfcd tmuxp/
+  - window_name: lf
+    start_directory: ~/src/DotFiles-Linux/.config/lf/
+    layout: main-vertical
+    panes:
+      - shell_command:
+          - cmd: emacsclient -tc keybindings
+            focus: true
+      - shell_command:
+          - cmd: lfcd .
+      - shell_command:
+          - cmd: lfcd ~/src/lf-sixel/etc/
+  - window_name: foot
+    start_directory: ~/src/DotFiles-Linux/.config/
     layout: even-horizontal
     panes:
       - shell_command:
-          - cmd: emacsclient -tc "~/src/DotFiles-Linux"
-            sleep_after: 1
+          - cmd: emacsclient -tc foot/foot.ini
         focus: true
+      - shell_command:
+          - cmd: lfcd .
+  - window_name: shell
+    start_directory: ~/src/DotFiles-Linux/
+    layout: main-vertical
+    panes:
+      - shell_command:
+          - cmd: git status
+      - shell_command:
+          - cmd: emacsclient -tc .bashrc
+        focus: true
+      - shell_command:
+          - cmd: emacsclient -tc .profile
+  - window_name: emacs
+    start_directory: ~/src/emacs/
+    layout: even-horizontal
+    panes:
+      - shell_command:
+          - cmd: git fetch
+        focus: true
+      - shell_command:
+          - cmd: git tag | rg 29
