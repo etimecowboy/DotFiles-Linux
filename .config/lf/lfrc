@@ -13,3 +13,7 @@ source "~/.config/lf/keybindings"
 
 # Bookmarks
 source "~/.config/lf/bookmark"
+
+# Run some commands
+on-cd
+recol

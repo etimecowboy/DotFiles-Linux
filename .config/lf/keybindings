@@ -1,14 +1,11 @@
 #=================================================================
 # Key bindings
 #=================================================================
-# Cut and delete
-map d  # leave the command name empty like this for unmapping
-map dd cut
-map dD delete
 
-# Create files and folders
-map a push %touch<space>  # Make new file
-map A push %mkdir<space>  # Make new directory
+# Reload lfrc
+map zz reload
+
+# -- UI ----------------------------------------------------------
 
 # Toggle line number
 map zl :set number!; set relativenumber!
@@ -16,16 +13,59 @@ map zl :set number!; set relativenumber!
 # Toggle mouse
 map zm set mouse!
 
-# Additional mappings of some existing commands
-map <enter> shell-wait
-map .       set hidden!
+# -- shell -------------------------------------------------------
 
-# Mappings for custom functions
-map x extract
-map o push :open-with<space>
+# Additional mappings of some existing commands
+# map <enter> shell-wait
+map <enter> shell
+
+# Execute current file (must be executable)
+map x $$f
+map X !$f
+
+# Show the result of execution of previous commands
+map ` !true
+
+# -- file operations ---------------------------------------------
+
+# Toggle showing hidden files
+map . set hidden!
+
+# Create files and folders
+map a
+map aa push %touch<space>  # Make new file
+map aA push %mkdir<space>  # Make new directory
+
+# Cut and delete
+map d
+map dd cut
+map dD delete
+
+# 'rename' and 'bulkrename' commands
+map r push :rename<space>
 map R bulkrename
 
-# Filter
+# 'trash' and 'delete' commands
+map <delete> trash
+map <s-delete> delete
+
+# Find files
 map <c-f> push :setfilter<space>
 
-# override default config
+# -- file openning -----------------------------------------------
+
+# Text files
+map e $emacsclient -tc $fx
+map i $bat $f
+
+# MIME files
+map o &mimeopen $f
+map O $mimeopen --ask $f
+# map o push :open-with<space>
+
+# Compressed files
+# 'extract' and 'compress' commands
+map @
+map @x extract
+# map @t tar
+# map @z zip

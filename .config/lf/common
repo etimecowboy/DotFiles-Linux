@@ -1,18 +1,8 @@
-# TUI settings
-set icons          true
-set ignorecase     true
-set drawbox        true
-set dircounts      true
-set info           size:time
-set number         true
-set relativenumber true
-# leave some space at the top and the bottom of the screen
-set scrolloff 0
-# set mouse
+# An example is avaiable in <lf_repo>/etc/lfrc.example
 
 # Shell settings
 # Interpreter for shell commands
-set shell sh
+set shell bash
 
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -30,7 +20,20 @@ set shellopts '-eu'
 # commands accordingly.
 set ifs "\n"
 
-# Graphic previewer
-set preview
+# leave some space at the top and the bottom of the screen
+set scrolloff 0    # no space
+
+# Use the `dim` attribute instead of underline for the cursor in the preview pane
+set cursorpreviewfmt "\033[7;2m"
+
+set icons true
+set ignorecase true
+set drawbox true
+set dircounts true
+set info size:time
+set number true
+set relativenumber true
+set mouse false
+set preview true
 
 # vi: ft=config
