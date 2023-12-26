@@ -1,0 +1,12 @@
+// Put this file in ~/.config/systemd/user/tmux.service
+
+[Unit]
+Description=Tmux server
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/tmux new -s default -d
+ExecStop=/usr/bin/tmux kill-server
+
+[Install]
+WantedBy=default.target
