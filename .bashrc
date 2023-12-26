@@ -1,5 +1,5 @@
 #!/use/bin/env bash
-# Time-stamp: <2023-12-15 Fri 18:08 by xin on tufg>
+# Time-stamp: <2023-12-26 Tue 16:37 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -38,7 +38,6 @@ shopt -s checkwinsize
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
-
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -192,8 +191,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 export ALTERNATE_EDITOR='emacs'
 # export EDITOR='emacsclient -tc'
 # export VISUAL='emacsclient -tc'
-export EDITOR='emacsclient'
-export VISUAL='emacsclient'
+export EDITOR='emacsclient -t'
+export VISUAL='emacsclient -tc'
 export PAGER='most'
 
 # Browser
