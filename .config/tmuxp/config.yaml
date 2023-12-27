@@ -2,7 +2,6 @@ session_name: config
 start_directory: ~/src/
 windows:
   - window_name: spacemacs
-    start_directory: ~/src/
     layout: main-vertical
     focus: true
     panes:
@@ -31,18 +30,29 @@ windows:
     layout: main-vertical
     panes:
       - shell_command:
-          - cmd: emacsclient -tc keybindings
+          - cmd: emacsclient -tc cmd
             focus: true
+      - shell_command:
+          - cmd: emacsclient -tc keybindings
       - shell_command:
           - cmd: lfcd .
       - shell_command:
           - cmd: lfcd ~/src/lf-sixel/etc/
   - window_name: foot
-    start_directory: ~/src/DotFiles-Linux/.config/
+    start_directory: ~/src/DotFiles-Linux/.config/foot/
     layout: even-horizontal
     panes:
       - shell_command:
-          - cmd: emacsclient -tc foot/foot.ini
+          - cmd: emacsclient -tc foot.ini
+        focus: true
+      - shell_command:
+          - cmd: lfcd .
+  - window_name: kitty
+    start_directory: ~/src/DotFiles-Linux/.config/kitty/
+    layout: even-horizontal
+    panes:
+      - shell_command:
+          - cmd: emacsclient -tc kitty.conf
         focus: true
       - shell_command:
           - cmd: lfcd .
