@@ -1,0 +1,86 @@
+session_name: config
+start_directory: ~/src/
+windows:
+  - window_name: spacemacs
+    start_directory: ~/src/
+    layout: main-vertical
+    focus: true
+    panes:
+      - shell_command:
+          - cmd: emacsclient -tc DotSpacemacs/.spacemacs
+            sleep_after: 1
+        focus: true
+      - shell_command:
+          - cmd:
+              - cd DotSpacemacs/
+              - git status
+            sleep_after: 1
+      - shell_command:
+          - cmd:
+              - cd spacemacs/
+              - git pull
+            sleep_after: 1
+  - window_name: tmux
+    start_directory: ~/src/DotFiles-Linux/.config/
+    layout: main-vertical
+    panes:
+      - shell_command:
+          - cmd: emacsclient -tc tmux/tmux.conf
+            sleep_after: 1
+            focus: true
+      - shell_command:
+          - cmd: emacsclient -tc tmuxp/config.yaml
+            sleep_after: 1
+      - shell_command:
+          - cmd: lfcd tmuxp/
+            sleep_after: 1
+  - window_name: lf
+    start_directory: ~/src/DotFiles-Linux/.config/lf/
+    layout: main-vertical
+    panes:
+      - shell_command:
+          - cmd: emacsclient -tc keybindings
+            sleep_after: 1
+            focus: true
+      - shell_command:
+          - cmd: lfcd .
+            sleep_after: 1
+      - shell_command:
+          - cmd: lfcd ~/src/lf-sixel/etc/
+            sleep_after: 1
+  - window_name: foot
+    start_directory: ~/src/DotFiles-Linux/.config/
+    layout: even-horizontal
+    panes:
+      - shell_command:
+          - cmd: emacsclient -tc foot/foot.ini
+            sleep_after: 1
+        focus: true
+      - shell_command:
+          - cmd: lfcd .
+            sleep_after: 1
+  - window_name: shell
+    start_directory: ~/src/DotFiles-Linux/
+    layout: main-vertical
+    panes:
+      - shell_command:
+          - cmd: emacsclient -tc .bashrc
+            sleep_after: 1
+        focus: true
+      - shell_command:
+          - cmd: emacsclient -tc .profile
+            sleep_after: 1
+      - shell_command:
+          - cmd: git status
+            sleep_after: 1
+  - window_name: emacs
+    start_directory: ~/src/emacs/
+    layout: even-horizontal
+    panes:
+      - shell_command:
+          - cmd: git fetch
+            sleep_after: 1
+        focus: true
+      - shell_command:
+          - cmd: git tag | rg 29
+            sleep_after: 1

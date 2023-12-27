@@ -1,0 +1,20 @@
+session_name: work
+start_directory: ~/src
+windows:
+  - window_name: gtd
+    layout: main-horizontal
+    focus: true
+    panes:
+      - shell_command:
+          - emacsclient -tc --eval '(org-agenda nil "d")'
+        focus: true
+  - window_name: projects
+    layout: main-horizontal
+    panes:
+      - shell_command:
+          - lfcd .
+        focus: true
+      - shell_command:
+          - unimatrix -abf -s 85 -l ens
+      - shell_command:
+          - tty-clock
