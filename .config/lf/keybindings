@@ -3,9 +3,12 @@
 #=================================================================
 
 # Reload lfrc
-map zz reload
+map z. reload
 
 # -- UI ----------------------------------------------------------
+
+# Re-arrange columns
+map zz recol
 
 # Toggle line number
 map zl :set number!; set relativenumber!

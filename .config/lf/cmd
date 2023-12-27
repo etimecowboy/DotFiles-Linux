@@ -10,34 +10,43 @@ cmd reload ${{
 
 # -- Change windows title when cd in a dir ---------------------------------------
 
+# NOTE:
+#
+# '&' commands run silently in background (which is what we want here),
+# but are not connected to stdout.
+#
+# To make sure our escape sequence still reaches stdout we pipe it to
+# /dev/tty
 cmd on-cd &{{
-    # '&' commands run silently in background (which is what we want here),
-    # but are not connected to stdout.
-    # To make sure our escape sequence still reaches stdout we pipe it to /dev/tty
     printf "\033]0; $PWD\007" > /dev/tty
 }}
 
 # -- Dynamically set number of columns -------------------------------------------
 
-# cmd recol ${{
-#     w=$(tput cols)
-#     if [ $w -le 80 ]; then
-#         lf -remote "send $id set ratios 1:2"
-#     else
-#         lf -remote "send $id set ratios 1:2:3"
-#     fi
-# }}
+# TODO: merged into 'on-cd'.
+#
+# You just need to change directory to update the number of columns
+# that are displayed.
 
 cmd recol ${{
     w=$(tput cols)
     if [ $w -le 80 ]; then
         lf -remote "send $id set ratios 1:2"
-    elif [ $w -le 160 ]; then
-        lf -remote "send $id set ratios 1:2:3"
     else
-        lf -remote "send $id set ratios 1:2:3:5"
+        lf -remote "send $id set ratios 1:2:3"
     fi
 }}
+
+# cmd recol ${{
+#     w=$(tput cols)
+#     if [ $w -le 90 ]; then
+#         lf -remote "send $id set ratios 1:3"
+#     elif [ $w -le 270 ]; then
+#         lf -remote "send $id set ratios 1:3:5"
+#     else
+#         lf -remote "send $id set ratios 1:3:5:7"
+#     fi
+# }}
 
 # -- 'rename' command --------------------------------------------------------------
 
