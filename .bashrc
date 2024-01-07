@@ -1,27 +1,16 @@
 #!/use/bin/env bash
-# Time-stamp: <2023-12-26 Tue 16:37 by xin on tufg>
+# Time-stamp: <2024-01-07 Sun 03:36 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# -- Change default shell behavior -----------------------------------------
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-      *) return;;
+    *) return;;
 esac
-
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-# HISTCONTROL=ignoreboth
-# TO avoid duplicates in multiple shells
-export HISTCONTROL=ignoredups:erasedups
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=100000
-HISTFILESIZE=200000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -31,27 +20,55 @@ shopt -s checkwinsize
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
 
+# correct minor spelling errors in a cd command
+shopt -s cdspell
+
+# multi-line commands to be appended to your bash history as a single line
+# command
+shopt -s cmdhist 
+
+# allows dot-begin files to be returned in the results of path-name expansion
+shopt -s dotglob 
+
+# allows egrep-style extended pattern matching
+shopt -s extglob 
+
+# -- shell history ----------------------------------------------------------
+
+# setting history length
+HISTSIZE=100000
+HISTFILESIZE=200000
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+# HISTCONTROL=ignoreboth
+
+# TO avoid duplicates in multiple shells
+export HISTCONTROL=ignoredups:erasedups
+
+# export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
+
+
+# -- lessipipe --------------------------------------------------------------
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# -- chroot -----------------------------------------------------------------
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+# -- terminal color ---------------------------------------------------------
 
 # set as a turecolor term
 case "$TERM" in
-        iterm   |\
+    iterm   |\
         screen* |\
         tmux*   |\
         xterm*  |\
@@ -61,6 +78,18 @@ case "$TERM" in
         *-256color )    export COLORTERM=truecolor ;;
     vte*)
 esac
+
+# -- prompt color -----------------------------------------------------------
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+# case "$TERM" in
+#     xterm-color|*-256color) color_prompt=yes;;
+# esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -78,16 +107,21 @@ if [ "$color_prompt" = yes ]; then
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
+
 unset color_prompt force_color_prompt
 
+# -- prompt format, I use starship now, --------------------------------------
+
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+# case "$TERM" in
+# xterm*|rxvt*)
+#     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#     ;;
+# *)
+#     ;;
+# esac
+
+# -- locale settings ----------------------------------------------------------
 
 # My locale settings
 unset LANG   # make the following works
@@ -97,8 +131,11 @@ export LC_CTYPE=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 export LC_TIME=C
 
-# Run fbterm after log in tty for Chinese display
-# Note: fbterm displays not very good now. Don't start it until it is necessary by fb
+# -- Run fbterm after log in tty for Chinese display --------------------------
+
+# Note: fbterm displays not very good now. Don't start it until it is necessary
+# by fb
+
 # solution 1: use DISPLAY env var
 # [[ $(tty) == \/dev\/tty[0-9]* ]] && env DISPLAY=:0 fcitx-fbterm-helper
 # solution 2: use -d switch of fcitx-fbterm-helper
@@ -133,8 +170,21 @@ export LC_TIME=C
 ## Test sixel-tmux, not working
 # [[ $(tty) == \/dev\/tty[3-6]* ]] && exec fbterm -- bash -c 'TERM=fbterm /home/xin/src/sixel-tmux/tmux
 
-# powerline-shell
-# - https://github.com/b-ryan/powerline-shell
+# -- Command to run at every time you get a prompt -----------------------------
+
+# preserve bash history in multiple bash shells
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# Fix errors
+#    bash: __bp_precmd_invoke_cmd: command not found
+#    bash: __bp_interactive_mode: command not found
+# REF: https://superuser.com/questions/1007647/bash-how-to-remove-bp-precmd-invoke-cmd-error
+# unset PROMPT_COMMAND
+
+# --  powerline-shell -----------------------------------------------------------
+
+# REF: https://github.com/b-ryan/powerline-shell
+
 # function _update_ps1() {
 #     PS1=$(powerline-shell $?)
 # }
@@ -147,16 +197,9 @@ export LC_TIME=C
 
 # . /usr/share/powerline/integrations/powerline.sh # commented out to use starship shell prompt.
 
-# change some default behavior
-shopt -s cdspell # correct minor spelling errors in a cd command
-shopt -s cmdhist # multi-line commands to be appended to your bash history as a single line command
-shopt -s dotglob # allows dot-begin files to be returned in the results of path-name expansion
-shopt -s extglob # allows egrep-style extended pattern matching
+# -- colors
 
-# preserve bash history in multiple bash shells
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
-# enable color support of ls and also add handy aliases
+# enable color support and also add handy aliases for ls, grep, and etc.
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -169,79 +212,8 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
+
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alFh'
-alias la='ls -Ah'
-alias l='ls -CFh'
-alias lt='ls -larth'
-
-# use exa to replace ls
-alias li='exa -alFh --icons'
-alias lg='exa -alFh --icons --git'
-alias lit='exa -larh -t modified --icons'
-alias ltree='exa --tree --icons'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Editors
-export ALTERNATE_EDITOR='emacs'
-# export EDITOR='emacsclient -tc'
-# export VISUAL='emacsclient -tc'
-export EDITOR='emacsclient -t'
-export VISUAL='emacsclient -tc'
-export PAGER='most'
-
-# Browser
-if [ -n "$DISPLAY" ]; then
-    export BROWSER='google-chrome'
-    # export BROWSER='brave'
-else
-    export BROWSER='w3m'
-fi
-
-# Use script in ~/bin =====> for use in matlab command mode
-# English locale leads to the dysfunction of im (fcitx) in X LC_CTYPE
-# should be set when starting the daemon. If the locale already been
-# set as zh_CN.UTF-8 then, don't set it here.
-# alias emacs='LC_CTYPE=zh_CN.UTF-8 emacs --debug-init'
-# alias em='LC_CTYPE=zh_CN.UTF-8 emacs --daemon' # swith im problem
-## Already using zh_CN locale
-alias emacs='emacs --debug-init'
-alias em='emacs --daemon'
-alias ek="emacsclient -e '(client-save-kill-emacs)'"
-# alias emacs='export LC_CTYPE=zh_CN.UTF-8;emacs --debug-init'
-# alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
-alias eq='emacs -nw -q'
-alias eQ='emacs -nw -Q'
-alias ee="emacsclient -tc"
-alias ec="emacsclient -nc"
-# alias vi='emacsclient -tc' # Use emacs instead of vi
-# alias today="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"d\")' 2> /dev/null | less"
-# alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 2> /dev/null | less"
-# export LC_CTYPE=zh_CN.UTF-8 # moved to ~/.profile
-# ## Add cask path
-# export PATH="~/.cask/bin:$PATH"
-alias spacemacs="emacs --with-profile spacemacs"
-alias doomemacs="emacs --with-profile doomemacs"
-alias efsemacs="emacs --with-profile efs"
-alias lazycatemacs="emacs --with-profile lazycat"
-alias spaces="emacs --with-profile spacemacs -daemon"
-alias dooms="emacs --with-profile doomemacs -daemon"
-alias efss="emacs --with-profile efs -daemon"
-alias lazycats="emacs --with-profile lazycat -daemon"
-
-# Matlab
-alias mat='matlab -nodesktop -nosplash'
-alias matlab='matlab -desktop'
-# export COMPUTERNAME='zbox' # added for matlab getenv function
-# export USERNAME='xin' # added for matlab getenv function
-
-# urxvt
-# alias urxvt='urxvtcd'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -250,6 +222,30 @@ alias matlab='matlab -desktop'
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+# -- more aliases --------------------------------------------------------------
+
+
+# -- editor --------------------------------------------------------------------
+
+export ALTERNATE_EDITOR='emacs'
+# export EDITOR='emacsclient -tc'
+# export VISUAL='emacsclient -tc'
+export EDITOR='emacsclient -t'
+export VISUAL='emacsclient -tc'
+
+# -- pager ----------------------------------------------------------------------
+
+export PAGER='most'
+
+# -- Browser --------------------------------------------------------------------
+
+if [ -n "$DISPLAY" ]; then
+    export BROWSER='google-chrome'
+    # export BROWSER='brave'
+else
+    export BROWSER='w3m'
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -263,31 +259,37 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Proxy
+# -- Environment variables ---------------------------------------
+
+# ---- Proxy
+
+# Use local IP - proxy server is installed on this computer
 # export https_proxy=http://127.0.0.1:7890
 # export http_proxy=http://127.0.0.1:7890
 # export all_proxy=socks5://127.0.0.1:7890
-# Use a universal IP - can be connected by both local and virtual machines
-# Don't forget to config Clash server to "allow LAN" in the General tab of "Clash for Windows"
-# export https_proxy=http://192.168.0.23:7890
-# export http_proxy=http://192.168.0.23:7890
-# export all_proxy=socks5://192.168.0.23:7890
-export https_proxy=http://192.168.2.2:7890
-export http_proxy=http://192.168.2.2:7890
-export all_proxy=socks5://192.168.2.2:7890
 
-# Basic setup
+# ---- "Clash for Windows"
+#
+# ---- Use a universal IP which can be connected by both local, virtual, and
+# ---- remote machines. NOTE: Config "allow LAN" on "General" tab
+
+export https_proxy=http://192.168.0.23:7890
+export http_proxy=http://192.168.0.23:7890
+export all_proxy=socks5://192.168.0.23:7890
+# export https_proxy=http://192.168.2.2:7890
+# export http_proxy=http://192.168.2.2:7890
+# export all_proxy=socks5://192.168.2.2:7890
+
+# ---- CDPATH
 export CDPATH=".:~:~/src"
-export HISTIGNORE="&:ls:ls *:e[mtc]:emacs:[bf]g:exit"
-# export vblank_mode=0 # Boost gpu performance
 
-# Fix errors
-#    bash: __bp_precmd_invoke_cmd: command not found
-#    bash: __bp_interactive_mode: command not found
-# REF: https://superuser.com/questions/1007647/bash-how-to-remove-bp-precmd-invoke-cmd-error
-unset PROMPT_COMMAND
 
-# X11 config
+# -- Terminal rendering -------------------------------------------------------
+
+# Boost gpu performance
+export vblank_mode=0
+
+# -- X11 config ---------------------------------------------------------------
 if [[ $XDG_SESSION_TYPE = "x11" ]]; then
     # Turn off system bell in X11
     # FIXME: this cause emacs-vterm pop error
@@ -305,12 +307,17 @@ if [[ $XDG_SESSION_TYPE = "x11" ]]; then
     setxkbmap -option "caps:swapescape"
 fi
 
-# Git prompt
+# -- Git ----------------------------------------------------------------------
+
 # file does not exist
 # source /usr/share/git/completion/git-prompt.sh
 
+# -- Docker -------------------------------------------------------------------
+
 # docker-ce-rootless-extra
 # export DOCKER_HOST=unix:///run/user/$UID/docker.sock
+
+# -- Terminology ---------------------------------------------------------------
 
 # Setting for snap version terminology
 # NOT working
@@ -320,45 +327,44 @@ fi
 #     export PATH="/snap/terminolog/current/usr/bin:$PATH"
 # fi
 
-# tmux
-alias tmuxk='tmux kill-server'
-alias tmuxa='tmux attach'
-alias tmuxt='tmux attach -t'
+# -- xiki ---------------------------------------------------------------------
 
-# pbcopy
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
-
-# mc
-alias mc='. /usr/lib/mc/mc-wrapper.sh'
-
-# xiki
 # [ -f ~/.xsh ] && source ~/.xsh
 
-# QT
+# -- QT -----------------------------------------------------------------------
 # export QT_MEDIA_BACKEND=ffmpeg
 
-# imagemagick
+# -- imagemagick --------------------------------------------------------------
+
 # export MAGICK_CONFIGURE_PATH="~/.config/ImageMagick/:/etc/ImageMagick-6/"
 
-# env_parallel
+# -- env_parallel --------------------------------------------------------------
+
 . `which env_parallel.bash`
 
-# neofetch - show system specification, useful for the audience
+# -- neofetch ------------------------------------------------------------------
+# ---- show system specification, useful for the audience
+
 # neofetch
 
-# shell-color-scripts
-# REF: https://gitlab.com/dwt1/shell-color-scripts
+# -- shell-color-scripts -------------------------------------------------------
+# ---- REF: https://gitlab.com/dwt1/shell-color-scripts
+
 # colorscript random
 
-# fortune
+# -- fortune -------------------------------------------------------------------
+
 # fortune-zh
 
-# kitty terminal
+# -- kitty terminal ----------------------------------------------------------
+
 # alias kitty='GLFW_IM_MODULE=ibus kitty'
+
 # # BEGIN_KITTY_SHELL_INTEGRATION
 # if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # # END_KITTY_SHELL_INTEGRATION
+
+# -- Conda --------------------------------------------------------------------
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -375,12 +381,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# Poetry
+# -- poetry ----------------------------------------------------------------
+
 if [ -d "$HOME/.poetry/bin" ] ; then
     export PATH="$HOME/.poetry/bin:$PATH"
 fi
 
-# NVM
+# -- NVM -------------------------------------------------------------------
 #
 # NOTE: NVM is commented out. My bash uses system nodejs by default.
 #
@@ -394,8 +401,10 @@ fi
 # Load nvm bash_completion
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# rustup
+## -- rustup --------------------------------------------------------------
+
 ## rustup China mirror
+
 # export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
 # export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
 
@@ -404,7 +413,8 @@ if [ -f ~/.local/share/bash_completion/completions/rustup ]; then
     . ~/.local/share/bash_completion/completions/rustup
 fi
 
-# cargo
+## -- cargo ----------------------------------------------------------------
+
 export CARGO_HOME="$HOME/.cargo"
 [ -s "$CARGO_HOME/env" ] && \. "$CARGO_HOME/env"
 
@@ -413,15 +423,18 @@ if [ -f ~/.local/share/bash_completion/completions/cargo ]; then
     . ~/.local/share/bash_completion/completions/cargo
 fi
 
-## starship prompt
+## -- starship prompt -----------------------------------------------------
+
 eval "$(starship init bash)"
 
-## zellij completion
+## -- zellij --------------------------------------------------------------
+
 if [ -f ~/.local/share/bash_completion/completions/zellij ]; then
     . ~/.local/share/bash_completion/completions/zellij
 fi
 
-## broot
+## -- broot ---------------------------------------------------------------
+
 # source /home/xin/.config/broot/launcher/bash/br
 function br {
     local cmd cmd_file code
@@ -437,13 +450,15 @@ function br {
     fi
 }
 
-# Go
+## -- Go ------------------------------------------------------------------
+
 export GOPATH="$HOME/go"
 export GOROOT="/usr/local/go"
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 # export PATH="$PATH:$GOPATH/bin"
 
-## LF
+## -- LF -------------------------------------------------------------------
+
 ### LFCD="~/.config/lf/scripts/lfcd.sh"
 lfcd () {
     tmp="$(mktemp)"
@@ -458,9 +473,10 @@ lfcd () {
         fi
     fi
 }
+
 bind '"\C-o":"lfcd\C-m"'
 
-## fzf
+## -- fzf -----------------------------------------------------------------
 
 # If fzf is installed by apt install of deb package
 # Copy from /usr/share/doc/fzf/README.Debian
@@ -780,7 +796,8 @@ fzf-rga() {
 	      xdg-open "$file"
 }
 
-# Emacs
+# -- Emacs -----------------------------------------------------------------
+
 ## doom emacs
 if [ -d "$HOME/src/doomemacs/bin" ] ; then
     export PATH="$HOME/src/doomemacs/bin:$PATH"
@@ -802,8 +819,10 @@ fi
 #   [ Babel evaluation exited with code 0 ]
 set -m
 
-# Nix
-[ -s "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && \. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+## -- Nix ------------------------------------------------------------------
+
+[ -s "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && \
+    \. "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 ## added by Nix installer
 # if [ -e /home/xin/.nix-profile/etc/profile.d/nix.sh ]; then . /home/xin/.nix-profile/etc/profile.d/nix.sh; fi
