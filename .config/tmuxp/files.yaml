@@ -6,28 +6,14 @@ windows:
     focus: true
     panes:
       - shell_command:
-          - cmd: lfcd ~/zbox_sshfs/data/download/bt
-            sleep_after: 1
+          - lfcd ~/zbox_sshfs/data/download/bt
         focus: true
       - shell_command:
-          - cmd: lfcd /mnt/data3/xin/AV
-            sleep_after: 1
+          - lfcd /mnt/data3/xin/AV
       - shell_command:
-          - cmd: lfcd /media/xin
-            sleep_after: 1
+          - lfcd /media/xin
   - window_name: ssh_zbox
     layout: main-horizontal
     panes:
       - shell_command:
           - ssh zbox
-  # - window_name: mc
-  #   layout: main-horizontal
-  #   panes:
-  #     - shell_command:
-  #         - mc
-  #       focus: true
-  #     - shell_command:
-  #         - cmd: emacsclient -tc "~/org/roam/20220307093602-midnight_commander.org"
-  #           sleep_after: 1
-  #     # - shell_command:
-  #     #     - cmd: emacsclient -tc "~/.config/mc/"

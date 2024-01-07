@@ -1,47 +1,62 @@
 session_name: cheatsheets
 start_directory: "~/org/roam"
 windows:
-  - window_name: kitty
-    layout: even-horizontal
+  - window_name: tmux
+    layout: main-vertical
     focus: true
     panes:
       - shell_command:
-          - cmd: emacsclient -tc "20220625162855-kitty_default_keybindings.org"
-            sleep_after: 1
+          - man tmux
         focus: true
       - shell_command:
-          - cmd: emacsclient -tc "20220915152532-my_customized_kitty_keybinds.org"
-            sleep_after: 1
-      - shell_command:
-          - cmd: emacsclient -tc "~/.config/kitty/kitty.conf"
-            sleep_after: 2
-  - window_name: tmux
-    layout: even-horizontal
-    panes:
+          - emacsclient -tc "~/.config/tmux/tmux.conf"
       - shell_command:
           - cmd: emacsclient -tc "~/src/tao-of-tmux/manuscript/99-cheatsheets.org"
-            sleep_after: 1
-            focus: true
       - shell_command:
           - cmd: emacsclient -tc "tmux_cheat_sheet_quick_reference.org"
-            sleep_after: 1
+  - window_name: lf
+    layout: main-vertical
+    panes:
       - shell_command:
-          - cmd: emacsclient -tc "~/.config/tmux/tmux.conf"
-            sleep_after: 1
+          - lf -doc | bat
+        focus: true
+      - shell_command:
+          - cmd: emacsclient -tc "~/.config/lf/keybindings"
+      - shell_command:
+          - cmd: emacsclient -tc "20230508000630-lf_default_keybindings.org"
+  - window_name: foot
+    layout: main-vertical
+    panes:
+      - shell_command:
+          - man foot
+        focus: true
+      - shell_command:
+          - emacsclient -tc "~/.config/foot/foot.ini"
+      - shell_command:
+          - emacsclient -tc "20230508000630-lf_default_keybindings.org"
   - window_name: midnight commander
-    layout: even-horizontal
+    layout: main-vertical
     panes:
       - shell_command:
-          - cmd: emacsclient -tc "20220911005423-midnight_commander_cheatsheet.org"
-            sleep_after: 1
+          - man mc
         focus: true
+      - shell_command:
+          - emacsclient -tc "20220911005423-midnight_commander_cheatsheet.org"
+  - window_name: kitty
+    layout: main-vertical
+    panes:
+      - shell_command:
+          - emacsclient -tc "20220625162855-kitty_default_keybindings.org"
+        focus: true
+      - shell_command:
+          - emacsclient -tc "20220915152532-my_customized_kitty_keybinds.org"
+      - shell_command:
+          - emacsclient -tc "~/.config/kitty/kitty.conf"
   - window_name: eaf-browser
-    layout: even-horizontal
+    layout: main-vertical
     panes:
       - shell_command:
-          - cmd: emacsclient -tc "20220817010326-eaf_browser_default_key_bindings.org"
-            sleep_after: 1
+          - emacsclient -tc "20220817010326-eaf_browser_default_key_bindings.org"
         focus: true
       - shell_command:
-          - cmd: emacsclient -tc "20220817010326-eaf_browser.org"
-            sleep_after: 1
+          - emacsclient -tc "20220817010326-eaf_browser.org"
