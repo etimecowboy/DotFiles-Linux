@@ -3,13 +3,7 @@
 preview_image() {
     file=$1
 
-    # quicker tmux processing
-    if [[ "$TERM" =~ .*tmux.* ]]; then
-        preview_metainfo "$file"
-        exit 1
-    fi
-
-    if [[ "$TERM" =~ .*foot.* ]]; then
+    if [[ "$TERM" =~ .*xterm.* || "$TERM" =~ .*foot.* || "$TERM" =~ .*eat.* || "$TERM" =~ .*wez.* ]]; then
         if command -v chafa > /dev/null 2>&1 ; then
 	          geometry="$(($2-2))x$3"
             chafa "$1" -f sixel -s "$geometry" --animate false
