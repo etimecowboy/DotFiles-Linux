@@ -1,5 +1,5 @@
 #!/use/bin/env bash
-# Time-stamp: <2024-01-07 Sun 03:36 by xin on tufg>
+# Time-stamp: <2024-01-09 Tue 01:49 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -826,3 +826,8 @@ set -m
 
 ## added by Nix installer
 # if [ -e /home/xin/.nix-profile/etc/profile.d/nix.sh ]; then . /home/xin/.nix-profile/etc/profile.d/nix.sh; fi
+
+## -- emacs-eat ------------------------------------------------------------
+
+[ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
+    source "$EAT_SHELL_INTEGRATION_DIR/bash"
