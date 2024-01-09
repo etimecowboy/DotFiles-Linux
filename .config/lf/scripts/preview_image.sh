@@ -3,7 +3,11 @@
 preview_image() {
     file=$1
 
-    if [[ "$TERM" =~ .*xterm.* || "$TERM" =~ .*foot.* || "$TERM" =~ .*eat.* || "$TERM" =~ .*wez.* ]]; then
+    if [[ "$TERM" =~ .*xterm.*
+            || "$TERM" =~ .*foot.*
+            # || "$TERM" =~ .*eat.* # FIXME: LF cannot display sixel properly in emacs-eat
+            # || "$TERM" =~ .*wez.* # TODO: NOT tested it yet.
+        ]]; then
         if command -v chafa > /dev/null 2>&1 ; then
 	          geometry="$(($2-2))x$3"
             chafa "$1" -f sixel -s "$geometry" --animate false
