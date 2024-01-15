@@ -3,21 +3,20 @@ start_directory: ~/src
 shell_command_before: neofetch
 windows:
   - window_name: gtd
-    layout: main-horizontal
     focus: true
     panes:
       - shell_command:
           - emacsclient -tc --eval '(org-agenda nil "d")'
-        focus: true
   - window_name: notes
-    layout: main-vertical
     start_directory: ~/org/roam/
     panes:
       - shell_command:
           - cmd: emacsclient -tc note_inbox.org
-        focus: true
+  - window_name: bookmarks
+    start_directory: ~/org/roam/
+    panes:
       - shell_command:
-          -
+          - cmd: emacsclient -tc bookmark_inbox.org
   - window_name: projects
     layout: main-horizontal
     panes:

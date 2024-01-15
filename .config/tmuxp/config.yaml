@@ -2,7 +2,7 @@ session_name: config
 start_directory: ~/src/
 windows:
   - window_name: spacemacs
-    layout: main-vertical
+    layout: main-horizontal
     focus: true
     panes:
       - shell_command:
@@ -16,31 +16,25 @@ windows:
           - git pull
   - window_name: tmux
     start_directory: ~/src/DotFiles-Linux/.config/
-    layout: main-vertical
+    layout: even-vertical
     panes:
       - shell_command:
           - emacsclient -tc tmux/tmux.conf
         focus: true
       - shell_command:
-          - emacsclient -tc tmuxp/config.yaml
-      - shell_command:
           - lfcd tmuxp/
   - window_name: lf
     start_directory: ~/src/DotFiles-Linux/.config/lf/
-    layout: main-vertical
+    layout: even-vertical
     panes:
       - shell_command:
-          - emacsclient -tc cmd
-        focus: true
-      - shell_command:
-          - cmd: emacsclient -tc keybindings
-      - shell_command:
           - cmd: lfcd .
+        focus: true
       - shell_command:
           - cmd: lfcd ~/src/lf-sixel/etc/
   - window_name: foot
     start_directory: ~/src/DotFiles-Linux/.config/foot/
-    layout: even-horizontal
+    layout: even-vertical
     panes:
       - shell_command:
           - emacsclient -tc foot.ini
@@ -49,27 +43,27 @@ windows:
           - lfcd .
   - window_name: kitty
     start_directory: ~/src/DotFiles-Linux/.config/kitty/
-    layout: even-horizontal
+    layout: even-vertical
     panes:
       - shell_command:
           - emacsclient -tc kitty.conf
         focus: true
       - shell_command:
           - lfcd .
-  - window_name: shell
+  - window_name: bash
     start_directory: ~/src/DotFiles-Linux/
-    layout: main-vertical
+    layout: main-horizontal
     panes:
-      - shell_command:
-          - git status
       - shell_command:
           - emacsclient -tc .bashrc
         focus: true
       - shell_command:
           - emacsclient -tc .profile
+      - shell_command:
+          - git status
   - window_name: emacs
     start_directory: ~/src/emacs/
-    layout: even-horizontal
+    layout: even-vertical
     panes:
       - shell_command:
           - git fetch
