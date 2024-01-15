@@ -30,6 +30,13 @@
 	process = git-lfs filter-process
 	required = true
 
+# use proxy to connect github
+[https "https://github.com"]
+	proxy = http://192.168.0.23:7890
+
+[http "https://github.com"]
+	proxy = http://192.168.0.23:7890
+
 ## delta
 # # REF: https://github.com/dandavison/delta
 # [core]
