@@ -2,19 +2,31 @@
 # Key bindings
 #=================================================================
 
+# Edit lfrc
+map z. edit-config
+
 # Reload lfrc
-map z. reload
+map zr reload-config
 
 # -- UI ----------------------------------------------------------
 
 # Re-arrange columns
 map zz recol
 
+# preview toggle
+map zp toggle_preview
+
 # Toggle line number
 map zl :set number!; set relativenumber!
 
 # Toggle mouse
 map zm set mouse!
+
+# -- Navigation --------------------------------------------------
+
+# Move up/down in the parent directory, ignoring files
+map J move-parent down
+map K move-parent up
 
 # -- shell -------------------------------------------------------
 
@@ -55,6 +67,27 @@ map <s-delete> delete
 # Find files
 map <c-f> push :setfilter<space>
 
+# Create symlinks
+map P :link
+# Tutorial:
+#
+#   - y (select for copy) and P to paste soft-link
+#   - d (select for cut) and P to paste hard-link
+
+# Create new folder with selected items
+map <a-n> newfold
+
+# Select all files or directories in the current directory
+# map <C-a> select-files
+# map <C-A> select-dirs
+
+# -- Yank path ---------------------------------------------------
+map Y
+map Yd yank-dirname
+map Yp yank-path
+map Yb yank-basename
+map Ye yank-basename-without-extension
+
 # -- file openning -----------------------------------------------
 
 # Text files
@@ -62,9 +95,15 @@ map e $emacsclient -tc $fx
 map i $bat $f
 
 # MIME files
-map o &mimeopen $f
-map O $mimeopen --ask $f
-# map o push :open-with<space>
+map o
+map oo &mimeopen $f
+map oO $mimeopen --ask $f
+map o? push :open-with<space>
+map om
+map omw open-kitty-window-mpv
+map omW close-kitty-window-mpv
+map omt open-kitty-tab-mpv
+map omT close-kitty-tab-mpv
 
 # Compressed files
 # 'extract' and 'compress' commands

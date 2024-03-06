@@ -4,8 +4,14 @@
 
 # -- Reload lfrc -----------------------------------------------------------------
 
-cmd reload ${{
-    source "~/.config/lf/lfrc"
+cmd reload-config ${{
+    lf -remote "send $id source ~/.config/lf/lfrc"
+}}
+
+# -- Edit lfrc  ------------------------------------------------------------------
+
+cmd edit-config ${{
+    $EDITOR ~/.config/lf/lfrc
 }}
 
 # -- Change windows title when cd in a dir ---------------------------------------
@@ -31,22 +37,21 @@ cmd on-cd &{{
 cmd recol ${{
     w=$(tput cols)
     if [ $w -le 80 ]; then
-        lf -remote "send $id set ratios 1:2"
+        lf -remote "send $id :set preview false; set ratios 1:2"
     else
-        lf -remote "send $id set ratios 1:2:3"
+        lf -remote "send $id :set ratios 1:2:3"
     fi
 }}
 
-# cmd recol ${{
-#     w=$(tput cols)
-#     if [ $w -le 90 ]; then
-#         lf -remote "send $id set ratios 1:3"
-#     elif [ $w -le 270 ]; then
-#         lf -remote "send $id set ratios 1:3:5"
-#     else
-#         lf -remote "send $id set ratios 1:3:5:7"
-#     fi
-# }}
+# -- Toggle preview manually --------------------------------------------------
+
+cmd toggle_preview %{{
+    if [ "$lf_preview" = "true" ]; then
+        lf -remote "send $id :set preview false; set ratios 1:5"
+    else
+        lf -remote "send $id :set preview true; set ratios 1:2:3"
+    fi
+}}
 
 # -- 'rename' command --------------------------------------------------------------
 
@@ -87,7 +92,7 @@ cmd bulkrename ${{
 
 cmd trash %set -f; trash $fx
 
-# -- Define a custom 'delete' command ---------------------------------------
+# -- Custom 'delete' command ---------------------------------------
 
 # cmd delete ${{
 #     set -f
@@ -116,7 +121,7 @@ cmd extract ${{
     esac
 }}
 
-# compress current file or selected files with tar and gunzip ---------------
+# -- Compress current file or selected files with tar and gunzip -------------
 
 cmd tar ${{
     set -f
@@ -126,7 +131,7 @@ cmd tar ${{
     rm -rf $1
 }}
 
-# compress current file or selected files with zip --------------------------
+# -- Compress current file or selected files with zip --------------------------
 
 cmd zip ${{
     set -f
@@ -136,12 +141,76 @@ cmd zip ${{
     rm -rf $1
 }}
 
-# Change 'doc' command to use a different pager -----------------------------
+# -- Create symlinks (soft/hard) -----------------------------------------------
+
+cmd link %{{
+    set -- $(cat ~/.local/share/lf/files)
+    mode="$1"
+    shift
+    if [ "$#" -lt 1 ]; then
+        lf -remote "send $id echo no files to link"
+        exit 0
+    fi
+    case "$mode" in
+        # symbolically copy mode is indicating a soft link
+        copy) ln -sr -t . -- "$@";;
+        # while a move mode is indicating a hard link
+        move) ln -t . -- "$@";;
+    esac
+    rm ~/.local/share/lf/files
+    lf -remote "send clear"
+}}
+
+# -- New folder with selected items --------------------------------------------
+
+cmd newfold ${{
+    set -f
+    printf "Directory name: "
+    read newd
+    mkdir -- "$newd"
+    mv -- $fx "$newd"
+}}
+
+# -- Add to cut/copied files ---------------------------------------------------
+
+cmd cut-add %{{
+    newline=$'\n'
+    sed -i '1s/.*/move/' "$XDG_DATA_HOME/lf/files"
+    echo "$fx" >> "$XDG_DATA_HOME/lf/files"
+    lf -remote "send $id unselect${newline}send $id sync"
+}}
+
+cmd cut-remove %{{
+    newline=$'\n'
+    sed -i '1s/.*/move/' "$XDG_DATA_HOME/lf/files"
+    while read -r file; do
+        sed -i "\|$file|d" "$XDG_DATA_HOME/lf/files"
+    done <<< "$fx"
+    lf -remote "send $id unselect${newline}send $id sync"
+}}
+
+cmd cut-toggle %{{
+    newline=$'\n'
+    files=$(comm --output-delimiter="" -3 \
+        <(tail -n +2 "$XDG_DATA_HOME/lf/files" | sort) \
+        <(echo "$fx" | sort) | tr -d '\0')
+    printf "move\n$files" > "$XDG_DATA_HOME/lf/files"
+    lf -remote "send $id unselect${newline}send $id sync"
+}}
+
+# -- Yank paths into your clipboard
+
+cmd yank-dirname $dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
+cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
+cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -i -selection clipboard
+cmd yank-basename-without-extension &basename -a -- $fx | rev | cut -d. -f2- | rev | head -c-1 | xclip -i -selection clipboard
+
+# -- Change 'doc' command to use a different pager -----------------------------
 
 cmd doc $lf -doc | bat
 
 
-# 'open' command ------------------------------------------------------------
+# -- 'open' command ------------------------------------------------------------
 
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
@@ -154,12 +223,98 @@ cmd open &{{
     esac
 }}
 
-# 'open-with' command -------------------------------------------------------
+# -- 'open-with' command -------------------------------------------------------
 
 cmd open-with %"$@" "$fx"
 
+# -- Open media files in kitty windows with mpv ---------------------------------
 
-# Use rsync to paste  -------------------------------------------------------
+cmd open-kitty-window-mpv &{{
+       case $(file --mime-type -Lb $f) in
+             text/*) lf -remote "send $id \$$EDITOR \$fx";;
+             *) for f in $fx; do kitty @ --to unix:@mykitty launch --type window --title "mpv@kitty - $f" --keep-focus bash -c "mpv '$f' --vo=kitty --vo-kitty-width=480 --profile=sw-fast" > /dev/null 2> /dev/null & done;;
+       esac
+}}
+
+# -- Open media files in kitty tabs with mpv -------------------------------------
+
+cmd open-kitty-tab-mpv &{{
+        case $(file --mime-type -Lb $f) in
+            text/*) lf -remote "send $id \$$EDITOR \$fx";;
+            *) for f in $fx; do kitty @ --to unix:@mykitty launch --type tab --title "mpv@kitty - $f" bash -c "mpv '$f' --vo=kitty --vo-kitty-width=1024 --profile=sw-fast" > /dev/null 2> /dev/null & done;;
+        esac
+}}
+
+# -- Close kitty windows tagged 'mpv' ---------------------------------------------
+
+# cmd mpv-close-kitty-window &{{
+#     case $(file --mime-type -Lb $f) in
+#         text/*) lf -remote "send $id \$$EDITOR \$fx";;
+#         *) for f in $fx; do kitty @ --to unix:@mykitty close-window --match "title:$f" --ignore_no_match > /dev/null 2> /dev/null & done;;
+#     esac
+# }}
+
+cmd close-kitty-window-mpv ${{
+    kitty @ --to unix:@mykitty close-window --match "title:^mpv@kitty" --ignore_no_match
+}}
+
+# -- Close kitty tabs tagged with 'mpv' -------------------------------------------
+
+# cmd mpv-close-kitty-tab &{{
+#     case $(file --mime-type -Lb $f) in
+#         text/*) lf -remote "send $id \$$EDITOR \$fx";;
+#         q*) for f in $fx; do kitty @ --to unix:@mykitty close-tab --match "title:$f" --ignore_no_match > /dev/null 2> /dev/null & done;;
+#     esac
+# }}
+
+cmd close-kitty-tab-mpv ${{
+    kitty @ --to unix:@mykitty close-tab --match "title:^mpv@kitty" --ignore_no_match
+}}
+
+# -- Close all mpv windows and tabs ------------------------------------------------
+
+# cmd kitty-close-mpv-all ${{
+#     kitty @ --to unix:@mykitty close-window --match "title:^mpv@kitty" --ignore_no_match > /dev/null 2> /dev/null
+#     kitty @ --to unix:@mykitty close-tab --match "title:^mpv@kitty" --ignore_no_match > /dev/null 2> /dev/null
+# }}
+
+# -- Move up/down in the parent directory ------------------------------------------
+
+cmd move-parent &{{
+    dironly="setlocal '$(dirname "$PWD")' dironly"
+    lf -remote "send $id :updir; $dironly true; $1; $dironly false; open"
+}}
+
+# -- Select all files or directories in the current directory ----------------------
+#
+# FIXME: NOT working
+# cmd select-files &{{
+#     get_files() {
+#         if [ "$lf_hidden" = 'false' ]; then
+#             find "$PWD" -mindepth 1 -maxdepth 1 -type f -not -name '.*' -print0
+#         else
+#             find "$PWD" -mindepth 1 -maxdepth 1 -type f -print0
+#         fi |
+#         xargs -0 printf ' %q'
+#     }
+#
+#     lf -remote "send $id :unselect; toggle $(get_files)"
+# }}
+
+# cmd select-dirs &{{
+#     get_dirs() {
+#         if [ "$lf_hidden" = 'false' ]; then
+#             find "$PWD" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -print0
+#         else
+#             find "$PWD" -mindepth 1 -maxdepth 1 -type d -print0
+#         fi |
+#         xargs -0 printf ' %q'
+#     }
+#
+#     lf -remote "send $id :unselect; toggle $(get_dirs)"
+# }}
+
+# -- Use rsync to paste  -----------------------------------------------------------
 
 # Paste and override files
 #

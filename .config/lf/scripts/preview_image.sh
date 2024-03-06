@@ -3,6 +3,26 @@
 preview_image() {
     file=$1
 
+    if [[ "$TERM" =~ .*kitty.* ]]; then
+        if command -v kitten > /dev/null 2>&1 ; then
+            w=$2
+            h=$3
+            x=$4
+            y=$5
+
+            # Rescale the image
+            w=$(( w * 99 / 100 ))
+            h=$(( h * 99 / 100 ))
+            y=$(( y + 1 ))
+
+            if [[ "$( file -Lb --mime-type "$file")" =~ ^image ]]; then
+                # kitty +icat --silent --transfer-mode file --place "${w}x${h}@${x}x${y}" "$file"
+                kitten icat --transfer-mode file --stdin no --place "${w}x${h}@${x}x${y}" "$file" < /dev/null > /dev/tty
+                exit 1
+            fi
+        fi
+    fi
+
     if [[ "$TERM" =~ .*xterm.*
             || "$TERM" =~ .*foot.*
             # || "$TERM" =~ .*eat.* # FIXME: LF cannot display sixel properly in emacs-eat
@@ -13,26 +33,6 @@ preview_image() {
             chafa "$1" -f sixel -s "$geometry" --animate false
             exit 1
         fi
-    fi
-
-    if [[ "$TERM" =~ .*kitty.* ]]; then
-       if command -v kitten > /dev/null 2>&1 ; then
-           w=$2
-           h=$3
-           x=$4
-           y=$5
-
-           # Rescale the image
-           w=$(( w * 99 / 100 ))
-           h=$(( h * 99 / 100 ))
-           y=$(( y + 1 ))
-
-           if [[ "$( file -Lb --mime-type "$file")" =~ ^image ]]; then
-               # kitty +icat --silent --transfer-mode file --place "${w}x${h}@${x}x${y}" "$file"
-               kitten icat --transfer-mode file --stdin no --place "${w}x${h}@${x}x${y}" "$file" < /dev/null > /dev/tty
-               exit 1
-           fi
-       fi
     fi
 
     # pistol "$file"
