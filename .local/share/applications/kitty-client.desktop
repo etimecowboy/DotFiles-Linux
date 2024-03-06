@@ -1,10 +1,10 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Kitty
+Name=Kitty (New Tab)
 GenericName=Terminal emulator
 Comment=Fast, feature-rich, GPU based terminal
 TryExec=kitty
-Exec=kitty -1 -o allow_remote_control=yes --listen-on unix:@mykitty
+Exec=kitty @ --to unix:@mykitty launch --type tab
 Icon=/opt/kitty/share/icons/hicolor/256x256/apps/kitty.png
 Categories=System;TerminalEmulator;
