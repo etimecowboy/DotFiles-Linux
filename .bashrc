@@ -1,5 +1,5 @@
 #!/use/bin/env bash
-# Time-stamp: <2024-01-09 Tue 01:49 by xin on tufg>
+# Time-stamp: <2024-03-06 Wed 00:16 by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -425,7 +425,9 @@ fi
 
 ## -- starship prompt -----------------------------------------------------
 
-eval "$(starship init bash)"
+if [ "$TERM" != "dumb"  ] ; then
+    eval "$(starship init bash)"
+fi
 
 ## -- zellij --------------------------------------------------------------
 
@@ -474,7 +476,9 @@ lfcd () {
     fi
 }
 
-bind '"\C-o":"lfcd\C-m"'
+if [ "$TERM" != "dumb"  ]; then
+    bind '"\C-o":"lfcd\C-m"'
+fi
 
 ## -- fzf -----------------------------------------------------------------
 
@@ -489,7 +493,10 @@ bind '"\C-o":"lfcd\C-m"'
 #     source /usr/share/doc/fzf/examples/completion.bash
 
 # If fzf is installed by the install script in the git repo
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+if [ -f ~/.fzf.bash ] && [ "$TERM" != "dumb"  ]; then
+    source ~/.fzf.bash
+fi
 
 ### always use fzf-tmux
 alias fzf='fzf-tmux'
@@ -560,8 +567,10 @@ _fzf_compgen_dir() {
 
 ### enable more completions
 # usage: _fzf_setup_completion path|dir|var|alias|host COMMANDS...
-_fzf_setup_completion path rg ag git kubectl
-_fzf_setup_completion dir tree
+if [ "$TERM" != "dumb"  ]; then
+    _fzf_setup_completion path rg ag git kubectl
+    _fzf_setup_completion dir tree
+fi
 
 ### define some custom functions
 
@@ -661,7 +670,7 @@ fp() {
 
 ### fasd
 # NOTE: fasd doesn't work in tty mode
-if [ -x "$(command -v fasd)" ]; then
+if [ -x "$(command -v fasd)" ] && [ "$TERM" != "dumb"  ]; then
     eval "$(fasd --init auto)"
     # default aliases begin
     alias a='fasd -a'        # any
@@ -831,3 +840,10 @@ set -m
 
 [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
     source "$EAT_SHELL_INTEGRATION_DIR/bash"
+
+# -- dioxionary ------------------------------------------------------------
+
+if ! command -v dioxionary &> /dev/null; then
+    eval "$(dioxionary -c bash)"
+    exit 1
+fi

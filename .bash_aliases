@@ -35,8 +35,9 @@ alias ek="emacsclient -e '(client-save-kill-emacs)'"
 # alias em='export LC_CTYPE=zh_CN.UTF-8;emacs --daemon' # swith im problem
 alias eq='emacs -nw -q'
 alias eQ='emacs -nw -Q'
+alias ec="emacsclient"
 alias ee="emacsclient -tc"
-alias ec="emacsclient -nc"
+alias en="emacsclient -nc"
 # alias vi='emacsclient -tc' # Use emacs instead of vi
 # alias today="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"d\")' 2> /dev/null | less"
 # alias week="emacs -batch -l ~/.emacs.d/init.el -eval '(org-batch-agenda \"a\")' 2> /dev/null | less"
@@ -78,3 +79,8 @@ alias pbpaste='xclip -selection clipboard -o'
 # -- mc --------------------------------------------------------------------------
 
 alias mc='. /usr/lib/mc/mc-wrapper.sh'
+
+# -- lf --------------------------------------------------------------------------
+
+# Only works as expected in tmux
+alias lfmc='tmux split lf; lf'
