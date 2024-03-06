@@ -1,18 +1,23 @@
 session_name: files
 start_directory: ~/
 windows:
-  - window_name: AV
-    layout: even-vertical
+  - window_name: "[zbox]#bt"
+    layout: main-horizontal
     focus: true
     panes:
       - shell_command:
           - lfcd ~/zbox_sshfs/data/download/bt
-        focus: true
+  - window_name: "[zbox]#AV"
+    layout: main-horizontal
+    panes:
       - shell_command:
           - lfcd /mnt/data3/xin/AV
+  - window_name: "[tufg]#usb"
+    layout: main-horizontal
+    panes:
       - shell_command:
           - lfcd /media/xin
-  - window_name: ssh_zbox
+  - window_name: "ssh@[zbox]"
     layout: main-horizontal
     panes:
       - shell_command:

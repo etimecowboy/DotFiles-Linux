@@ -66,7 +66,7 @@ windows:
     layout: even-vertical
     panes:
       - shell_command:
-          - git fetch
+          - git fetch --all
         focus: true
       - shell_command:
           - git tag | rg 29

@@ -5,11 +5,14 @@ windows:
     panes:
       - shell_command:
           - cmd: emacsclient -tc bookmark_inbox.org
+            sleep_after: 1
   - window_name: note_inbox
     panes:
       - shell_command:
           - cmd: emacsclient -tc note_inbox.org
+            sleep_after: 1
   - window_name: task_inbox
     panes:
       - shell_command:
           - cmd: emacsclient -tc task_inbox.org
+            sleep_after: 1

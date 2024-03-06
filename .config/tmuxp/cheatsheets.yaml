@@ -60,3 +60,8 @@ windows:
         focus: true
       - shell_command:
           - emacsclient -tc "20220817010326-eaf_browser.org"
+  - window_name: mpvi
+    layout: main-vertical
+    panes:
+      - shell_command:
+          - emacsclient -tc "20230601231320-mpvi_default_keybindings.org"
