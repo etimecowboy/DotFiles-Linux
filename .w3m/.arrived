@@ -1,7 +1,37 @@
 ;;; .arrived  -*- mode: emacs-lisp; coding: iso-2022-7bit -*-
 ;; This file is generated automatically by emacs-w3m v1.4.632.
 
-(("https://github.com/kovidgoyal/kitty/issues/1310"
+(("https://stackoverflow.com/questions/218623/why-use-monospace-fonts-in-your-ide"
+  "Just a moment..."
+  (26144 59102 686955 356000)
+  (26144 59102 686955 356000)
+  nil
+  nil)
+ ("https://www.techtarget.com/searchcio/definition/chief-data-officer-CDO"
+  "Chief Data Officer (CDO) Role and Responsibilities"
+  nil
+  (25998 60375 938368 762000)
+  nil
+  nil)
+ ("https://www.google.com"
+  "Google"
+  nil
+  (25998 60375 726289 785000)
+  nil
+  nil)
+ ("https://www.increasinglyadequate.com/cmus.html"
+  "cmus, a really quick guide"
+  (25122 56244)
+  (25956 11012 477965 918000)
+  nil
+  nil)
+ ("https://www.youtube.com/watch?v=8ldmPJaQ3KU"
+  "A Tour of My YouTube Studio Setup (2023) - YouTube"
+  nil
+  (25950 47001 793939 252000)
+  nil
+  nil)
+ ("https://github.com/kovidgoyal/kitty/issues/1310"
   "Feature request: Move window to another Tab $(G!1(B Issue #1310 $(G!1(B kovidgoyal/kitty $(G!1(B GitHub"
   nil
   (25949 42521 592521 279000)
@@ -1073,12 +1103,6 @@
   "- Google Search"
   nil
   (25808 48837 552759 972000)
-  nil
-  nil)
- ("https://www.google.com"
-  nil
-  nil
-  (25808 48811 22948 221000)
   nil
   nil)
  ("http://www.baidu.com"
