@@ -1,5 +1,5 @@
 #!/use/bin/env bash
-# Time-stamp: <2024-03-06 Wed 00:16 by xin on tufg>
+# Time-stamp: <2024-05-19 Sun 01:45:24 GMT by xin on tufg>
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -25,13 +25,13 @@ shopt -s cdspell
 
 # multi-line commands to be appended to your bash history as a single line
 # command
-shopt -s cmdhist 
+shopt -s cmdhist
 
 # allows dot-begin files to be returned in the results of path-name expansion
-shopt -s dotglob 
+shopt -s dotglob
 
 # allows egrep-style extended pattern matching
-shopt -s extglob 
+shopt -s extglob
 
 # -- shell history ----------------------------------------------------------
 
@@ -93,12 +93,12 @@ force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+  # We have color support; assume it's compliant with Ecma-48
+  # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+  # a case would tend to support setf rather than setaf.)
+  color_prompt=yes
     else
-	color_prompt=
+  color_prompt=
     fi
 fi
 
@@ -395,11 +395,9 @@ fi
 # use node packages that need to be installed via ~npm install~ commands. I do
 # that in a conda virtual environment.
 #
-# export NVM_DIR="$HOME/.nvm" ;; moved to "~/.profile"
-# Load nvm config
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# Load nvm bash_completion
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 ## -- rustup --------------------------------------------------------------
 
@@ -792,17 +790,17 @@ function fds() {
 ### fzf + rga
 # Search contents in pdf, epub, office docs, zip, tar.gz etc
 fzf-rga() {
-	  RG_PREFIX="rga --files-with-matches"
-	  local file
-	  file="$(
-		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
-			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
-				--phony -q "$1" \
-				--bind "change:reload:$RG_PREFIX {q}" \
-				# --preview-window="70%:wrap"
-	)" &&
-	      echo "opening $file" &&
-	      xdg-open "$file"
+    RG_PREFIX="rga --files-with-matches"
+    local file
+    file="$(
+    FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+      fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+        --phony -q "$1" \
+        --bind "change:reload:$RG_PREFIX {q}" \
+        # --preview-window="70%:wrap"
+  )" &&
+        echo "opening $file" &&
+        xdg-open "$file"
 }
 
 # -- Emacs -----------------------------------------------------------------
@@ -847,3 +845,28 @@ if ! command -v dioxionary &> /dev/null; then
     eval "$(dioxionary -c bash)"
     exit 1
 fi
+
+# -- yazi -------------------------------------------------------------------
+
+function yy() {
+	  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	  yazi "$@" --cwd-file="$tmp"
+	  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		    cd -- "$cwd"
+	  fi
+	  rm -f -- "$tmp"
+}
+
+# -- w3m --------------------------------------------------------------------
+# Pass inline_img_protocol value according to $TERM
+function w3m() {
+    local protocol=0
+    if [[ $TERM == *"kitty"* ]]; then
+        protocol=4 # APC G
+    else
+        protocol=2 # SIXEL
+    fi
+    # echo $protocol
+    # echo "/usr/bin/w3m -o inline_img_protocol=$protocol -o display_image=1 $1"
+    /usr/bin/w3m "$@" -o inline_img_protocol=$protocol -o display_image=1
+}
