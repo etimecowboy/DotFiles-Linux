@@ -1,0 +1,13 @@
+# Set some options
+# set forcekitty
+set shell "/usr/bin/bash"
+
+# # Add a new preview
+# preview cow .moo {{
+#     cowsay < "$f"
+# }}
+
+# Remove some previews
+remove w3m
+remove lynx
+remove elinks
