@@ -18,10 +18,13 @@ source "~/.config/lf/bookmark"
 on-cd
 recol
 
-# General - "latest modified first"
+# General
 set sortby time
 set reverse
 
 # Persistent options for some directories
 # setlocal /mnt/ sortby natural
 # setlocal /mnt/movies/ noreverse
+
+# Enable sixel support
+set sixel true

@@ -6,7 +6,7 @@
 map z. edit-config
 
 # Reload lfrc
-map zr reload-config
+map zR reload-config
 
 # -- UI ----------------------------------------------------------
 
@@ -21,6 +21,9 @@ map zl :set number!; set relativenumber!
 
 # Toggle mouse
 map zm set mouse!
+
+# Toggle reverse sort
+map zr set reverse!
 
 # -- Navigation --------------------------------------------------
 

@@ -30,7 +30,7 @@ preview_image() {
         ]]; then
         if command -v chafa > /dev/null 2>&1 ; then
 	          geometry="$(($2-2))x$3"
-            chafa "$1" -f sixel -s "$geometry" --animate false
+            chafa "$1" -f sixel -s "$geometry" --animate off --polite on
             exit 1
         fi
     fi
