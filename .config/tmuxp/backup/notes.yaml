@@ -1,0 +1,17 @@
+session_name: notes
+start_directory: "~/org/roam"
+windows:
+  - window_name: task_inbox
+    panes:
+      - shell_command:
+          - cmd: emacs -q -nw "~/org/roam/task_inbox.org"
+  - window_name: note_inbox
+    panes:
+      - shell_command:
+          - cmd: emacs -q -nw "~/org/roam/note_inbox.org"
+            sleep_before: 1
+  - window_name: bookmark_inbox
+    panes:
+      - shell_command:
+          - cmd: emacs -q -nw "~/org/roam/bookmark_inbox.org"
+            sleep_before: 1

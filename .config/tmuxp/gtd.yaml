@@ -1,0 +1,41 @@
+session_name: gtd
+start_directory: "~/org/roam"
+windows:
+  - window_name: agenda
+    layout: main-horizontal
+    focus: true
+    options:
+      main-pane-height: 50%
+    panes:
+      - shell_command:
+          - emacsclient -t --eval '(org-agenda nil "d")'
+        focus: true
+        sleep_after: 2 
+  - window_name: today
+    layout: main-vertical
+    options:
+      main-pane-width: 50%
+    panes:
+      - shell_command:
+          - emacsclient -t --eval '(org-roam-dailies-goto-today "t")'
+  - window_name: task
+    layout: main-horizontal
+    options:
+      main-pane-height: 50%
+    panes:
+      - shell_command:
+          - emacsclient -t task_inbox.org
+  - window_name: note
+    layout: main-horizontal
+    options:
+      main-pane-height: 50%
+    panes:
+      - shell_command:
+          - emacsclient -t note_inbox.org
+  - window_name: bookmark
+    layout: main-horizontal
+    options:
+      main-pane-height: 50%
+    panes:
+      - shell_command:
+          - emacsclient -t bookmark_inbox.org

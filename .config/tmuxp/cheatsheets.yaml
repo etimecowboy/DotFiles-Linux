@@ -1,67 +1,64 @@
 session_name: cheatsheets
 start_directory: "~/org/roam"
 windows:
-  - window_name: tmux
+  - window_name: kitty
     layout: main-vertical
+    options:
+      main-pane-width: 50%
     focus: true
     panes:
       - shell_command:
-          - man tmux
+          - emacsclient -t 20220625162855-kitty_default_keybindings.org
         focus: true
       - shell_command:
-          - emacsclient -tc "~/.config/tmux/tmux.conf"
+          - emacsclient -t 20220915152532-my_customized_kitty_keybinds.org
       - shell_command:
-          - cmd: emacsclient -tc "~/src/tao-of-tmux/manuscript/99-cheatsheets.org"
-      - shell_command:
-          - cmd: emacsclient -tc "tmux_cheat_sheet_quick_reference.org"
-  - window_name: lf
-    layout: main-vertical
-    panes:
-      - shell_command:
-          - lf -doc | bat
-        focus: true
-      - shell_command:
-          - cmd: emacsclient -tc "~/.config/lf/keybindings"
-      - shell_command:
-          - cmd: emacsclient -tc "20230508000630-lf_default_keybindings.org"
+          - emacsclient -t ~/.config/kitty/kitty.conf
   - window_name: foot
     layout: main-vertical
+    options:
+      main-pane-width: 50%
     panes:
       - shell_command:
           - man foot
         focus: true
       - shell_command:
-          - emacsclient -tc "~/.config/foot/foot.ini"
+          - emacsclient -t ~/.config/foot/foot.ini
       - shell_command:
-          - emacsclient -tc "20230508000630-lf_default_keybindings.org"
-  - window_name: midnight commander
+          - emacsclient -t 20231212100436-foot_default_keybindings.org
+  - window_name: tmux
     layout: main-vertical
+    options:
+      main-pane-width: 50%
     panes:
       - shell_command:
-          - man mc
+          - man tmux
         focus: true
       - shell_command:
-          - emacsclient -tc "20220911005423-midnight_commander_cheatsheet.org"
-  - window_name: kitty
+          - emacsclient -t ~/.config/tmux/tmux.conf
+      - shell_command:
+          - emacsclient -t ~/src/tao-of-tmux/manuscript/99-cheatsheets.org
+      - shell_command:
+          - emacsclient -t tmux_cheat_sheet_quick_reference.org
+  - window_name: lf
     layout: main-vertical
+    options:
+      main-pane-width: 50%
     panes:
       - shell_command:
-          - emacsclient -tc "20220625162855-kitty_default_keybindings.org"
+          - cmd: lf -doc | bat
         focus: true
       - shell_command:
-          - emacsclient -tc "20220915152532-my_customized_kitty_keybinds.org"
+          - cmd: emacsclient -t ~/.config/lf/keybindings
       - shell_command:
-          - emacsclient -tc "~/.config/kitty/kitty.conf"
-  - window_name: eaf-browser
+          - cmd: emacsclient -t 20230508000630-lf_default_keybindings.org
+  - window_name: mc
     layout: main-vertical
+    options:
+      main-pane-width: 50%
     panes:
       - shell_command:
-          - emacsclient -tc "20220817010326-eaf_browser_default_key_bindings.org"
+          - cmd: man mc
         focus: true
       - shell_command:
-          - emacsclient -tc "20220817010326-eaf_browser.org"
-  - window_name: mpvi
-    layout: main-vertical
-    panes:
-      - shell_command:
-          - emacsclient -tc "20230601231320-mpvi_default_keybindings.org"
+          - cmd: emacsclient -t 20220911005423-midnight_commander_cheatsheet.org
