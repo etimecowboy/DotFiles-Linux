@@ -1,0 +1,3 @@
+keymap  X    DISPLAY_IMAGE
+keymap  C-c  STOP_IMAGE
+keymap  t    SET_OPTION  display_image=toggle
